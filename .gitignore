@@ -1,0 +1,8 @@
+.omakedb*
+*.omc
+.installed.cfg
+bin
+eggs
+parts
+develop-eggs
+build
