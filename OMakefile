@@ -1,0 +1,119 @@
+
+.SUBDIRS: source
+
+# .DEFAULT: $(OCamlProgram $(PROGRAM), $(FILES))
+.DEFAULT: help
+
+BOOTSTRAP = ./bootstrap.py
+BUILDOUT = bin/buildout
+
+.PHONY: buildout
+
+# for Sphinx
+
+sphinxopts    =
+SPHINXBUILD   = bin/sphinx-build
+paper         =
+builddir      = build
+srcdir        = source
+sources       = $(glob $(srcdir)/*.rst)
+
+# Internal variables.
+paperopt_a4     = -D latex_paper_size=a4
+paperopt_letter = -D latex_paper_size=letter
+ALLSPHINXOPTS   = -d $(builddir)/doctrees $(sphinxopts) $(srcdir) # $(paperopt_$(paper)) $(sphinxopts) .
+
+.PHONY: help clean html dirhtml pickle json htmlhelp qthelp latex changes linkcheck doctest singlehtml
+
+$(BUILDOUT):
+	python $(BOOTSTRAP) -d init
+
+buildout: $(BUILDOUT) $(BOOTSTRAP) buildout.cfg
+
+$(SPHINXBUILD): buildout
+	$(BUILDOUT)
+
+help_message =  $"""
+Please use `make <target>' where <target> is one of
+  html      to make standalone HTML files
+  dirhtml   to make HTML files named index.html in directories
+  pickle    to make pickle files
+  json      to make JSON files
+  htmlhelp  to make HTML files and a HTML help project
+  qthelp    to make HTML files and a qthelp project
+  latex     to make LaTeX files, you can set PAPER=a4 or PAPER=letter
+  changes   to make an overview of all changed/added/deprecated items
+  linkcheck to check all external links for integrity
+  doctest   to run all doctests embedded in the documentation (if enabled) 
+"""
+
+help:
+	eprintln( $(help_message) )
+
+clean:
+	-rm -rf $(builddir)/*
+
+DepBuild(target, message) =
+	$(target): $(sources) $(srcdir)/conf.py $(SPHINXBUILD)
+		$(SPHINXBUILD) -b $(target) $(ALLSPHINXOPTS) $(builddir)/$(target)
+		eprintln( $(message) )
+
+# # In fact I'd like to write like following:
+# Dep_map. =
+# 	extends $(Map)
+# 	$|json|   = $''' hoge '''
+# 	$|pickle| = $''' hage '''
+# $(Dep_map.map $(DepBuild) )
+
+DepBuild( singlehtml, $''''
+		Build finished. The HTML pages are in $(builddir)/html.  
+	 	''''  )
+
+DepBuild( html, $''''
+		Build finished. The HTML pages are in $(builddir)/html.  
+	 	''''  )
+
+DepBuild( dirhtml, $''''
+	 	Build finished. The HTML pages are in $(builddir)/dirhtml.
+	 	'''') 
+
+DepBuild( pickle, $''''
+	Build finished; now you can process the pickle files.
+	'''')
+
+DepBuild( json, $''''
+	Build finished; now you can process the JSON files.
+	'''')
+
+DepBuild( htmlhelp, $'''
+	Build finished; now you can run HTML Help Workshop with the
+	.hhp project file in $(builddir)/htmlhelp.
+	''')
+
+DepBuild( qthelp, $''''
+	Build finished; now you can run "qcollectiongenerator" with the
+	.qhcp project file in $(builddir)/qthelp, like this:
+	# qcollectiongenerator $(builddir)/qthelp/CouchDBtheDefinitiveGuideTranslationtoJapanese.qhcp
+	To view the help file:
+	# assistant -collectionFile $(builddir)/qthelp/CouchDBtheDefinitiveGuideTranslationtoJapanese.qhc
+	'''')
+
+DepBuild( latex, $''''
+	Build finished; the LaTeX files are in $(builddir)/latex.
+	Run 'make all-pdf' or 'make all-ps' in that directory to
+	run these through (pdf)latex.
+	'''')
+
+DepBuild( changes, $''''
+	The overview file is in $(builddir)/changes.
+	'''')
+
+DepBuild( linkcheck, $''''
+	Link check complete; look for any errors in the above output
+	or in $(builddir)/linkcheck/output.txt.
+	'''')
+
+DepBuild( doctest, $''''
+	Testing of doctests in the sources finished, look at the
+	results in $(builddir)/doctest/output.txt.
+	'''')
