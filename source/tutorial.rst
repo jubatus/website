@@ -80,7 +80,7 @@ JubatusはデフォルトでMessagePack RPCサーバとして9199ポートで待
 
 ::
 
-  $ jubaclassfier --rpc-port=9181 --name=tutorial
+  $ jubaclassifier --rpc-port=9181 --name=tutorial
 
 になります。
 
