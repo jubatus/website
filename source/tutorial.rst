@@ -62,7 +62,7 @@ building and installing Jubatus
 
 ::
 
-  $ git clone git@github.com:jubatus/jubatus.git
+  $ git clone git://github.com/jubatus/jubatus.git
   $ cd jubatus
   $ ./waf configure
   $ ./waf build
@@ -91,8 +91,8 @@ Python client of Jubatus requires `msgpack-python <http://pypi.python.org/pypi/m
 
 ::
 
-  $ git clone git@github.com:jubatus/jubatus-python.git
-  $ cd jubatus-python
+  $ git clone git://github.com/jubatus/jubatus-python-client.git
+  $ cd jubatus-python-client
   $ python setup.py build
   # python setup.py install
 
