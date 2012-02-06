@@ -18,6 +18,7 @@ This document is made up of following parts:
    :maxdepth: 2
 
    gettingstarted
+   blog/index
    references
    misc
 
