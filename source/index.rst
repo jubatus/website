@@ -19,6 +19,7 @@ This document is made up of following parts:
 
    gettingstarted
    blog/index
+   howtocontribute
    references
    misc
 
