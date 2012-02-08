@@ -1,5 +1,5 @@
-Client API
-=================
+Programming API
+===============
 
 jubaclassifier, jubaregression, jubarecommender, jubastatは、MessagePack形式で指定されたデータを送出できるクライアントであれば、実装言語を問わず利用することが出来る。
 2012年1月現在、C++/Pythonによるクライアントジェネレータが用意されている。

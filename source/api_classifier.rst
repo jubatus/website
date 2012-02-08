@@ -1,6 +1,9 @@
 jubatus::client::classifier
 ===============================
 
+
+
+
 typedef
 --------
 

@@ -1,5 +1,5 @@
-Jubatus Framework Processes
-===========================
+Commandline
+===========
 
 Process composition
 ----------------------------

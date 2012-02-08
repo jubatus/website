@@ -1,8 +1,8 @@
 Miscellaneous
 =============
 
-Presentations and papers
-------------------------
+Publications
+------------
 
 - `NTT's press release slide <http://www.slideshare.net/JubatusOfficial/jubatus-pressrelease>`_ (Japanese)
 
