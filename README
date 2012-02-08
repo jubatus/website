@@ -1,0 +1,30 @@
+how to edit this document
+=========================
+
+  $ git clone git@github.com:jubatus/website.git
+  $ <edit what you want on sphinx>
+  $ omake html # build what you wrote
+  $ open build/html/index.html # check what you wrote
+  $ cd build
+  $ git clone git@github.com:jubatus/website.git
+  $ sh publish.sh # deploy to jubat.us
+  $ git push origin master
+
+
+how to write a new blog post on jubat.us
+========================================
+
+  $ git clone git@github.com:jubatus/website.git
+  $ python new_blog_post.py <name of your blog title without spaces>
+  $ <edit your blog post on source/blog/%s.rst>
+  $ git add source/blog/%s.rst
+  $ git add source/blog/index.rst
+  $ git commit -m "your comment here"
+  $ omake html
+  $ cd build
+  $ git clone git@github.com:jubatus/website.git
+  $ sh publish.sh
+  $ git push origin master
+
+
+(C) PFI & NTT
