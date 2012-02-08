@@ -7,28 +7,6 @@ Overview and Scenario
 ----------------------
 This tutorial made up of following four sections:
 
-- Setup a single process Jubatus Server
-
-  - install Jubatus
-
-- How to use Jubatus
-
-  - Prepairing dataset
-  - Set configure
-  - Train/Classify
-
-- Setup multi process Jubatus Server
-
-  - Setup ZooKeeper
-  - jubakeeper
-  - run two process with local_mixture
-
-- Setup Jubatus in cluster
-  
-  - jubavisor(Process Management with zookeeper)
-  - Processes Management with zookeeper
-  - Client for multi process Jubatus Server
-
 
 このチュートリアルでは、自然言語の分類に対する評価用データとして有名な、 `News20(20news-bydate.tar.gz) <http://people.csail.mit.edu/jrennie/20Newsgroups/>`_ を利用します。
 News20では、話題が20個のnewsgroupに分かれており、人々は自分が適していると思ったnewsgroupに投稿します。
@@ -65,7 +43,7 @@ building and installing Jubatus
 
 ::
 
-  $ git clone git@github.com:jubatus/jubatus.git
+  $ git clone git://github.com:jubatus/jubatus.git
   $ cd jubatus
   $ ./waf configure
   $ ./waf build
