@@ -17,10 +17,6 @@ News20は便宜上、80%の学習用データ(20news-bydate-train)と、20%の�
 Prequisites
 ~~~~~~~~~~~
 
-This tutorial requires following softwares installed:
-
-- Linux 2.6 +
-- gcc 4.0 +
 - pkg-config
 - python 2.6+ and `msgpack-python <http://pypi.python.org/pypi/msgpack-python/>`_
 - `libmsgpack <http://msgpack.org>`_
@@ -32,9 +28,9 @@ This tutorial requires following softwares installed:
 
 
 Setup a single process Jubatus Server
-------------------------------------=
+-------------------------------------
 
-ここでは、JubatusをCentOS 5.2にインストールするための手順を示します。 他のdisutributionを利用する場合は、適時読み替えてください。
+ここでは、Jubatusをインストールするための手順を示します。 他のdisutributionを利用する場合は、適時読み替えてください。
 
 building and installing Jubatus
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -68,6 +64,7 @@ JubatusはデフォルトでMessagePack RPCサーバとして9199ポートで待
 installing Python client for Jubatus
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+(TODO: deprecated, need updates to Client generation)
 Python client of Jubatus requires `msgpack-python <http://pypi.python.org/pypi/msgpack-python/>`_.
 
 ::
@@ -87,7 +84,7 @@ Check your python installation by running tests:
 .. TODO: check "Expert Python Programming" and do in a pythonic way
 
 Sending query to a Jubatus server
---------------------------------=
+---------------------------------
 
 .. Jubatus communicates with its clients in `MessagePack-RPC <http://msgpack.org>`_ protocol.
 
