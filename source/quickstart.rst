@@ -1,11 +1,11 @@
 QuickStart
 ==========
 
-For prerequisites, Jubatus requires `MessagePack <http://msgpack.org>`_ , `pficommon <http://pfi.github.com/pficommon>`_  and google-glog for minimal installation. For example in Debian-like systems,
+For prerequisites, Jubatus requires `MessagePack <http://msgpack.org>`_ , `pficommon <http://pfi.github.com/pficommon>`_ , libevent-dev  and google-glog for minimal installation. For example in Debian-like systems,
 
 ::
 
-  $ sudo aptitude install libmsgpack-dev
+  $ sudo aptitude install libmsgpack-dev libevent-dev libgoogle-glog-dev
   $ git clone git://github.com/pfi/pficommon.git
   $ cd pficommon
   $ ./waf configure
