@@ -30,9 +30,7 @@ Specification
 
 We tested these clients in the following condition
 
-- Jubatus : Jubatus 0.2.2
-
-  - More Precisely, we used `latest commit of master branch on 2012/06/06 <https://github.com/jubatus/jubatus/commit/4ec82cf29bc9c003b0c9c8e955d7fa7f89b911f8>`_ .
+- Jubatus : Jubatus 0.2.3
 
 - Server : Built-in servers in repository
 
