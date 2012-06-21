@@ -6,21 +6,21 @@ Currently, Jubatus supports four machine learning services (Classifier, Regressi
 +------------+------------+-------------+--------------+--------------+ 
 |            | Classifier | Regression  | Recommender  | Stat         |
 +------------+------------+-------------+--------------+--------------+ 
-| C++        | ○          | ○           |  ○           | ○            |
+| C++        | ok          | ok           |  ok           | ok            |
 +------------+------------+-------------+--------------+--------------+ 
 | Java       | △          |  △          | △            | △            |
 +------------+------------+-------------+--------------+--------------+ 
-| Python     | ○          |  ○          |  ○           | ○            |
+| Python     | ok          |  ok          |  ok           | ok            |
 +------------+------------+-------------+--------------+--------------+ 
-| Ruby       | ○          |  ○          |  ○           | ○            |
+| Ruby       | ok          |  ok          |  ok           | ok            |
 +------------+------------+-------------+--------------+--------------+ 
 
 Symbol
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- ○：We can use te generated client.
+- ok：We can use generated clients.
 
-- △：We ned to make some minor changes to the generated client.
+- △：We ned to make some minor changes t ogenerated client.
 
   - We appreciate you if you gave us patchs to msgpack-idl.
 
