@@ -3,20 +3,43 @@
 Data Conversion
 ==================
 
+Generally speaking, we don't use unstructured data such as text directly when we do some machine-learing tasks.
 一般的に機械学習処理を行う場合、テキストなどの生の非定形データを直接扱うことはできない。
+
+Such data are converted to "feature vector" by being process called feature extraction in advance to the tasks.
 こうしたデータは事前に特徴抽出というステップを経て、俗に特徴ベクトルと呼ばれる形式に変換される。
+
+We use key-value type as feature vector in which key is string and value is numeric type.
 特徴ベクトルの中身は、文字列をキー、数値型を値とするkey-value型としてよい。
+
+Through this process, we can handle unstructured raw data such as natural language, picture and voice in a unfied way.
 この変換を行うことで、自然言語のデータ、画像データ、音声データなどの非定型の生データを統一的に扱うことができる。
+
+Data-conversion engine in Jubatuse enables us to customize this feature-extraction process flexibly only by creating easy configuration files.
 Jubatusのデータ変換エンジンは、この特徴抽出処理を簡単な設定ファイルを書くことで柔軟にカスタマイズすることを可能にする。
 
+Data-conversion is executed in two steps.
 データ変換は2段階に行われる。
+
+First, we sanitize data with filtering.
 まず、フィルター処理によって、データを整形する。
+
+This filtering includes removing html tag and some symbols which we know are unnecessary.
 この処理は、例えばHTMLテキストのタグを除去したり、学習にとって不要であることが予めわかっている記号列などを取り除く。
+
+Next, we extract features from sanitized data by feature-extraction process.
 その次に、特徴抽出処理によって、非定形データから特徴を抽出する。
 
+We can expect a series of  process works well by the easiest configuration in most cases.
 一連の処理は、最もシンプルな設定によって多くの場合はうまく動くことが予想される。
+
+The followings are one of the easiest configuration.
 以下に最もシンプルな設定を記載する。
+
+In this configuration, we use each word separated by spaces a feature for string data. For numric data, we use the value itself a feature. 
 この設定を利用すると、文字列データは全てスペース文字で分割してそれぞれの単語を特徴量とし、数値データはその値をそれぞれ特徴量として利用する。
+
+It is probable that doing some tuning this configuration to obtain training model with high precision and desirable result.
 実際にアプリケーションを書くときに、より高い精度の学習結果を求める場合は、設定をチューニングすることで望ましい結果を得られる可能性がある。
 
 .. code-block:: python
@@ -40,14 +63,31 @@ Jubatusのデータ変換エンジンは、この特徴抽出処理を簡単な�
 datum
 -------
 
+It is very simple key-value called "datum" that we can use as a data type in Jubatus.
 Jubatusで利用できるデータ形式は、datumと呼ばれる非常にシンプルなkey-valueデータ形式である。
+
+datum has two key-value's.
 datumには2つのkey-valueが存在する。
+
+One is "string_values", whose key and value are both string data.
 一つはキーも値も文字列の文字列データ (string_values) である。
+
+The other is "num_values", whose key is string data as string_values is, but value is numeric data.
 もう一方は、キーは同様に文字列だが、値は数値の数値データ (num_values) である。
+
+We can store in string_values arbitrary text data such as name, text, profession etc.
 前者には名前、テキスト、職業など、任意のテキストデータを入れることができる。
+
+And we can store in num_values arbitrary numeric data such as age, income, the number of access etc.
 後者には年齢、年収、アクセス回数など、任意の数値データを入れることができる。
+
+It this data-conversion module that extract features which are used in machine learning task.
 この2つのデータから、機械学習を行う際に必要となる特徴量を抽出するのが、このデータ変換モジュールである。
+
+For reason of efficiency, each key-value is represented not as map type nor dictionary type, but as pair of key and value.
 また、効率を重視して、それぞれのkey-valueは、各言語のmap型や辞書型を利用せず、keyとvalueのペアの配列で表現される。
+
+The followings are example of datum.
 以下に例を示す。
 
 .. code-block:: python
@@ -59,6 +99,7 @@ datumには2つのkey-valueが存在する。
       ("user/income", 100000) ] )
 
 
+For example, datum consists of ``std::vector<std::pair<std::string, std::string> >`` and  ``std::vector<std::pair<std::stirng, double> >`` in C++. ``std::pair<T,U>`` (resp.  ``std::vector<T>``) is to C++ what tuple (resp. vector) is to Python.
 例えばC++から利用する場合、datumは ``std::vector<std::pair<std::string, std::string> >`` と、 ``std::vector<std::pair<std::stirng, double> >`` の2つの要素からなっている。
 ここでは、 ``std::pair<T,U>`` をPython風のタプルで、 ``std::vector<T>`` をPython風のリストで表している。
 
@@ -66,14 +107,28 @@ datumには2つのkey-valueが存在する。
 filter
 ---------
 
+Jubatus has filtering system of feature vector. This enables us to create additional key-value elements by converting existing key-value elements in datum and insert additional key-value elements elements by filter
 Jubatusはフィルターという機能を用いて、datum中のkey-valueペアを変換して、別の要素として追加することができる。
+
+For example, let us suppose we have original data as HTML.
 例えば、元のデータがHTMLで書かれていたとしよう。
+
+Tags (such as <a>) in the data are in the way of training in many cases. Therefore, we want to filter and get rid of them in advance.
 この中のタグ文字列（<a> など）は、学習時には邪魔になることがおおく、そのため予めフィルタリングして使いたいことがある。
+
+In another example, we may remove citations of e-mail (i.e. rows starts with ">").
 あるいは、メール本文の引用（>から始まる行）を削除したいこともあるだろう。
+
+We can make use of the filtering system in such cases.
 こうした時に利用するのが、filter機能である。
 
+As an example of usage, we remove HTML tags from strings whose key is "message".
 例として、"message"内の文字列からHTMLタグを取り除く。
-まず、「HTMLタグを取り除く」というルールを定義し、それを ``key = "message"`` に適用する。
+
+We do it in two step. First, we define rule which states "remove HTML tags". Second, we apply this rule to  ``key = "message"``
+まず、「HTMLタグを取り除く」というルールを定義し、それ を ``key = "message"`` に適用する。
+
+This procedure is represented by the following configuration.
 これは、以下のようなconfigで表現される。
 
 .. code-block:: js
@@ -86,11 +141,19 @@ Jubatusはフィルターという機能を用いて、datum中のkey-valueペ�
         { "key": "message", "type": "detag", "suffix": "-detagged" }
       ]
 
+As a first step, we define a filter in "string_filter_types". We name this filter "detag"
 まず、"string_filter_types"でフィルターを定義する。
+
+In "detag", we define a filter which apply a method named "regexp", which replaces "<[^>]*>" with "".
 "detag"という名前のフィルターに対して、"regexp"という手法で、"<[^>]*>"を""に置き換える、というフィルターを定義する。
+
+Next, we define to which elements in datum and how we apply this filter. We write it in "string_filter_rules".
 次に、実際にdatumのどの要素にどう適用するのか書いたのが"string_filter_rules"である。
+
+The example above indicates that we apply "detag" filter (defined earlier) to the value whose key is "message" and that we store the resultant to "message-detagged" key (original key "message" + suffix "-detagged")
 ここでは、"message"という名前の"key"の要素に対して、先で定義した"detag"フィルターを適用し、"message"に"-detagged"を付与したkey、すなわち"message-detagged"に結果を格納することを示している。
 
+In the another example, we can add one to "age" by the following configuration. (In Japan, such a counting method is called "Kazoe Doshi", or east asian age reckoning)
 また、"age"を数え年に変換(+1歳に)するには、
 
 .. code-block:: js
@@ -102,8 +165,10 @@ Jubatusはフィルターという機能を用いて、datum中のkey-valueペ�
         { "key": "user/age", "type": "add_1", "suffix": "_kazoe" }
       ]
 
+The procedure is the same as the previous example. Value in "user/age" added by 1 is stored in "usr/age_kazoe".
 とする。この挙動も先と同じで、"user/age"に1加えた結果が"user/age_kazoe"に格納される。
 
+By applying these two filter, we obtain the following datum.
 これらのfilterを通すことにより
 
 .. code-block:: python
@@ -120,6 +185,7 @@ Jubatusはフィルターという機能を用いて、datum中のkey-valueペ�
 
 が得られる。
 
+In next section is devoted to more precise explanations of each filter.
 それぞれの要素について、詳細に説明する。
 
 string_filter_types
