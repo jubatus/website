@@ -6,7 +6,7 @@ Currently, Jubatus supports four machine learning services (Classifier, Regressi
 +------------+------------+-------------+--------------+--------------+ 
 |            | Classifier | Regression  | Recommender  | Stat         |
 +------------+------------+-------------+--------------+--------------+ 
-| C++        | ok         | ok          | need fix     | ok           |
+| C++        | ok         | ok          | needs fix    | ok           |
 +------------+------------+-------------+--------------+--------------+ 
 | Java       | needs fix  | needs fix   | needs fix    | needs fix    |
 +------------+------------+-------------+--------------+--------------+ 
@@ -15,9 +15,6 @@ Currently, Jubatus supports four machine learning services (Classifier, Regressi
 | Ruby       | ok         | ok          |  ok          | ok           |
 +------------+------------+-------------+--------------+--------------+ 
 
-Symbol
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 - ok：We can use automatically generated clients.
 
 - needs fix：We need to make some minor changes manually from automatically generated clients in order to interact with server.
@@ -25,14 +22,13 @@ Symbol
   - We appreciate you if you gave us patchs to msgpack-idl.
 
 
-Specification
+Conditions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We tested these clients in the following condition
 
-- Jubatus : Jubatus 0.2.3
 
-  - More specifically, we use `this commit <https://github.com/jubatus/jubatus/commit/780f016ec8ba0bcd02afb23fdfeb098de469ba78>`_ .
+- Jubatus : Jubatus 0.2.3 (More specifically, we use `this commit <https://github.com/jubatus/jubatus/commit/780f016ec8ba0bcd02afb23fdfeb098de469ba78>`_ )
 
 - Server : Built-in servers in repository
 
@@ -41,10 +37,10 @@ We tested these clients in the following condition
 - IDL : Built-in IDL in repository
 
 
-All Clients are available
+All Clients Are Available
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We provide clients of all existing service in four languages mentioned above.
-Clients are available of from `this download page <https://github.com/jubatus/jubatus/downloads>`_
-All languages except C++ recommender clients and all Java clients are automatically generated clients from IDL. The remaining clients are generated from IDL and manually editted.
+Clients are available of from `this download page <https://github.com/jubatus/jubatus/downloads>`_ .
+All clients except C++ recommender client and all Java clients are automatically generated clients from IDL. The remaining clients are generated from IDL and manually editted.
 
