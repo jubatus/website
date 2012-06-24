@@ -41,8 +41,8 @@ constructor
  - Parameters:
 
   - ``hosts`` : IP address (ipv4) of jubaclassifier or jubakeeper
-  - ``port`` :  Port number of jubaclassifier or jubakeeper
-  - ``timeout_sec`` : Connection timeout for RPC
+  - ``port`` :  port number of jubaclassifier or jubakeeper
+  - ``timeout_sec`` : connection timeout for RPC
 
  - Returns:
 
@@ -58,7 +58,7 @@ recommender methods
 
 - Parameters:
 
-  - ``name`` : a string value to uniquely identifies a task in zookeeper quorum
+  - ``name`` : a string value to uniquely identifies a task in Zookeeper quorum
   - ``id`` : a string value to uniquely identifies a row in a recommendation table
   - ``arg2`` : vector of datum
 
