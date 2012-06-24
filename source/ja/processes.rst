@@ -6,7 +6,7 @@ Process composition
 jubatusは、クライアントサーバ型のプロセス構成をしている。
 最も基本的な構成は、single client process and single server process like following figure.
 
-.. figure:: _static/single_single.png
+.. figure:: ../_static/single_single.png
    :width: 70 %
    :alt: single client, single server
 
@@ -19,7 +19,7 @@ jubatusは、処理をスケールアウトさせるために、複数のサー�
 jubakeeperはZooKeeperを利用して、死活監視及び、負荷分散を行っている。
 
 
-.. figure:: _static/single_multi.png
+.. figure:: ../_static/single_multi.png
    :width: 70 %
    :alt: single client, multi servers
 
@@ -28,7 +28,7 @@ jubakeeperはZooKeeperを利用して、死活監視及び、負荷分散を行�
 jubatusは、データ量が膨大である、データソースが離れているなどの理由でクライアントも分散させることが可能である。
 この際、クライアントごとに複数のjubakeeperを指定することが出来る。
 
-.. figure:: _static/multi_multi.png
+.. figure:: ../_static/multi_multi.png
    :width: 70 %
    :alt: multi clients, multi servers
 
@@ -183,7 +183,7 @@ jubactl
 <FIXME: "semimaster" in figure: semimaster=jubakeeper>
 management process で利用されるプログラムの使い方手順をまとめます。
 
-.. figure:: _static/processes.png
+.. figure:: ../_static/processes.png
    :width: 90 %
    :alt: relationship of processes
 

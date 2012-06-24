@@ -20,11 +20,11 @@ TOC
 .. toctree::
    :maxdepth: 2
 
-   ja/quickstart
-   ja/documentation
-   ja/references
-   ja/howtocontribute
-   ja/misc
+   en/quickstart
+   en/documentation
+   en/references
+   en/howtocontribute
+   en/misc
 
 ..   tutorial
 
