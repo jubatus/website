@@ -10,8 +10,7 @@ jubatus::stat::config_data
 .. code-block:: c++
 
    struct config_data {
-     jubatus::converter_config converter;
-     <FIXME>
+     int32_t window_size;
    };
 
 
