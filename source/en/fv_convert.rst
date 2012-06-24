@@ -595,7 +595,7 @@ As some filters and feature extractors requires arguments, these are available i
 
 .. 大まかな処理の流れは以下のようになっている。datumは文字列データと数値データの2つがあるため、それぞれが別々の処理フローを流れる。文字列データには、まずstring_filter_rulesが適用されて、フィルター済みデータが追加される。その状態で、string_rulesによって文字列データからの特徴量が抽出される。数値データには、まずnum_filter_rulesが適用されて、フィルター済みデータが追加される。その状態で、num_rulesによって数値データからの特徴量が抽出される。フィルターと特徴抽出器には引数を必要とするものもあるため、それらはtypesで事前に準備することによって各規則で利用することができるようになる。
 
-.. figure:: _static/convert_flow.png
+.. figure:: ../_static/convert_flow.png
    :width: 90 %
    :alt: feature vector converter
 

@@ -112,7 +112,7 @@ Machine learning functions
 
    api_classifier
    api_regression
-   api_recommender_en
-   api_stat_en
+   api_recommender
+   api_stat
 
 

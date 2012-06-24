@@ -1,4 +1,4 @@
-Command Lines
+xCommand Lines
 =============
 
 Process Composition
@@ -8,7 +8,7 @@ Jubatus is client-server configuration. The simplest configuration is single cli
 
 .. jubatusは、クライアントサーバ型のプロセス構成をしている。最も基本的な構成は、single client process and single server process like following figure.
 
-.. figure:: _static/single_single.png
+.. figure:: ../_static/single_single.png
    :width: 70 %
    :alt: single client, single server
 
@@ -21,7 +21,7 @@ jubakeeper does alive monitoring and load balancing with Zookeeper.
 .. jubatusは、処理をスケールアウトさせるために、複数のサーバプロセスを利用することが可能である。クライアントは、あたかも1台のサーバに対してjubakeeperに対してクエリーを投げることで、複数のサーバプロセスで分散して学習・分類を行うことが出来る。jubakeeperはZooKeeperを利用して、死活監視及び、負荷分散を行っている。
 
 
-.. figure:: _static/single_multi.png
+.. figure:: ../_static/single_multi.png
    :width: 70 %
    :alt: single client, multi servers
 
@@ -31,7 +31,7 @@ Jubatus can achieve this by creating multiple jubakeepers and assigning differen
 
 .. jubatusは、データ量が膨大である、データソースが離れているなどの理由でクライアントも分散させることが可能である。この際、クライアントごとに複数のjubakeeperを指定することが出来る。
 
-.. figure:: _static/multi_multi.png
+.. figure:: ../_static/multi_multi.png
    :width: 70 %
    :alt: multi clients, multi servers
 
@@ -191,7 +191,7 @@ The following picture describes how to run programs used by management process.
 
 .. management process で利用されるプログラムの使い方手順をまとめます。
 
-.. figure:: _static/processes.png
+.. figure:: ../_static/processes.png
    :width: 90 %
    :alt: relationship of processes
 
