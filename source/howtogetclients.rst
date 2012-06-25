@@ -28,7 +28,7 @@ The followings are exapmle of generating clients (and servers). In this exapmle,
 
 ::
 
-  $ cabal install mpidl
+  $ cabal install msgpack-idl
   $ mpidl cpp classifier.idl -o . -p
   ...
   $ ls
