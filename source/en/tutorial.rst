@@ -253,7 +253,7 @@ JubatusはMessagePack-RPCを利用できるあらゆる言語から利用する�
 
 以上で、下記の構成でJubatusを実行しました。
 
-.. figure:: _static/single_single.png
+.. figure:: ../_static/single_single.png
    :width: 70 %
    :alt: single client, single server
 
@@ -322,7 +322,7 @@ zookeeperのクライアントを用いて、たしかに二つのサーバプ�
 
 以上で、下記の構成でJubatusを実行しました。
 
-.. figure:: _static/single_multi.png
+.. figure:: ../_static/single_multi.png
    :width: 70 %
    :alt: single client, multi servers
 
@@ -437,7 +437,7 @@ IP address     processes
 
 Jubatus is available in the following configuration by the above command.
 
-.. figure:: _static/multi_multi.png
+.. figure:: ../_static/multi_multi.png
    :width: 70 %
    :alt: multi clients, multi servers
 

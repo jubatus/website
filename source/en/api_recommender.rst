@@ -1,0 +1,158 @@
+jubatus::client::recommender
+===============================
+
+
+
+typedef
+--------
+
+jubatus::recommender::config_data
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: c++
+
+   struct config_data {
+     jubatus::converter_config converter;
+     std::string similarity_name;
+     std::string anchor_finder_name;
+     std::string anchor_builder_name;
+     size_t all_anchor_num;
+     size_t anchor_num_per_data;
+   };
+
+
+
+jubatus::recommend::estimate_result
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: c++
+
+    typedef std::vector<std::pair<std::string, float> > similar_result;
+      // similar_result = [(id of row, similarity score)]
+    typedef std::vector<std::pair<std::string, datum> > rows;
+      // rows = [(id of row, value stored in id)]
+
+
+constructor
+-----------------
+
+.. cpp:function:: recommender(const std::string &host, uint64_t port, double timeout_sec)
+
+ - Parameters:
+
+  - ``hosts`` : IP address (ipv4) of jubaclassifier or jubakeeper
+  - ``port`` :  port number of jubaclassifier or jubakeeper
+  - ``timeout_sec`` : connection timeout for RPC
+
+ - Returns:
+
+  - new recommender object
+
+ Constructor of recommender
+
+
+recommender methods
+---------------------
+
+.. cpp:function:: update_row(std::string name, std::string id, datum arg2)
+
+- Parameters:
+
+  - ``name`` : a string value to uniquely identifies a task in Zookeeper quorum
+  - ``id`` : a string value to uniquely identifies a row in a recommendation table
+  - ``arg2`` : vector of datum
+
+- Returns:
+
+  - True if this function updates models successfully.
+
+Differential update of row data using row data. If row whose id is  ``id`` exists, row is overwritten. Otherwise, new row entry will be created. If the server that manages ``id`` row and that operation is received is same, update operation is reflected instantly. Otherwise, update operation is reflected after mix.
+
+..  rowデータをdataを利用して差分更新する．同じ特徴番号がある場合は上書き更新する．新しいrow idが指定された場合は，新しいrowエントリを作成する．更新操作は同じサーバーであれば即次反映され，異なるサーバーであれば，mix後に反映される．
+
+.. cpp:function:: void clear_row(const std::vector<std::string>& ids)
+
+- Parameters:
+
+  - ``ids`` : a list of ids to be cleared. Each id specifies a row in a recommendation table.
+
+Clear rows specified by ``ids`` . 
+
+.. cpp:function:: void build() 
+
+Build recommender. build() is only for standalone mode.
+
+.. recommenderをbuildする。build() is only for standalone mode
+
+.. cpp:function:: datum complete_row_from_id(const std::string& id)
+
+- Parameters:
+
+  - ``id`` : a string value to uniquely identifies a row in a recommendation table
+
+- Returns:
+
+  - datum stored in ``id`` row with missing value completed by predicted value.
+
+Return row specified by ``id`` with missing value completed by predicted value.
+
+.. 指定したidのrowの中で欠けている値を予測して返す。
+
+.. cpp:function:: datum complete_row_from_data(const datum& dat)
+
+- Parameters:
+
+  - ``dat`` : original datum to be completed (possibly some values are missing).
+
+- Returns:
+
+  - row constructed from inputted datum with missing value completed by predicted value.
+
+.. 指定したdatumで構成されるrowの中で欠けている値を予測して返す。
+
+.. cpp:function:: jubatus::recommender::similar_result similar_row_from_id(const std::string& id, size_t ret_num)
+
+- Parameters:
+
+  - ``id`` : a string value to uniquely identifies a row in a recommendation table
+  - ``ret_num``` : number of rows to be returned.
+
+- Returns:
+
+  - similar_result of ``id`` .
+
+Returns ``ret_num`` rows which are most similar to row specified by ``id`` .
+The meaning of similar_result is described in typedef of similar_result.
+    
+.. 指定したidに近いrowを返す。
+
+.. cpp:function:: jubatus::recommender::similar_result similar_row_from_data(const datum& dat, size_t ret_num)
+
+- Parameters:
+
+  - ``dat`` : original datum to be completed (possibly some values are missing).
+  - ``ret_num``` : number of rows to be returned.
+
+- Returns:
+
+  - similar_result of the row constructed from ``dat`` .
+
+Return ``ret_num`` rows which are most similar to row constructed from inputted datum.
+The meaning of similar_result is described in typedef of similar_result.
+
+.. 指定したdatumで構成されるrowに近いrowを返す。
+
+.. cpp:function:: datum decode_row(const std::string& id)
+
+<FIXME>
+
+.. cpp:function:: jubatus::recommender::rows get_all_rows()
+
+- Returns:
+
+  - list of all rows
+
+Return list of all rows.
+
+
+
