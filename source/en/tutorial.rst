@@ -60,32 +60,25 @@ If you want to listen RPC port at 9181,
 installing Python client for Jubatus
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-(TODO: deprecated, need updates to Client generation)
 Python client of Jubatus requires `msgpack-python <http://pypi.python.org/pypi/msgpack-python/>`_.
 "pip" command will resolve this dependencies automatically.
 
 ::
 
   $ pip install jubatus
-  $ pip install msgpack-rpc-python
 
-.. TODO: check "Expert Python Programming" and do in a pythonic way
 
 Quick Start
 ----------------------------------
 
 ::
 
-<<<<<<< HEAD
-Sending query to a Jubatus server
----------------------------------
-=======
   $ git clone git://github.com/jubatus/jubatus-tutorial-python.git
   $ cd jubatus-tutorial-python
   $ wget http://people.csail.mit.edu/jrennie/20Newsgroups/20news-bydate.tar.gz
   $ tar -xvzf 20news-bydate.tar.gz
   $ python tutorial.py
->>>>>>> master
+
 
 .. Jubatus communicates with its clients in `MessagePack-RPC <http://msgpack.org>`_ protocol.
 
