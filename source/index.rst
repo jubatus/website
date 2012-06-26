@@ -8,11 +8,12 @@ Jubatus : Distributed Online Machine Learning Framework
 
 Jubatus is a distributed processing framework and streaming machine learning library. Jubatus library includes these functionalities:
 
-- online multi-class/binary classification,
-- online linear regression,
-- online recommendation with inverted index or LSH (locality sensitive hash),
+- Online Machine Learning Library: includes classification, regression, recommendation
 - fv_converter: pre-proccessing data(for natural language), and
 - framework for online machine learning with fault tolerance.
+
+
+
 
 TOC
 ---
