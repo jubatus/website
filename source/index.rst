@@ -22,13 +22,12 @@ TOC
 
    en/quickstart
    en/overview
+   en/tutorial
    en/documentation
    en/references
    en/howtocontribute
    en/idl_support.rst
    en/misc
-
-..   tutorial
 
 
 Other resources
