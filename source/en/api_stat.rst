@@ -1,34 +1,34 @@
 jubatus::client::stat
-===============================
+---------------------
+
+See `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/stat.idl>`_ for original and detailed spec.
 
 typedef
---------
+~~~~~~~
 
-jubatus::stat::config_data
+.. describe:: jubatus::stat::config_data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: c++
 
-   struct config_data {
-     int32_t window_size;
-   };
-
-
-constructor
------------------
-
-.. cpp:function:: stat(const string& hosts, const string& name, double timeout)
-
- - Parameters:
-
-   - ``hosts`` : servers and numbers of ports of jubakeepers. Format of this option must be  ``ipaddress:port,hostname:port,...`` . 
-   - ``name``  : a string value to uniquely identifies a task in Zookeeper quorum
-   - ``timeout`` : connection timeout for RPC
-
-Constructor of stat.
+   message config_data {
+     int window_size
+   }
 
 
 stat methods
----------------------
+~~~~~~~~~~~~
 
-<FILLME>
+.. describe:: bool push(0: string name, 1: string key, 2: double val)
+
+.. describe:: double sum(0: string name, 1: string key)
+
+.. describe:: double stddev(0: string name, 1: string key)
+
+.. describe:: double max(0: string name, 1: string key)
+
+.. describe:: double min(0: string name, 1: string key)
+
+.. describe:: double entropy(0: string name, 1: string key)
+
+.. describe:: double moment(0: string name, 1: string key, 2: int n, 3: double c)

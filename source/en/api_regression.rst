@@ -1,74 +1,50 @@
 jubatus::client::regression
-===============================
+---------------------------
 
+See `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/regression.idl>`_ for original and detailed spec.
 
 typedef
---------
+~~~~~~~
 
-jubatus::regression::config_data
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. describe:: jubatus::regression::config_data
+
 
 .. code-block:: c++
 
-   struct config_data {
-     std::string method;
-     jubatus::converter_config converter;
-   };
+   message config_data {
+
+     0: string method
+
+     1: converter_config converter
+
+   }
 
 
-
-jubatus::regression::estimate_result
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: c++
-
-   typedef float estimate_rusult;
-   typedef std::vector<estimate_result> estimate_results;
-
-
-
-
-constructor
------------------
-
-.. cpp:function:: regression(const std::string &host, uint64_t port, double timeout_sec)
-
- - Parameters:
-
-  - ``hosts`` : IP address (ipv4) of jubaclassifier or jubakeeper
-  - ``port`` :  Port number of jubaclassifier or jubakeeper
-  - ``timeout_sec`` : Connection timeout for RPC
-
- - Returns:
-
-  - new regression object
-
- Constructor of regression
 
 regression methods
----------------------
+~~~~~~~~~~~~~~~~~~
 
-.. cpp:function:: int32_t train(std::string arg0, std::vector<std::pair<float, datum > > arg1)
+.. describe:: int train(0: string name, list<tuple<float, datum> > train_data)
 
  - Parameters:
 
-  - ``arg0`` : a string value to uniquely identifies a task in zookeeper quorum
-  - ``arg1`` : vector of pair of label and datum
+  - ``name`` : a string value to uniquely identifies a task in zookeeper quorum
+  - ``train_data`` : list of pair of label and datum
 
  - Returns:
 
   - Zero if this function updates models successfully.
 
- Training model at a server chosen randomly. ``std::pair<float, datum>`` is a pair of datum and it's value. 
- This function is designed to allow bulk update with vector of pair of value and datum.
+ Training model at a server chosen randomly. ``tuple<float, datum>`` is a tuple of datum and it's value. 
+ This function is designed to allow bulk update with list of tuple of value and datum.
 
 
-.. cpp:function:: std::vector<float > estimate(std::string arg0, std::vector<datum > arg1)
+.. describe:: list<float> estimate(0: string name, 1: list<datum> data)
 
  - Parameters:
 
-  - ``arg0`` : a string value to uniquely identifies a task in zookeeper quorum
-  - ``arg1`` : vector of datum for classifiy
+  - ``name`` : a string value to uniquely identifies a task in zookeeper quorum
+  - ``data`` : vector of datum for classifiy
 
  - Returns:
 

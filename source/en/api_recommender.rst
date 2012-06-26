@@ -1,66 +1,43 @@
 jubatus::client::recommender
-===============================
+----------------------------
 
-
+See `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/recommender.idl>`_ for original and detailed spec.
 
 typedef
---------
+~~~~~~~
 
-jubatus::recommender::config_data
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: c++
-
-   struct config_data {
-     jubatus::converter_config converter;
-     std::string similarity_name;
-     std::string anchor_finder_name;
-     std::string anchor_builder_name;
-     size_t all_anchor_num;
-     size_t anchor_num_per_data;
-   };
-
-
-
-jubatus::recommend::estimate_result
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. describe:: jubatus::recommender::config_data
 
 .. code-block:: c++
 
-    typedef std::vector<std::pair<std::string, float> > similar_result;
-      // similar_result = [(id of row, similarity score)]
-    typedef std::vector<std::pair<std::string, datum> > rows;
-      // rows = [(id of row, value stored in id)]
+   message config_data {
 
+     0: string method
+     
+     1: converter_config converter;
 
-constructor
------------------
-
-.. cpp:function:: recommender(const std::string &host, uint64_t port, double timeout_sec)
-
- - Parameters:
-
-  - ``hosts`` : IP address (ipv4) of jubaclassifier or jubakeeper
-  - ``port`` :  port number of jubaclassifier or jubakeeper
-  - ``timeout_sec`` : connection timeout for RPC
-
- - Returns:
-
-  - new recommender object
-
- Constructor of recommender
+   }
 
 
 recommender methods
----------------------
+~~~~~~~~~~~~~~~~~~~
 
-.. cpp:function:: update_row(std::string name, std::string id, datum arg2)
+.. describe:: bool clear_row(string name, string id)
+
+- Parameters:
+
+  - ``ids`` : a list of ids to be cleared. Each id specifies a row in a recommendation table.
+
+Clear rows specified by ``ids`` . 
+
+
+.. describe:: bool update_row(string name, string id, datum d)
 
 - Parameters:
 
   - ``name`` : a string value to uniquely identifies a task in Zookeeper quorum
   - ``id`` : a string value to uniquely identifies a row in a recommendation table
-  - ``arg2`` : vector of datum
+  - ``d`` : vector of datum
 
 - Returns:
 
@@ -70,21 +47,10 @@ Differential update of row data using row data. If row whose id is  ``id`` exist
 
 ..  rowデータをdataを利用して差分更新する．同じ特徴番号がある場合は上書き更新する．新しいrow idが指定された場合は，新しいrowエントリを作成する．更新操作は同じサーバーであれば即次反映され，異なるサーバーであれば，mix後に反映される．
 
-.. cpp:function:: void clear_row(const std::vector<std::string>& ids)
+.. describe:: bool clear(0: string name)
 
-- Parameters:
 
-  - ``ids`` : a list of ids to be cleared. Each id specifies a row in a recommendation table.
-
-Clear rows specified by ``ids`` . 
-
-.. cpp:function:: void build() 
-
-Build recommender. build() is only for standalone mode.
-
-.. recommenderをbuildする。build() is only for standalone mode
-
-.. cpp:function:: datum complete_row_from_id(const std::string& id)
+.. describe:: datum complete_row_from_id(0: string name, 1: string id)
 
 - Parameters:
 
@@ -98,7 +64,7 @@ Return row specified by ``id`` with missing value completed by predicted value.
 
 .. 指定したidのrowの中で欠けている値を予測して返す。
 
-.. cpp:function:: datum complete_row_from_data(const datum& dat)
+.. describe:: datum complete_row_from_data(0: string name, 1: datum dat)
 
 - Parameters:
 
@@ -110,12 +76,12 @@ Return row specified by ``id`` with missing value completed by predicted value.
 
 .. 指定したdatumで構成されるrowの中で欠けている値を予測して返す。
 
-.. cpp:function:: jubatus::recommender::similar_result similar_row_from_id(const std::string& id, size_t ret_num)
+.. describe:: similar_result similar_row_from_id(0: string name, 1: string id, 2: uint size)
 
 - Parameters:
 
   - ``id`` : a string value to uniquely identifies a row in a recommendation table
-  - ``ret_num``` : number of rows to be returned.
+  - ``size`` : number of rows to be returned.
 
 - Returns:
 
@@ -126,7 +92,7 @@ The meaning of similar_result is described in typedef of similar_result.
     
 .. 指定したidに近いrowを返す。
 
-.. cpp:function:: jubatus::recommender::similar_result similar_row_from_data(const datum& dat, size_t ret_num)
+.. describe:: similar_result similar_row_from_data(0: string name, 1: datum dat, 2: uint size)
 
 - Parameters:
 
@@ -142,11 +108,10 @@ The meaning of similar_result is described in typedef of similar_result.
 
 .. 指定したdatumで構成されるrowに近いrowを返す。
 
-.. cpp:function:: datum decode_row(const std::string& id)
+.. describe:: datum decode_row(0: string name, 1: string id)
 
-<FIXME>
 
-.. cpp:function:: jubatus::recommender::rows get_all_rows()
+.. describe:: list<string> get_all_rows(0:string name)
 
 - Returns:
 
@@ -154,5 +119,6 @@ The meaning of similar_result is described in typedef of similar_result.
 
 Return list of all rows.
 
+.. describe:: float similarity(0: string name, 1: datum lhs, 2: datum rhs)
 
-
+.. describe:: float l2norm(0: string name, 1: datum d)
