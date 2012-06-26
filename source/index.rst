@@ -14,7 +14,6 @@ Jubatus is a distributed processing framework and streaming machine learning lib
 - fv_converter: pre-proccessing data(for natural language), and
 - framework for online machine learning with fault tolerance.
 
-
 TOC
 ---
 
@@ -22,10 +21,11 @@ TOC
    :maxdepth: 3
 
    en/quickstart
-   en/tutorial
+   en/overview
    en/documentation
    en/references
    en/howtocontribute
+   en/idl_support.rst
    en/misc
 
 ..   tutorial
@@ -38,7 +38,6 @@ Other resources
 - `@JubatusOfficial: Keep up on latest news <http://twitter.com/JubatusOfficial>`_
 - `Discussions and news about Jubatus on Google Groups <http://groups.google.com/group/jubatus>`_
 - `Fork me on GitHub <http://github.com/jubatus>`_
-
 
 * :ref:`genindex`
 

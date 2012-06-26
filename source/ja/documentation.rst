@@ -6,6 +6,5 @@ Documentation
 
    fv_convert
    plugin
-   howtogetclients
    server
 
