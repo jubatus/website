@@ -1,5 +1,5 @@
-Programming API
-===============
+Client API
+==========
 
 jubaclassifier, jubaregression, jubarecommender and jubastat have a MessagePack-RPC Interface for user's clients. You can implement your client-side logics with any programing languages if msgpack-idl supports it.
 There exists C++/Python client as of Aplil 2012.

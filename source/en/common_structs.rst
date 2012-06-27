@@ -37,7 +37,7 @@ See :ref:`conversion` to know in detail converter_config
 common methods
 --------------
 
-.. describe:: bool save(0: string name, 0: string id)
+.. describe:: bool save(0: string name, 1: string id)
 
  - Parameters:
 
@@ -51,7 +51,7 @@ common methods
  Storing learing models to local disk at **ALL** servers.
 
 
-.. describe:: bool load(string name, string id)
+.. describe:: bool load(0: string name, 1: string id)
 
  - Parameters:
 
@@ -65,21 +65,17 @@ common methods
  Restoreing learning models from local disk at **ALL** servers.
 
 
-.. describe:: bool set_config(string name, config_data c)
+.. describe:: bool set_config(0: string name, 1: config_data c)
 
  - Parameters:
 
   - ``name`` : a string value to uniquely identifies a task in zookeeper quorum
   - ``c`` : config_data
 
- - Returns:
-
-  - True if this function sets config_data successfully at all servers.
-
-  Updating server config at **ALL** servers.
+Updates server config at **ALL** servers.
 
 
-.. describe:: config_data get_config(string name)
+.. describe:: config_data get_config(0: string name)
 
  - Parameters:
 
