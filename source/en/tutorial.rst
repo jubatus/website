@@ -5,12 +5,16 @@ Tutorial
 
 Overview and Scenario
 ----------------------
-This tutorial uses `News20(20news-bydate.tar.gz) <http://people.csail.mit.edu/jrennie/20Newsgroups/>`_ data set which is a popular for experiments in text classiication.　News20 has 20 different newsgroups and they post thier message on a suitable newsgroup.News20 is divided into learning data (20news-bydate-train, 80%) and experimental data (20news-bydata-test, 20%).The goal of this tutorial is to learn model from 20news-bydate-train and to guess the newsgroup to post 20news-bydate-test.
+This tutorial uses `News20(20news-bydate.tar.gz) <http://people.csail.mit.edu/jrennie/20Newsgroups/>`_ data set which is a popular for experiments in text classiication.　News20 has 20 different newsgroups and users post thier message on a suitable newsgroup. News20 is divided into learning data (20news-bydate-train, 80%) and experimental data (20news-bydata-test, 20%). The goal of this tutorial is to learn model from 20news-bydate-train and to guess the newsgroup to post 20news-bydate-test.
 
 
 Prequisites
 ~~~~~~~~~~~
 
+This tutorial requires following softwares installed:
+
+- Linux 2.6 +
+- gcc 4.0 +
 - pkg-config
 - python 2.7+ and `msgpack-python <http://pypi.python.org/pypi/msgpack-python/>`_
 - `libmsgpack <http://msgpack.org>`_
@@ -24,7 +28,7 @@ Prequisites
 `These scripts <https://github.com/odasatoshi/jubatus-installer>`_ maybe the help your installation.
 
 Setup a single process Jubatus Server
--------------------------------------
+-----------------------------------------
 
 In this section, We show how to install the Jubatus.
 
@@ -35,7 +39,7 @@ You need to install the above library dependencies before building and installin
 
 ::
 
-  $ git clone git://github.com/jubatus/jubatus.git
+  $ git clone git://github.com:jubatus/jubatus.git
   $ cd jubatus
   $ ./waf configure
   $ ./waf build
@@ -48,9 +52,7 @@ Setup and starting a single process jubatus has been completed.
 
 ``--name`` option is a string value to uniquely identifies a task in zookeeper quorum. 
 
-Jubatus listens on port 9199 as MessagePack RPC server by default.
-If other services uses the same port, Please use another ports using rcp-port option.
-If you want to listen RPC port at 9181, 
+Jubatus listens on port 9199 as MessagePack RPC server by default. If other services uses the same port, Please use another ports using rcp-port option. If you want to listen RPC port at 9181, 
 
 ::
 
@@ -66,7 +68,9 @@ Python client of Jubatus requires `msgpack-python <http://pypi.python.org/pypi/m
 ::
 
   $ pip install jubatus
+  $ pip install msgpack-rpc-python
 
+.. TODO: check "Expert Python Programming" and do in a pythonic way
 
 Quick Start
 ----------------------------------
@@ -78,7 +82,6 @@ Quick Start
   $ wget http://people.csail.mit.edu/jrennie/20Newsgroups/20news-bydate.tar.gz
   $ tar -xvzf 20news-bydate.tar.gz
   $ python tutorial.py
-
 
 .. Jubatus communicates with its clients in `MessagePack-RPC <http://msgpack.org>`_ protocol.
 
@@ -180,8 +183,7 @@ In this tutorial, input data is the text of natural language.
 Many languages ​​such as English, <space>　and <Return> can be split into words. Jubatus supports this feature such as standard.
 HTML tags are noisy to classify the contents so we will remove the part that is enclosed in "<>".
 
-こういった自然言語処理、与えられた値の重み付けなど、様々なルール付けを行うことが出来ます。
-今回のルールをPythonオブジェクトで表現すると、以下のようになります。
+These rules expressed as follows in Python objects.
 
 .. code-block:: python
 
@@ -194,12 +196,10 @@ HTML tags are noisy to classify the contents so we will remove the part that is 
     num_type = {}
     num_rules = []
 
-``get_config`` に対してRPC呼び出しを行うと、現在指定されているオプションが返ってきます。
-
 
 Train/Classify
 ~~~~~~~~~~~~~~
-学習器に学習させる場合は、 ``train`` というAPIを利用します。
+Call ``train`` API to update models.
 
 .. code-block:: python
 
@@ -217,36 +217,33 @@ Train/Classify
              )
            ]
 
-推定させる場合は、 ``classify`` というAPIを利用します。
+Call ``classify`` API to analyze with models.
 
 .. code-block:: python
 
   classify_dat = [[
          ["some messages about windows..."],
          ["I bought a new mac book air..."],
-       ]]	 
+       ]]  
 
 
-その結果は、以下のような値が得られます。
+The return values are as follows.
 
 .. code-block:: python
 
    [[
         ["alt.atheism", 1.10477745533],
         ...
-	["rec.sport.hockey", 2.0973217487300002],
- 	["comp.os.ms-windows.misc", -0.065333858132400002],
-	["sci.electronics", -0.184129983187],
+  ["rec.sport.hockey", 2.0973217487300002],
+  ["comp.os.ms-windows.misc", -0.065333858132400002],
+  ["sci.electronics", -0.184129983187],
         ["talk.religion.misc", -0.092822007834899994]
    ]]
    
-それぞれのラベルごとの値が出るので、この中で一番大きい値を提示すればおそらくそれは正しい分類でしょう。
-JubatusはMessagePack-RPCを利用できるあらゆる言語から利用することが出来ます。最後に、pythonのコードを示します。
 
+You have executed the classifier feature of jubatus under this configuration.
 
-以上で、下記の構成でJubatusを実行しました。
-
-.. figure:: ../_static/single_single.png
+.. figure:: _static/single_single.png
    :width: 70 %
    :alt: single client, single server
 
@@ -256,8 +253,7 @@ JubatusはMessagePack-RPCを利用できるあらゆる言語から利用する�
 
 Setup Jubatus Server with multiple processes
 --------------------------------------------
-
-Jubatusでは、Zookeeperを用いて複数のサーバプロセス間を強調させることで、分散処理を行うことが出来ます。
+You can execute jubatus over distributed environment using Zookeeper.
 
 Setup ZooKeeper
 ~~~~~~~~~~~~~~~
@@ -272,29 +268,26 @@ Setup ZooKeeper
     STARTED
     ...
 
-以後、zoo.cfgでの指定によりローカルマシンのポート2181で起動していることを想定します。
+We assume that Zookeeper process will be running on localhost:2181 by specifying in the zoo.cfg.
 
 
 jubakeeper
 ~~~~~~~~~~~~~~~~~~~~~~~~
-jubakeeperは、Jubatus内でクライアントからサーバ群へアクセスするためのインターフェースとなるプロセスです。
-jubakeeperは、ZooKeeperを参照して、クライアントからのリクエストをclassifierへ仲介します。
+jubakeeper is a RPC requests proxy process. it use zookeeper processes.
 
 
 ::
 
-    $ jubakeeper --zookeeper=localhost:2181 --rpc-port=9198
+    $ jubaclassifier_keeper --zookeeper=localhost:2181 --rpc-port=9198
 
-これにより、jubakeeperは、9198ポートでRPCを待ち受けます。
-jubakeeperを介した場合、起動しているサーバを意識することなくスケールアウトするように実装されています。
+jubaclassifier_keeper started at 9198 port.
+Client does not need to aware of Servers. They will be scale out automatically. 
 
 
 Running two processes as one classifier instance
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-3並列でクライアントからのリクエストを受け付けたい場合は、jubaclassifierを3つ起動します。
-``--name`` で同じ名前を指定することにより、3つのプロセスがひとつのインスタンスとして強調動作します。
-同じマシン内で複数プロセスを起動する場合は、プロセスごとにポートを変えなければならないことに注意してください。
+If you set same name using ``--name`` options, processes collaborate with one another. If you want to start multiple processes in the same machine, please note that you must change the port on a each process.
 
 ::
 
@@ -302,7 +295,7 @@ Running two processes as one classifier instance
     $ jubaclassifier --rpc-port=9181 --name=tutorial2 --zookeeper=localhost:2181 --storage=local_mixture &
     $ jubaclassifier --rpc-port=9182 --name=tutorial2 --zookeeper=localhost:2181 --storage=local_mixture &
 
-zookeeperのクライアントを用いて、たしかに二つのサーバプロセスが起動していることを確認することも出来ます。
+You can also verify that three server processes are started using a zookeeper client.
 
 ::
 
@@ -313,9 +306,9 @@ zookeeperのクライアントを用いて、たしかに二つのサーバプ�
 
 
 
-以上で、下記の構成でJubatusを実行しました。
+You have executed the classifier feature of jubatus under this configuration.
 
-.. figure:: ../_static/single_multi.png
+.. figure:: _static/single_multi.png
    :width: 70 %
    :alt: single client, multi servers
 
@@ -327,10 +320,8 @@ Setup Jubatus in cluster
 
 .. 複数台のマシンにログインしてJubatusを起動して設定していくのは、大変面倒です。
 
-Jubatusは各種プロセスを一括管理するための仕組みを備えています。
-
-今、それぞれのサーバに対して、以下の表に対応したプロセスを起動させることを考えます。
-
+Jubatus has a mechanism to centrally manage various processes.
+In this tutorial, you will execute some process on each servers like the following table.
 
 =============  ==================
 IP address     processes
@@ -339,17 +330,19 @@ IP address     processes
 192.168.0.10   classifier - 1
 192.168.0.20   classifier - 2
 192.168.0.30   classifier - 3
-192.168.0.100  jubakeeper/zookeeper - 1
-192.168.0.200  jubakeeper/zookeeper - 2
+192.168.0.100  jubaclassifier_keeper/zookeeper - 1
+192.168.0.200  jubaclassifier_keeper/zookeeper - 2
 =============  ==================
+
+
+Start zookeeper,
 
 ::
 
     [192.168.0.100]$ bin/zkServer.sh start
     [192.168.0.200]$ bin/zkServer.sh start
 
-zookeeperをそれぞれで立ち上げます。zoo.confには二台で構成する設定を書いてください。
-そして、クライアントから利用するためにjubakeeperを用意しておきます。jubakeeperはデフォルトで9198番ポートを利用します。
+And start jubaclassifier_keeper process. jubaclassifier_keeper uses 9198 port by default.
 
 ::
 
@@ -361,8 +354,8 @@ zookeeperをそれぞれで立ち上げます。zoo.confには二台で構成す
 Jubavisor(Process Management with zookeeper)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-jubavisorは、マシンごとに一プロセスずつ存在するagentで、Jubatusctrlからの司令を受けて同サーバ内のプロセスを管理します。
-このプロセスは、予めマシンごとに起動しておく必要があります。jubavisorはデフォルトで9199番ポートを利用します。
+Jubavisor is an agent process. 
+Jubavisor will manage juba* processes in the same server from receiving the commander of Jubactl. jubavisor uses 9199 port by default.
 
 
 ::
@@ -372,8 +365,6 @@ jubavisorは、マシンごとに一プロセスずつ存在するagentで、Jub
     [192.168.0.30 ]$ jubavisor -z 192.168.0.100:2181,192.168.0.200:2181 -d
 
 
-jubavisorは、一台のサーバ内の複数プロセスのポートを調整して指定されたプロセスを指定された名前空間で起動し、zookeeperに登録します。
-ここまで出来れば、後は操作端末から、自由にプロセスを管理することが出来ます。
 Let's provisioning!!
 
 
@@ -403,8 +394,7 @@ Let's provisioning!!
 Client for multi process Jubatus Server
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In last section, 
-最後に、複数クライアント、複数サーバ環境でtutorialを実行しましょう。
+In last section, you will execute tutorial over multi client and multi servers environment.
 
 =============  ==================
 IP address     processes
@@ -430,7 +420,7 @@ IP address     processes
 
 Jubatus is available in the following configuration by the above command.
 
-.. figure:: ../_static/multi_multi.png
+.. figure:: _static/multi_multi.png
    :width: 70 %
    :alt: multi clients, multi servers
 
