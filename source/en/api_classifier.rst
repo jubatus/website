@@ -53,9 +53,3 @@ classifier methods
   - List of estimate_results
 
  Estimating a result at a server choosen randomly. ``estimate_results`` is a list of tuple of label and it's reliablity value.
-
-
-
-
-
-

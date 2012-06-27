@@ -39,38 +39,91 @@ typedef
   }
 
 
+How preset query matches to a property
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To be filled
+
 graph methods
 ~~~~~~~~~~~~~
 
 .. describe:: string create_node(0: string name)
 
+Creates a node on the graph named ``name``. This API broadcasts the request to the whole cluster.
+Returns a node id as string.
+
 .. describe:: int remove_node(0: string name, 1: string nid)
+
+Removes a node from the cluster.
 
 .. describe:: int update_node(0: string name, 1: string nid, 2: property p)
 
+Updates the property of the node.
+
 .. describe:: int create_edge(0: string name, 1: string nid, 2: edge_info ei)
+
+Creates a link from ``ei.src`` to ``ei.tgt``. The link has direction.
+Multiple links with same direction can be created on each pair of nodes.
+Also, a property ``ei.p`` can be associated to each link: see ``edge_info``.
+
+Returns ``edge_id`` as integer.
 
 .. describe:: int update_edge(0: string name, 1: string nid, 2: edge_id_t eid, 3: edge_info ei)
 
+Updates an existing edge with a new property. Property is overwritten.
+
 .. describe:: int remove_edge(0: string name, 1: string nid, 2: edge_id_t e)
+
+Removes an edge.
 
 .. describe:: double centrality(0: string name, 1: string nid, 2: centrality_type ct, 3: preset_query q)
 
+Calculates (gets the computed value) the centrality over the edges that match the preset query ``q`` .
+Currently there's only PageRank centrality.
+
+Centrality is computed when mix runs, thus there may be a gap between the exact value of centrality
+and the computed value if there're updates not mixed.
 
 .. describe:: bool add_centrality_query(0: string name, 1: preset_query q)
 
+Sets a preset query to the graph for centrality calculation.
+
 .. describe:: bool add_shortest_path_query(0: string name, 1: preset_query q)
+
+Sets a preset query to the graph for shortest path calculation.
 
 .. describe:: bool remove_centrality_query(0: string name, 1: preset_query q)
 
+Removes a preset query from the graph for centrality calculation.
+The query is compared with exact key-value whole match with another one.
+
 .. describe:: bool remove_shortest_path_query(0: string name, 1: preset_query q)
+
+Removes a preset query from the graph for shortest path calculation.
 
 .. describe:: list<node_id>  shortest_path(0: string name, 1: shortest_path_req r)
 
+Calculates (from the precomputed data) a shortest path from ``r.src`` to ``r.tgt``
+that matches the preset query.
+
+Path-index tree is computed when mix runs, thus there may be a gap between the exact path
+and the computed path if there're updates not mixed.
+
+
 .. describe:: int update_index(0: string name)
+
+Run mix locally. **Do not use in distributed mode**.
+
+In a standalone mode, mix is not automatically called thus users must call this API by thierselves.
 
 .. describe:: int clear(0: string name)
 
+Clears the whole data in a cluster.
+
 .. describe:: node_info get_node(0: string name, 1: string nid)
 
+Gets the ``node_info`` of a node, which includes property, ids of incoming edge and outgoing edge.
+
 .. describe:: edge_info get_edge(0: string name, 1: string nid, 2: edge_id_t e)
+
+Gets the ``edge_info`` of an edge, which includes property, source node and target node.
