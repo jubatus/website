@@ -11,7 +11,7 @@ Publications
  - `"How Jubatus works in Distributed environment" <http://www.slideshare.net/JubatusOfficial/jubatus-workshop>`_ by Kota UENISHI
  - "Jubatus' application and handson" by Satoshi ODA
  - "Estimating nergy consumption using Jubatus" by Shinta NAKAYAMA
- - `"pficommon and MessagePack-RPC" <_static/tanakh/presen.html>`_ by Hideyuki TANAKA
+ - `"pficommon and MessagePack-RPC" <../_static/tanakh/presen.html>`_ by Hideyuki TANAKA
 
 - 岡野原，他 "大規模分散リアルタイム学習支える技術と今後の展望"， WebDB forum 2011, Tokyo.
 
@@ -41,7 +41,10 @@ FAQ
 Contributions (Thanks a lot!)
 -----------------------------
 
-- `Ruby Client <https://github.com/pfi/jubatus-ruby-client>`_
-- `PHP Client <http://d.hatena.ne.jp/oxalis-gps/20111101/1320112193>`_ ( `github repo <https://github.com/oxalis-gps/jubatus-php-client>`_ )
 - `MacPorts <http://d.hatena.ne.jp/hjym_u/20111107/1320647557>`_
 - `Homebrew <http://d.hatena.ne.jp/katsyoshi/20111107/1320678982>`_
+
+- 0.1.0
+
+ - `Ruby Client <https://github.com/pfi/jubatus-ruby-client>`_
+ - `PHP Client <http://d.hatena.ne.jp/oxalis-gps/20111101/1320112193>`_ ( `github repo <https://github.com/oxalis-gps/jubatus-php-client>`_ )
