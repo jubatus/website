@@ -243,11 +243,9 @@ The return values are as follows.
 
 You have executed the classifier feature of jubatus under this configuration.
 
-.. figure:: _static/single_single.png
+.. figure:: ../_static/single_single.png
    :width: 70 %
    :alt: single client, single server
-
-
 
 .. _multiprocess:
 
@@ -308,7 +306,7 @@ You can also verify that three server processes are started using a zookeeper cl
 
 You have executed the classifier feature of jubatus under this configuration.
 
-.. figure:: _static/single_multi.png
+.. figure:: ../_static/single_multi.png
    :width: 70 %
    :alt: single client, multi servers
 
@@ -420,7 +418,7 @@ IP address     processes
 
 Jubatus is available in the following configuration by the above command.
 
-.. figure:: _static/multi_multi.png
+.. figure:: ../_static/multi_multi.png
    :width: 70 %
    :alt: multi clients, multi servers
 
