@@ -324,7 +324,7 @@ In this tutorial, you will execute some process on each servers like the followi
 =============  ==================
 IP address     processes
 =============  ==================
-192.168.0.1    操作端末
+192.168.0.1    Terminal
 192.168.0.10   classifier - 1
 192.168.0.20   classifier - 2
 192.168.0.30   classifier - 3
