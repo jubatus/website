@@ -27,9 +27,9 @@ TOC
    ja/tutorial
    ja/documentation
    ja/references
-..   ja/howtocontribute
+   ja/howtocontribute
    ja/idl_support.rst
-..   ja/misc
+   ja/misc
 
 
 
