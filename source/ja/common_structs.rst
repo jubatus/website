@@ -48,7 +48,7 @@ common methods
 
   - すべてのサーバで保存が成功したらTrue
 
- **すべて**のサーバで学習モデルをローカルディスクに保存する。
+ **すべて** のサーバで学習モデルをローカルディスクに保存する。
 
 
 .. describe:: bool load(0: string name, 1: string id)
@@ -62,7 +62,7 @@ common methods
 
   - すべてのサーバで読みだした成功したらTrue
 
- **すべて**のサーバで学習モデルをローカルディスクから読み出す。
+ **すべて** のサーバで学習モデルをローカルディスクから読み出す。
 
 .. describe:: bool set_config(0: string name, 1: config_data c)
 
@@ -71,7 +71,7 @@ common methods
   - ``name`` : タスクを識別するユニークな名前
   - ``c`` : config_data
 
-**すべての**サーバのconfigを更新する。
+**すべての** サーバのconfigを更新する。
 
 .. describe:: config_data get_config(0: string name)
 
@@ -95,5 +95,5 @@ common methods
 
   - それぞれのサーバの内部状態.
 
-**すべての**サーバの内部状態を取得する。サーバはホスト名、ポート番号で識別する。
+**すべての** サーバの内部状態を取得する。サーバはホスト名、ポート番号で識別する。
 

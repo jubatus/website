@@ -3,7 +3,7 @@ jubatus::client::classifier
 
 
 .. See `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/classifier.idl>`_ for original and detailed spec.
-詳細は`IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/classifier.idl>`_を参照してください。
+詳細は `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/classifier.idl>`_ を参照してください。
 
 types
 ~~~~~
@@ -39,8 +39,8 @@ classifier methods
 
   - 成功すると0が返る
 
- ランダムに一台選んだサーバで学習し、モデルを更新する。``tuple<string, datum>``は、datumとそのlabelの組である。
- この関数は``tuple<string, datum>``をリスト形式で、まとめて同時に受け付けることが出来る。
+ ランダムに一台選んだサーバで学習し、モデルを更新する。 ``tuple<string, datum>`` は、datumとそのlabelの組である。
+ この関数は ``tuple<string, datum>`` をリスト形式で、まとめて同時に受け付けることが出来る。
 
 .. Training model at a server chosen randomly. ``tuple<string, datum>`` is a tuple of datum and it's label. 
 .. This function is designed to allow bulk update with list of tuple of label and datum.
@@ -55,7 +55,7 @@ classifier methods
 
  - Returns:
 
-  - ``estimate_results``のリスト
+  - ``estimate_results`` のリスト
 
- ランダムに選んだサーバで結果を推定する。``estimate_results``は、labelとその信頼性の値の組のリストが、入れられたdatumの順番にリストで入っている。
+ ランダムに選んだサーバで結果を推定する。``estimate_results`` は、labelとその信頼性の値の組のリストが、入れられたdatumの順番にリストで入っている。
 .. Estimating a result at a server choosen randomly. ``estimate_results`` is a list of tuple of label and it's reliablity value.

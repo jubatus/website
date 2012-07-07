@@ -2,7 +2,7 @@ jubatus::client::recommender
 ----------------------------
 
 ..See `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/recommender.idl>`_ for original and detailed spec.
-詳細は`IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/recommender.idl>`_を参照してください。
+詳細は `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/recommender.idl>`_ を参照してください。
 
 
 typedef
@@ -30,7 +30,7 @@ recommender methods
 
   - ``id`` : 推薦テーブル内の行を表すID
 
-``id``で指定されるテーブルを削除する。 
+``id`` で指定されるテーブルを削除する。 
 
 
 .. describe:: bool update_row(string name, string id, datum d)
@@ -58,7 +58,7 @@ rowデータをdataを利用して差分更新する．同じ特徴番号があ�
 
 - Returns:
 
-  - ``id``の近傍から未定義の値を補完したdatum 
+  - ``id`` の近傍から未定義の値を補完したdatum 
 
  指定したidのrowの中で欠けている値を予測して返す。
 
@@ -81,20 +81,20 @@ rowデータをdataを利用して差分更新する．同じ特徴番号があ�
 
 - Returns:
 
-  - ``id``で指定した近傍の``id``とその近傍性の値のリスト .
+  - ``id`` で指定した近傍のidとその近傍性の値のリスト .
 
-``similar_result``で定義された指定したidに近い行とその近傍性のリストを``size``個返す。
+``similar_result`` で定義された指定したidに近い行とその近傍性のリストを ``size`` 個返す。
 
 .. describe:: similar_result similar_row_from_data(0: string name, 1: datum dat, 2: uint size)
 
 - Parameters:
 
   - ``dat`` : 補完したいdatum
-  - ``ret_num``` : 返す近傍の数
+  - ``ret_num`` : 返す近傍の数
 
 - Returns:
 
-  - similar_result of the row constructed from ``dat`` .
+  - ``dat`` から構成された ``similar_result`` .
 
 ``similar_result``で定義された指定したdatumに近い行とその近傍性のリストを``size``個返す。
 
@@ -106,7 +106,7 @@ rowデータをdataを利用して差分更新する．同じ特徴番号があ�
 
 - Returns:
 
-  - ``id``で指定した行の``datum``表現を返す。ただし、fv_converterで不可逆な処理を行なっている``datum``は復元されない。
+  - ``id`` で指定した行の ``datum`` 表現を返す。ただし、fv_converterで不可逆な処理を行なっている ``datum`` は復元されない。
 
 
 .. describe:: list<string> get_all_rows(0:string name)
@@ -114,14 +114,13 @@ rowデータをdataを利用して差分更新する．同じ特徴番号があ�
 - Returns:
 
   - すべての列のリスト
-..  - list of all rows
 
 すべての列のリストを返す。
 
 .. describe:: float similarity(0: string name, 1: datum lhs, 2: datum rhs)
 
-指定した2つの``datum``の近傍性を返す。
+指定した2つの ``datum`` の近傍性を返す。
 
 .. describe:: float l2norm(0: string name, 1: datum d)
 
-指定した``datum``のL2ノルムを返す。
+指定した ``datum`` のL2ノルムを返す。
