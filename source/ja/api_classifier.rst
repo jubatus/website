@@ -3,7 +3,7 @@ jubatus::client::classifier
 
 
 .. See `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/classifier.idl>`_ for original and detailed spec.
-詳細は `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/classifier.idl>`_ を参照してください。
+ 詳細は `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/classifier.idl>`_を参照してください。
 
 types
 ~~~~~

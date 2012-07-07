@@ -1,4 +1,4 @@
-.. _conversion:
+.. _conversionja:
 
 Data Conversion
 ==================
@@ -221,7 +221,7 @@ num_filter_rules
 
 "key"の指定の仕方は、string_filter_rulesを参照のこと。
 
-.. _construct:
+.. _constructja:
 
 feature exctraction (from string)
 ---------------------------------
@@ -373,7 +373,7 @@ string_rulesなどと同様、複数の規則を羅列する。
 
  :suffix:    変換後の結果を格納するkeyのサフィックスを指定する。
 
-.. _conversion_plugin:
+.. _conversion_pluginja:
 
 plugin
 ----------------
@@ -466,7 +466,7 @@ datumは文字列データと数値データの2つがあるため、それぞ�
 その状態で、num_rulesによって数値データからの特徴量が抽出される。
 フィルターと特徴抽出器には引数を必要とするものもあるため、それらはtypesで事前に準備することによって各規則で利用することができるようになる。
 
-.. figure:: _static/convert_flow.png
+.. figure:: ../_static/convert_flow.png
    :width: 90 %
    :alt: feature vector converter
 

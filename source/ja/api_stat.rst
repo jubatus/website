@@ -8,7 +8,6 @@ typedef
 ~~~~~~~
 
 .. describe:: jubatus::stat::config_data
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: c++
 

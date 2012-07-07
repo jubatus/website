@@ -238,7 +238,7 @@ Train/Classify
 
 
 
-.. _multiprocess:
+.. _multi_multiprocess:
 
 Setup Jubatus Server with multiple processes
 --------------------------------------------
@@ -410,7 +410,7 @@ IP address     processes
     [192.168.0.3  ]$ python tutorial.py --name=tutorial3 -s 192.168.0.100:9198,192.168.0.200:9198
 
 
-.. figure:: _static/multi_multi.png
+.. figure:: ../_static/multi_multi.png
    :width: 70 %
    :alt: multi clients, multi servers
 
