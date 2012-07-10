@@ -22,14 +22,14 @@ TOC
 .. toctree::
    :maxdepth: 3
 
-   ja/quickstart
-   ja/overview
-   ja/tutorial
-   ja/documentation
-   ja/references
-   ja/howtocontribute
-   ja/idl_support.rst
-   ja/misc
+   quickstart
+   overview
+   tutorial
+   documentation
+   references
+   howtocontribute
+   idl_support.rst
+   misc
 
 
 
