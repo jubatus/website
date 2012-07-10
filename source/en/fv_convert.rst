@@ -411,6 +411,7 @@ In concrete, the weight is the product of these two weights.
 
 
 .. In most of machine learning tasks, it works well even if we use "bin" in both sample_weight and global_weight.
+
 In some kind of tasks, in which weight itself is trained, weight are adjusted automatically even if we set "bin" in sample_weight and global_weight.
 Classification is an example of a such task.
 

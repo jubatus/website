@@ -16,8 +16,9 @@ Publications
 - 岡野原，他 "大規模分散リアルタイム学習支える技術と今後の展望"， WebDB forum 2011, Tokyo.
 
 - 2011/10/26 Press Relase
- - PFI ( `en <http://preferred.jp/2011/10/jubatus-english.html>`_ / `ja <http://preferred.jp/2011/10/jubatus.html>`_ )
- - NTT ( `EN <http://www.ntt.co.jp/news2011/1110e/111026a.html>`_ / `JA <http://www.ntt.co.jp/news2011/1110/111026a.html>`_ )
+
+ - PFI ( `pfien <http://preferred.jp/2011/10/jubatus-english.html>`_ / `pfija <http://preferred.jp/2011/10/jubatus.html>`_ )
+ - NTT ( `nttEN <http://www.ntt.co.jp/news2011/1110e/111026a.html>`_ / `nttJA <http://www.ntt.co.jp/news2011/1110/111026a.html>`_ )
  - `Press Release Slides (in Japanese) <http://www.slideshare.net/JubatusOfficial/jubatus-pressrelease>`_
 
 
