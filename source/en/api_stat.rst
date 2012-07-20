@@ -12,7 +12,9 @@ typedef
 .. code-block:: c++
 
    message config_data {
-     int window_size
+
+     0: int window_size
+
    }
 
 

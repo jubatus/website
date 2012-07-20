@@ -12,9 +12,7 @@ Jubatus is a distributed processing framework and streaming machine learning lib
 - fv_converter: pre-proccessing data(for natural language), and
 - framework for online machine learning with fault tolerance.
 
-日本語サイトはこちら :doc:`ja/index_ja`
-
-
+See :doc:`ja/index_ja` for Japanese documentation.
 
 
 TOC
