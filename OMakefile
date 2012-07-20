@@ -54,7 +54,7 @@ clean:
 	-rm -rf $(builddir)/*
 
 DepBuild(target, message) =
-	$(target): $(sources) $(srcdir)/conf.py $(SPHINXBUILD)
+	$(target): $(sources) $(srcdir)/conf.py # $(SPHINXBUILD)
 		$(SPHINXBUILD) -b $(target) $(ALLSPHINXOPTS) $(builddir)/$(target)
 		eprintln( $(message) )
 

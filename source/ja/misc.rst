@@ -16,27 +16,14 @@ Publications
 - 岡野原，他 "大規模分散リアルタイム学習支える技術と今後の展望"， WebDB forum 2011, Tokyo.
 
 - 2011/10/26 Press Relase
- - PFI ( `en <http://preferred.jp/2011/10/jubatus-english.html>`_ / `ja <http://preferred.jp/2011/10/jubatus.html>`_ )
- - NTT ( `EN <http://www.ntt.co.jp/news2011/1110e/111026a.html>`_ / `JA <http://www.ntt.co.jp/news2011/1110/111026a.html>`_ )
+
+ - PFI ( `PFI_EN <http://preferred.jp/2011/10/jubatus-english.html>`_ / `PFI_JA <http://preferred.jp/2011/10/jubatus.html>`_ )
+ - NTT ( `NTT_EN <http://www.ntt.co.jp/news2011/1110e/111026a.html>`_ / `NTT_JA <http://www.ntt.co.jp/news2011/1110/111026a.html>`_ )
  - `Press Release Slides (in Japanese) <http://www.slideshare.net/JubatusOfficial/jubatus-pressrelease>`_
 
 
 FAQ
 ---
-
-- Failed in ``./waf configre`` with ...
-
-::
-
-  ...
-  line 298, in load_tool
-       __import__(d)
-     File "/Users/oliner/tmp/jubatus/unittest_gtest.py", line 8
-       C1 = b'#XXX'
-                ^
-  SyntaxError: invalid syntax
-
-This error occurs when old python. Use python 2.7 or later.
 
 - When using python client, "got socket.error: [Errno 99] Cannot assign requested address" (or kind of `EADDRINUSE`)
 
