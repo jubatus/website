@@ -143,5 +143,5 @@ zookeeper    >= 3.4     optional
 - FreeBSD は動作していません。pficommon を修正する必要があります。
 - CentOS 5.x はやめておいたほうがいいです。
 - CentOS 6.x のことはよく分かりません。
-- 他の *BSD systems や Solarisで動かしてくれないかな（チラっ
+- 他の *BSD systems や Solarisでの動作報告をお待ちしています。
 
