@@ -116,7 +116,7 @@ python       >= 2.6     used in WAF
 
 msgpack      >= 0.5.7
 
-pficommon    >= 1.4.1   must be msgpack enabled
+pficommon    >= 1.3.1.0 must be msgpack enabled
 
 pkg-config   >= 0.26
 
