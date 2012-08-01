@@ -1,3 +1,23 @@
+Download Jubatus
+================
+
+latest jubatus release
+-----------------------
+The current version of jubatus is 0.3.1. Jubatus is distributed under LGPL v2.1.
+
+
+`Download <https://github.com/jubatus/jubatus/zipball/master>`_
+
+or
+
+::
+
+  $ git clone git://github.com/jubatus/jubatus.git
+
+Jubatus clients are distributed under MIT License.
+
+`Download clients <https://github.com/downloads/jubatus/jubatus/jubatus_client.0.3.1.2012-07-20.tar.gz>`_
+ 
 QuickStart
 ==========
 
