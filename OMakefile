@@ -12,7 +12,7 @@ BUILDOUT = bin/buildout
 # for Sphinx
 
 sphinxopts    =
-SPHINXBUILD   = bin/sphinx-build
+SPHINXBUILD   = sphinx-build
 paper         =
 builddir      = build
 srcdir        = source
