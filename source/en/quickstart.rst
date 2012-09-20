@@ -3,7 +3,7 @@ Download Jubatus
 
 latest jubatus release
 -----------------------
-The current version of jubatus is 0.3.1. Jubatus is distributed under LGPL v2.1.
+The current version of jubatus is 0.3.2. Jubatus is distributed under LGPL v2.1.
 
 
 `Download <https://github.com/jubatus/jubatus/zipball/master>`_
