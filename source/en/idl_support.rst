@@ -1,19 +1,19 @@
-IDL Support Status (2012 June)
+IDL Support Status (2012 Sep.)
 -------------------------------------------
 
-Currently, Jubatus supports four machine learning services (Classifier, Regression, Recommender, Stat). As we mentioned in :ref:`how_to_get_clients` , clients of these services are generated from msgpack-idl. The followings are support status of msgpack-idl.
+Currently, Jubatus supports four machine learning services (Classifier, Regression, Recommender, Stat, Graph). As we mentioned in :ref:`how_to_get_clients` , clients of these services are generated from msgpack-idl. The followings are support status of msgpack-idl.
 
-+------------+------------+-------------+--------------+--------------+ 
-|            | Classifier | Regression  | Recommender  | Stat         |
-+------------+------------+-------------+--------------+--------------+ 
-| C++        | ok         | ok          | needs fix    | ok           |
-+------------+------------+-------------+--------------+--------------+ 
-| Java       | needs fix  | needs fix   | needs fix    | needs fix    |
-+------------+------------+-------------+--------------+--------------+ 
-| Python     | ok         | ok          |  ok          | ok           |
-+------------+------------+-------------+--------------+--------------+ 
-| Ruby       | ok         | ok          |  ok          | ok           |
-+------------+------------+-------------+--------------+--------------+ 
++------------+------------+-------------+--------------+--------------+--------------+
+|            | Classifier | Regression  | Recommender  | Stat         | Graph        |
++------------+------------+-------------+--------------+--------------+--------------+
+| C++        | ok         | ok          | needs fix    | ok           | ok           |
++------------+------------+-------------+--------------+--------------+--------------+
+| Java       | needs fix  | needs fix   | needs fix    | needs fix    | needs fix    |
++------------+------------+-------------+--------------+--------------+--------------+
+| Python     | ok         | ok          |  ok          | ok           | ok           |
++------------+------------+-------------+--------------+--------------+--------------+
+| Ruby       | ok         | ok          |  ok          | ok           | ok           |
++------------+------------+-------------+--------------+--------------+--------------+
 
 - ok：We can use automatically generated clients.
 
