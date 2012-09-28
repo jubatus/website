@@ -178,7 +178,7 @@ Now, we choose ``PA`` .
 ``'converter'`` decides how to convert feature vector from input data.
 
 In this tutorial, input data is the text of natural language.
-Many languages ​​such as English, <space>　and <Return> can be split into words. Jubatus supports this feature such as standard.
+Many languages such as English, <space>　and <Return> can be split into words. Jubatus supports this feature such as standard.
 HTML tags are noisy to classify the contents so we will remove the part that is enclosed in "<>".
 
 These rules expressed as follows in JSON.
@@ -276,9 +276,9 @@ Setup ZooKeeper
 We assume that Zookeeper process will be running on localhost:2181 by specifying in the zoo.cfg.
 
 
-jubakeeper
+jubaclassifier_keeper
 ~~~~~~~~~~~~~~~~~~~~~~~~
-jubakeeper is a RPC requests proxy process. it use zookeeper processes.
+jubaclassifier_keeper is a RPC requests proxy process for jubaclassifier. it use zookeeper processes.
 
 
 ::
@@ -376,7 +376,7 @@ Let's provisioning!!
 
     [192.168.0.1  ]$ jubactl -c start --server=classifier --name=tutorial2 -z 192.168.0.100:2181,192.168.0.200:2181
     [192.168.0.1  ]$ jubactl --name=tutorial2 --zookeeper=192.168.0.100:2181,192.168.0.200:2181 --type=classifier -c status
-    active jubakeeper members:
+    active jubaclassifier_keeper members:
      192.168.0.100_9198
      192.168.0.200_9198
     active jubavisor members:
