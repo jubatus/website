@@ -44,7 +44,7 @@ jubaclassifier
 
 .. option:: -p, --rpc-port
 
-   RPC用の待受ポート番号([= 9198])
+   RPC用の待受ポート番号([= 9199])
   
 .. option:: -c, --thread
 
@@ -114,7 +114,7 @@ Jubatus Keepers
 
 .. option:: -p, --rpc-port
 
-   RPC用の待受ポート番号([= 9198])
+   RPC用の待受ポート番号([= 9199])
 
 .. option:: -c, --thread([=16])
 
