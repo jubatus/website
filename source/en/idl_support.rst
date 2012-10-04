@@ -12,7 +12,7 @@ Currently, Jubatus supports four machine learning services (Classifier, Regressi
 +------------+------------+-------------+--------------+--------------+--------------+
 | Python     | ok         | ok          |  ok          | ok           | ok           |
 +------------+------------+-------------+--------------+--------------+--------------+
-| Ruby       | ok         | ok          |  ok          | ok           | ok           |
+| Ruby       | ok         | ok          |  ok          | ok           | needs fix    |
 +------------+------------+-------------+--------------+--------------+--------------+
 
 - ok：We can use automatically generated clients.
