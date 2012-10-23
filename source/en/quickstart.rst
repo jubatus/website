@@ -21,7 +21,7 @@ Jubatus clients are distributed under MIT License.
 QuickStart
 ==========
 
-For prerequisites, Jubatus requires `MessagePack <http://msgpack.org>`_ , `pficommon <http://pfi.github.com/pficommon>`_ , libevent-dev  and google-glog for minimal installation. For example in Ubuntu Server 12.04 LTS with 64bit kernel,
+For prerequisites, Jubatus requires `MessagePack <http://msgpack.org>`_ , `pficommon <http://pfi.github.com/pficommon>`_ , libevent-dev and google-glog for minimal installation. For example in Ubuntu Server 12.04 LTS with 64bit kernel,
 
 ::
 
@@ -101,7 +101,7 @@ By including header,
   void foo(){
     classifier cli("localhost", 9199, 3.0);
     config_data c;
-    c.method = "PA";    
+    c.method = "PA";
     cli.set_config("", c);
 
     // ...
@@ -158,7 +158,7 @@ If your project uses Maven, please add these lines to your pom.xml.
 Detailed System Requirements
 ----------------------------
 
-Jubatus is publicly supported with Ubuntu LTS 12.04 and Redhat Enterprise Linux 6.2 running on 64bit kernel. And development team are using Intel CPU. Other requirements as follows:
+Jubatus is publicly supported with Ubuntu LTS 12.04 and Red Hat Enterprise Linux 6.2 running on 64bit kernel. And development team are using Intel CPU. Other requirements as follows:
 
 
 ============ ========== ========================
@@ -190,10 +190,10 @@ zookeeper    >= 3.4     optional
 Other Environments
 ~~~~~~~~~~~~~~~~~~
 
-- MacOSX runs standalone mode even by using llvm-gcc, but not working in some compilers
-- Debian/GNU Linux runs all mode (I use)
-- Arch Linux runs standalone mode
-- FreeBSD does not run, needs some fixed on pficommon
-- CentOS 5.x is strongly discouraged
-- We do not know anything about CentOS 6.x
+- MacOSX runs standalone mode even by using llvm-gcc, but not working in some compilers.
+- Debian/GNU Linux runs all mode (I use).
+- Arch Linux runs standalone mode.
+- FreeBSD does not run, needs some fixed on pficommon.
+- CentOS 5.x is strongly discouraged.
+- We do not know anything about CentOS 6.x.
 - We are waiting for report in other *BSD systems and in Solaris.

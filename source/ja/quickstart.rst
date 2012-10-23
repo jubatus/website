@@ -3,7 +3,7 @@ Download Jubatus
 
 latest jubatus release
 -----------------------
-jubatus の最新バージョンは 0.3.3 です.　Jubatusは LGPL v2.1の元に配布されています。
+jubatus の最新バージョンは 0.3.3 です。Jubatus は LGPL v2.1 の元に配布されています。
 
 
 `Download <https://github.com/jubatus/jubatus/zipball/master>`_
@@ -14,14 +14,14 @@ or
 
   $ git clone git://github.com/jubatus/jubatus.git
 
-Jubatus のクライアントは すべて MIT License のもとに配布されています.
+Jubatus のクライアントは すべて MIT License のもとに配布されています。
 
 `Download clients <https://github.com/downloads/jubatus/jubatus/jubatus_client.0.3.2.2012-10-05.tar.gz>`_
- 
+
 QuickStart
 ==========
 
-Jubatusは、最小限のインストールを行うために、 `MessagePack <http://msgpack.org>`_ , `pficommon <http://pfi.github.com/pficommon>`_ , libevent-dev  and google-glog が必要です。例えば Ubuntu Server 12.04 LTS では、
+Jubatus は、最小限のインストールを行うために、 `MessagePack <http://msgpack.org>`_ , `pficommon <http://pfi.github.com/pficommon>`_ , libevent-dev, google-glog が必要です。例えば Ubuntu Server 12.04 LTS では、
 
 ::
 
@@ -64,7 +64,7 @@ Red Hat Enterprise Linux 6 (x86_64) およびクローンでは、Yum リポジ�
 Running servers
 ---------------
 
-classifierを標準の設定でスタンドアローンモードで起動するには、
+classifier を標準の設定でスタンドアローンモードで起動するには、
 
 ::
 
@@ -72,19 +72,19 @@ classifierを標準の設定でスタンドアローンモードで起動する�
 
 これによりclassifierサーバは9199ポートで起動しました。
 
-regressionを標準の設定でスタンドアローンモードで起動するには、
+regression を標準の設定でスタンドアローンモードで起動するには、
 
 ::
 
   $ jubaregression
 
-recommenderを標準の設定でスタンドアローンモードで起動するには、
+recommender を標準の設定でスタンドアローンモードで起動するには、
 
 ::
 
   $ jubarecommender
 
-graphを標準の設定でスタンドアローンモードで起動するには、
+graph を標準の設定でスタンドアローンモードで起動するには、
 
 ::
 
@@ -106,19 +106,19 @@ C++を利用してクライアントを使うためには、ヘッダーをイ�
   void foo(){
     classifier cli("localhost", 9199, 3.0);
     config_data c;
-    c.method = "PA";    
+    c.method = "PA";
     cli.set_config("", c);
 
     // ...
   }
 
 
-それ以外の言語では、msgpack-idlを利用して生成されたクライアントを使います。
+それ以外の言語では、msgpack-idl を利用して生成されたクライアントを使います。
 
 Other clients
 -------------
 
-これらのクライアントは、MIT Licenseの下に配布されています。
+これらのクライアントは、MIT License の下に配布されています。
 
 Python
 ~~~~~~
@@ -137,7 +137,7 @@ Ruby
 Java
 ~~~~
 
-Maven を利用している場合、pom.xmlに以下を追加します。
+Maven を利用している場合、pom.xml に以下を追加します。
 
 .. code-block:: xml
 
@@ -162,7 +162,7 @@ Maven を利用している場合、pom.xmlに以下を追加します。
 Detailed System Requirements
 ----------------------------
 
-Jubatusは、公式には64bitカーネルで動作するUbuntu LTS 12.04とRedhat Enterprise Linux 6.2をサポートしています。
+Jubatus は、公式には 64bitカーネル で動作する Ubuntu LTS 12.04 と Red Hat Enterprise Linux 6.2 をサポートしています。
 開発チームは、x64アーキテクチャのマシンを利用しています。この他の依存ライブラリは以下のとおりです。
 
 ============ ========== ========================
@@ -194,7 +194,7 @@ zookeeper    >= 3.4     optional
 その他の環境
 ~~~~~~~~~~~~~~~~~~
 
-- MacOSX ではllvm-gcc を使ってスタンドアローンモードで動作しています。しかし一部のコンパイラでは動作していません。
+- MacOSX では llvm-gcc を使ってスタンドアローンモードで動作しています。しかし一部のコンパイラでは動作していません。
 - Debian/GNU Linux は動作しています。
 - Arch Linux スタンドアローンモードで動作しています。
 - FreeBSD は動作していません。pficommon を修正する必要があります。
