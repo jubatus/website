@@ -33,6 +33,8 @@ Prequisites
 Setup a single process Jubatus Server
 -----------------------------------------
 
+::
+
   $ jubaclassifier --name tutorial
   jubaclassifier I0514 07:45:30.165102 30546 server_util.cpp:84] starting jubaclassifier0.3.2 RPC server at 10.0.2.15:9199 with timeout: 10
 
