@@ -85,6 +85,14 @@ To start recommender server, just run
 
   $ jubarecommender
 
+To start grap server, just run
+
+::
+
+  $ jubagraph
+
+If you use the client, See :doc:`tutorial`.
+
 C++ client
 ----------
 
@@ -109,7 +117,7 @@ By including header,
 
 
 Non-C++ users have to generate client library by using msgpack-idl.
-See client generation (TODO: link).
+See :doc:`howtogetclients`.
 
 Other clients
 -------------
