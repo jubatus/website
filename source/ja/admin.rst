@@ -43,3 +43,23 @@ Jubatus を分散環境で動作させる際、ZooKeeper が利用できない�
 
 #. 奇数台のマシンによるクラスタ構成(アンサンブル)で運用します。
 #. ZooKeeper のパフォーマンスが低下し、Jubatus の動作が不安定になることを避けるため、ZooKeeper 専用のマシンを用意することを推奨します。
+
+Managing Clusters
+-----------------
+
+[tbd]
+
+Monitoring
+----------
+
+[tbd]
+
+Logging
+-------
+
+[tbd]
+
+Save and Load
+-------------
+
+[tbd]

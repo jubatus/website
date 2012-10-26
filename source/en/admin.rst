@@ -45,3 +45,23 @@ When running Jubatus on distributed environment, It is a fatal condition that Zo
 #. To avoid degradation of performance and stability, deploy ZooKeeper on a dedicated machine.
 
 For details, See `the documentation of ZooKeeper <http://zookeeper.apache.org/doc/current/>`_ .
+
+Managing Clusters
+-----------------
+
+[tbd]
+
+Monitoring
+----------
+
+[tbd]
+
+Logging
+-------
+
+[tbd]
+
+Save and Load
+-------------
+
+[tbd]
