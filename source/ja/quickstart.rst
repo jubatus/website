@@ -50,6 +50,44 @@ Minimal install
   $ ./waf build
   # ./waf install
 
+Apt Repository
+--------------
+
+Ubuntu / Debian システム (x86_64) では、Apt リポジトリからインストールを行うことができます。
+
+以下の内容で `/etc/apt/sources.list.d/jubatus.list` というファイルを作成すると、Jubatus Apt リポジトリがシステムに登録されます。
+
+::
+
+  deb http://download.jubat.us/apt binary/
+
+Jubatus をインストールします。
+
+::
+
+  $ sudo apt-get update
+  $ sudo apt-get install jubatus
+
+現在配布しているパッケージは GPG 署名が行われていないません。
+警告が表示された場合は、 `y` を入力してください:
+
+::
+
+  Install these packages without verification [y/N]? y
+
+これで Jubatus が `/opt/jubatus` にインストールされました。
+Jubatus を使い始める前に、環境変数を `profile` スクリプトから読み込んでください。
+
+::
+
+  $ source /opt/jubatus/profile
+
+csh または tcsh をお使いの場合はこちらをご利用ください:
+
+::
+
+  $ source /opt/jubatus/profile.csh
+
 Yum Repository for RHEL 6
 -------------------------
 

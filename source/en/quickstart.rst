@@ -50,6 +50,43 @@ Minimal install
   $ ./waf build
   # ./waf install
 
+Apt Repository
+--------------
+
+For Ubuntu and Debian systems (x86_64), Apt repository is available.
+
+Write the following line to `/etc/apt/sources.list.d/jubatus.list` to register Jubatus Apt repository.
+
+::
+
+  deb http://download.jubat.us/apt binary/
+
+Now install the Jubatus.
+
+::
+
+  $ sudo apt-get update
+  $ sudo apt-get install jubatus
+
+Currently our package is not GPG-signed.
+Bypass the warning by answering `y` to the prompt:
+
+::
+
+  Install these packages without verification [y/N]? y
+
+Now Jubatus is installed in `/opt/jubatus`.
+Before using Jubatus, load the environment variable from `profile` script.
+
+::
+
+  $ source /opt/jubatus/profile
+
+If you're using csh or tcsh, use this instead:
+
+::
+
+  $ source /opt/jubatus/profile.csh
 
 Yum Repository for RHEL 6
 -------------------------
