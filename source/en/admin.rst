@@ -9,7 +9,7 @@ Recommended process configuration
 ---------------------------------
 
 For reliable Jubatus service, you should run Jubatus on distributed environment.
-And then, for high performance, you should be serious about the process configuration of Jubatus and processes that Jubatus depends on.
+Additionally, to ensure high performance, you should carefully plan the process configuration of Jubatus servers and processes that Jubatus depends on.
 
 This is the process configuration that we recommend.
 
@@ -20,11 +20,11 @@ This is the process configuration that we recommend.
 Jubakeeper
 ~~~~~~~~~~
 
-We recommend the configration that Jubakeeper and Client-Application will be a one-to-one. Because, ease of operation and implementation of the application.
+To keep operation and implementation of the client application simple, we recommend assigning one Jubakeeper for each instance of the application.
 
-For case that Client-Application can not connect to Jubakeeper (ex. Jubakeeper is downed), it is necessary to consider the reliability depending on the services provided. For example, like the following:
+For case that the client application can not connect to Jubakeeper (ex. Jubakeeper is downed), it is necessary to consider the reliability depending on the services provided. For example, like the following:
 
-#. Monitor the process. If Client-Application can not connect to Jubakeeper, blocks the access to Client-Application.
+#. Monitor the processes. If the client application can not connect to Jubakeeper, blocks the access to the client application.
 #. Switch to another Jubakeeper.
 
 Jubaserver
@@ -36,12 +36,12 @@ In the figure above, processes is distributed on ``N + 1`` machines. Even when a
 
 Jubatus processes all data in memory. In order to prevent the lack of resourses (specially memory), you should pay to attention to the placement of the process.
 
-Zookeeper
+ZooKeeper
 ~~~~~~~~~
 
-When running Jubatus on distributed environment, It is a fatal condition that Zookeeper is not available. For reliable ZooKeeper service, you should note the following:
+When running Jubatus on distributed environment, It is a fatal condition that ZooKeeper is not available. For reliable ZooKeeper service, you should note the following:
 
-#. Deploy ZooKeeper in a cluster as known an ensemble using an odd number of machines.
-#. For minimization that sort of degradation, deploy Zookeeper on a dedicated machine.
+#. Deploy ZooKeeper in a cluster (an ensemble) using an odd number of machines.
+#. To avoid degradation of performance and stability, deploy ZooKeeper on a dedicated machine.
 
-For details, See `the documentation of Zookeeper <http://zookeeper.apache.org/doc/current/>`_ .
+For details, See `the documentation of ZooKeeper <http://zookeeper.apache.org/doc/current/>`_ .
