@@ -1,4 +1,4 @@
-IDL Support Status (2012 Oct.)
+IDL Support Status (2012 Nov.)
 -------------------------------------------
 
 2012年10月現在、Jubatusは、 機械学習タスク (Classifier, Regression, Recommender, Stat, Graph) をサポートしています。 :ref:`how_to_get_clients` で紹介している通り、クライアントコードは、 msgpack-idlで生成されています。以下はそのサポート状況です。

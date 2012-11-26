@@ -1,4 +1,4 @@
-IDL Support Status (2012 Oct.)
+IDL Support Status (2012 Nov.)
 -------------------------------------------
 
 Currently, Jubatus supports four machine learning services (Classifier, Regression, Recommender, Stat, Graph). As we mentioned in :ref:`how_to_get_clients` , clients of these services are generated from msgpack-idl. The followings are support status of msgpack-idl.
