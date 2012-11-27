@@ -1,5 +1,5 @@
-jubatus::client::classifier
----------------------------
+Classifier
+----------
 
 See `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/classifier.idl>`_ for detailed specification.
 
