@@ -16,7 +16,7 @@ SPHINXBUILD   = sphinx-build
 paper         =
 builddir      = build
 srcdir        = source
-sources       = $(glob $(srcdir)/*.rst)
+sources       = $(find $(srcdir) -type=f)
 
 # Internal variables.
 paperopt_a4     = -D latex_paper_size=a4
