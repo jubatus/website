@@ -1,22 +1,3 @@
-Download Jubatus
-================
-
-latest jubatus release
------------------------
-The current version of jubatus is |release|. Jubatus is distributed under LGPL v2.1.
-
-
-`Download <https://github.com/jubatus/jubatus/zipball/master>`_
-
-or
-
-::
-
-  $ git clone git://github.com/jubatus/jubatus.git
-
-Jubatus clients are distributed under MIT License.
-
-`Download clients <https://github.com/downloads/jubatus/jubatus/jubatus_client.0.3.2.2012-10-05.tar.gz>`_
  
 QuickStart
 ==========
@@ -161,6 +142,8 @@ Other clients
 
 Other clients are all distributed under MIT License.
 
+`Pre-generated clients <https://github.com/downloads/jubatus/jubatus/jubatus_client.0.3.2.2012-10-05.tar.gz>`_ are also available.
+
 Python
 ~~~~~~
 
@@ -235,10 +218,8 @@ zookeeper    >= 3.4     optional
 Other Environments
 ~~~~~~~~~~~~~~~~~~
 
-- MacOSX runs standalone mode even by using llvm-gcc, but not working in some compilers.
+- Mac OS X runs standalone mode even by using llvm-gcc.
 - Debian/GNU Linux runs all mode (I use).
 - Arch Linux runs standalone mode.
 - FreeBSD does not run, needs some fixed on pficommon.
-- CentOS 5.x is strongly discouraged.
-- We do not know anything about CentOS 6.x.
-- We are waiting for report in other *BSD systems and in Solaris.
+- We are waiting for report in other \*BSD systems and in Solaris.

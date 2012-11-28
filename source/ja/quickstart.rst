@@ -1,22 +1,3 @@
-Download Jubatus
-================
-
-latest jubatus release
------------------------
-jubatus の最新バージョンは |release| です。Jubatus は LGPL v2.1 の下に配布されています。
-
-
-`Download <https://github.com/jubatus/jubatus/zipball/master>`_
-
-or
-
-::
-
-  $ git clone git://github.com/jubatus/jubatus.git
-
-Jubatus のクライアントは全て MIT License の下に配布されています。
-
-`Download clients <https://github.com/downloads/jubatus/jubatus/jubatus_client.0.3.2.2012-10-05.tar.gz>`_
 
 QuickStart
 ==========
@@ -159,6 +140,8 @@ Other clients
 
 これらのクライアントは、MIT License の下に配布されています。
 
+`生成済みのクライアント <https://github.com/downloads/jubatus/jubatus/jubatus_client.0.3.2.2012-10-05.tar.gz>`_ もダウンロードできます。
+
 Python
 ~~~~~~
 
@@ -196,7 +179,7 @@ Maven を利用している場合、pom.xml に以下を追加します。
      </dependency>
    </dependencies>
 
-.. _requirements:
+.. _requirements-ja:
 
 Detailed System Requirements
 ----------------------------
@@ -230,14 +213,12 @@ ux-trie      -          optional
 zookeeper    >= 3.4     optional
 ============ ========== ========================
 
-その他の環境
+Other Environments
 ~~~~~~~~~~~~~~~~~~
 
-- MacOSX では llvm-gcc を使ってスタンドアローンモードで動作しています。しかし一部のコンパイラでは動作していません。
-- Debian/GNU Linux は動作しています。
-- Arch Linux スタンドアローンモードで動作しています。
+- Mac OS X では llvm-gcc を使ってスタンドアローンモードで動作しています。
+- Debian/GNU Linux では動作しています。
+- Arch Linux ではスタンドアローンモードで動作しています。
 - FreeBSD は動作していません。pficommon を修正する必要があります。
-- CentOS 5.x はやめておいたほうがいいです。
-- CentOS 6.x のことはよく分かりません。
-- 他の *BSD systems や Solarisでの動作報告をお待ちしています。
+- 他の \*BSD systems や Solarisでの動作報告をお待ちしています。
 
