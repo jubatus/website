@@ -191,10 +191,10 @@ msgpack      >= 0.5.7   ✔
 pficommon    master     ✔         msgpack が有効であること。
 libevent     >= 1.4     ✔
 google-glog  >= 3.2     ✔
-mecab        >= 0.99              `--enable-mecab` ありでビルドされた場合のみ。
-re2          -                    `--disable-re2` *なし* でビルドされた場合のみ。
-ux-trie      -                    `--enable-ux` ありでビルドされた場合のみ。
-zookeeper    >= 3.3               `--enable-zookeeper` ありでビルドされた場合のみ。
+mecab        >= 0.99              ``--enable-mecab`` ありでビルドされた場合のみ。
+re2          -                    ``--disable-re2`` *なし* でビルドされた場合のみ。
+ux-trie      -                    ``--enable-ux`` ありでビルドされた場合のみ。
+zookeeper    >= 3.3               ``--enable-zookeeper`` ありでビルドされた場合のみ。
                                   C クライアントライブラリが必要です。
 ============ ========== ======== ======================================================
 

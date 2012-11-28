@@ -191,10 +191,10 @@ msgpack      >= 0.5.7   ✔
 pficommon    master     ✔         Must be msgpack enabled.
 libevent     >= 1.4     ✔
 google-glog  >= 3.2     ✔
-mecab        >= 0.99              Required when configured with `--enable-mecab`.
-re2          -                    Required when configured *without* `--disable-re2`
-ux-trie      -                    Required when configured with `--enable-ux`.
-zookeeper    >= 3.3               Required when configured with `--enable-zookeeper`.
+mecab        >= 0.99              Required when configured with ``--enable-mecab``.
+re2          -                    Required when configured *without* ``--disable-re2``
+ux-trie      -                    Required when configured with ``--enable-ux``.
+zookeeper    >= 3.3               Required when configured with ``--enable-zookeeper``.
                                   C client libraries must be installed.
 ============ ========== ======== ======================================================
 
