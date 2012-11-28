@@ -80,7 +80,7 @@ Tutorial in Detail
 Dataset
 ~~~~~~~
 
-After expanding `20news-bydate.tar.gz`, you see files like this:
+After expanding ``20news-bydate.tar.gz``, you see files like this:
 
 ::
 
