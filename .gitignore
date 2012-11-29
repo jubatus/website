@@ -8,3 +8,4 @@ develop-eggs
 build
 jubatus.github.com
 *~
+*.swp
