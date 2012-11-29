@@ -75,7 +75,7 @@ Jubatus を使ったクライアントアプリケーションは C++, Python, R
 
 Jubatus と Jubatus クライアントのバージョンは異なることがあります。これは、Jubatus の API が変更されない場合はクライアント側のアップデートが不要なためです。
 
-パッケージ管理システムを使わずに Jubatus クライアントを使用したい場合は、 `GitHub の Downloads セクション <https://github.com/jubatus/jubatus/downloads>`_ からダウンロードすることができます。
+パッケージ管理システムを使わずに Jubatus クライアントを使用したい場合は、 `GitHub の Downloads セクション <https://github.com/jubatus/jubatus/downloads>`_ から tarball をダウンロードすることができます。
 
 C++
 ~~~
@@ -162,8 +162,8 @@ Jubatus がどのような機能を持っているか知るには、 :doc:`api` 
 
 C++ または Java でクライアントを開発する場合は、以下のスケルトンプロジェクトを使用すると便利です。
 
-  - `Jubatus C++ Skelton <https://github.com/jubatus/jubatus-cpp-skelton>`_
-  - `Jubatus Java Skelton <https://github.com/jubatus/jubatus-java-skelton>`_: Eclipse プロジェクトのテンプレート
+  - `C++ クライアント開発用スケルトン <https://github.com/jubatus/jubatus-cpp-skelton>`_
+  - `Java クライアント開発用スケルトン <https://github.com/jubatus/jubatus-java-skelton>`_ (Eclipse プロジェクトのテンプレート)
 
 Python をお使いの方は、 `チュートリアルのリポジトリ <https://github.com/jubatus/jubatus-tutorial-python>`_ をご覧ください。
 
@@ -173,8 +173,8 @@ Python をお使いの方は、 `チュートリアルのリポジトリ <https:
 Building Jubatus from Source
 ============================
 
-Jubatus をソースからビルドすることは可能ですが、可能な場合はバイナリパッケージを使用することを推奨します。
-`jubatus-installer <https://github.com/odasatoshi/jubatus-installer>`_ が参考になるでしょう。
+Jubatus をソースからビルドすることは可能ですが、できる限りバイナリパッケージを使用することを推奨します。
+ソースからビルドする場合は、 `jubatus-installer <https://github.com/odasatoshi/jubatus-installer>`_ が参考になるでしょう。
 
 .. _requirements-ja:
 
@@ -199,8 +199,7 @@ zookeeper    >= 3.3               ``--enable-zookeeper`` ありでビルドさ�
 ============ ========== ======== ======================================================
 
 お使いのディストリビューションによっては、一部のライブラリがバイナリパッケージとして提供されている場合もあります。
-バイナリパッケージが利用できない場合は、これらのライブラリもソースからビルドする必要があります。以下の各サイトからダウンロードできます。
-
+バイナリパッケージが利用できない場合は、これらのライブラリもソースからビルドする必要があります。以下の各サイトからダウンロードできます:
 `msgpack <http://msgpack.org/>`_,
 `pficommon <https://github.com/pfi/pficommon>`_,
 `libevent <http://libevent.org/>`_,
@@ -241,7 +240,7 @@ Jubatus のビルドを行います。
   $ ./waf build
   $ sudo ./waf install
 
-この例は最低限の例のため (どのようなオプションが利用可能かは ``./waf configure --help`` をご覧ください)、クラスタリングや特徴抽出プラグインなど一部の機能は利用できません。
+この例は最小限の設定でビルドしているため (どのようなオプションが利用可能かは ``./waf configure --help`` をご覧ください)、クラスタリングや特徴抽出プラグインなど一部の機能は利用できません。
 
 Other Environments
 ~~~~~~~~~~~~~~~~~~

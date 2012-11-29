@@ -75,7 +75,7 @@ If you're going to try :doc:`tutorial`, just install Python client and go ahead.
 
 Version of Jubatus and Jubatus clients may be different, as clients are not updated when there are no API changes to Jubatus.
 
-If you want to download client libraries without using package management system, you can find them in `Downloads section of GitHub <https://github.com/jubatus/jubatus/downloads>`_.
+If you want to download client libraries without using package management system, you can find a tarball in `Downloads section of GitHub <https://github.com/jubatus/jubatus/downloads>`_.
 
 C++
 ~~~
@@ -162,8 +162,8 @@ See the :doc:`api` for what Jubatus can do.
 
 For C++ and Java users, skelton projects are available:
 
-  - `Jubatus C++ Skelton <https://github.com/jubatus/jubatus-cpp-skelton>`_
-  - `Jubatus Java Skelton <https://github.com/jubatus/jubatus-java-skelton>`_: Template of Eclipse project
+  - `C++ Client Development Skelton <https://github.com/jubatus/jubatus-cpp-skelton>`_
+  - `Java Client Development Skelton <https://github.com/jubatus/jubatus-java-skelton>`_ (Eclipse project template)
 
 For Python users, see the `tutorial repository <https://github.com/jubatus/jubatus-tutorial-python>`_.
 
@@ -174,7 +174,7 @@ Building Jubatus from Source
 ============================
 
 We recommend using binary packages whenever possible, but you can of course build Jubatus from source.
-`jubatus-installer <https://github.com/odasatoshi/jubatus-installer>`_ may help your installation.
+`jubatus-installer <https://github.com/odasatoshi/jubatus-installer>`_ may help your installation from source.
 
 .. _requirements:
 
@@ -199,7 +199,7 @@ zookeeper    >= 3.3               Required when configured with ``--enable-zooke
 ============ ========== ======== ======================================================
 
 Depending on your distribution, some libraries may be available as a binary package.
-When binary packages are not available, you also need these libraries from source; download them from each website:
+When binary packages are not available, you also need to build these libraries from source; download them from each website:
 `msgpack <http://msgpack.org/>`_,
 `pficommon <https://github.com/pfi/pficommon>`_,
 `libevent <http://libevent.org/>`_,
@@ -240,7 +240,7 @@ Now build Jubatus.
   $ ./waf build
   $ sudo ./waf install
 
-As this is a minimal build (see ``./waf configure --help`` for other options available), some features like clustering and feature extraction plugins are not available.
+As this is is a minimal configuration (see ``./waf configure --help`` for other configuration options available), some features like clustering and feature extraction plugins are not available.
 
 Other Environments
 ~~~~~~~~~~~~~~~~~~
