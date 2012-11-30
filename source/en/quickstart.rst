@@ -19,7 +19,7 @@ Run the following command to register Jubatus Yum repository to the system.
 
   $ sudo rpm -Uvh http://download.jubat.us/yum/rhel/6/stable/x86_64/jubatus-release-6-1.el6.x86_64.rpm
 
-Now install the ``jubatus`` and ``jubatus-client`` package.
+Now install ``jubatus`` and ``jubatus-client`` package.
 
 ::
 
@@ -34,7 +34,7 @@ Write the following line to ``/etc/apt/sources.list.d/jubatus.list`` to register
 
   deb http://download.jubat.us/apt binary/
 
-Now install the ``jubatus`` package.
+Now install ``jubatus`` package.
 
 ::
 
