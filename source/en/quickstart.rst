@@ -5,7 +5,7 @@ Quick Start
 Install Jubatus
 ---------------
 
-We officially support Ubuntu Server 12.04 LTS (x86_64) and Red Hat Enterprise Linux 6.2 (x86_64).
+We officially support Ubuntu Server 12.04 LTS (x86_64) and Red Hat Enterprise Linux 6.2 or later (x86_64).
 
 On supported systems, you can install all components of Jubatus using binary packages.
 For other systems, see :doc:`build`.
