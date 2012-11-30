@@ -44,6 +44,7 @@ Other Resources
 - `Twitter: @JubatusOfficial <http://twitter.com/JubatusOfficial>`_ - Follow me and keep up with the latest news!
 - `Google Groups <http://groups.google.com/group/jubatus>`_ - Discussions and Announcements
 - `Fork me on GitHub <http://github.com/jubatus>`_
+- `SlideShare: JubatusOfficial <http://www.slideshare.net/JubatusOfficial>`_
 - `Continuous Integration (Jenkins) <http://ci.jubat.us/>`_
 
 * :ref:`genindex`
