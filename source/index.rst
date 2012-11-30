@@ -26,6 +26,7 @@ Table of Contents
    en/quickstart
    en/overview
    en/tutorial
+   en/tutorial_distributed
    en/documentation
    en/references
    en/howtocontribute

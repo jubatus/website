@@ -26,6 +26,7 @@ Table of Contents
    quickstart
    overview
    tutorial
+   tutorial_distributed
    documentation
    references
    howtocontribute
