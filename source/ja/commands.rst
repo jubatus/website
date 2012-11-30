@@ -79,6 +79,7 @@ Jubatus Keepers
    ログファイルの出力場所。
    指定しない場合は、標準エラーに出力される。
 
+
 Cluster Management
 ------------------
 
@@ -152,15 +153,6 @@ jubavisorに指示を送る。
 
 .. option::  -?, --help
          print this message
-
-<FIXME: "semimaster" in figure: semimaster=jubakeeper>
-management process で利用されるプログラムの使い方手順をまとめます。
-
-.. figure:: ../_static/processes.png
-   :width: 90 %
-   :alt: relationship of processes
-
-   figure: relationship of processes
 
 
 Tools

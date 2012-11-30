@@ -153,15 +153,6 @@ jubactl sends commands to jubavisor.
 .. option::  -?, --help
    Print this message.
 
-<FIXME: "semimaster" in figure: semimaster=jubakeeper>
-The following picture describes how to run programs used by management process.
-
-.. figure:: ../_static/processes.png
-   :width: 90 %
-   :alt: relationship of processes
-
-   figure: relationship of processes
-
 
 Tools
 -----
