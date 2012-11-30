@@ -12,4 +12,4 @@ Documentation
    server
    howtogetclients
    idl_support
-
+   faq
