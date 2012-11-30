@@ -1,4 +1,3 @@
-
 Quick Start
 ===========
 
@@ -181,22 +180,22 @@ We recommend using binary packages whenever possible, but you can of course buil
 Requirements
 ------------
 
-We need ``gcc`` (version 4.4 or later), ``pkg-config`` (version 0.26 or later) and ``python`` (version 2.6 or later, used in ``waf``) to build Jubatus from source.
+You need ``gcc`` (version 4.4 or later), ``pkg-config`` (version 0.26 or later) and ``python`` (version 2.6 or later, used in ``waf``) to build Jubatus from source.
 In addition, following libraries are required.
 
-============ ========== ======== ======================================================
-Software     Version    Required Note
-============ ========== ======== ======================================================
+============ ========== =========  ======================================================
+Software     Version    Mandatory  Note
+============ ========== =========  ======================================================
 msgpack      >= 0.5.7   ✔
-pficommon    master     ✔         Must be msgpack enabled.
+pficommon    master     ✔          Must be msgpack enabled.
 libevent     >= 1.4     ✔
 google-glog  >= 3.2     ✔
-mecab        >= 0.99              Required when configured with ``--enable-mecab``.
-re2          -                    Required when configured *without* ``--disable-re2``
-ux-trie      -                    Required when configured with ``--enable-ux``.
-zookeeper    >= 3.3               Required when configured with ``--enable-zookeeper``.
-                                  C client libraries must be installed.
-============ ========== ======== ======================================================
+mecab        >= 0.99               Required when configured with ``--enable-mecab``.
+re2          -                     Required when configured *without* ``--disable-re2``
+ux-trie      -                     Required when configured with ``--enable-ux``.
+zookeeper    >= 3.3                Required when configured with ``--enable-zookeeper``.
+                                   C client libraries must be installed.
+============ ========== =========  ======================================================
 
 Depending on your distribution, some libraries may be available as a binary package.
 When binary packages are not available, you also need to build these libraries from source; download them from each website:
@@ -223,7 +222,7 @@ Here's an example on Ubuntu 12.04 systems.
   $ ./configure; make
   $ sudo make install
   $ cd ..
-  $ git clone git://github.com/pfi/pficommon.git
+  $ git clone https://github.com/pfi/pficommon.git
   $ cd pficommon
   $ ./waf configure
   (ensure that pficommon is configured with msgpack enbabled)
@@ -234,13 +233,13 @@ Now build Jubatus.
 
 ::
 
-  $ git clone git://github.com/jubatus/jubatus.git
+  $ git clone https://github.com/jubatus/jubatus.git
   $ cd jubatus
   $ ./waf configure --disable-re2
   $ ./waf build
   $ sudo ./waf install
 
-As this is is a minimal configuration (see ``./waf configure --help`` for other configuration options available), some features like clustering and feature extraction plugins are not available.
+As this is a minimal configuration (see ``./waf configure --help`` for other configuration options available), some features like clustering and feature extraction plugins are not available.
 
 Other Environments
 ~~~~~~~~~~~~~~~~~~

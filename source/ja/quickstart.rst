@@ -1,4 +1,3 @@
-
 Quick Start
 ===========
 
@@ -191,10 +190,10 @@ msgpack      >= 0.5.7   ✔
 pficommon    master     ✔         msgpack が有効であること。
 libevent     >= 1.4     ✔
 google-glog  >= 3.2     ✔
-mecab        >= 0.99              ``--enable-mecab`` ありでビルドされた場合のみ。
-re2          -                    ``--disable-re2`` *なし* でビルドされた場合のみ。
-ux-trie      -                    ``--enable-ux`` ありでビルドされた場合のみ。
-zookeeper    >= 3.3               ``--enable-zookeeper`` ありでビルドされた場合のみ。
+mecab        >= 0.99              ``--enable-mecab`` ありでビルドする場合のみ。
+re2          -                    ``--disable-re2`` *なし* でビルドする場合のみ。
+ux-trie      -                    ``--enable-ux`` ありでビルドする場合のみ。
+zookeeper    >= 3.3               ``--enable-zookeeper`` ありでビルドする場合のみ。
                                   C クライアントライブラリが必要です。
 ============ ========== ======== ======================================================
 
@@ -223,7 +222,7 @@ Ubuntu 12.04 でのビルドを行う例です。
   $ ./configure; make
   $ sudo make install
   $ cd ..
-  $ git clone git://github.com/pfi/pficommon.git
+  $ git clone https://github.com/pfi/pficommon.git
   $ cd pficommon
   $ ./waf configure
   (ensure that pficommon is configured with msgpack enbabled)
@@ -234,7 +233,7 @@ Jubatus のビルドを行います。
 
 ::
 
-  $ git clone git://github.com/jubatus/jubatus.git
+  $ git clone https://github.com/jubatus/jubatus.git
   $ cd jubatus
   $ ./waf configure --disable-re2
   $ ./waf build
