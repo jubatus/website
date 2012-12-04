@@ -268,6 +268,8 @@ jubaconv
 
    JSON で記述された fv_converter の設定ファイル (:doc:`fv_convert` を参照)。
 
+   :option:`-o` に ``fv`` が指定されている場合のみ、このオプションを指定する必要がある。
+
 .. _jenerator-ja:
 
 jenerator
