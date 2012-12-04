@@ -19,3 +19,8 @@ Syntax of MessagePack-IDL is so simple that you can guess how to use the interfa
    api_recommender
    api_stat
    api_graph
+
+.. toctree::
+   :hidden:
+
+   method

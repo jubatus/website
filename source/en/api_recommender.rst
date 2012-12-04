@@ -1,7 +1,8 @@
 Recommender
 -----------
 
-See `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/recommender.idl>`_ for detailed specification.
+* See `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/recommender.idl>`_ for detailed specification.
+* See :doc:`method` for detailed description of algorithms used in this server.
 
 Data Structures
 ~~~~~~~~~~~~~~~
