@@ -6,13 +6,14 @@ omake clean html
 
 if [ ! -d "${WEBROOT}" ]; then
 	git clone git@github.com:jubatus/jubatus.github.com.git "${WEBROOT}"
-	git checkout master
 fi
 
 pushd "${WEBROOT}"
 
+git checkout master
+
 find . -mindepth 1 -and \
-	! \( -path "./.git*" -or -name .nojekyll -or -name CNAME \) \
+	! \( -path "./.*" -or -name CNAME \) \
 	-delete
 
 cp -a ../build/html/* .
