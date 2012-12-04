@@ -70,11 +70,15 @@ Flow of Data Conversion
 -----------------------
 
 The following is the overview of data conversion.
+
 As datum consists of string data and numeric data, there are flows of processing for each type of data.
+
 For string data, first "string_filter_rules" is applied and the filtered data are added to the datum.
 Then, features are extracted from string data with "string_rules".
+
 For numeric data, first "num_filter_rules" is applied and filtered data are added to the datum.
 Then, features are extracted from string data with "num_rules".
+
 As some filters and feature extractors requires arguments, these are available in "string_rules" and "num_rules" if we prepare them in "string_types" and "num_types", respectively.
 
 .. figure:: ../_static/convert_flow.png
