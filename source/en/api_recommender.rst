@@ -64,7 +64,7 @@ When using standalone mode, this must be left blank (``""``).
   - True if this function updates models successfully
 
  Updates the row whose id is ``id`` with given ``d``.
- If the row with the same ``id`` already exists, the row is differencial updated with ``d``.
+ If the row with the same ``id`` already exists, the row is differential updated with ``d``.
  Otherwise, new row entry will be created.
  If the server that manages the row and the server that received this RPC request are same, this operation is reflected instantly.
  If not, update operation is reflected after mix.

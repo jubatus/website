@@ -47,15 +47,15 @@ References
 
 - PA(PA, PA1, PA2): Passive Aggressive
 
-  - Koby Crammer, Ofer Dekel, Shai Shalev-Shwartz and Yoram Singer, Online Passive-Aggressive Al- gorithms, Proceedings of the Sixteenth Annual Conference on Neural Information Processing Systems (NIPS), 2003.
-  - [Crammer06] Koby Crammer, Ofer Dekel, Joseph Keshet, Shai Shalev-Shwartz, Yoram Singer, Online Passive- Aggressive Algorithms. Journal of Machine Learning Research, 2006.
+  - Koby Crammer, Ofer Dekel, Shai Shalev-Shwartz and Yoram Singer, Online Passive-Aggressive Algorithms, Proceedings of the Sixteenth Annual Conference on Neural Information Processing Systems (NIPS), 2003.
+  - [Crammer06] Koby Crammer, Ofer Dekel, Joseph Keshet, Shai Shalev-Shwartz, Yoram Singer, Online Passive-Aggressive Algorithms. Journal of Machine Learning Research, 2006.
   - Koby Crammer and Yoram Singer. Ultraconservative online algorithms for multiclass problems. Journal of Machine Learning Research, 2003.
 
 - CW:  Confidence Weighted Learning
 
-  - MarkDredze,KobyCrammerandFernandoPereira,Confidence-WeightedLinearClassification,Proceed- ings of the 25th International Conference on Machine Learning (ICML), 2008
-  - Koby Crammer, Mark Dredze and Fernando Pereira, Exact Convex Confidence-Weighted Learning, Pro- ceedings of the Twenty Second Annual Conference on Neural Information Processing Systems (NIPS), 2008
-  - KobyCrammer,MarkDredzeandAlexKulesza,Multi-ClassConfidenceWeightedAlgorithms,Empirical Methods in Natural Language Processing (EMNLP), 2009
+  - Mark Dredze, Koby Crammer and Fernando Pereira, Confidence-Weighted Linear Classification, Proceedings of the 25th International Conference on Machine Learning (ICML), 2008
+  - Koby Crammer, Mark Dredze and Fernando Pereira, Exact Convex Confidence-Weighted Learning, Proceedings of the Twenty Second Annual Conference on Neural Information Processing Systems (NIPS), 2008
+  - Koby Crammer, Mark Dredze and Alex Kulesza, Multi-Class Confidence Weighted Algorithms, Empirical Methods in Natural Language Processing (EMNLP), 2009
 
 - AROW: Adaptive Regularization of Weight vectors
 
@@ -103,12 +103,12 @@ Algorithms
 inverted_index
 ~~~~~~~~~~~~~~
 
-転置インデクスを利用したレコメンダである．転置インデクスは各特徴ID毎にそれが発火した特徴データ集合を格納する．これにより類似度に影響がある特徴ID，データだけを列挙できるようになるので，クエリが疎である場合に高速化をはかることができる．
+転置インデクスを利用したレコメンダである．転置インデクスは特徴ID毎にそれが発火した特徴データ集合を格納する．これにより類似度に影響がある特徴ID，データだけを列挙できるようになるので，クエリが疎である場合に高速化をはかることができる．
 
 lsh
 ~~~
 
-局所近傍ハッシュ (Locality Sensitive Hash, LSH) を利用したレコメンダである．各データ毎にそのデータを表すビット列を計算して，ビット列を格納する．データ間のcos類似度は，ビット間のハミング距離から求められる類似度によって計算できる．
+局所近傍ハッシュ (Locality Sensitive Hash, LSH) を利用したレコメンダである．データ毎にそのデータを表すビット列を計算して，ビット列を格納する．データ間のcos類似度は，ビット間のハミング距離から求められる類似度によって計算できる．
 
 ベクトル :math:`x` に対し, :math:`k` 個のランダムなベクトル :math:`\{a_i\}_{i=1 \cdots k}` との内積をとり， :math:`i` 番目のベクトルとの内積値が正であれば， :math:`b_i = 1` , そうでなければ :math:`b_i=0` となるようなビットベクトルを作成する．このように作成されたビットベクトルを :math:`lsh(x)` とする．また，２つのビットベクトル間 :math:`a, b` で一致したビット数を :math:`match(a, b)` とする時，
 :math:`\cos(x, y) = E(match(lsh(x), lsh(y)))` が成り立つ，但し，期待値はランダムなベクトル生成に関してとるとする．

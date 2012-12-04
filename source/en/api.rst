@@ -2,7 +2,7 @@ Client API
 ==========
 
 Each Jubatus server has a MessagePack-RPC interface for clients.
-You can implement your client-side logics with any programing languages that is supported by MessagePack-IDL.
+You can implement your client-side logics with any programming languages that are supported by MessagePack-IDL.
 Currently, C++, Python, Ruby and Java clients are officially provided (see :doc:`quickstart`).
 
 The interface is described in files written in MessagePack-IDL format (with file extension of .idl) in the `repository <https://github.com/jubatus/jubatus/tree/master/src/server>`_  and clients are automatically generated from these IDL files.
