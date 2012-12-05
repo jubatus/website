@@ -383,6 +383,32 @@ string_rulesなどと同様、複数の規則を羅列する。
 
    変換後の結果を格納するkeyのサフィックスを指定する。
 
+Hashing Key of Feature Vector
+-----------------------------
+
+Jubatus では特徴ベクトルのキーをハッシュ化することでメモリ消費を抑えることができます。
+特徴ベクトルのキーをハッシュ化することで、特徴ベクトルの次元数の最大長を制限することができますが、ハッシュの衝突により学習精度の低下が発生する可能性があります。
+
+この機能はデフォルトでは無効です。
+使用するには、変換設定に ``hash_max_size`` を指定します。
+
+::
+
+  {
+    "string_filter_types": {},
+    "string_filter_rules": [],
+    "num_filter_types": {},
+    "num_filter_rules": [],
+    "string_types": {},
+    "string_rules": [{"key": "*", "type" : "str", "sample_weight": "bin", "global_weight" : "bin"}],
+    "num_types": {},
+    "num_rules": [{"key" : "*", "type" : "num"}],
+    "hash_max_size": 16
+  }
+
+最適な ``hash_max_size`` の値は、使用するデータセットおよび環境により異なります。
+``hash_max_size`` が制限するのは入力される datum のキー数ではなく、(変換後の) 特徴ベクトルのキー数であることに注意してください。
+
 .. _conversion_plugin-ja:
 
 Plugins

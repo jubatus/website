@@ -383,6 +383,32 @@ It depends on "type" how to specify weight and name features.
 
    Specifies a suffix of a key which stores a result of the extraction.
 
+Hashing Key of Feature Vector
+-----------------------------
+
+To reduce memory consumption, Jubatus can hash keys of feature vectors.
+By hashing feature vector keys, you can limit a maximum dimension of feature vectors, although this may decrease the accuracy of the result when one hash value collides with another.
+
+This function is disabled by default.
+To use this option, specify the ``hash_max_size`` in the converter configuration.
+
+::
+
+  {
+    "string_filter_types": {},
+    "string_filter_rules": [],
+    "num_filter_types": {},
+    "num_filter_rules": [],
+    "string_types": {},
+    "string_rules": [{"key": "*", "type" : "str", "sample_weight": "bin", "global_weight" : "bin"}],
+    "num_types": {},
+    "num_rules": [{"key" : "*", "type" : "num"}],
+    "hash_max_size": 16
+  }
+
+The appropriate number of ``hash_max_size`` depends on the data set you use and your environment.
+Note that ``hash_max_size`` is not a limit for a number of keys in the original datum, but a number of keys in (converted) feature vectors.
+
 .. _conversion_plugin:
 
 Plugins
