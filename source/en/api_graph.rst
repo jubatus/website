@@ -107,11 +107,11 @@ When using standalone mode, this must be left blank (``""``).
  Creates a node on the graph.
  Returns a node ID as string.
 
-.. describe:: int remove_node(0: string name, 1: string nid)
+.. describe:: bool remove_node(0: string name, 1: string nid)
 
  Removes a node ``nid`` from the graph.
 
-.. describe:: int update_node(0: string name, 1: string nid, 2: property p)
+.. describe:: bool update_node(0: string name, 1: string nid, 2: property p)
 
  Updates the property of the node ``nid`` to ``p``.
 
@@ -126,14 +126,14 @@ When using standalone mode, this must be left blank (``""``).
 
  ``nid`` must be the same value as ``ei.src``.
 
-.. describe:: int update_edge(0: string name, 1: string nid, 2: ulong eid, 3: edge_info ei)
+.. describe:: bool update_edge(0: string name, 1: string nid, 2: ulong eid, 3: edge_info ei)
 
  Updates an existing edge ``eid`` with information ``ei``.
  Property will be replaced.
 
  ``nid`` must be the same value as ``ei.src``.
 
-.. describe:: int remove_edge(0: string name, 1: string nid, 2: ulong e)
+.. describe:: bool remove_edge(0: string name, 1: string nid, 2: ulong e)
 
  Removes an edge ``e``.
  ``nid`` must be an ID for the source node of the edge ``e``.
@@ -176,14 +176,14 @@ When using standalone mode, this must be left blank (``""``).
  Path-index tree may have a gap between the exact path and the computed path when in a distributed setup.
  See also the description of ``update_index``.
 
-.. describe:: int update_index(0: string name)
+.. describe:: bool update_index(0: string name)
 
  Runs mix locally. **Do not use in distributed mode**.
 
  Some functions like ``centrality`` and ``shortest_path`` uses an index that is updated in the mix operation.
  In a standalone mode, mix is not automatically called thus users must call this API by themselves.
 
-.. describe:: int clear(0: string name)
+.. describe:: bool clear(0: string name)
 
  Clears the whole data.
 

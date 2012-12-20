@@ -107,11 +107,11 @@ Methods
  グラフ内にノードを一つ追加する。
  ノードの ID をstring形式で返す。
 
-.. describe:: int remove_node(0: string name, 1: string nid)
+.. describe:: bool remove_node(0: string name, 1: string nid)
 
  ノード ``nid`` をグラフ内から削除する。
 
-.. describe:: int update_node(0: string name, 1: string nid, 2: property p)
+.. describe:: bool update_node(0: string name, 1: string nid, 2: property p)
 
  ノード ``nid`` の属性を ``p`` に更新する。
 
@@ -126,14 +126,14 @@ Methods
 
  ``nid`` には ``ei.src`` と同じ値を指定する必要がある。
 
-.. describe:: int update_edge(0: string name, 1: string nid, 2: ulong eid, 3: edge_info ei)
+.. describe:: bool update_edge(0: string name, 1: string nid, 2: ulong eid, 3: edge_info ei)
 
  エッジ ``eid`` の属性 ``ei`` で更新する。
  属性は上書きされる。
 
  ``nid`` には ``ei.src`` と同じ値を指定する必要がある。
 
-.. describe:: int remove_edge(0: string name, 1: string nid, 2: ulong e)
+.. describe:: bool remove_edge(0: string name, 1: string nid, 2: ulong e)
 
  指定したエッジ ``e`` を取り除く。
  ``nid`` にはエッジ ``e`` の接続元のノードの ID を指定する必要がある。
@@ -176,14 +176,14 @@ Methods
  Path-index Treeはmixの度に更新されるためこの最短パスは、必ずしも最短であるとは限らない。
  ``update_index`` の説明も参照すること。
 
-.. describe:: int update_index(0: string name)
+.. describe:: bool update_index(0: string name)
 
  mix をローカルで実行する。 **この関数は分散環境で利用してはならない。**
 
  ``centrality`` や ``shortest_path`` などの関数は mix のタイミングでアップデートされるインデックスを参照する。
  スタンドアローン環境では、mix は自動的に呼ばれないため、ユーザ自身でこの API を呼び出す必要がある。
 
-.. describe:: int clear(0: string name)
+.. describe:: bool clear(0: string name)
 
  すべてのデータを削除する。
 
