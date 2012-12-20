@@ -2,6 +2,12 @@
 
 WEBROOT="jubatus.github.com"
 
+# Make sure that we're on `master` branch
+if [ "$(git rev-parse --abbrev-ref HEAD)" != "master" ]; then
+  echo "You must be on the master branch to publish."
+  exit 1
+fi
+
 omake clean html
 
 if [ ! -d "${WEBROOT}" ]; then
