@@ -433,7 +433,8 @@ Jubatusでは、デフォルトで以下の3つの文字列特徴量のプラグ
  ``--enable-mecab`` オプション付きでコンパイルした場合のみ利用可能である。
 
   :function:   "create"を指定する。
-  :arg:        MeCabエンジンに渡す引数を指定する。この指定がないと、MeCabのデフォルト設定で動作する。引数の指定の仕方は、MeCabのマニュアルを参照すること。
+  :arg:        MeCabエンジンに渡す引数を指定する。この指定がないと、MeCabのデフォルト設定で動作する。
+               引数の指定の仕方は、 `MeCab のドキュメント <http://mecab.googlecode.com/svn/trunk/mecab/doc/mecab.html>`_ を参照すること。
 
  .. code-block:: js
 
@@ -442,7 +443,7 @@ Jubatusでは、デフォルトで以下の3つの文字列特徴量のプラグ
           "method": "dynamic",
           "path": "/usr/local/lib/jubatus/plugin/libmecab_splitter.so",
           "function": "create",
-          "arg": "-d /path/to/mecab/dic"
+          "arg": "-d /usr/lib64/mecab/dic/ipadic"
         }
       }
 
