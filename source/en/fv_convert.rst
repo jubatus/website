@@ -87,8 +87,8 @@ As some filters and feature extractors requires arguments, these are available i
 
    Figure : System of Conversion Engine
 
-Filtering
----------
+Filter
+------
 
 Jubatus has filtering system of raw data. This enables us to create additional key-value elements by converting existing key-value elements in a datum and to insert additional key-value elements by the filter.
 For example, let us suppose we have an original text as an HTML.
