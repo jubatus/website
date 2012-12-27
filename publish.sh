@@ -17,6 +17,7 @@ fi
 pushd "${WEBROOT}"
 
 git checkout master
+git pull
 
 find . -mindepth 1 -and \
 	! \( -path "./.*" -or -name CNAME \) \
