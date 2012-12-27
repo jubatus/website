@@ -40,7 +40,7 @@ Other Resources
 - `Twitter: @JubatusOfficial <http://twitter.com/JubatusOfficial>`_ - 最新ニュース
 - `Google Groups <http://groups.google.com/group/jubatus>`_ - ディスカッションとアナウンス
 - `Jubatus Examples <https://github.com/jubatus/jubatus-example>`_
-- `Fork me on GitHub <http://github.com/jubatus>`_
+- `Fork me on GitHub <https://github.com/jubatus>`_
 - `SlideShare: JubatusOfficial <http://www.slideshare.net/JubatusOfficial>`_
 - `継続的インテグレーション (Jenkins) <http://ci.jubat.us/>`_
 
