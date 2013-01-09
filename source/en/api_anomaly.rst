@@ -14,7 +14,7 @@ Methods
 For all methods, the first parameter of each method (``name``) is a string value to uniquely identify a task in the ZooKeeper cluster.
 When using standalone mode, this must be left blank (``""``).
 
-.. describe:: bool clear_row(string name, string id)
+.. describe:: bool clear_row(0: string name, 1: string id)
 
  - Parameters:
 
@@ -27,26 +27,26 @@ When using standalone mode, this must be left blank (``""``).
 
  Clears a point data with ID ``id``.
 
-.. describe:: tuple<string, float> add(0: string name, 1: datum d)
+.. describe:: tuple<string, float> add(0: string name, 1: datum row)
 
  - Parameters:
 
   - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-  - ``d`` : datum
+  - ``row`` : datum
 
  - Returns:
 
   - Tuple of the point ID and the anomaly measure value
 
- Adds a point data ``d``.
+ Adds a point data ``row``.
 
-.. describe:: float update(0: string name, 1: string id, 2: datum d)
+.. describe:: float update(0: string name, 1: string id, 2: datum row)
 
  - Parameters:
 
   - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
   - ``id`` : point ID to update
-  - ``d`` : new value for the point
+  - ``row`` : new value for the point
 
  - Returns:
 
@@ -66,20 +66,20 @@ When using standalone mode, this must be left blank (``""``).
 
  Completely clears the model.
 
-.. describe:: float calc_score(0: string name, 1: datum d)
+.. describe:: float calc_score(0: string name, 1: datum row)
 
  - Parameters:
 
   - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-  - ``d`` : datum
+  - ``row`` : datum
 
  - Returns:
 
   - Anomaly measure value
 
- Calculates an anomaly measure value for datum ``d`` without adding a point.
+ Calculates an anomaly measure value for datum ``row`` without adding a point.
 
-.. describe:: list<string> get_all_rows(0:string name)
+.. describe:: list<string>  get_all_rows(0: string name)
 
  - Parameters:
 
