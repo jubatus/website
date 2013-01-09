@@ -27,7 +27,7 @@ Methods
 For all methods, the first parameter of each method (``name``) is a string value to uniquely identify a task in the ZooKeeper cluster.
 When using standalone mode, this must be left blank (``""``).
 
-.. describe:: int train(0: string name, list<tuple<float, datum> > train_data)
+.. describe:: int train(0: string name, 1: list<tuple<float, datum> > train_data)
 
  - Parameters:
 
@@ -42,7 +42,7 @@ When using standalone mode, this must be left blank (``""``).
  ``tuple<float, datum>`` is a tuple of datum and its value.
  This function is designed to allow bulk update with list of ``tuple<float, datum>``.
 
-.. describe:: list<float> estimate(0: string name, 1: list<datum> estimate_data)
+.. describe:: list<float>  estimate(0: string name, 1: list<datum>  estimate_data)
 
  - Parameters:
 

@@ -24,14 +24,14 @@ Data Structures
 .. describe:: estimate_result
 
  Represents a result of classification.
- ``label`` is an estimated label and ``prob`` is a probability value for the ``label``.
- Higher ``prob`` value means that the estimated label is more confident.
+ ``label`` is an estimated label and ``score`` is a probability value for the ``label``.
+ Higher ``score`` value means that the estimated label is more confident.
 
 .. code-block:: c++
 
    message estimate_result {
      0: string label
-     1: double prob
+     1: double score
    }
 
 Methods

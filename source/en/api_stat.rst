@@ -23,7 +23,7 @@ Methods
 For all methods, the first parameter of each method (``name``) is a string value to uniquely identify a task in the ZooKeeper cluster.
 When using standalone mode, this must be left blank (``""``).
 
-.. describe:: bool push(0: string name, 1: string key, 2: double val)
+.. describe:: bool push(0: string name, 1: string key, 2: double value)
 
  Adds value ``val`` to the attribute ``key``.
 
@@ -47,6 +47,6 @@ When using standalone mode, this must be left blank (``""``).
 
  Returns the entropy of values in the attribute ``key``.
 
-.. describe:: double moment(0: string name, 1: string key, 2: int n, 3: double c)
+.. describe:: double moment(0: string name, 1: string key, 2: int degree, 3: double center)
 
- Returns the ``n``-th moment about ``c`` of values in the attribute ``key``.
+ Returns the ``degree``-th moment about ``center`` of values in the attribute ``key``.
