@@ -74,7 +74,7 @@ If you're going to try :doc:`tutorial`, just install Python client and go ahead.
 
 Version of Jubatus and Jubatus clients may be different, as clients are not updated when there are no API changes to Jubatus.
 
-If you want to download client libraries without using package management system, you can find a tarball in `Downloads section of GitHub <https://github.com/jubatus/jubatus/downloads>`_.
+If you want to download client libraries without using package management system, you can find a tarball in `download page <http://download.jubat.us/files/clients>`_.
 
 C++
 ~~~

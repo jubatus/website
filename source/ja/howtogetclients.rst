@@ -5,7 +5,7 @@ How to Get Clients
 
 各言語版のJubatusクライアントを取得する方法は、二種類あります。
 
-- `github <https://github.com/jubatus/jubatus/downloads>`_ から生成済みコードを取得する。
+- `ダウンロードページ <http://download.jubat.us/files/clients>`_ から生成済みコードを取得する。
 
 - msgpack-idl と .idl ファイルから生成する。
 
@@ -15,7 +15,7 @@ Use pre-generated client
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 クライアント用コードを簡単に使いたいならば、Jubatus開発者らによって生成されたクライアントライブラリを利用するべきです。
-それらのコードは、 `こちら <https://github.com/jubatus/jubatus/downloads>`_ からダウンロードすることができます。
+それらのコードは、 `こちら <http://download.jubat.us/files/clients>`_ からダウンロードすることができます。
 
 
 Generate clients from msgpack-idl

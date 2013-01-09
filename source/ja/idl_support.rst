@@ -36,4 +36,4 @@ IDL Support Status (2012 Nov.)
 All Clients Are Available
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`GitHub の Downloads セクション <https://github.com/jubatus/jubatus/downloads>`_ で配布しているクライアントは、C++, Java, Python, Ruby の4つの言語に対して、正しく動作することを確認しています。
+`ダウンロードページ <http://download.jubat.us/files/clients>`_ で配布しているクライアントは、C++, Java, Python, Ruby の4つの言語に対して、正しく動作することを確認しています。

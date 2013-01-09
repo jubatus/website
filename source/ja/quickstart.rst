@@ -74,7 +74,7 @@ Jubatus を使ったクライアントアプリケーションは C++, Python, R
 
 Jubatus と Jubatus クライアントのバージョンは異なることがあります。これは、Jubatus の API が変更されない場合はクライアント側のアップデートが不要なためです。
 
-パッケージ管理システムを使わずに Jubatus クライアントを使用したい場合は、 `GitHub の Downloads セクション <https://github.com/jubatus/jubatus/downloads>`_ から tarball をダウンロードすることができます。
+パッケージ管理システムを使わずに Jubatus クライアントを使用したい場合は、 `ダウンロードページ <http://download.jubat.us/files/client>`_ から tarball をダウンロードすることができます。
 
 C++
 ~~~

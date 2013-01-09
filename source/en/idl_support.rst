@@ -36,4 +36,4 @@ We tested these clients in the following condition
 All Clients Are Available
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We provide clients of all existing service in four languages mentioned above. Clients are available of from `Downloads section of GitHub <https://github.com/jubatus/jubatus/downloads>`_.
+We provide clients of all existing service in four languages mentioned above. Clients are available of from `download page <http://download.jubat.us/files/clients>`_.
