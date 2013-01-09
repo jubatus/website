@@ -2,7 +2,7 @@ Common Data Structures and Methods
 ----------------------------------
 
 These data structures and methods are available in each server.
-Note that ``get_config`` and ``set_config`` are not available in Graph.
+Note that ``get_config`` is not available in Graph.
 
 Data Structures
 ~~~~~~~~~~~~~~~
@@ -51,20 +51,6 @@ When using standalone mode, this must be left blank (``""``).
 
  Restore the saved model from local disk at **ALL** servers.
 
-.. describe:: bool set_config(0: string name, 1: config_data c)
-
- - Parameters:
-
-  - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-  - ``c`` : configuration data
-
- - Returns:
-
-  - True if this function successfully updated configuration at all servers
-
- Updates server configuration at **ALL** servers.
- For definition of ``config_data``, see API reference of each services.
-
 .. describe:: config_data get_config(0: string name)
 
  - Parameters:
@@ -73,12 +59,12 @@ When using standalone mode, this must be left blank (``""``).
 
  - Returns:
 
-  - server configuration set by ``set_config``
+  - server configuration set on initialization
 
  Returns server configuration from a server.
- For definition of ``config_data``, see API reference of each services.
+ For format of configuration, see API reference of each services.
 
-.. describe:: map<string, map<string, string > > get_status(string name)
+.. describe:: map<string, map<string, string> >  get_status(0: string name)
 
  - Parameters:
 

@@ -2,7 +2,7 @@ Common Data Structures and Methods
 ----------------------------------
 
 以下のデータ構造とメソッドは各サーバで利用可能である。
-ただし、Graph では ``get_config`` と ``set_config`` は利用できない。
+ただし、Graph では ``get_config`` は利用できない。
 
 Data Structures
 ~~~~~~~~~~~~~~~
@@ -51,21 +51,7 @@ Methods
 
  **すべて** のサーバで、保存された学習モデルをローカルディスクから読み出す。
 
-.. describe:: bool set_config(0: string name, 1: config_data c)
-
- - 引数:
-
-  - ``name`` : タスクを識別する ZooKeeper クラスタ内でユニークな名前
-  - ``c`` : 設定データ
-
- - 戻り値:
-
-  - すべてのサーバで設定に成功したらTrue
-
- **すべての** サーバの設定を更新する。
- ``config_data`` の定義については、各サービスの API リファレンスを参照のこと。
-
-.. describe:: config_data get_config(0: string name)
+.. describe:: string get_config(0: string name)
 
  - 引数:
 
@@ -73,12 +59,12 @@ Methods
 
  - 戻り値:
 
-  - ``set_config`` で設定した設定情報
+  - 初期化時に設定した設定情報
 
  サーバの設定を取得する。
- ``config_data`` の定義については、各サービスの API リファレンスを参照のこと。
+ 取得される設定情報内容については、各サービスの API リファレンスを参照のこと。
 
-.. describe:: map<string, map<string, string > > get_status(string name)
+.. describe:: map<string, map<string, string> >  get_status(0: string name)
 
  - 引数:
 
