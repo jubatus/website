@@ -24,14 +24,14 @@ Data Structures
 .. describe:: estimate_result
 
  分類の結果を表す。
- ``label`` は推定されたラベル、 ``prob`` はそのラベルに対する確からしさの値である。
- ``prob`` の値が大きいほど、より推定されたラベルの信頼性が高いことを意味する。
+ ``label`` は推定されたラベル、 ``score`` はそのラベルに付けられた対する確からしさの値である。
+ ``score`` の値が大きいほど、より推定されたラベルの信頼性が高いことを意味する。
 
 .. code-block:: c++
 
    message estimate_result {
      0: string label
-     1: double prob
+     1: double score
    }
 
 Methods

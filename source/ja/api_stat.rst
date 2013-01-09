@@ -47,6 +47,6 @@ Methods
 
  属性情報 ``key`` を持つ値のエントロピーを返す。
 
-.. describe:: double moment(0: string name, 1: string key, 2: int n, 3: double c)
+.. describe:: double moment(0: string name, 1: string key, 2: int degree, 3: double center)
 
- 属性情報 ``key`` を持つ値の ``c`` を中心とした ``n`` 次のモーメントを返す。
+ 属性情報 ``key`` を持つ値の ``center`` を中心とした ``degree`` 次のモーメントを返す。

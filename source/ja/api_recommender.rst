@@ -38,7 +38,7 @@ Methods
 各メソッドの最初のパラメタ ``name`` は、タスクを識別する ZooKeeper クラスタ内でユニークな名前である。
 スタンドアロン構成では、空文字列 (``""``) を指定する。
 
-.. describe:: bool clear_row(string name, string id)
+.. describe:: bool clear_row(0: string name, 1: string id)
 
  - 引数:
 
@@ -51,20 +51,20 @@ Methods
 
  ``id`` で指定される行を推薦テーブルから削除する。 
 
-.. describe:: bool update_row(string name, string id, datum d)
+.. describe:: bool update_row(0: string name, 1: string id, 2: datum row)
 
  - 引数:
 
   - ``name`` : タスクを識別する ZooKeeper クラスタ内でユニークな名前
   - ``id`` : 行 ID 
-  - ``d`` : datum
+  - ``row`` : datum
 
  - 戻り値:
 
   - モデルの更新に成功した場合 True
 
- 行 ID ``id`` のデータを ``d`` を利用して更新する。
- 同じ ``id`` を持つ行が既に存在する場合は、その行が ``d`` で差分更新される。
+ 行 ID ``id`` のデータを ``row`` を利用して更新する。
+ 同じ ``id`` を持つ行が既に存在する場合は、その行が ``row`` で差分更新される。
  存在しない場合は、新しい行のエントリが作成される。
  更新操作を受け付けたサーバが当該行を持つサーバーと同一であれば、操作は即次反映される。
  異なるサーバーであれば、mix 後に反映される。
@@ -94,18 +94,18 @@ Methods
 
  行 ``id`` の中で欠けている値を近傍から予測し、補完された datum を返す。
 
-.. describe:: datum complete_row_from_data(0: string name, 1: datum d)
+.. describe:: datum complete_row_from_datum(0: string name, 1: datum row)
 
  - 引数:
 
   - ``name`` : タスクを識別する ZooKeeper クラスタ内でユニークな名前
-  - ``d`` : 補完したい値が欠けたdatum
+  - ``row`` : 補完したい値が欠けたdatum
 
  - 戻り値:
 
   - 指定したdatumで構成されるrowの中で欠けている値を補完したdatum
 
- 指定した datum ``d`` で欠けている値を近傍から予測し、補完された datum を返す。
+ 指定した datum ``row`` で欠けている値を近傍から予測し、補完された datum を返す。
 
 .. describe:: similar_result similar_row_from_id(0: string name, 1: string id, 2: uint size)
 
@@ -121,17 +121,17 @@ Methods
 
  指定した行 ``id`` に近い行とその近傍性のリストを (最大で) ``size`` 個返す。
 
-.. describe:: similar_result similar_row_from_data(0: string name, 1: datum data, 2: uint size)
+.. describe:: similar_result similar_row_from_datum(0: string name, 1: datum row, 2: uint size)
 
  - 引数:
 
   - ``name`` : タスクを識別する ZooKeeper クラスタ内でユニークな名前
-  - ``data`` : 補完したいdatum
+  - ``row`` : 補完したいdatum
   - ``ret_num`` : 返す近傍の数
 
  - 戻り値:
 
-  - ``dat`` から構成された ``similar_result``
+  - ``row`` から構成された ``similar_result``
 
  指定したdatum ``data`` に近い行とその近傍性のリストを ``size`` 個返す。
 
@@ -161,7 +161,7 @@ Methods
 
  すべての行の ID リストを返す。
 
-.. describe:: float similarity(0: string name, 1: datum lhs, 2: datum rhs)
+.. describe:: float calc_similarity(0: string name, 1: datum lhs, 2:datum rhs)
 
  - 引数:
 
@@ -171,19 +171,19 @@ Methods
 
  - 戻り値:
 
-  - ``lhs`` と ``rhs`` の近傍性
+  - ``lhs`` と ``rhs`` の類似度
 
- 指定した 2 つの datum の近傍性を返す。
+ 指定した 2 つの datum の類似度を返す。
 
-.. describe:: float l2norm(0: string name, 1: datum d)
+.. describe:: float calc_l2norm(0: string name, 1: datum row)
 
  - 引数:
 
   - ``name`` : タスクを識別する ZooKeeper クラスタ内でユニークな名前
-  - ``d`` : datum
+  - ``row`` : datum
 
  - 戻り値:
 
-  - ``d`` の L2 ノルム
+  - ``row`` の L2 ノルム
  
- 指定した datum ``d`` の L2 ノルムを返す。
+ 指定した datum ``row`` の L2 ノルムを返す。

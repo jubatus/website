@@ -14,7 +14,7 @@ Methods
 各メソッドの最初のパラメタ ``name`` は、タスクを識別する ZooKeeper クラスタ内でユニークな名前である。
 スタンドアロン構成では、空文字列 (``""``) を指定する。
 
-.. describe:: bool clear_row(string name, string id)
+.. describe:: bool clear_row(0: string name, 1: string id)
 
  - 引数:
 
@@ -27,32 +27,32 @@ Methods
 
  ID ``id`` で指定される点データを削除する。
 
-.. describe:: tuple<string, float> add(0: string name, 1: datum d)
+.. describe:: tuple<string, float> add(0: string name, 1: datum row)
 
  - 引数
 
   - ``name`` : タスクを識別する ZooKeeper クラスタ内でユニークな名前
-  - ``d`` : datum
+  - ``row`` : datum
 
  - 戻り値:
 
   - 点 ID と異常値のタプル
 
- 点データ ``d`` を追加する。
+ 点データ ``row`` を追加する。
 
-.. describe:: float update(0: string name, 1: string id, 2: datum d)
+.. describe:: float update(0: string name, 1: string id, 2: datum row)
 
  - 引数
 
   - ``name`` : タスクを識別する ZooKeeper クラスタ内でユニークな名前
   - ``id`` : 更新する点 ID
-  - ``d`` : 点の新しいデータ
+  - ``row`` : 点の新しいデータ
 
  - 戻り値:
 
   - 異常値
 
- 点 ``id`` をデータ ``d`` で更新する。
+ 点 ``id`` をデータ ``row`` で更新する。
 
 .. describe:: bool clear(0: string name)
 
@@ -66,20 +66,20 @@ Methods
 
  モデルを完全に消去する。
 
-.. describe:: float calc_score(0: string name, 1: datum d)
+.. describe:: float calc_score(0: string name, 1: datum row)
 
  - 引数
 
   - ``name`` : タスクを識別する ZooKeeper クラスタ内でユニークな名前
-  - ``d`` : datum
+  - ``row`` : datum
 
  - 戻り値:
 
-  - 異常値
+  - 与えられたデータに対する異常度
 
- 点を追加せずに、与えられた点データ ``d`` に対する異常値を計算する。
+ 点を追加せずに、与えられた点データ ``row`` の異常度を計算する。
 
-.. describe:: list<string> get_all_rows(0:string name)
+.. describe:: list<string> get_all_rows(0: string name)
 
  - 引数
 

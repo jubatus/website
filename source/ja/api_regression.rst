@@ -27,7 +27,7 @@ Methods
 各メソッドの最初のパラメタ ``name`` は、タスクを識別する ZooKeeper クラスタ内でユニークな名前である。
 スタンドアロン構成では、空文字列 (``""``) を指定する。
 
-.. describe:: int train(0: string name, list<tuple<float, datum> > train_data)
+.. describe:: int train(0: string name, 1: list<tuple<float, datum> > train_data)
 
  - 引数:
 
@@ -42,7 +42,7 @@ Methods
  ``tuple<float, datum>`` は、datumとその値の組である。
  この関数は ``tuple<float, datum>`` をリスト形式でまとめて同時に受け付けることができる (バルク更新)。
 
-.. describe:: list<float> estimate(0: string name, 1: list<datum> estimate_data)
+.. describe:: list<float>  estimate(0: string name, 1: list<datum>  estimate_data)
 
  - 引数:
 
