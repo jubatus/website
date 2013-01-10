@@ -24,7 +24,7 @@ import sys, os
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 #extensions = ['sphinxcontrib.blockdiag', 'sphinxcontrib_netdiag', 'sphinxcontrib_seqdiag']
 #extensions = ['sphinxcontrib.blockdiag', 'sphinx.ext.autodoc', 'rst2pdf.pdfbuilder']
-extensions = ['sphinx.ext.autodoc'] #, 'rst2pdf.pdfbuilder']
+extensions = ['sphinx.ext.autodoc', 'sphinx.ext.pngmath'] #, 'rst2pdf.pdfbuilder']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -262,3 +262,4 @@ pdf_language = "ja"
 #pdf_extensions = ['vectorpdf']
 # Page template name for "regular" pages
 #pdf_page_template = 'cutePage'
+
