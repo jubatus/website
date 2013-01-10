@@ -115,6 +115,39 @@ lsh
 
 これにより，任意のベクトル間のcos類似度計算は，それらのベクトルから生成されたビットベクトル間のビット一致数により近似できる．元々のベクトルに比べ，ビットベクトルは小さくまた固定長であるため通信容量を大幅に削減することができる他，類似度計算を高速に実現することができる．
 
+minhash
+~~~~~~~
+
+MinHashを利用したレコメンダである．各データ毎にそのデータを表すビット列を計算して，ビット列を格納する．データ間のJaccard係数は，ビット間のハミング距離から求められる類似度によって計算できる．
+
+はじめに集合間に対するJaccard係数を説明し，これを実数ベクトル間に対するJaccard係数に拡張する．
+
+前述のように，2つの集合 :math:`X, Y` のJaccard係数を， :math:`Jac(X, Y) = |\cap(X, Y)|/|\cup(X, Y)|` とする．MinHashは適当なハッシュ関数を利用し，集合中の各要素のハッシュ値を求め，その最小値を :math:`m_h(X)` とした時， :math:`m_h(X) = m_h(Y)` となる確率は :math:`Jac(X, Y)` と一致することを利用し，このJaccard係数を推定する．複数のハッシュ関数を用意しそれらの間で一致した割合を求めると，それは :math:`Jac(X, Y)` に近づく．また，実際のハッシュ値を保持せずに，ハッシュ値の最下位のビットのみを記録したとしても，衝突分を差し引くことで，Jaccard係数を求めることができる [Ping2010]_ ．今回はこの方法を利用した．
+
+次に各要素が正の実数値を持つ場合に拡張する :math:`\cap(x, y) = \sum_i \min(x_i, y_i), \cup(x, y) = \sum_i \max(x_i, y_i)` と定義する．この時，各要素がその値の個数だけ存在するようなハッシュ関数を利用する必要がある．カラム名のハッシュ値を :math:`h` とした時， :math:`-\log(h) / x_i` をこの要素のハッシュ値とする．このハッシュ値で計算された場合，minhash値は一致する．
+
+euclid_lsh
+~~~~~~~~~~
+
+ユークリッド距離のための局所近傍ハッシュを利用したレコメンダである．複数テーブルを用いた効率的な探索と，cos類似度の局所近傍ハッシュとユークリッドノルム値を用いたリランキングによってユークリッド空間における近傍探索を実現する．
+
+ユークリッド空間における局所近傍ハッシュは [Datar2004]_ で提案されたものを用いる．cos類似度の局所近傍ハッシュと同様に :math:`k` 個のランダムなベクトルとの内積を取った後，それぞれを適当な幅 :math:`b` 以下のランダムな量子化幅で整数値に量子化し，得られた :math:`k` 個の整数を :math:`L` 個に等分して，別々のハッシュテーブルに記録する．探索の際には同様に :math:`k` 個の整数を計算し，:math:`L` 個のハッシュテーブルから表引きを行う．実際には実装上の工夫 [Andoni2005]_ によりこの操作を単一のハッシュテーブルで実現する．また，小さな :math:`L` に対しても高い再現率を達成するために，各ハッシュ値が１だけ異なるようなエントリーも見るマルチプローブ探索 [Lv2007]_ を実装している．
+
+[Datar2004]_ の手法では得られたデータと入力データとの間のユークリッド距離が得られない．そこでJubatusの実装では，最初に計算した :math:`k` 個の内積値を正負でビット化したもの（cos類似度のハッシュ値と同じもの）と元のベクトルのユークリッドノルムも保存しておく．cos類似度のハッシュを用いることで，表引きによって得られたデータ :math:`x` と入力データ :math:`q` の間のcos類似度 :math:`\cos(x, q)` が推定できる．さらにそれぞれのユークリッドノルム :math:`\lVert x\lVert, \lVert q\lVert` を用いると，これらの間のユークリッド距離は式 :math:`\lVert x-q\lVert^2=\lVert x\lVert^2+\lVert q\lVert^2-2\cos(x, q)` によって計算できる．こうして得られたユークリッド距離の推定値を用いて，表引きして得られたデータ集合をソートし直す．
+
+ユークリッド距離は類似度ではなく距離であり，値が小さくなるほど近いという意味になる．対応する類似度に標準的なものがないため，Jubatusではユークリッド距離に :math:`-1` を掛けたものを類似度として用いる．
+
+References
+----------
+
+**minhash: b-Bit Minwise Hash**
+.. [Ping2010] Ping Li, Arnd Christian Konig (2010) b-Bit Minwise Hashing, WWW 2010
+
+**euclid_lsh: Euclidean LSH**
+.. [Datar2004] Mayur Datar, Nicole Immorlica, Piotr Indyk, Vahab S. Mirokni. Locality-Sensitive Hashing Scheme Based on p-Stable Distributions. SCG 2004.
+.. [Andoni2005] Alex Andoni. LSH Algorithm and Implementation (E2LSH). http://www.mit.edu/~andoni/LSH/
+.. [Lv2007] Qin Lv, William Josephson, Zhe Wang, Moses Charikar, Kai Li. Multi-Probe LSH: Efficient Indexing for High-Dimensional Similarity Search. VLDB 2007.
+
 Storage
 -------
 
