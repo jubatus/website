@@ -4,6 +4,76 @@ Regression
 * See `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/regression.idl>`_ for detailed specification.
 * See :doc:`method` for detailed description of algorithms used in this server.
 
+
+Configuration
+~~~~~~~~~~~~~
+
+Configuration is given as a JSON file.
+We show each filed below:
+
+.. describe:: method
+
+   Specify regression algorithm.
+   You can use these algorithms.
+
+   .. table::
+
+      ================ ===================================
+      Value            Method
+      ================ ===================================
+      ``"PA"``         Use Passive Agressive. [Crammer06]_
+      ================ ===================================
+
+
+.. describe:: parameter
+
+   Specify parameters for the algorithm.
+   Its format differs for each ``method``.
+
+   PA
+     :sensitivity:
+        Upper bound of acceptable margin.
+        The bigger it is, more robust to noise, but the more error remain.
+        (Float)
+     :regularization_weight:
+        Sensitivity to learning rate.
+        The bigger it is, the ealier you can train, but more sensitive to noise.
+        It corresponds to :math:`C` in the original paper [Crammer06]_.
+        (Float)
+
+
+.. describe:: converter
+
+   Specify configuration for data conversion.
+   Its format is described in :doc:`fv_convert`.
+
+
+Example:
+  .. code-block:: javascript
+
+     {
+       "method": "PA",
+       "parameter" : {
+         "sensitivity" : 0.1,
+         "regularization_weight" : 1.0
+       },
+       "converter" : {
+         "string_filter_types" : {},
+         "string_filter_rules" : [],
+         "num_filter_types" : {},
+         "num_filter_rules" : [],
+         "string_types": {},
+         "string_rules": [
+           { "key" : "*", "type" : "str", "sample_weight" : "bin", "global_weight" : "bin" }
+         ],
+         "num_types" : {},
+         "num_rules" : [
+           { "key" : "*", "type" : "num" }
+         ]
+       }
+     }
+
+
 Data Structures
 ~~~~~~~~~~~~~~~
 

@@ -4,6 +4,105 @@ Recommender
 * See `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/recommender.idl>`_ for detailed specification.
 * See :doc:`method` for detailed description of algorithms used in this server.
 
+
+Configuration
+~~~~~~~~~~~~~
+
+Configuration is given as a JSON file.
+We show each filed below:
+
+.. describe:: method
+
+   Specify algorithm for recommender.
+   You can use these algorithms.
+
+   .. table::
+
+      ==================== ===================================
+      Value                Method
+      ==================== ===================================
+      ``"inverted_index"`` Use Inverted Index.
+      ``"minhash"``        Use MinHash. [Li10]_
+      ``"lsh"``            Use Locality Sensitive Hashing.
+      ``"euclid_lsh"``     Use Euclid-distance LSH. [Andoni06]_
+      ==================== ===================================
+
+
+.. describe:: parameter
+
+   Specify parameters for the algorithm.
+   Its format differs for each ``method``.
+
+
+   inverted_index
+     None
+   
+   minhash
+     :hash_num:
+        Number of hash values.
+        The bigger it is, the more accurate results you can get, but the more memory is required.
+        (Integer)
+
+   lsh
+     :bit_num:
+        Bit length of hash values.
+        The bigger it is, the more accurate results you can get, but the more memory is required.
+        (Integer)
+
+   euclid_lsh
+     :lsh_num:
+        Number of hash values.
+        The bigger it is, the more accurate results you can get, but the fewer results you can find and the more memory is required.
+        (Integer)
+     :table_num:
+        Number of tables
+        The bigger it is, the mroe results you can find, but the more memory is required and the longer response time is required.
+        (Integer)
+     :bin_width:
+        Quantization step size.
+        The bigger it is, the more results you can find, but the longer response time is required.
+        (Float)
+     :probe_num:
+        Number of bins to find.
+        The bigger it is, the more results you can find, but the longer response time is required.
+        (Integer)
+     :seed:
+        Seed of random number generator.
+        (Integer)
+     :retain_projection:
+        When it is ``true``, projection vectors for hashing are cached in memory.
+        Response time is lower though more memory is required.
+        (Boolean)
+
+
+.. describe:: converter
+
+   Specify configuration for data conversion.
+   Its format is described in :doc:`fv_convert`.
+
+
+Example:
+  .. code-block:: javascript
+
+     {
+       "method": "inverted_index"
+       "converter" : {
+         "string_filter_types": {},
+         "string_filter_rules":[],
+         "num_filter_types": {},
+         "num_filter_rules": [],
+         "string_types": {},
+         "string_rules":[
+           {"key" : "*", "type" : "str", "sample_weight":"bin", "global_weight" : "bin"}
+         ],
+         "num_types": {},
+         "num_rules": [
+           {"key" : "*", "type" : "num"}
+         ]
+       },
+     }
+
+
 Data Structures
 ~~~~~~~~~~~~~~~
 
@@ -149,7 +248,7 @@ When using standalone mode, this must be left blank (``""``).
  Returns the datum in the row ``id``.
  Note that irreversibly converted datum (processed by ``fv_converter``) will not be decoded.
 
-.. describe:: list<string>  get_all_rows(0: string name)
+.. describe:: list<string> get_all_rows(0:string name)
 
  - Parameters:
 

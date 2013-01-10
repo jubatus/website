@@ -3,19 +3,31 @@ Stat
 
 * See `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/stat.idl>`_ for detailed specification.
 
+Configuration
+~~~~~~~~~~~~~
+
+Configuration is given as a JSON file.
+We show each filed below:
+
+.. describe:: window_size
+
+   Number of values to store.
+   (Integer)
+
+
+Example:
+  .. code-block:: javascript
+
+     {
+       "window_size": 128
+     }
+
+
 Data Structures
 ~~~~~~~~~~~~~~~
 
-.. describe:: config_data
+None.
 
- Represents a configuration of the server.
- ``window_size`` is a number of values to hold.
-
-.. code-block:: c++
-
-   message config_data {
-     0: int window_size
-   }
 
 Methods
 ~~~~~~~

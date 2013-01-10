@@ -3,6 +3,56 @@ Graph
 
 * See `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/graph.idl>`_ for detailed specification.
 
+Configuration
+~~~~~~~~~~~~~
+
+Configuration is given as a JSON file.
+We show each filed below:
+
+.. describe:: method
+
+   Specify algorithm for graph analysis.
+   You can use these algorithms.
+
+   .. table::
+
+      ==================== ===================================
+      Value                Method
+      ==================== ===================================
+      ``"graph_wo_index"`` Use graph without index.
+      ==================== ===================================
+
+
+.. describe:: parameter
+
+   Specify parameters for the algorithm.
+   Its format differs for each ``method``.
+
+   graph_wo_index
+     :damping_factor:
+        Damping factor for PageRank.
+        It adjusts scores for nodes with differenct degrees.
+        The bigger it is, the more sensitive to ghraph structure PageRank score is, but the larger  biases it causes.
+        In the original paper, 0.85 is good.
+        (Float)
+     :landmark_num:
+        The number of landmarks for shortest path calculation.
+        The bigger it is, more accurate value you can get, but the more memory is required.
+        (Integer)
+
+
+Example:
+  .. code-block:: javascript
+
+     {
+       "method" : "graph_wo_index",
+       "parameter" : {
+         "damping_factor" : 0.9,
+         "landmark_num" : 5
+       }
+     }
+
+
 Data Structures
 ~~~~~~~~~~~~~~~
 
