@@ -20,7 +20,7 @@ Overview
 Passive Aggressive
 ------------------
 
-Passive Aggressive (PA)  [Crammer06] は，Support Vector Regression (SVR) のオンライン版であり，同名の分類器を回帰問題に適用したアルゴリズムである．
+Passive Aggressive (PA) [Crammer03a]_ [Crammer03b]_ [Crammer06]_ は，Support Vector Regression (SVR) のオンライン版であり，同名の分類器を回帰問題に適用したアルゴリズムである．
 PA は， (1) 現在の学習データが与えられた許容範囲 :math:`epsilon` 以下で予測する． (2) 分類問題の PA 同様，できる限り現在のパラメータと近い点を選ぶ，という二つの条件を満たすパラメータに更新する．
 すなわち， :math:`\epsilon` -intensive hinge loss :math:`\ell(w; (x, y)) = \max(0, |w^T x - y| - \epsilon)` に対して，パラメータを 
 :math:`w_{t+1} = w_{t} + \{\mathrm{sign}(y - w^Tx) \ell / |x|^2\} x` で逐次更新する．
@@ -36,7 +36,7 @@ PA は， (1) 現在の学習データが与えられた許容範囲 :math:`epsi
 Iterative Parameter Mixture
 ---------------------------
 
-分類問題同様，重みベクトルは Iterative Parameter Mixture [McDonald10] [Mann09] で混ぜ合わせる．
+分類問題同様，重みベクトルは Iterative Parameter Mixture [McDonald10]_ [Mann09]_ で混ぜ合わせる．
 これは，各マシンが単独で学習アルゴリズムを動かし，一定時間，あるいは決められた条件ごとに，すべてのマシンの重みを集めて，それらの平均を計算する．
 平均ベクトルは再度全てのサーバーに配られて，それを初期値と思って学習を再開する．
 
@@ -45,30 +45,30 @@ Iterative Parameter Mixture
 References
 ----------
 
-- PA(PA, PA1, PA2): Passive Aggressive
+**PA(PA, PA1, PA2): Passive Aggressive**
+  .. [Crammer03a] Koby Crammer, Ofer Dekel, Shai Shalev-Shwartz and Yoram Singer, **Online Passive-Aggressive Algorithms**, *Proceedings of the Sixteenth Annual Conference on Neural Information Processing Systems (NIPS)*, 2003.
+  .. [Crammer03b] Koby Crammer and Yoram Singer. **Ultraconservative online algorithms for multiclass problems**. *Journal of Machine Learning Research*, 2003.
+  .. [Crammer06] Koby Crammer, Ofer Dekel, Joseph Keshet, Shai Shalev-Shwartz, Yoram Singer, **Online Passive-Aggressive Algorithms**. *Journal of Machine Learning Research*, 2006.
 
-  - Koby Crammer, Ofer Dekel, Shai Shalev-Shwartz and Yoram Singer, Online Passive-Aggressive Algorithms, Proceedings of the Sixteenth Annual Conference on Neural Information Processing Systems (NIPS), 2003.
-  - [Crammer06] Koby Crammer, Ofer Dekel, Joseph Keshet, Shai Shalev-Shwartz, Yoram Singer, Online Passive-Aggressive Algorithms. Journal of Machine Learning Research, 2006.
-  - Koby Crammer and Yoram Singer. Ultraconservative online algorithms for multiclass problems. Journal of Machine Learning Research, 2003.
 
-- CW:  Confidence Weighted Learning
+**CW:  Confidence Weighted Learning**
+  .. [Dredze08] Mark Dredze, Koby Crammer and Fernando Pereira, **Confidence-Weighted Linear Classification**, *Proceedings of the 25th International Conference on Machine Learning (ICML)*, 2008
+  .. [Crammer08] Koby Crammer, Mark Dredze and Fernando Pereira, **Exact Convex Confidence-Weighted Learning**, *Proceedings of the Twenty Second Annual Conference on Neural Information Processing Systems (NIPS)*, 2008
+  .. [Crammer09a] Koby Crammer, Mark Dredze and Alex Kulesza, **Multi-Class Confidence Weighted Algorithms**, *Empirical Methods in Natural Language Processing (EMNLP)*, 2009
 
-  - Mark Dredze, Koby Crammer and Fernando Pereira, Confidence-Weighted Linear Classification, Proceedings of the 25th International Conference on Machine Learning (ICML), 2008
-  - Koby Crammer, Mark Dredze and Fernando Pereira, Exact Convex Confidence-Weighted Learning, Proceedings of the Twenty Second Annual Conference on Neural Information Processing Systems (NIPS), 2008
-  - Koby Crammer, Mark Dredze and Alex Kulesza, Multi-Class Confidence Weighted Algorithms, Empirical Methods in Natural Language Processing (EMNLP), 2009
 
-- AROW: Adaptive Regularization of Weight vectors
+**AROW: Adaptive Regularization of Weight vectors**
+  .. [Crammer09b] Koby Crammer, Alex Kulesza and Mark Dredze, **Adaptive Regularization Of Weight Vectors**, *Advances in Neural Information Processing Systems*, 2009
 
-  - Koby Crammer, Alex Kulesza and Mark Dredze, Adaptive Regularization Of Weight Vectors, Advances in Neural Information Processing Systems, 2009
 
-- NHERD: Normal Herd
+**NHERD: Normal Herd**
+  .. [Crammer10] Koby Crammer and Daniel D. Lee, **Learning via Gaussian Herding**, *Neural Information Processing Systems (NIPS)*, 2010.
 
-  - Koby Crammer and Daniel D. Lee, Learning via Gaussian Herding, Neural Information Processing Systems (NIPS), 2010.
 
-- Iterative Parameter Mixture
+**Iterative Parameter Mixture**
+  .. [McDonald10] Ryan McDonald, K. Hall and G. Mann, **Distributed Training Strategies for the Structured Perceptron**, *North American Association for Computational Linguistics (NAACL)*, 2010.
+  .. [Mann09] Gideon Mann, R. McDonald, M. Mohri, N. Silberman, and D. Walker, **Efficient Large-Scale Distributed Training of Conditional Maximum Entropy Models**, *Neural Information Processing Systems (NIPS)*, 2009.
 
-  - [McDonald10] Ryan McDonald, K. Hall and G. Mann, Distributed Training Strategies for the Structured Perceptron, North American Association for Computational Linguistics (NAACL), 2010.
-  - [Mann09] Gideon Mann, R. McDonald, M. Mohri, N. Silberman, and D. Walker, Efficient Large-Scale Distributed Training of Conditional Maximum Entropy Models, Neural Information Processing Systems (NIPS), 2009.
 
 Recommender
 ===========
@@ -142,3 +142,4 @@ update_row操作ではdiffのみを更新する．similar_row, complete_row操�
 mix操作時には各サーバーからdiffをあつめ,それらを合わせた上で，各サーバーに配り直し,mixedに更新として適用する.そしてdiffを空に初期化する操作を施す．diffを集め始めてから，各サーバーに配り直されるまでの間に各サーバーに施された変更は全て破棄される．この破棄分をバッファを２つ持つなどして対応することは今後の課題である．
 
 inverted_index_storageではdiff, mixedは転置ファイルとなっており，bit_index_storageでは各row毎にbit列を保持する.
+
