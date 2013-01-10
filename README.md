@@ -14,8 +14,8 @@ Feel free to make pull-requests to this repository.
 Requirements
 ------------
 
-* Sphinx 1.1.3
-    * `python-sphinx` package is available on Ubuntu
+* Sphinx 1.1.3 with pngmath extension
+    * Ubuntu packages: `python-sphinx`, `latex-cjk-japanese`, `texlive-latex-extra`, `dvipng`
 
 
 How to Edit
