@@ -4,22 +4,74 @@ Regression
 * 詳細な仕様は `IDL 定義 <https://github.com/jubatus/jubatus/blob/master/src/server/regression.idl>`_ を参照してください。
 * 使用されているアルゴリズムの詳細については :doc:`method` を参照してください。
 
-Data Structures
-~~~~~~~~~~~~~~~
 
-.. describe:: config_data
+Configuration
+~~~~~~~~~~~~~
 
-   サーバの設定を表す。
-   ``method`` は回帰に使用するアルゴリズムである。
-   現在は ``PA`` のみが指定可能である。
-   ``config`` は :doc:`fv_convert` で説明されている JSON 形式の文字列である。
+設定は単体の JSON で与えられる。
+JSON の各フィールドは以下のとおりである
 
-   .. code-block:: c++
+.. describe:: method
 
-      message config_data {
-        0: string method
-        1: string config
-      }
+   回帰に使用するアルゴリズムを指定する。
+   以下のアルゴリズムを指定できる。
+
+   .. table::
+
+      ================ ===================================
+      設定値           手法
+      ================ ===================================
+      ``"PA"``          Passive Agressive を利用する。 [Crammer06]_
+      ================ ===================================
+
+
+.. describe:: parameter
+
+   アルゴリズムに渡すパラーメータを指定する。
+   ``method`` に応じて渡すパラメータは異なる。
+
+   PA
+     :sensitivity:
+        許容する誤差の幅を指定する。
+        大きくするとノイズに強くなる代わりに、誤差が残りやすくなる。
+        (Float)
+     :regularization_weight:
+        学習に対する感度パラメータを指定する。
+        大きくすると学習が早くなる代わりに、ノイズに弱くなる。
+        元論文 [Crammer06]_ における :math:`C` に相当する。
+        (Float)
+
+
+.. describe:: converter
+
+   特徴変換の設定を指定する。
+   フォーマットは :doc:`fv_convert` で説明する。
+
+
+例:
+  .. code-block:: javascript
+
+     {
+       "method": "PA",
+       "parameter" : {
+         "sensitivity" : 0.1,
+         "regularization_weight" : 1.0
+       },
+       "converter" : {
+         "string_filter_types" : {},
+         "string_filter_rules" : [],
+         "num_filter_types" : {},
+         "num_filter_rules" : [],
+         "string_types": {},
+         "string_rules": [
+           { "key" : "*", "type" : "str", "sample_weight" : "bin", "global_weight" : "bin" }
+         ],
+         "num_types" : {},
+         "num_rules" : [
+           { "key" : "*", "type" : "num" }
+         ]
+       }
+     }
 
 
 Methods
