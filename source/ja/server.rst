@@ -11,6 +11,7 @@ Flow of Development
 #. サービスが持つべきRPCインターフェースを IDL で定義する。
 #. ``jenerator`` を用いて IDL から サーバー、Keeper のコードを生成する。
 #. ``mpidl`` を用いてデータ構造とクライアントを生成する。
+#. ``mpidlconv`` を用いて ``mpidl`` の出力を変換する。
 #. RPC毎にサーバーが利用するユーザ定義クラスのインターフェースの実体、および必要に応じてmix操作を作成する。
 
 `スケルトンプロジェクト <https://github.com/jubatus/jubatus-service-skelton>`_ を利用すると、容易に開発を開始できる。
