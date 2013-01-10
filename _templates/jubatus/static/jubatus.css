@@ -452,3 +452,7 @@ table.field-list {
 table.field-list tr:nth-child(even) {
   background-color: white;
 }
+
+td.field-body table {
+  margin: 1em;
+}
