@@ -31,7 +31,7 @@ Run Tutorial
 
 ::
 
-  jubaclassifier -f /path/to/config/classifier/pa.sample.json 
+  jubaclassifier -f /path/to/share/jubatus/example/config/classifier/pa.json 
   I0110 13:43:07.789201  1855 server_util.cpp:196] starting jubaclassifier 0.4.0 RPC server at 192.168.0.1:9199
       pid            : 1855
       user           : oda
@@ -46,7 +46,7 @@ Run Tutorial
       join           : false
       interval sec   : 16
       interval count : 512
-  I0110 13:43:07.789721  1855 server_util.cpp:69] load config from local file :/path/to/config/classifier/pa.sample.json
+  I0110 13:43:07.789721  1855 server_util.cpp:69] load config from local file :/path/to/share/jubatus/example/config/classifier/pa.json
   I0110 13:43:07.790897  1855 classifier_serv.cpp:110] config loaded: {
     "converter" : {
       "string_filter_types" : {},
@@ -72,7 +72,7 @@ Jubatus サーバは、デフォルトでは TCP 9199 番ポートを利用し�
 
 ::
 
-  $ jubaclassifier  --configpath /path/to/config/classifier/pa.sample.json --rpc-port 19199
+  $ jubaclassifier  --configpath /path/to/share/jubatus/example/config/classifier/pa.json --rpc-port 19199
 
 Jubatus と Jubatus クライアントは、TCP/IP ネットワーク経由で `MessagePack-RPC <http://msgpack.org>`_ プロトコルを使用して通信します。
 
