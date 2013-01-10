@@ -102,7 +102,6 @@ Python
 ::
 
   $ sudo pip install jubatus
-  $ sudo pip install msgpack-rpc-python
 
 ``pip`` コマンドがインストールされていない場合は、以下の手順でインストールしてください。
 
