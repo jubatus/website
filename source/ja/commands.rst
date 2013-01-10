@@ -435,12 +435,26 @@ mpidlconv
 
 ``mpidlconv`` は ``mpidl`` コマンドの出力を Jubatus フレームワークで利用できる形に変換する。
 
-.. code-block:: none
-
-  $ mpidlconv <idl-file> [options...]
+``mpidlconv`` はデフォルトではインストールされない (ソースの ``src/tools`` ディレクトリを参照)。
 
 .. program:: mpidlconv
 
-.. option:: -o <dirpath>
+.. option:: -i <dirpath>, --input <dirpath>
+
+   ``mpidl`` で出力されたファイルが配置されたディレクトリ。
+
+.. option:: -o <dirpath>, --output <dirpath>
 
    変換されたソースファイルを出力するディレクトリ。
+
+   指定されない場合は、 ``--input`` で指定されたディレクトリにあるファイルを直接書き換える。
+
+.. option:: -s <service>, --service <service>
+
+   変換するサービスの名前。
+
+.. option:: -I, --internal
+
+   ``#include`` 命令に相対パスを使用する。
+
+   このオプションは Jubatus 開発者による利用を想定しているため、多くの場合、指定する必要はない。

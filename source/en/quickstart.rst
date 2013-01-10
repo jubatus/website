@@ -102,7 +102,6 @@ The client (requires Python 2.7 or later) is available in `PyPI <http://pypi.pyt
 ::
 
   $ sudo pip install jubatus
-  $ sudo pip install msgpack-rpc-python
 
 If you don't have ``pip`` command, run the following command:
 
