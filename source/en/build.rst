@@ -16,8 +16,8 @@ In addition, following libraries are required.
 Software            Version    Mandatory Note
 =================== ========== ========= ======================================================
 msgpack             >= 0.5.7   ✔
-jubatus-mpio        develop    ✔
-jubatus-msgpack-rpc develop    ✔         C++ client library must be installed.
+jubatus-mpio        master     ✔
+jubatus-msgpack-rpc master     ✔         C++ client library must be installed.
 pficommon           master     ✔         msgpack-rpc (mprpc) must be enabled.
 google-glog         >= 3.2     ✔
 mecab               >= 0.99              Required when configured with ``--enable-mecab``.
