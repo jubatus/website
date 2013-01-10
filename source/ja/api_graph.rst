@@ -30,7 +30,7 @@ JSON の各フィールドは以下のとおりである
    ``method`` に応じて渡すパラメータは異なる。
 
    graph_wo_index
-     :alpha:
+     :damping_factor:
         PageRank の計算における damping factor で、次数の異なるノードのスコアを調整する。
         大きくすると構造をよく反映したスコアを出す代わりに、スコアに極端な偏りが発生する。
         元論文では 0.85 程度が良いとされている。
@@ -39,6 +39,18 @@ JSON の各フィールドは以下のとおりである
         最短パスの計算においてランドマークの総数を指定する。
         大きくすると正確な最短パスに近づく代わりに、多くのメモリを消費する。
         (Integer)
+
+
+Example:
+  .. code-block:: javascript
+
+     {
+       "method" : "graph_wo_index",
+       "parameter" : {
+         "damping_factor" : 0.9,
+         "landmark_num" : 5
+       }
+     }
 
 
 Data Structures
