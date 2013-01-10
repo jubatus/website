@@ -2,7 +2,6 @@ Common Data Structures and Methods
 ----------------------------------
 
 These data structures and methods are available in each server.
-Note that ``get_config`` is not available in Graph.
 
 Data Structures
 ~~~~~~~~~~~~~~~

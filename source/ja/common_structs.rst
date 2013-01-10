@@ -2,7 +2,6 @@ Common Data Structures and Methods
 ----------------------------------
 
 以下のデータ構造とメソッドは各サーバで利用可能である。
-ただし、Graph では ``get_config`` は利用できない。
 
 Data Structures
 ~~~~~~~~~~~~~~~
