@@ -141,12 +141,12 @@ References
 ----------
 
 **minhash: b-Bit Minwise Hash**
-.. [Ping2010] Ping Li, Arnd Christian Konig (2010) b-Bit Minwise Hashing, WWW 2010
+  .. [Ping2010] Ping Li, Arnd Christian Konig (2010) b-Bit Minwise Hashing, WWW 2010
 
 **euclid_lsh: Euclidean LSH**
-.. [Datar2004] Mayur Datar, Nicole Immorlica, Piotr Indyk, Vahab S. Mirokni. Locality-Sensitive Hashing Scheme Based on p-Stable Distributions. SCG 2004.
-.. [Andoni2005] Alex Andoni. LSH Algorithm and Implementation (E2LSH). http://www.mit.edu/~andoni/LSH/
-.. [Lv2007] Qin Lv, William Josephson, Zhe Wang, Moses Charikar, Kai Li. Multi-Probe LSH: Efficient Indexing for High-Dimensional Similarity Search. VLDB 2007.
+  .. [Datar2004] Mayur Datar, Nicole Immorlica, Piotr Indyk, Vahab S. Mirokni. Locality-Sensitive Hashing Scheme Based on p-Stable Distributions. SCG 2004.
+  .. [Andoni2005] Alex Andoni. LSH Algorithm and Implementation (E2LSH). http://www.mit.edu/~andoni/LSH/
+  .. [Lv2007] Qin Lv, William Josephson, Zhe Wang, Moses Charikar, Kai Li. Multi-Probe LSH: Efficient Indexing for High-Dimensional Similarity Search. VLDB 2007.
 
 Storage
 -------
