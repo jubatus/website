@@ -101,77 +101,82 @@ When using standalone mode, this must be left blank (``""``).
 
 .. describe:: bool clear_row(0: string name, 1: string id)
 
- - Parameters:
+   - Parameters:
 
-  - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-  - ``id`` : point ID to be removed
+     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
+     - ``id`` : point ID to be removed
 
- - Returns:
+   - Returns:
 
-  - True when the point was cleared successfully
+     - True when the point was cleared successfully
 
- Clears a point data with ID ``id``.
+   Clears a point data with ID ``id``.
+
 
 .. describe:: tuple<string, float> add(0: string name, 1: datum row)
 
- - Parameters:
+   - Parameters:
 
-  - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-  - ``row`` : datum
+     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
+     - ``row`` : datum
 
- - Returns:
+   - Returns:
 
-  - Tuple of the point ID and the anomaly measure value
+     - Tuple of the point ID and the anomaly measure value
 
- Adds a point data ``row``.
+   Adds a point data ``row``.
+
 
 .. describe:: float update(0: string name, 1: string id, 2: datum row)
 
- - Parameters:
+   - Parameters:
 
-  - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-  - ``id`` : point ID to update
-  - ``row`` : new value for the point
+     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
+     - ``id`` : point ID to update
+     - ``row`` : new value for the point
 
- - Returns:
+   - Returns:
 
-  - Anomaly measure value
+     - Anomaly measure value
 
- Updates the point ``id`` with the given datum ``d``.
+   Updates the point ``id`` with the given datum ``d``.
+
 
 .. describe:: bool clear(0: string name)
 
- - Parameters:
+   - Parameters:
 
-  - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
+     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
 
- - Returns:
+   - Returns:
 
-  - True when the model was cleared successfully
+     - True when the model was cleared successfully
 
- Completely clears the model.
+   Completely clears the model.
+
 
 .. describe:: float calc_score(0: string name, 1: datum row)
 
- - Parameters:
+   - Parameters:
 
-  - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-  - ``row`` : datum
+     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
+     - ``row`` : datum
 
- - Returns:
+   - Returns:
 
-  - Anomaly measure value
+     - Anomaly measure value
 
- Calculates an anomaly measure value for datum ``row`` without adding a point.
+   Calculates an anomaly measure value for datum ``row`` without adding a point.
+
 
 .. describe:: list<string>  get_all_rows(0: string name)
 
- - Parameters:
+   - Parameters:
 
-  - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
+     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
 
- - Returns:
+   - Returns:
 
-  - list of all point IDs
+     - list of all point IDs
 
- Returns the list of all point IDs.
+   Returns the list of all point IDs.

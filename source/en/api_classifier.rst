@@ -114,16 +114,17 @@ Data Structures
 
 .. describe:: estimate_result
 
- Represents a result of classification.
- ``label`` is an estimated label and ``score`` is a probability value for the ``label``.
- Higher ``score`` value means that the estimated label is more confident.
+   Represents a result of classification.
+   ``label`` is an estimated label and ``score`` is a probability value for the ``label``.
+   Higher ``score`` value means that the estimated label is more confident.
 
-.. code-block:: c++
+   .. code-block:: c++
 
-   message estimate_result {
-     0: string label
-     1: double score
-   }
+      message estimate_result {
+        0: string label
+        1: double score
+      }
+
 
 Methods
 ~~~~~~~
@@ -133,29 +134,30 @@ When using standalone mode, this must be left blank (``""``).
 
 .. describe:: int train(0: string name, 1: list<tuple<string, datum> > data)
 
- - Parameters:
+   - Parameters:
 
-  - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-  - ``data`` : list of tuple of label and datum
+     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
+     - ``data`` : list of tuple of label and datum
 
- - Returns:
+   - Returns:
 
-  - Number of trained datum (i.e., the length of the ``data``)
+     - Number of trained datum (i.e., the length of the ``data``)
 
- Trains and updates the model.
- ``tuple<string, datum>`` is a tuple of datum and its label.
- This API is designed to accept bulk update with list of ``tuple<string, datum>``.
+   Trains and updates the model.
+   ``tuple<string, datum>`` is a tuple of datum and its label.
+   This API is designed to accept bulk update with list of ``tuple<string, datum>``.
+
 
 .. describe:: list<list<estimate_result> > classify(0: string name, 1: list<datum> data)
 
- - Parameters:
+   - Parameters:
 
-  - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-  - ``data`` : list of datum to classify
+     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
+     - ``data`` : list of datum to classify
 
- - Returns:
+   - Returns:
 
-  - List of list of ``estimate_result``, in order of given datum
+     - List of list of ``estimate_result``, in order of given datum
 
- Estimates labels from given ``data``.
- This API is designed to accept bulk classification with list of ``datum``.
+   Estimates labels from given ``data``.
+   This API is designed to accept bulk classification with list of ``datum``.

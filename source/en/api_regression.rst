@@ -88,29 +88,30 @@ When using standalone mode, this must be left blank (``""``).
 
 .. describe:: int train(0: string name, 1: list<tuple<float, datum> > train_data)
 
- - Parameters:
+   - Parameters:
 
-  - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-  - ``train_data`` : list of tuple of label and datum
+     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
+     - ``train_data`` : list of tuple of label and datum
 
- - Returns:
+   - Returns:
 
-  - Number of trained datum (i.e., the length of the ``train_data``)
+     - Number of trained datum (i.e., the length of the ``train_data``)
 
- Trains and updates the model.
- ``tuple<float, datum>`` is a tuple of datum and its value.
- This function is designed to allow bulk update with list of ``tuple<float, datum>``.
+   Trains and updates the model.
+   ``tuple<float, datum>`` is a tuple of datum and its value.
+   This function is designed to allow bulk update with list of ``tuple<float, datum>``.
+
 
 .. describe:: list<float>  estimate(0: string name, 1: list<datum>  estimate_data)
 
- - Parameters:
+   - Parameters:
 
-  - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-  - ``estimate_data`` : list of datum to estimate
+     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
+     - ``estimate_data`` : list of datum to estimate
 
- - Returns:
+   - Returns:
 
-  - List of estimated values, in order of given datum
+     - List of estimated values, in order of given datum
 
- Estimates the value from given ``estimate_data``.
- This API is designed to allow bulk estimation with list of ``datum``.
+   Estimates the value from given ``estimate_data``.
+   This API is designed to allow bulk estimation with list of ``datum``.
