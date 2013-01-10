@@ -112,20 +112,6 @@ Example:
 Data Structures
 ~~~~~~~~~~~~~~~
 
-.. describe:: config_data
-
- Represents a configuration of the server.
- ``method`` is an algorithm used for classification.
- Currently, one of ``perceptron``, ``PA``, ``PA1``, ``PA2``, ``CW``, ``AROW`` or ``NHERD`` can be specified.
- ``config`` is a string in JSON format described in :doc:`fv_convert`.
-
-.. code-block:: c++
-
-   message config_data {
-     0: string method
-     1: string config
-   }
-
 .. describe:: estimate_result
 
  Represents a result of classification.

@@ -77,19 +77,8 @@ Example:
 Data Structures
 ~~~~~~~~~~~~~~~
 
-.. describe:: config_data
+None.
 
- Represents a configuration of the server.
- ``method`` is an algorithm used for regression.
- Currently, only ``PA`` can be specified.
- ``config`` is a string in JSON format described in :doc:`fv_convert`.
-
-.. code-block:: c++
-
-   message config_data {
-     0: string method
-     1: string config
-   }
 
 Methods
 ~~~~~~~

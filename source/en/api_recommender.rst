@@ -106,20 +106,6 @@ Example:
 Data Structures
 ~~~~~~~~~~~~~~~
 
-.. describe:: config_data
-
- Represents a configuration of the server.
- ``method`` is an algorithm used for recommendation.
- Currently, one of ``inverted_index``, ``minhash`` or ``lsh`` can be specified.
- ``converter`` is a string in JSON format described in :doc:`fv_convert`.
-
-.. code-block:: c++
-
-   message config_data {
-     0: string method
-     1: string converter
-   }
-
 .. describe:: similar_result
 
  Represents a result of similarity methods.
