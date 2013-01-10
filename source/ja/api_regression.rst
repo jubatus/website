@@ -9,17 +9,18 @@ Data Structures
 
 .. describe:: config_data
 
- サーバの設定を表す。
- ``method`` は回帰に使用するアルゴリズムである。
- 現在は ``PA`` のみが指定可能である。
- ``config`` は :doc:`fv_convert` で説明されている JSON 形式の文字列である。
+   サーバの設定を表す。
+   ``method`` は回帰に使用するアルゴリズムである。
+   現在は ``PA`` のみが指定可能である。
+   ``config`` は :doc:`fv_convert` で説明されている JSON 形式の文字列である。
 
-.. code-block:: c++
+   .. code-block:: c++
 
-   message config_data {
-     0: string method
-     1: string config
-   }
+      message config_data {
+        0: string method
+        1: string config
+      }
+
 
 Methods
 ~~~~~~~
@@ -29,29 +30,30 @@ Methods
 
 .. describe:: int train(0: string name, 1: list<tuple<float, datum> > train_data)
 
- - 引数:
+   - 引数:
 
-  - ``name`` : タスクを識別する ZooKeeper クラスタ内でユニークな名前
-  - ``train_data`` : floatとdatumで構成される組のリスト
+     - ``name`` : タスクを識別する ZooKeeper クラスタ内でユニークな名前
+     - ``train_data`` : floatとdatumで構成される組のリスト
 
- - 戻り値:
+   - 戻り値:
 
-  - 学習した件数 (``train_data`` の長さに等しい)
+     - 学習した件数 (``train_data`` の長さに等しい)
 
- 学習し、モデルを更新する。
- ``tuple<float, datum>`` は、datumとその値の組である。
- この関数は ``tuple<float, datum>`` をリスト形式でまとめて同時に受け付けることができる (バルク更新)。
+   学習し、モデルを更新する。
+   ``tuple<float, datum>`` は、datumとその値の組である。
+   この関数は ``tuple<float, datum>`` をリスト形式でまとめて同時に受け付けることができる (バルク更新)。
+
 
 .. describe:: list<float>  estimate(0: string name, 1: list<datum>  estimate_data)
 
- - 引数:
+   - 引数:
 
-  - ``name`` : タスクを識別する ZooKeeper クラスタ内でユニークな名前
-  - ``estimate_data`` : 推定するdatumのリスト
+     - ``name`` : タスクを識別する ZooKeeper クラスタ内でユニークな名前
+     - ``estimate_data`` : 推定するdatumのリスト
 
- - 戻り値:
+   - 戻り値:
 
-  - 推定値のリスト (入れられたdatumの順に並ぶ)
+     - 推定値のリスト (入れられたdatumの順に並ぶ)
 
- 与えられた ``estimate_data`` から結果を推定する。
- この関数は datum をリスト形式でまとめて同時に受け付けることができる (バルク推定)。
+   与えられた ``estimate_data`` から結果を推定する。
+   この関数は datum をリスト形式でまとめて同時に受け付けることができる (バルク推定)。

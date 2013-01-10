@@ -8,14 +8,15 @@ Data Structures
 
 .. describe:: config_data
 
- サーバの設定を表す。
- ``window_size`` は保持する値の数である。
+   サーバの設定を表す。
+   ``window_size`` は保持する値の数である。
 
-.. code-block:: c++
+   .. code-block:: c++
 
-   message config_data {
-     0: int window_size
-   }
+      message config_data {
+        0: int window_size
+      }
+
 
 Methods
 ~~~~~~~
@@ -25,28 +26,34 @@ Methods
 
 .. describe:: bool push(0: string name, 1: string key, 2: double val)
 
- 属性情報 ``key`` の値 ``val`` を与える。
+   属性情報 ``key`` の値 ``val`` を与える。
+
 
 .. describe:: double sum(0: string name, 1: string key)
 
- 属性情報 ``key`` を持つ値の合計値を返す。
+   属性情報 ``key`` を持つ値の合計値を返す。
+
 
 .. describe:: double stddev(0: string name, 1: string key)
 
- 属性情報 ``key`` を持つ値の標準偏差を返す。
+   属性情報 ``key`` を持つ値の標準偏差を返す。
+
 
 .. describe:: double max(0: string name, 1: string key)
 
- 属性情報 ``key`` を持つ値の最大値を返す。
+   属性情報 ``key`` を持つ値の最大値を返す。
+
 
 .. describe:: double min(0: string name, 1: string key)
 
- 属性情報 ``key`` を持つ値の最小値を返す。
+   属性情報 ``key`` を持つ値の最小値を返す。
+
 
 .. describe:: double entropy(0: string name, 1: string key)
 
- 属性情報 ``key`` を持つ値のエントロピーを返す。
+   属性情報 ``key`` を持つ値のエントロピーを返す。
+
 
 .. describe:: double moment(0: string name, 1: string key, 2: int degree, 3: double center)
 
- 属性情報 ``key`` を持つ値の ``center`` を中心とした ``degree`` 次のモーメントを返す。
+   属性情報 ``key`` を持つ値の ``center`` を中心とした ``degree`` 次のモーメントを返す。
