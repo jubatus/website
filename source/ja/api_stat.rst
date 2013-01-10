@@ -3,19 +3,31 @@ Stat
 
 * 詳細な仕様は `IDL 定義 <https://github.com/jubatus/jubatus/blob/master/src/server/stat.idl>`_ を参照してください。
 
+
+Configuration
+~~~~~~~~~~~~~
+
+設定は単体の JSON で与えられる。
+JSON の各フィールドは以下のとおりである
+
+.. describe:: window_size
+
+   保持する値の数を指定する。
+   (Integer)
+
+
+例:
+  .. code-block:: javascript
+
+     {
+       "window_size": 128
+     }
+
+
 Data Structures
 ~~~~~~~~~~~~~~~
 
-.. describe:: config_data
-
-   サーバの設定を表す。
-   ``window_size`` は保持する値の数である。
-
-   .. code-block:: c++
-
-      message config_data {
-        0: int window_size
-      }
+なし
 
 
 Methods
