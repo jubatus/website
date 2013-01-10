@@ -435,6 +435,8 @@ mpidlconv
 
 ``mpidlconv`` converts output of ``mpidl`` command so that it can be used with Jubatus framework.
 
+``mpidlconv`` is not installed by default (see ``src/tools`` in the source tree).
+
 .. program:: mpidlconv
 
 .. option:: -i <dirpath>, --input <dirpath>
@@ -450,3 +452,9 @@ mpidlconv
 .. option:: -s <service>, --service <service>
 
    Name of the service to convert.
+
+.. option:: -I, --internal
+
+   Use relative path for ``#include`` directives.
+
+   This option is intended for use by Jubatus developers; you don't need this option in most cases.
