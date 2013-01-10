@@ -16,8 +16,8 @@ Jubatus をソースからビルドするには、 ``gcc`` (バージョン 4.4 
 ソフトウェア        バージョン 必須      備考
 =================== ========== ========= ======================================================
 msgpack             >= 0.5.7   ✔
-jubatus-mpio        develop    ✔
-jubatus-msgpack-rpc develop    ✔         C++ クライアントライブラリが必要である。
+jubatus-mpio        master     ✔
+jubatus-msgpack-rpc master     ✔         C++ クライアントライブラリが必要である。
 pficommon           master     ✔         msgpack-rpc (mprpc) が有効であること。
 google-glog         >= 3.2     ✔
 mecab               >= 0.99              ``--enable-mecab`` ありでビルドする場合のみ。
