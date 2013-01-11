@@ -140,7 +140,7 @@ Please add these lines to ``pom.xml`` of your project.
      <dependency>
        <groupId>us.jubat</groupId>
        <artifactId>jubatus</artifactId>
-       <version>0.3.2</version>
+       <version>0.4.0</version>
      </dependency>
    </dependencies>
 
