@@ -74,8 +74,6 @@ If you're going to try :doc:`tutorial`, just install Python client and go ahead.
 
 Version of Jubatus and Jubatus clients may be different, as clients are not updated when there are no API changes to Jubatus.
 
-If you want to download client libraries without using package management system, you can find a tarball in `download page <http://download.jubat.us/files/clients>`_.
-
 C++
 ~~~
 
@@ -110,6 +108,8 @@ If you don't have ``pip`` command, run the following command:
   $ wget http://peak.telecommunity.com/dist/ez_setup.py
   $ sudo python ez_setup.py
   $ sudo easy_install pip
+
+On Ubuntu, you can also use ``python-pip`` package to install ``pip``.
 
 Ruby
 ~~~~

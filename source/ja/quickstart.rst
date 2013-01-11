@@ -74,8 +74,6 @@ Jubatus を使ったクライアントアプリケーションは C++, Python, R
 
 Jubatus と Jubatus クライアントのバージョンは異なることがあります。これは、Jubatus の API が変更されない場合はクライアント側のアップデートが不要なためです。
 
-パッケージ管理システムを使わずに Jubatus クライアントを使用したい場合は、 `ダウンロードページ <http://download.jubat.us/files/clients>`_ から tarball をダウンロードすることができます。
-
 C++
 ~~~
 
@@ -110,6 +108,8 @@ Python
   $ wget http://peak.telecommunity.com/dist/ez_setup.py
   $ sudo python ez_setup.py
   $ sudo easy_install pip
+
+Ubuntu では ``pip`` のインストールに ``python-pip`` パッケージを利用することもできます。
 
 Ruby
 ~~~~

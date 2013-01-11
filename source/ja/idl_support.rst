@@ -21,8 +21,6 @@ IDL Support Status (2013 Jan.)
 
 - needs fix：自動生成したコードから少し変更が必要です。
 
-  - MessagePack-IDL へのパッチを歓迎します。
-
 以下の環境でテストを行なっています。
 
 - Jubatus : Jubatus 0.4.0
@@ -32,8 +30,3 @@ IDL Support Status (2013 Jan.)
 - Client : IDLによって生成されたコード
 
 - IDL : 上記レポジトリのIDLファイル
-
-All Clients Are Available
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-`ダウンロードページ <http://download.jubat.us/files/clients>`_ で配布しているクライアントは、C++, Java, Python, Ruby の4つの言語に対して、正しく動作することを確認しています。

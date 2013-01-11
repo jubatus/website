@@ -21,8 +21,6 @@ The followings are support status of msgpack-idl.
 
 - needs fix：We need to make some minor changes manually from automatically generated clients in order to interact with server.
 
-  - We appreciate you if you gave us patches to MessagePack-IDL.
-
 We tested these clients in the following condition
 
 - Jubatus : Jubatus 0.4.0
@@ -32,8 +30,3 @@ We tested these clients in the following condition
 - Client : Generated client from IDL
 
 - IDL : Built-in IDL in repository
-
-All Clients Are Available
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-We provide clients of all existing service in four languages mentioned above. Clients are available of from `download page <http://download.jubat.us/files/clients>`_.
