@@ -59,8 +59,18 @@ Data Structures
 .. mpidl:message:: node
 
    ノードの情報を表す。
-   ``in_edges`` はノードに向かうエッジの ID のリストである。
-   ``out_edges`` はノードから出るエッジの ID のリストである。
+
+   .. mpidl:member:: 0: map<string, string> property
+
+      ノードの持つ付加情報である。
+
+   .. mpidl:member:: 1: list<ulong> in_edges
+
+      ノードに向かうエッジの ID のリストである。
+
+   .. mpidl:member:: 2: list<ulong> out_edges
+
+      ノードから出るエッジの ID のリストである。
 
    .. code-block:: c++
 
@@ -85,8 +95,18 @@ Data Structures
 .. mpidl:message:: edge
 
    エッジの情報を表す。
-   ``source`` はこのエッジの接続元のノードの ID である。
-   ``target`` はこのエッジの接続先のノードの ID である。
+
+   .. mpidl:member:: 0: map<string, string> property
+
+      エッジに付与された付加情報である。
+
+   .. mpidl:member:: 1: string source
+
+      このエッジの接続元のノードの ID である。
+
+   .. mpidl:member:: 2: string target
+
+      このエッジの接続先のノードの ID である。
 
    .. code-block:: c++
 

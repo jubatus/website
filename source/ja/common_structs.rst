@@ -11,6 +11,16 @@ Data Structures
    Jubatus で機械学習の対象となるデータを表す。
    詳細は :doc:`fv_convert` を参照すること。
 
+   .. mpidl:member:: 0: list<tuple<string, string> > string_values
+
+      文字列で表現される入力データである。
+      データのキーと値のペアの集合として表現される。
+
+   .. mpidl:member:: 1: list<tuple<string, double> > num_values
+
+      数値で表現される入力データである。
+      データのキーと値のペアの集合として表現される。
+
    .. code-block:: c++
 
       message datum {
