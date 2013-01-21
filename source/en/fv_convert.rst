@@ -444,7 +444,7 @@ We will explain how to make plugins later. In this section, we will describe how
 
 How to specify plugin is same in both filters and extractors.
 In CLASS_types (CLASS is either ``string`` or ``num``), we should specify "dynamic" in "method", a path to a .so file in "path" and the name of function defined in the plugin in "function".
-Path to the plugin may either be a full path, or a basename if the plugin is in the default plugin directory (``$PREFIX/lib/jubatus/plugin`` or ``$PREFIX/lib/jubatus/plugin`` in most cases).
+Path to the plugin may either be a full path, or a file name if the plugin is in the default plugin directory (``$PREFIX/lib/jubatus/plugin`` or ``$PREFIX/lib/jubatus/plugin`` in most cases).
 Argument of the function is specified by other parameters.
 
 In Jubatus we can make use of three pre-defined plugins which aim to extraction of features from strings.
@@ -465,7 +465,7 @@ Note that some plugins are not available depending on your compile options.
       "string_types": {
         "mecab": {
           "method": "dynamic",
-          "path": "/usr/local/lib/jubatus/plugin/libmecab_splitter.so",
+          "path": "libmecab_splitter.so",
           "function": "create",
           "arg": "-d /usr/lib64/mecab/dic/ipadic"
         }
@@ -486,7 +486,7 @@ Note that some plugins are not available depending on your compile options.
       "string_types": {
         "ux": {
           "method": "dynamic",
-          "path": "/usr/local/lib/jubatus/plugin/libux_splitter.so",
+          "path": "libux_splitter.so",
           "function": "create",
           "dict_path": "/path/to/keyword/dic"
         }
@@ -510,7 +510,7 @@ Note that some plugins are not available depending on your compile options.
       "string_types": {
         "date": {
           "method": "dynamic",
-          "path": "/usr/local/lib/jubatus/plugin/libre2_splitter.so",
+          "path": "libre2_splitter.so",
           "function": "create",
           "pattern": "[0-9]{4}/[0-9]{2}/[0-9]{2}"
         }
@@ -523,7 +523,7 @@ Note that some plugins are not available depending on your compile options.
       "string_types": {
         "age": {
           "method": "dynamic",
-          "path": "/usr/local/lib/libre2_splitter.so",
+          "path": "libre2_splitter.so",
           "function": "create",
           "pattern": "(age|Age)([ :=])([0-9]+)",
           "group": "3"
