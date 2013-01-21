@@ -310,18 +310,16 @@ A weight is calculated with two parameters, "sample_weight" and "global_weight".
 In concrete, the weight is the product of these two weights.
 
  :key:       Specifies to which keys in a datum we apply the rule. For further explanation, please read counterpart in "string_filter_rules" section.
- :type:
-    Specifies the name of an extractor in use. The extractor is either one defined in "string_types" or one of pre-defined extractors. The followings are the pre-defined extractors.
+ :type:      Specifies the name of an extractor in use. The extractor is either one defined in "string_types" or one of pre-defined extractors. The followings are the pre-defined extractors.
 
-    ============ =====================
-    Value        Meaning
-    ============ =====================
-    ``"str"``    Use given string itself as a feature without separating it.
-    ``"space"``  Separate given string by spaces and use a set of substrings as features.
-    ============ =====================
+    ============= =====================
+    Value         Meaning
+    ============= =====================
+    ``"str"``     Use given string itself as a feature without separating it.
+    ``"space"``   Separate given string by spaces and use a set of substrings as features.
+    ============= =====================
 
- :sample_weight:
-    Specifies weight of each feature. Note that as term frequency is, "sample_weight" is uniquely defined if feature and datum are specified.
+ :sample_weight:  Specifies weight of each feature. Note that as term frequency is, "sample_weight" is uniquely defined if feature and datum are specified.
 
     ============= =====================
     Value         Meaning
@@ -331,8 +329,7 @@ In concrete, the weight is the product of these two weights.
     ``"log_tf"``  sample_weight is the logarithm of tf added by 1. For example, if "hello" is appeared five times, its sample_weight is log(5+1).
     ============= =====================
 
- :global_weight:
-    Specifies global weight calculated from data inputted so far.
+ :global_weight:  Specifies global weight calculated from data inputted so far.
 
     ============= =====================
     Value         Meaning
