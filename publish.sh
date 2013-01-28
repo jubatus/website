@@ -1,5 +1,8 @@
 #!/bin/bash -ue
 
+# Failsafe
+set -ue
+
 WEBROOT="jubatus.github.com"
 
 # Make sure that we're on `master` branch
@@ -14,7 +17,7 @@ if [ ! -d "${WEBROOT}" ]; then
 	git clone git@github.com:jubatus/jubatus.github.com.git "${WEBROOT}"
 fi
 
-pushd "${WEBROOT}"
+cd "${WEBROOT}"
 
 git checkout master
 git pull
@@ -27,5 +30,3 @@ cp -a ../build/html/* .
 git add -A
 git commit -m "autocommit by publish.sh"
 git push origin master
-
-popd
