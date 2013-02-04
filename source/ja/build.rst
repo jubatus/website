@@ -19,7 +19,7 @@ msgpack             >= 0.5.7   ✔
 jubatus-mpio        master     ✔
 jubatus-msgpack-rpc master     ✔         C++ クライアントライブラリが必要である。
 pficommon           master     ✔         msgpack-rpc (mprpc) が有効であること。
-google-glog         >= 3.2     ✔
+google-glog         >= 0.3.2   ✔
 mecab               >= 0.99              ``--enable-mecab`` ありでビルドする場合のみ。
 re2                 master               ``--disable-re2`` *なし* でビルドする場合のみ。
 ux-trie             master               ``--enable-ux`` ありでビルドする場合のみ。
@@ -53,14 +53,12 @@ Ubuntu 12.04 でのビルドを行う例です。
 
   $ git clone https://github.com/jubatus/jubatus-mpio.git
   $ cd jubatus-mpio
-  $ git checkout develop
   $ ./bootstrap && ./configure && make
   $ sudo make install
   $ cd ..
 
   $ git clone https://github.com/jubatus/jubatus-msgpack-rpc.git
   $ cd jubatus-msgpack-rpc/cpp
-  $ git checkout develop
   $ ./bootstrap && ./configure && make
   $ sudo make install
   $ cd ..
