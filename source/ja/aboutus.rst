@@ -5,7 +5,7 @@ Jubatus Team Members
 --------------------
 
 .. jubamember::
-  :name: Yuya Unno
+  :name: 海野 裕也
   :photo: _static/members/unno.jpg
   :role: Project Lead
   :expertise: Natural Language Processing, Text Mining
@@ -17,7 +17,7 @@ Jubatus Team Members
   :email: unno@preferred.jp
 
 .. jubamember::
-  :name: Shohei Hido
+  :name: 比戸 将平
   :photo: _static/members/hido.jpg
   :role: Algorithm Development Lead
   :expertise: Data Mining, Machine Learning
@@ -29,7 +29,7 @@ Jubatus Team Members
   :email: hido@preferred.jp
 
 .. jubamember::
-  :name: Daisuke Okanohara
+  :name: 岡野原 大輔
   :photo: _static/members/okanohara.jpg
   :role: Advisor
   :contrib: PR, Vision, Algorithm Design, Business Development
@@ -40,7 +40,7 @@ Jubatus Team Members
   :email: hillbig@preferred.jp
 
 .. jubamember::
-  :name: Kenta Oono
+  :name: 大野 健太
   :photo: _static/members/oono.jpg
   :role: Developer
   :expertise: Mathematics (Conformal Geometry)
@@ -50,7 +50,7 @@ Jubatus Team Members
   :email: oono@preferred.jp
 
 .. jubamember::
-  :name: Kumazaki Hiroki
+  :name: 熊崎 宏樹
   :role: Developer
   :expertise: Distributed System
   :contrib: Architecture Design and Development
@@ -60,7 +60,7 @@ Jubatus Team Members
   :email: kumazaki.hiroki@lab.ntt.co.jp
 
 .. jubamember::
-  :name: Seiya Tokui
+  :name: 得居 誠也
   :photo: _static/members/tokui.jpg
   :role: Developer
   :expertise: Machine Learning
@@ -70,26 +70,26 @@ Jubatus Team Members
   :email: tokui@preferred.jp
 
 .. jubamember::
-  :name: ODA Satoshi
+  :name: 小田 哲
   :role: Project Lead
   :expertise: Information Security, Distributed System
   :contrib: Development, Performance Quality Management and patent survey
   :github: odasatoshi
 
 .. jubamember::
-  :name: Kenichi Maehashi
+  :name: 前橋 賢一
   :role: Developer
   :contrib: Release Management, OSS Promotion, Documentation
   :github: kmaehashi
 
 .. jubamember::
-  :name: Ryohei Imamasu
+  :name: 今増 良平
   :role: Developer
   :contrib: Release Management, Documentation
   :github: rimms
 
 .. jubamember::
-  :name: Shuzo Kashihara
+  :name: 柏原 秀蔵
   :photo: _static/members/kashihara.jpg
   :role: Developer
   :expertise: Distributed System
@@ -101,7 +101,7 @@ Jubatus Team Members
   :email: kashihara@preferred.jp
 
 .. jubamember::
-  :name: Yukihiro ODA
+  :name: 小田 幸弘
   :role: Developer
   :contrib: Refactoring, Support
   :github: y-oda-oni-juba
