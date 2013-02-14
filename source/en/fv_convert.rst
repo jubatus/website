@@ -400,9 +400,6 @@ It depends on "type" how to specify weight and name features.
     ``"str"``     Use given number as a string. This extractor is used when the value of the number is not important, such as user ID. Weight is set to be 1.
     ============= =====================
 
- :suffix:
-
-   Specifies a suffix of a key which stores a result of the extraction.
 
 Hashing Key of Feature Vector
 -----------------------------
