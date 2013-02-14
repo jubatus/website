@@ -192,7 +192,7 @@ h2 {
 h3 {
 	color: #108b3f;
     margin: 1em 0 -0.7em 0;
-    font-size: 1em;
+    font-size: 1.2em;
 }
 
 h4{
@@ -455,4 +455,13 @@ table.field-list tr:nth-child(even) {
 
 td.field-body table {
   margin: 1em;
+}
+
+dl.method dd table tr.field li {
+  border: none;
+  margin: 0;
+}
+
+dl.method table tr.field {
+  border: none;
 }
