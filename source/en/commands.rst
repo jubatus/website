@@ -394,25 +394,32 @@ jubaconv
 jenerator
 ~~~~~~~~~
 
-``jenerator`` generates C++ source of keeper and server template from extended MessagePack-IDL file.
+``jenerator`` generates implementation of keeper, server template and C++ client from extended MessagePack-IDL file. See :doc:`server` for details.
 
-``jenerator`` is not installed by default (see ``src/tools/generator`` in the source tree).
+``jenerator`` is not installed by default (see ``src/tools/jenerator`` in the source tree).
 
 .. code-block:: none
 
-  $ jenerator <idl-file> [options...]
+  $ jenerator -l <lang> [options ...] idl ...
 
 .. program:: jenerator
+
+.. option:: -l <lang>
+
+   Language of the code to generate. Currently only ``cpp`` is supported.
 
 .. option:: -o <dirpath>
 
    Directory to output the generated source files.
 
+   If not specified, the current directory will be used.
+
 .. option:: -i
 
    Use relative path for ``#include`` directives.
 
-   This option is intended for use by Jubatus developers; you don't need this option in most cases.
+   This option is intended for use by Jubatus developers.
+   You don't need this option except you're going to build generated code inside Jubatus source tree.
 
 .. option:: -n <namespace>
 
@@ -422,9 +429,9 @@ jenerator
 
    Generate server template.
 
-.. option:: -d
+.. option:: -g <guard>
 
-   Run in debug mode.
+   Prefix used for include guards in header files.
 
 .. option:: -help, --help
 
