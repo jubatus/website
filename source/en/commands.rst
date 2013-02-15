@@ -369,6 +369,31 @@ jubaconv
 
 ``jubaconv`` simulates the internal behavior of fv_converter and displays the result of conversion on the command-line.
 
+Example of usage is as shown below:
+
+.. code-block:: none
+
+   $ cat data.json
+   { "message": "hello world", "age": 31 }
+
+   $ jubaconv -i json -o fv -c /opt/jubatus/share/jubatus/example/config/classifier/pa.json < data.json
+   /message$hello world@str#bin/bin: 1
+   /age@num: 31
+
+   $ cat data_fv.json
+   {
+     "string_values": {
+       "hello": "world"
+     },
+     "num_values": {
+       "age": 31
+     }
+   }
+
+   $ jubaconv -i datum -o fv -c /opt/jubatus/share/jubatus/example/config/classifier/pa.json < datum.json
+   hello$world@str#bin/bin: 1
+   age@num: 31
+
 .. program:: jubaconv
 
 .. option:: -i <format>, --input-format <format>
@@ -385,7 +410,7 @@ jubaconv
 
 .. option:: -c <config>, --conf <config>
 
-   fv_converter configuration file in JSON (see :doc:`fv_convert`).
+   Jubatus server configuration file in JSON (see :doc:`fv_convert`).
 
    This option must be given only if ``fv`` is specified for :option:`-o`.
 
