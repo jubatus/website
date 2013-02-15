@@ -86,32 +86,23 @@ Methods
 For all methods, the first parameter of each method (``name``) is a string value to uniquely identify a task in the ZooKeeper cluster.
 When using standalone mode, this must be left blank (``""``).
 
-.. describe:: int train(0: string name, 1: list<tuple<float, datum> > train_data)
+.. mpidl:service:: regression
 
-   - Parameters:
+   .. mpidl:method:: int train(0: string name, 1: list<tuple<float, datum> > train_data)
 
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-     - ``train_data`` : list of tuple of label and datum
+      :param name:       string value to uniquely identifies a task in the ZooKeeper cluster
+      :param train_data: list of tuple of label and :mpidl:type:`datum`
+      :return:           Number of trained datum (i.e., the length of the ``train_data``)
 
-   - Returns:
+      Trains and updates the model.
+      ``tuple<float, datum>`` is a tuple of :mpidl:type:`datum` and its value.
+      This function is designed to allow bulk update with list of ``tuple<float, datum>``.
 
-     - Number of trained datum (i.e., the length of the ``train_data``)
+   .. mpidl:method:: list<float>  estimate(0: string name, 1: list<datum>  estimate_data)
 
-   Trains and updates the model.
-   ``tuple<float, datum>`` is a tuple of datum and its value.
-   This function is designed to allow bulk update with list of ``tuple<float, datum>``.
+      :param name:          string value to uniquely identifies a task in the ZooKeeper cluster
+      :param estimate_data: list of :mpidl:type:`datum` to estimate
+      :reutrn:              List of estimated values, in order of given :mpidl:type:`datum`
 
-
-.. describe:: list<float>  estimate(0: string name, 1: list<datum>  estimate_data)
-
-   - Parameters:
-
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-     - ``estimate_data`` : list of datum to estimate
-
-   - Returns:
-
-     - List of estimated values, in order of given datum
-
-   Estimates the value from given ``estimate_data``.
-   This API is designed to allow bulk estimation with list of ``datum``.
+      Estimates the value from given ``estimate_data``.
+      This API is designed to allow bulk estimation with list of :mpidl:type:`datum`.

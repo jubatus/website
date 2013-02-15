@@ -86,6 +86,7 @@ JSON の各フィールドは以下のとおりである
      }
 
 
+
 Data Structures
 ~~~~~~~~~~~~~~~
 
@@ -98,84 +99,51 @@ Methods
 各メソッドの最初のパラメタ ``name`` は、タスクを識別する ZooKeeper クラスタ内でユニークな名前である。
 スタンドアロン構成では、空文字列 (``""``) を指定する。
 
-.. describe:: bool clear_row(0: string name, 1: string id)
+.. mpidl:service:: anomaly
 
-   - 引数:
+   .. mpidl:method:: bool clear_row(0: string name, 1: string id)
 
-     - ``name`` : タスクを識別する ZooKeeper クラスタ内でユニークな名前
-     - ``id`` : 削除する点 ID
+      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
+      :param id:   削除する点 ID
+      :return:     点の削除に成功した場合 True
 
-   - 戻り値:
+      ID ``id`` で指定される点データを削除する。
 
-     - 点の削除に成功した場合 True 
+   .. mpidl:method:: tuple<string, float> add(0: string name, 1: datum row)
 
-   ID ``id`` で指定される点データを削除する。
+      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
+      :param row:  点の :mpidl:type:`datum`
+      :return:     点 ID と異常値のタプル
 
+      点データ ``row`` を追加する。
 
-.. describe:: tuple<string, float> add(0: string name, 1: datum row)
+   .. mpidl:method:: float update(0: string name, 1: string id, 2: datum row)
 
-   - 引数
+      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
+      :param id:   更新する点 ID
+      :param row:  点の新しい :mpidl:type:`datum`
+      :return:     異常値
 
-     - ``name`` : タスクを識別する ZooKeeper クラスタ内でユニークな名前
-     - ``row`` : datum
+      点 ``id`` をデータ ``row`` で更新する。
 
-   - 戻り値:
+   .. mpidl:method:: bool clear(0: string name)
 
-     - 点 ID と異常値のタプル
+      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
+      :return:     モデルの削除に成功した場合 True
 
-   点データ ``row`` を追加する。
+      モデルを完全に消去する。
 
+   .. mpidl:method:: float calc_score(0: string name, 1: datum row)
 
-.. describe:: float update(0: string name, 1: string id, 2: datum row)
+      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
+      :param row:  :mpidl:type:`datum`
+      :return:     与えられた ``row`` に対する異常度
 
-   - 引数
+      点を追加せずに、与えられた点データ ``row`` の異常度を計算する。
 
-     - ``name`` : タスクを識別する ZooKeeper クラスタ内でユニークな名前
-     - ``id`` : 更新する点 ID
-     - ``row`` : 点の新しいデータ
+   .. mpidl:method:: list<string> get_all_rows(0: string name)
 
-   - 戻り値:
+      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
+      :return:     すべての点の ID リスト
 
-     - 異常値
-
-   点 ``id`` をデータ ``row`` で更新する。
-
-
-.. describe:: bool clear(0: string name)
-
-   - 引数
-
-     - ``name`` : タスクを識別する ZooKeeper クラスタ内でユニークな名前
-
-   - 戻り値:
-
-     - モデルの削除に成功した場合 True
-
-   モデルを完全に消去する。
-
-
-.. describe:: float calc_score(0: string name, 1: datum row)
-
-   - 引数
-
-     - ``name`` : タスクを識別する ZooKeeper クラスタ内でユニークな名前
-     - ``row`` : datum
-
-   - 戻り値:
-
-     - 与えられたデータに対する異常度
-
-   点を追加せずに、与えられた点データ ``row`` の異常度を計算する。
-
-
-.. describe:: list<string> get_all_rows(0: string name)
-
-   - 引数
-
-     - ``name`` : タスクを識別する ZooKeeper クラスタ内でユニークな名前
-
-   - 戻り値:
-
-     - すべての点の ID リスト
-
-   すべての点の ID リストを返す。
+      すべての点の ID リストを返す。

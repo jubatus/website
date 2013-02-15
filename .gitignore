@@ -9,3 +9,4 @@ build
 jubatus.github.com
 *~
 *.swp
+*.pyc

@@ -369,6 +369,31 @@ jubaconv
 
 ``jubaconv`` は fv_converter 内部の動作をシミュレーションし、変換結果をコマンドラインで表示することができる。
 
+利用例を以下に示す:
+
+.. code-block:: none
+
+   $ cat data.json
+   { "message": "hello world", "age": 31 }
+
+   $ jubaconv -i json -o fv -c /opt/jubatus/share/jubatus/example/config/classifier/pa.json < data.json
+   /message$hello world@str#bin/bin: 1
+   /age@num: 31
+
+   $ cat data_fv.json
+   {
+     "string_values": {
+       "hello": "world"
+     },
+     "num_values": {
+       "age": 31
+     }
+   }
+
+   $ jubaconv -i datum -o fv -c /opt/jubatus/share/jubatus/example/config/classifier/pa.json < datum.json
+   hello$world@str#bin/bin: 1
+   age@num: 31
+
 .. program:: jubaconv
 
 .. option:: -i <format>, --input-format <format>
@@ -385,7 +410,7 @@ jubaconv
 
 .. option:: -c <config>, --conf <config>
 
-   JSON で記述された fv_converter の設定ファイル (:doc:`fv_convert` を参照)。
+   JSON で記述された Jubatus サーバの設定ファイル (:doc:`fv_convert` を参照)。
 
    :option:`-o` に ``fv`` が指定されている場合のみ、このオプションを指定する必要がある。
 
@@ -394,25 +419,33 @@ jubaconv
 jenerator
 ~~~~~~~~~
 
-``jenerator`` は拡張 MessagePack-IDL ファイルから、Keeper とサーバのテンプレート (C++ ソース) を生成する。
+``jenerator`` は拡張 MessagePack-IDL ファイルから、Keeper の実装、サーバのテンプレート、C++ クライアントを生成する。詳細は :doc:`server` を参照すること。
 
-``jenerator`` はデフォルトではインストールされない (ソースの ``src/tools/generator`` ディレクトリを参照)。
+``jenerator`` はデフォルトではインストールされない (ソースの ``src/tools/jenerator`` ディレクトリを参照)。
 
 .. code-block:: none
 
-  $ jenerator <idl-file> [options...]
+  $ jenerator -l <lang> [options ...] <idl-file> ...
 
 .. program:: jenerator
+
+.. option:: -l <lang>
+
+   生成するクライアントコードの言語。現在は ``cpp`` のみがサポートされている。
+   ただし、サーバ/Keeper を生成したい場合は ``server`` を指定する。
 
 .. option:: -o <dirpath>
 
    生成されたソースファイルを出力するディレクトリ。
 
+   指定されない場合は、カレントディレクトリが使用される。
+
 .. option:: -i
 
    ``#include`` 命令に相対パスを使用する。
 
-   このオプションは Jubatus 開発者による利用を想定しているため、多くの場合、指定する必要はない。
+   このオプションは Jubatus 開発者による利用を想定している。
+   生成されたコードを Jubatus のソースツリー内でビルドする場合を除き、指定する必要はない。
 
 .. option:: -n <namespace>
 
@@ -422,39 +455,10 @@ jenerator
 
    サーバのテンプレートを生成する。
 
-.. option:: -d
+.. option:: -g <guard>
 
-   デバッグモードで実行する。
+   ヘッダファイルに使用するインクルードガードのプレフィックスを指定する。
 
 .. option:: -help, --help
 
    このコマンドの簡単な使い方を表示する。
-
-mpidlconv
-~~~~~~~~~
-
-``mpidlconv`` は ``mpidl`` コマンドの出力を Jubatus フレームワークで利用できる形に変換する。
-
-``mpidlconv`` はデフォルトではインストールされない (ソースの ``src/tools`` ディレクトリを参照)。Python 2.7 以降が必要である。
-
-.. program:: mpidlconv
-
-.. option:: -i <dirpath>, --input <dirpath>
-
-   ``mpidl`` で出力されたファイルが配置されたディレクトリ。
-
-.. option:: -o <dirpath>, --output <dirpath>
-
-   変換されたソースファイルを出力するディレクトリ。
-
-   指定されない場合は、 ``--input`` で指定されたディレクトリにあるファイルを直接書き換える。
-
-.. option:: -s <service>, --service <service>
-
-   変換するサービスの名前。
-
-.. option:: -I, --internal
-
-   ``#include`` 命令に相対パスを使用する。
-
-   このオプションは Jubatus 開発者による利用を想定しているため、多くの場合、指定する必要はない。

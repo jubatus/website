@@ -9,9 +9,8 @@ Flow of Development
 -------------------
 
 #. サービスが持つべきRPCインターフェースを IDL で定義する。
-#. ``jenerator`` を用いて IDL から サーバー、Keeper のコードを生成する。
-#. ``mpidl`` を用いてデータ構造とクライアントを生成する。
-#. ``mpidlconv`` を用いて ``mpidl`` の出力を変換する。
+#. ``jenerator`` を用いて、IDL から サーバー、Keeper のコード、共通のデータ構造、C++ クライアントを生成する。
+#. ``mpidl`` を用いて、IDL から C++ 以外の言語 (Python/Ruby/Java など) のクライアントを生成する。
 #. RPC毎にサーバーが利用するユーザ定義クラスのインターフェースの実体、および必要に応じてmix操作を作成する。
 
 `スケルトンプロジェクト <https://github.com/jubatus/jubatus-service-skelton>`_ を利用すると、容易に開発を開始できる。
@@ -32,11 +31,11 @@ Jubatus フレームワークを利用した機械学習システムは、以下
 
 - NAME_serv.cpp: 機能を実装するソースファイル (``jenerator`` で生成されるテンプレートを編集)
 - NAME_serv.hpp: ``NAME_serv.cpp`` に対応するヘッダファイル (``jenerator`` で生成されるテンプレートを編集)
-- NAME_server.hpp: RPC メソッドの登録を行う ``NAME_impl_`` の親クラス (``mpidl`` で自動生成)
+- NAME_server.hpp: RPC メソッドの登録を行う ``NAME_impl_`` の親クラス (``jenerator`` で自動生成)
 - NAME_impl.cpp: サーバの main 関数と RPC インタフェースの定義 (``jenerator`` で自動生成)
 - NAME_keeper.cpp: Keeper の実装 (``jenerator`` で自動生成)
-- NAME_client.hpp: クライアントの実装 (``mpidl`` で自動生成)
-- NAME_types.hpp: RPC で使用する構造体や型の情報 (``mpidl`` で自動生成; サーバ/クライアント/Keeper で共用)
+- NAME_client.hpp: クライアントの実装 (``jenerator`` で自動生成)
+- NAME_types.hpp: RPC で使用する構造体や型の情報 (``jenerator`` で自動生成; サーバ/クライアント/Keeper で共用)
 
 ``jenerator``: The Code Generator
 ---------------------------------
@@ -85,16 +84,16 @@ RPC インターフェースは `MessagePack-IDL <https://github.com/msgpack/msg
   }
 
   service kvs {
-    #@cht(2) #@update #@all_and
+    #@cht(2) #@update #@pass
     int put(0: string name, 1: string key, 2: string value)
 
     #@cht(2) #@analysis #@pass
     entry get(0: string name, 1: string key)
 
-    #@cht(2) #@update #@all_and
+    #@cht(2) #@update #@pass
     int del(0: string name, 1: string key, 2: int version)
 
-    #@broadcast #@update #@all_and
+    #@broadcast #@update #@pass
     int clear(0: string name)
 
     #@broadcast #@analysis #@merge
@@ -112,26 +111,26 @@ RPC インターフェースは `MessagePack-IDL <https://github.com/msgpack/msg
 Building ``jenerator``
 ~~~~~~~~~~~~~~~~~~~~~~
 
-``jenerator`` のビルドには OCaml および OMake が必要である。
+``jenerator`` のビルドには OCaml (findlib あり) および OMake が必要である。
 
 ::
 
-  $ cd jubatus/tools/generator
+  $ cd jubatus/tools/jenerator/src
   $ omake
   $ sudo omake install
 
-ヒント: Ubuntu を使用している場合、OCaml (``ocaml-native-compilers``) と OMake (``omake``) のバイナリパッケージが利用できる。
+``omake install`` を行うと ``jenerator`` が ``/usr/local/bin/jenerator`` としてインストールされる (環境によりパスは異なる場合がある)。インストールを行わずに、ビルドされた ``jenerator`` のバイナリを直接使用してもよい。
+
+ヒント: Ubuntu を使用している場合、OCaml (``ocaml-native-compilers``), findlib (``ocaml-findlib``), OMake (``omake``) のバイナリパッケージが利用できる。
 
 Generating Server/Keeper from IDL
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-上に示した例が ``kvs.idl`` というファイルに書かれていると仮定して、以下のような手順でサーバと Keeper を生成できる。
+上に示した例が ``kvs.idl`` というファイルに書かれていると仮定して、以下の手順でコードを生成する。
 
 ::
 
-  $ jenerator kvs.idl
-
-4 つのファイル ``kvs_impl.cpp`` (サーバ), ``kvs_keeper.cpp`` (Keeper), ``kvs_serv.tmpl.{cpp,hpp}`` (サーバの実装のテンプレート) が生成される。
+  $ jenerator -l server -o . -n jubatus -t kvs.idl
 
 ``jenerator`` の詳細な使い方については :ref:`jenerator-ja` を参照すること。
 

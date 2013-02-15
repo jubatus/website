@@ -99,84 +99,51 @@ Methods
 For all methods, the first parameter of each method (``name``) is a string value to uniquely identify a task in the ZooKeeper cluster.
 When using standalone mode, this must be left blank (``""``).
 
-.. describe:: bool clear_row(0: string name, 1: string id)
+.. mpidl:service:: anomaly
 
-   - Parameters:
+   .. mpidl:method:: bool clear_row(0: string name, 1: string id)
 
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-     - ``id`` : point ID to be removed
+      :param name: string value to uniquely identifies a task in the ZooKeeper cluster
+      :param id:   point ID to be removed
+      :return:     True when the point was cleared successfully
 
-   - Returns:
+      Clears a point data with ID ``id``.
 
-     - True when the point was cleared successfully
+   .. mpidl:method:: tuple<string, float> add(0: string name, 1: datum row)
 
-   Clears a point data with ID ``id``.
+     :param name: string value to uniquely identifies a task in the ZooKeeper cluster
+     :param row:  :mpidl:type:`datum` for the point
+     :return:     Tuple of the point ID and the anomaly measure value
 
+     Adds a point data ``row``.
 
-.. describe:: tuple<string, float> add(0: string name, 1: datum row)
+   .. mpidl:method:: float update(0: string name, 1: string id, 2: datum row)
 
-   - Parameters:
+      :param name: string value to uniquely identifies a task in the ZooKeeper cluster
+      :param id:   point ID to update
+      :param row:  new :mpidl:type:`datum` for the point
+      :return:     Anomaly measure value
 
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-     - ``row`` : datum
+      Updates the point ``id`` with the data ``row``.
 
-   - Returns:
+   .. mpidl:method:: bool clear(0: string name)
 
-     - Tuple of the point ID and the anomaly measure value
+      :param name: string value to uniquely identifies a task in the ZooKeeper cluster
+      :return:     True when the model was cleared successfully
 
-   Adds a point data ``row``.
+      Completely clears the model.
 
+   .. mpidl:method:: float calc_score(0: string name, 1: datum row)
 
-.. describe:: float update(0: string name, 1: string id, 2: datum row)
+      :param name: string value to uniquely identifies a task in the ZooKeeper cluster
+      :param row:  :mpidl:type:`datum`
+      :return:     Anomaly measure value for given ``row``
 
-   - Parameters:
+      Calculates an anomaly measure value for the point data ``row`` without adding a point.
 
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-     - ``id`` : point ID to update
-     - ``row`` : new value for the point
+   .. mpidl:method:: list<string> get_all_rows(0: string name)
 
-   - Returns:
+      :param name: string value to uniquely identifies a task in the ZooKeeper cluster
+      :return:     List of all point IDs
 
-     - Anomaly measure value
-
-   Updates the point ``id`` with the given datum ``d``.
-
-
-.. describe:: bool clear(0: string name)
-
-   - Parameters:
-
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-
-   - Returns:
-
-     - True when the model was cleared successfully
-
-   Completely clears the model.
-
-
-.. describe:: float calc_score(0: string name, 1: datum row)
-
-   - Parameters:
-
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-     - ``row`` : datum
-
-   - Returns:
-
-     - Anomaly measure value
-
-   Calculates an anomaly measure value for datum ``row`` without adding a point.
-
-
-.. describe:: list<string>  get_all_rows(0: string name)
-
-   - Parameters:
-
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-
-   - Returns:
-
-     - list of all point IDs
-
-   Returns the list of all point IDs.
+      Returns the list of all point IDs.

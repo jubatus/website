@@ -21,7 +21,7 @@ JSON の各フィールドは以下のとおりである
       ================ ===================================
       設定値           手法
       ================ ===================================
-      ``"perceptron"`` パーセプトロン法を利用する。 
+      ``"perceptron"`` パーセプトロン法を利用する。
       ``"PA"``         Passive Agressive (PA) を利用する。 [Crammer06]_
       ``"PA1"``        PA-I を利用する。 [Crammer06]_
       ``"PA2"``        PA-II を利用する。 [Crammer06]_
@@ -113,11 +113,18 @@ JSON の各フィールドは以下のとおりである
 Data Structures
 ~~~~~~~~~~~~~~~
 
-.. describe:: estimate_result
+.. mpidl:message:: estimate_result
 
    分類の結果を表す。
-   ``label`` は推定されたラベル、 ``score`` はそのラベルに付けられた対する確からしさの値である。
-   ``score`` の値が大きいほど、より推定されたラベルの信頼性が高いことを意味する。
+
+   .. mpidl:member:: 0: string label
+
+      推定されたラベルを表す。
+
+   .. mpidl:member:: 1: double score
+
+      ラベルに付けられた対する確からしさの値である。
+      ``score`` の値が大きいほど、より推定されたラベルの信頼性が高いことを意味する。
 
    .. code-block:: c++
 
@@ -133,34 +140,23 @@ Methods
 各メソッドの最初のパラメタ ``name`` は、タスクを識別する ZooKeeper クラスタ内でユニークな名前である。
 スタンドアロン構成では、空文字列 (``""``) を指定する。
 
-.. describe:: int train(0: string name, 1: list<tuple<string, datum> > data)
+.. mpidl:service:: classifier
 
-   - 引数:
+   .. mpidl:method:: int train(0: string name, 1: list<tuple<string, datum> > data)
 
-     - ``name`` : タスクを識別する ZooKeeper クラスタ内でユニークな名前
-     - ``data`` : labelとdatumで構成される組のリスト
+      :param name:  タスクを識別する ZooKeeper クラスタ内でユニークな名前
+      :param data:  label と :mpidl:type:`datum` で構成される組のリスト
+      :return:      学習した件数 (``data`` の長さに等しい)
 
-   - 戻り値:
+      学習しモデルを更新する。
+      ``tuple<string, datum>`` は、 :mpidl:type:`datum` とその label の組である。
+      この API は ``tuple<string, datum>`` をリスト形式でまとめて同時に受け付けることができる (バルク更新)。
 
-     - 学習した件数 (``data`` の長さに等しい)
+   .. mpidl:method:: list<list<estimate_result> > classify(0: string name, 1: list<datum> data)
 
-   学習しモデルを更新する。
-   ``tuple<string, datum>`` は、datumとそのlabelの組である。
-   この API は ``tuple<string, datum>`` をリスト形式でまとめて同時に受け付けることができる (バルク更新)。
+      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
+      :param data: 分類する :mpidl:type:`datum` のリスト
+      :return:     :mpidl:type:`estimate_result` のリストのリスト (入れられた :mpidl:type:`datum` の順に並ぶ)
 
-
-.. describe:: list<list<estimate_result> > classify(0: string name, 1: list<datum> data)
-
-   - 引数:
-
-     - ``name`` : タスクを識別する ZooKeeper クラスタ内でユニークな名前
-     - ``data`` : 分類するdatumのリスト
-
-   - 戻り値:
-
-     - estimate_result のリストのリスト (入れられたdatumの順に並ぶ)
-
-   与えられた ``data`` から、ラベルを推定する。
-   この API は、 ``datum`` をリスト形式でまとめて同時に受け付けることができる (バルク分類)。
-
-
+      与えられた ``data`` から、ラベルを推定する。
+      この API は、 :mpidl:type:`datum` をリスト形式でまとめて同時に受け付けることができる (バルク分類)。

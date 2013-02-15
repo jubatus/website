@@ -7,7 +7,7 @@ Jubatus は以下の特徴を持ったオンライン機械学習向け分散処
 - 特徴ベクトル変換器 (fv_converter): データの前処理と特徴抽出
 - フォルトトレラントな分散機械学習のためのフレームワーク
 
-See :doc:`../index` for English documentation.
+`English documentation <../en/>`_ is also available.
 
 Get Jubatus
 -----------
@@ -31,7 +31,7 @@ Table of Contents
    references
    howtocontribute
    misc
-
+   aboutus
 
 Other Resources
 ===============

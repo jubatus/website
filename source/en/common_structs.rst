@@ -3,14 +3,23 @@ Common Data Structures and Methods
 
 These data structures and methods are available in each server.
 
-
 Data Structures
 ~~~~~~~~~~~~~~~
 
-.. describe:: datum
+.. mpidl:message:: datum
 
    Represents a set of data used for machine learning in Jubatus.
    See :doc:`fv_convert` for details.
+
+   .. mpidl:member:: 0: list<tuple<string, string> > string_values
+
+      Input data represented in string.
+      It is represented as key-value pairs of data.
+
+   .. mpidl:member:: 1: list<tuple<string, double> > num_values
+
+      Input data represented in numeric value.
+      It is represented as key-value pairs of data.
 
    .. code-block:: c++
 
@@ -26,57 +35,37 @@ Methods
 For all methods, the first parameter of each method (``name``) is a string value to uniquely identify a task in the ZooKeeper cluster.
 When using standalone mode, this must be left blank (``""``).
 
-.. describe:: bool save(0: string name, 1: string id)
+.. mpidl:method:: bool save(0: string name, 1: string id)
 
-   - Parameters:
-
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-     - ``id`` : file name to save
-
-   - Returns:
-
-     - True if this function saves files successfully at all servers
+   :param name: string value to uniquely identifies a task in the ZooKeeper cluster
+   :param id:   file name to save
+   :return:     True if this function saves files successfully at all servers
 
    Store the learing model to the local disk at **ALL** servers.
 
 
-.. describe:: bool load(0: string name, 1: string id)
+.. mpidl:method:: bool load(0: string name, 1: string id)
 
-   - Parameters:
-
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-     - ``id`` : file name to load
-
-   - Returns:
-
-     - True if this function loads files successfully at all servers
+   :param name: string value to uniquely identifies a task in the ZooKeeper cluster
+   :param id:   file name to load
+   :return:     True if this function loads files successfully at all servers
 
    Restore the saved model from local disk at **ALL** servers.
 
 
-.. describe:: config_data get_config(0: string name)
+.. mpidl:method:: string get_config(0: string name)
 
-   - Parameters:
-
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-
-   - Returns:
-
-     - server configuration set on initialization
+   :param name: string value to uniquely identifies a task in the ZooKeeper cluster
+   :return:     server configuration set on initialization
 
    Returns server configuration from a server.
    For format of configuration, see API reference of each services.
 
 
-.. describe:: map<string, map<string, string> >  get_status(0: string name)
+.. mpidl:method:: map<string, map<string, string> >  get_status(0: string name)
 
-   - Parameters:
-
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-
-   - Returns:
-
-     - Internal state for each servers. The key of most outer map is in form of ``hostname_portnumber``.
+   :param name: string value to uniquely identifies a task in the ZooKeeper cluster
+   :return:     Internal state for each servers. The key of most outer map is in form of ``hostname_portnumber``.
 
    Returns server status from **ALL** servers.
    Each server is represented by a pair of host name and port.

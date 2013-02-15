@@ -1,4 +1,4 @@
-IDL Support Status (2013 Jan.)
+IDL Support Status (2013 Feb.)
 ------------------------------
 
 現在、Jubatus は 6 種類の機械学習タスク (Classifier, Regression, Recommender, Stat, Graph, Anomaly) をサポートしています。
@@ -23,7 +23,7 @@ IDL Support Status (2013 Jan.)
 
 以下の環境でテストを行なっています。
 
-- Jubatus : Jubatus 0.4.0
+- Jubatus : Jubatus 0.4.1
 
 - Server : 上記レポジトリで生成されたサーバ
 
