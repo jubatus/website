@@ -56,11 +56,21 @@ Example:
 Data Structures
 ~~~~~~~~~~~~~~~
 
-.. describe:: node
+.. mpidl:message:: node
 
-   Represents information for a node.
-   ``in_edges`` is a list of ID of incoming edges.
-   ``out_edges`` is a list of ID of outgoing edges.
+   Represents the node information.
+
+   .. mpidl:member:: 0: map<string, string> property
+
+      Property information for the node.
+
+   .. mpidl:member:: 1: list<ulong> in_edges
+
+      List of ID of incoming edges.
+
+   .. mpidl:member:: 2: list<ulong> out_edges
+
+      List of ID of outgoing edges.
 
    .. code-block:: c++
 
@@ -70,8 +80,7 @@ Data Structures
         2: list<ulong>  out_edges
       }
 
-
-.. describe:: preset_query
+.. mpidl:message:: preset_query
 
    Represents a preset query.
    See the description below for details.
@@ -83,12 +92,21 @@ Data Structures
         1: list<tuple<string, string> > node_query
       }
 
+.. mpidl:message:: edge
 
-.. describe:: edge
+   Represents the edge information.
 
-   Represents information for an edge.
-   ``source`` is an ID of the source node that the edge connects.
-   ``target`` is an ID of the target node that the edge connects.
+   .. mpidl:member:: 0: map<string, string> property
+
+      Property information for the edge.
+
+   .. mpidl:member:: 1: string source
+
+      ID of the source node that the edge connects.
+
+  .. mpidl:member:: 2: string target
+
+     ID of the target node that the edge connects.
 
    .. code-block:: c++
 
@@ -98,8 +116,7 @@ Data Structures
         2: string target
       }
 
-
-.. describe:: shortest_path_query
+.. mpidl:message:: shortest_path_query
 
    Represents a shortest path query information.
    See the description of ``shortest_path`` method for details.
@@ -149,111 +166,113 @@ Methods
 For all methods, the first parameter of each method (``name``) is a string value to uniquely identify a task in the ZooKeeper cluster.
 When using standalone mode, this must be left blank (``""``).
 
-.. describe:: string create_node(0: string name)
+.. mpidl:service:: graph
 
-   Creates a node on the graph.
-   Returns a node ID as string.
+   .. mpidl:method:: string create_node(0: string name)
 
-
-.. describe:: bool remove_node(0: string name, 1: string node_id)
-
-   Removes a node ``node_id`` from the graph.
+      Creates a node on the graph.
+      Returns a node ID as string.
 
 
-.. describe:: bool update_node(0: string name, 1: string node_id, 2: map<string, string> property)
+   .. mpidl:method:: bool remove_node(0: string name, 1: string node_id)
 
-   Updates the property of the node ``node_id`` to ``property``.
-
-
-.. describe:: ulong create_edge(0: string name, 1: string node_id, 2: edge e)
-
-   Creates a link from ``e.source`` to ``e.target``.
-   Returns a edge ID as an unsigned long integer.
-
-   The link has a direction.
-   For any two nodes, multiple links with the same direction can be created.
-   In this case, property ``e.property`` can be associated to each link (see ``edge``).
-
-   ``node_id`` must be the same value as ``e.source``.
+      Removes a node ``node_id`` from the graph.
 
 
-.. describe:: bool update_edge(0: string name, 1: string node_id, 2: ulong edge_id, 3: edge e)
+   .. mpidl:method:: bool update_node(0: string name, 1: string node_id, 2: map<string, string> property)
 
-   Updates an existing edge ``edge_id`` with information ``e``.
-   Property will be replaced.
-
-   ``node_id`` must be the same value as ``e.source``.
+      Updates the property of the node ``node_id`` to ``property``.
 
 
-.. describe:: bool remove_edge(0: string name, 1: string node_id, 2: ulong edge_id)
+   .. mpidl:method:: ulong create_edge(0: string name, 1: string node_id, 2: edge e)
 
-   Removes an edge ``edge_id``.
-   ``node_id`` must be an ID for the source node of the edge ``edge_id``.
+      Creates a link from ``e.source`` to ``e.target``.
+      Returns a edge ID as an unsigned long integer.
 
+      The link has a direction.
+      For any two nodes, multiple links with the same direction can be created.
+      In this case, property ``e.property`` can be associated to each link (see ``edge``).
 
-.. describe:: double get_centrality(0: string name, 1: string node_id, 2: int centrality_type, 3: preset_query query)
-
-   Calculates (gets the computed value) the centrality over the edges that match the preset query ``query``.
-   The query must be registered beforehand by using ``add_centrality_query``.
-
-   ``centrality_type`` is a type of centrality.
-   Currently, only ``0`` (PageRank centrality) can be specified.
-
-   Centrality is computed when mix runs, thus there may be a gap between the exact value of centrality and the computed value if there're updates not mixed.
-   See also the description of ``update_index``.
+      ``node_id`` must be the same value as ``e.source``.
 
 
-.. describe:: bool add_centrality_query(0: string name, 1: preset_query query)
+   .. mpidl:method:: bool update_edge(0: string name, 1: string node_id, 2: ulong edge_id, 3: edge e)
 
-   Adds a preset query ``query`` to the graph for centrality calculation.
+      Updates an existing edge ``edge_id`` with information ``e``.
+      Property will be replaced.
 
-
-.. describe:: bool add_shortest_path_query(0: string name, 1: preset_query query)
-
-   Adds a preset query ``query`` to the graph for shortest path calculation.
+      ``node_id`` must be the same value as ``e.source``.
 
 
-.. describe:: bool remove_centrality_query(0: string name, 1: preset_query query)
+   .. mpidl:method:: bool remove_edge(0: string name, 1: string node_id, 2: ulong edge_id)
 
-   Removes a preset query ``query`` from the graph.
-
-
-.. describe:: bool remove_shortest_path_query(0: string name, 1: preset_query query)
-
-   Removes a preset query ``query`` from the graph.
+      Removes an edge ``edge_id``.
+      ``node_id`` must be an ID for the source node of the edge ``edge_id``.
 
 
-.. describe:: list<string> get_shortest_path(0: string name, 1: shortest_path_query query)
+   .. mpidl:method:: double get_centrality(0: string name, 1: string node_id, 2: int centrality_type, 3: preset_query query)
 
-   Calculates (from the precomputed data) a shortest path from ``query.source`` to ``query.target`` that matches the preset query.
-   The query must be registered beforehand by using ``add_shortest_path_query``.
-   Returns a list of node IDs that represents a path from ``query.source`` to ``query.target``.
+      Calculates (gets the computed value) the centrality over the edges that match the preset query ``query``.
+      The query must be registered beforehand by using ``add_centrality_query``.
 
-   If the shortest path from ``query.source`` to ``query.target`` cannot be found within ``query.max_hop`` hops, the result will be truncated.
+      ``centrality_type`` is a type of centrality.
+      Currently, only ``0`` (PageRank centrality) can be specified.
 
-   Path-index tree may have a gap between the exact path and the computed path when in a distributed setup.
-   See also the description of ``update_index``.
-
-
-.. describe:: bool update_index(0: string name)
-
-   Runs mix locally. **Do not use in distributed mode**.
-
-   Some functions like ``get_centrality`` and ``get_shortest_path`` uses an index that is updated in the mix operation.
-   In a standalone mode, mix is not automatically called thus users must call this API by themselves.
+      Centrality is computed when mix runs, thus there may be a gap between the exact value of centrality and the computed value if there're updates not mixed.
+      See also the description of ``update_index``.
 
 
-.. describe:: bool clear(0: string name)
+   .. mpidl:method:: bool add_centrality_query(0: string name, 1: preset_query query)
 
-   Clears the whole data.
-
-
-.. describe:: node get_node(0: string name, 1: string node_id)
-
-   Gets the ``node`` for a node ``node_id``.
+      Adds a preset query ``query`` to the graph for centrality calculation.
 
 
-.. describe:: edge get_edge(0: string name, 1: string node_id, 2: ulong edge_id)
+   .. mpidl:method:: bool add_shortest_path_query(0: string name, 1: preset_query query)
 
-   Gets the ``edge`` of an edge ``edge_id``.
-   ``node_id`` is an ID for the source node of the edge ``edge_id``.
+      Adds a preset query ``query`` to the graph for shortest path calculation.
+
+
+   .. mpidl:method:: bool remove_centrality_query(0: string name, 1: preset_query query)
+
+      Removes a preset query ``query`` from the graph.
+
+
+   .. mpidl:method:: bool remove_shortest_path_query(0: string name, 1: preset_query query)
+
+      Removes a preset query ``query`` from the graph.
+
+
+   .. mpidl:method:: list<string> get_shortest_path(0: string name, 1: shortest_path_query query)
+
+      Calculates (from the precomputed data) a shortest path from ``query.source`` to ``query.target`` that matches the preset query.
+      The query must be registered beforehand by using ``add_shortest_path_query``.
+      Returns a list of node IDs that represents a path from ``query.source`` to ``query.target``.
+
+      If the shortest path from ``query.source`` to ``query.target`` cannot be found within ``query.max_hop`` hops, the result will be truncated.
+
+      Path-index tree may have a gap between the exact path and the computed path when in a distributed setup.
+      See also the description of ``update_index``.
+
+
+   .. mpidl:method:: bool update_index(0: string name)
+
+      Runs mix locally. **Do not use in distributed mode**.
+
+      Some functions like ``get_centrality`` and ``get_shortest_path`` uses an index that is updated in the mix operation.
+      In a standalone mode, mix is not automatically called thus users must call this API by themselves.
+
+
+   .. mpidl:method:: bool clear(0: string name)
+
+      Clears the whole data.
+
+
+   .. mpidl:method:: node get_node(0: string name, 1: string node_id)
+
+      Gets the ``node`` for a node ``node_id``.
+
+
+   .. mpidl:method:: edge get_edge(0: string name, 1: string node_id, 2: ulong edge_id)
+
+      Gets the ``edge`` of an edge ``edge_id``.
+      ``node_id`` is an ID for the source node of the edge ``edge_id``.
