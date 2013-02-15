@@ -59,21 +59,21 @@ We show each filed below:
      :regularization_weight:
         Sensitivity to learning rate.
         The bigger it is, the ealier you can train, but more sensitive to noise.
-        It corresponds to :math:`C` in the original paper [Crammer06]_.
+        It corresponds to :math:`\phi` in the original paper [Dredze08]_.
         (Float)
 
    AROW
      :regularization_weight:
         Sensitivity to learning rate.
         The bigger it is, the ealier you can train, but more sensitive to noise.
-        It corresponds to :math:`C` in the original paper [Crammer06]_.
+        It corresponds to :math:`1/r` in the original paper [Crammer09b]_.
         (Float)
 
    NHERD
      :regularization_weight:
         Sensitivity to learning rate.
         The bigger it is, the ealier you can train, but more sensitive to noise.
-        It corresponds to :math:`C` in the original paper [Crammer06]_.
+        It corresponds to :math:`C` in the original paper [Crammer10]_.
         (Float)
 
 
@@ -112,11 +112,18 @@ Example:
 Data Structures
 ~~~~~~~~~~~~~~~
 
-.. describe:: estimate_result
+.. mpidl:message:: estimate_result
 
    Represents a result of classification.
-   ``label`` is an estimated label and ``score`` is a probability value for the ``label``.
-   Higher ``score`` value means that the estimated label is more confident.
+
+   .. mpidl:member:: 0: string label
+
+      Represents an estimated label.
+
+   .. mpidl:member:: 1: double score
+
+      Represents a probability value for the ``label``.
+      Higher ``score`` value means that the estimated label is more confident.
 
    .. code-block:: c++
 
@@ -132,32 +139,23 @@ Methods
 For all methods, the first parameter of each method (``name``) is a string value to uniquely identify a task in the ZooKeeper cluster.
 When using standalone mode, this must be left blank (``""``).
 
-.. describe:: int train(0: string name, 1: list<tuple<string, datum> > data)
+.. mpidl:service:: classifier
 
-   - Parameters:
+   .. mpidl:method:: int train(0: string name, 1: list<tuple<string, datum> > data)
 
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-     - ``data`` : list of tuple of label and datum
+      :param name:  string value to uniquely identifies a task in the ZooKeeper cluster
+      :param data:  list of tuple of label and :mpidl:type:`datum`
+      :return:      Number of trained datum (i.e., the length of the ``data``)
 
-   - Returns:
+      Trains and updates the model.
+      ``tuple<string, datum>`` is a tuple of :mpidl:type:`datum` and its label.
+      This API is designed to accept bulk update with list of ``tuple<string, datum>``.
 
-     - Number of trained datum (i.e., the length of the ``data``)
+   .. mpidl:method:: list<list<estimate_result> > classify(0: string name, 1: list<datum> data)
 
-   Trains and updates the model.
-   ``tuple<string, datum>`` is a tuple of datum and its label.
-   This API is designed to accept bulk update with list of ``tuple<string, datum>``.
+      :param name:  string value to uniquely identifies a task in the ZooKeeper cluster
+      :param data:  list of datum to classify
+      :return:      List of list of :mpidl:type:`estimate_result`, in order of given :mpidl:type:`datum`
 
-
-.. describe:: list<list<estimate_result> > classify(0: string name, 1: list<datum> data)
-
-   - Parameters:
-
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-     - ``data`` : list of datum to classify
-
-   - Returns:
-
-     - List of list of ``estimate_result``, in order of given datum
-
-   Estimates labels from given ``data``.
-   This API is designed to accept bulk classification with list of ``datum``.
+      Estimates labels from given ``data``.
+      This API is designed to accept bulk classification with list of :mpidl:type:`datum`.
