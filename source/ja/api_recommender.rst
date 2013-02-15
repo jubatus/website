@@ -35,7 +35,7 @@ JSON の各フィールドは以下のとおりである
 
    inverted_index:
      なし
-   
+
    minhash
      :hash_num:
         ハッシュの個数を指定する。
@@ -129,16 +129,16 @@ Methods
 
       :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :param id:   削除する行 ID
-      :return:     行の削除に成功した場合 True 
+      :return:     行の削除に成功した場合 True
 
-      ``id`` で指定される行を推薦テーブルから削除する。 
+      ``id`` で指定される行を推薦テーブルから削除する。
 
 
    .. mpidl:method:: bool update_row(0: string name, 1: string id, 2: datum row)
 
       :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
-      :param id:   行 ID 
-      :param row:  datum
+      :param id:   行 ID
+      :param row:  行に対応する :mpidl:type:`datum`
       :return:     モデルの更新に成功した場合 True
 
       行 ID ``id`` のデータを ``row`` を利用して更新する。
@@ -147,14 +147,12 @@ Methods
       更新操作を受け付けたサーバが当該行を持つサーバーと同一であれば、操作は即次反映される。
       異なるサーバーであれば、mix 後に反映される。
 
-
    .. mpidl:method:: bool clear(0: string name)
 
       :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :return:     モデルの削除に成功した場合 True
- 
-      モデルを完全に消去する。
 
+      モデルを完全に消去する。
 
    .. mpidl:method:: datum complete_row_from_id(0: string name, 1: string id)
 
@@ -168,10 +166,9 @@ Methods
 
       :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :param row:  補完したい値が欠けた :mpidl:type:`datum`
-      :return:     指定したdatumで構成されるrowの中で欠けている値を補完したdatum
+      :return:     指定した :mpidl:type:`datum` で構成される row の中で欠けている値を補完した :mpidl:type:`datum`
 
-      指定した datum ``row`` で欠けている値を近傍から予測し、補完された datum を返す。
-
+      指定した ``row`` で欠けている値を近傍から予測し、補完された :mpidl:type:`datum` を返す。
 
    .. mpidl:method:: similar_result similar_row_from_id(0: string name, 1: string id, 2: uint size)
 
@@ -182,26 +179,23 @@ Methods
 
       指定した行 ``id`` に近い行とその近傍性のリストを (最大で) ``size`` 個返す。
 
-
    .. mpidl:method:: similar_result similar_row_from_datum(0: string name, 1: datum row, 2: uint size)
 
       :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
-      :param row:  補完したいdatum
-      :param ret_num: 返す近傍の数
-      :return: ``row`` から構成された ``similar_result``
+      :param row:  補完したい :mpidl:type:`datum`
+      :param size: 返す近傍の数
+      :return:     ``row`` から構成された ``similar_result``
 
-      指定したdatum ``data`` に近い行とその近傍性のリストを ``size`` 個返す。
-
+      指定した ``row`` に近い :mpidl:type:`datum` を持つ行とその近傍性のリストを (最大で) ``size`` 個返す。
 
    .. mpidl:method:: datum decode_row(0: string name, 1: string id)
 
       :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :param id:   推薦テーブル内の行を表すID
-      :return:     行 ID ``id`` に対応する datum
+      :return:     行 ID ``id`` に対応する :mpidl:type:`datum`
 
-      行 ``id`` の ``datum`` 表現を返す。
-      ただし、fv_converterで不可逆な処理を行なっている ``datum`` は復元されない。
-
+      行 ``id`` の :mpidl:type:`datum` を返す。
+      ただし、fv_converterで不可逆な処理を行なっている :mpidl:type:`datum` は復元されない。
 
    .. mpidl:method:: list<string> get_all_rows(0:string name)
 
@@ -210,21 +204,19 @@ Methods
 
       すべての行の ID リストを返す。
 
-
    .. mpidl:method:: float calc_similarity(0: string name, 1: datum lhs, 2:datum rhs)
 
       :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
-      :param lhs:  datum
-      :param rhs:  別の datum
+      :param lhs:  :mpidl:type:`datum`
+      :param rhs:  別の :mpidl:type:`datum`
       :return:     ``lhs`` と ``rhs`` の類似度
 
-      指定した 2 つの datum の類似度を返す。
-
+      指定した 2 つの :mpidl:type:`datum` の類似度を返す。
 
    .. mpidl:method:: float calc_l2norm(0: string name, 1: datum row)
 
       :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
-      :param row:  datum
+      :param row:  :mpidl:type:`datum`
       :return:     ``row`` の L2 ノルム
- 
-      指定した datum ``row`` の L2 ノルムを返す。
+
+      指定した ``row`` の L2 ノルムを返す。
