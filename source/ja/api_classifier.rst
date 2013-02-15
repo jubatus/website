@@ -21,7 +21,7 @@ JSON の各フィールドは以下のとおりである
       ================ ===================================
       設定値           手法
       ================ ===================================
-      ``"perceptron"`` パーセプトロン法を利用する。 
+      ``"perceptron"`` パーセプトロン法を利用する。
       ``"PA"``         Passive Agressive (PA) を利用する。 [Crammer06]_
       ``"PA1"``        PA-I を利用する。 [Crammer06]_
       ``"PA2"``        PA-II を利用する。 [Crammer06]_
@@ -145,13 +145,12 @@ Methods
    .. mpidl:method:: int train(0: string name, 1: list<tuple<string, datum> > data)
 
       :param name:  タスクを識別する ZooKeeper クラスタ内でユニークな名前
-      :param data:  labelと :mpidl:type:`datum` で構成される組のリスト
+      :param data:  label と :mpidl:type:`datum` で構成される組のリスト
       :return:      学習した件数 (``data`` の長さに等しい)
 
       学習しモデルを更新する。
       ``tuple<string, datum>`` は、 :mpidl:type:`datum` とその label の組である。
       この API は ``tuple<string, datum>`` をリスト形式でまとめて同時に受け付けることができる (バルク更新)。
-
 
    .. mpidl:method:: list<list<estimate_result> > classify(0: string name, 1: list<datum> data)
 
@@ -161,5 +160,3 @@ Methods
 
       与えられた ``data`` から、ラベルを推定する。
       この API は、 :mpidl:type:`datum` をリスト形式でまとめて同時に受け付けることができる (バルク分類)。
-
-
