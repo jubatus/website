@@ -3,6 +3,8 @@ Methods
 
 このページでは、各サーバで使用されているアルゴリズムの詳細について説明する。
 
+.. In this page, we discuss the details of algorithms used in each server. This page is currently written in Japanese; see References section for the list of references for each algorithms.
+
 Classifier & Regression
 =======================
 
@@ -175,4 +177,13 @@ update_row操作ではdiffのみを更新する．similar_row, complete_row操�
 mix操作時には各サーバーからdiffをあつめ,それらを合わせた上で，各サーバーに配り直し,mixedに更新として適用する.そしてdiffを空に初期化する操作を施す．diffを集め始めてから，各サーバーに配り直されるまでの間に各サーバーに施された変更は全て破棄される．この破棄分をバッファを２つ持つなどして対応することは今後の課題である．
 
 inverted_index_storageではdiff, mixedは転置ファイルとなっており，bit_index_storageでは各row毎にbit列を保持する.
+
+Anomaly
+=======
+
+References
+----------
+
+**Local Outlier Factor**
+  .. [Breunig2000] Markus M. Breunig, Hans-Peter Kriegel, Raymond T. Ng, Jörg Sander, **LOF: Identifying Density-Based Local Outliers**, SIGMOD, 2000.
 

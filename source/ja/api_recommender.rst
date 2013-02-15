@@ -22,9 +22,9 @@ JSON の各フィールドは以下のとおりである
       設定値               手法
       ==================== ===================================
       ``"inverted_index"`` 転置インデックスを利用する。
-      ``"minhash"``        MinHash を利用する。 [Li10]_
+      ``"minhash"``        MinHash を利用する。 [Ping2010]_
       ``"lsh"``            Locality Sensitive Hashing を利用する。
-      ``"euclid_lsh"``     Euclid 距離版の LSH を利用する。 [Andoni06]_
+      ``"euclid_lsh"``     Euclid 距離版の LSH を利用する。 [Andoni2005]_
       ==================== ===================================
 
 

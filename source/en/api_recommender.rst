@@ -22,9 +22,9 @@ We show each filed below:
       Value                Method
       ==================== ===================================
       ``"inverted_index"`` Use Inverted Index.
-      ``"minhash"``        Use MinHash. [Li10]_
+      ``"minhash"``        Use MinHash. [Ping2010]_
       ``"lsh"``            Use Locality Sensitive Hashing.
-      ``"euclid_lsh"``     Use Euclid-distance LSH. [Andoni06]_
+      ``"euclid_lsh"``     Use Euclid-distance LSH. [Andoni2005]_
       ==================== ===================================
 
 
