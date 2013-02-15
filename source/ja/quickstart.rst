@@ -140,7 +140,7 @@ Java
      <dependency>
        <groupId>us.jubat</groupId>
        <artifactId>jubatus</artifactId>
-       <version>0.4.0</version>
+       <version>0.4.1</version>
      </dependency>
    </dependencies>
 
