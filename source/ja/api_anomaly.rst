@@ -86,6 +86,7 @@ JSON の各フィールドは以下のとおりである
      }
 
 
+
 Data Structures
 ~~~~~~~~~~~~~~~
 
@@ -104,29 +105,26 @@ Methods
 
       :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :param id:   削除する点 ID
-      :return:     点の削除に成功した場合 True 
+      :return:     点の削除に成功した場合 True
 
       ID ``id`` で指定される点データを削除する。
-
 
    .. mpidl:method:: tuple<string, float> add(0: string name, 1: datum row)
 
       :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
-      :param row:  datum
-      :return: 点 ID と異常値のタプル
+      :param row:  点の :mpidl:type:`datum`
+      :return:     点 ID と異常値のタプル
 
       点データ ``row`` を追加する。
-
 
    .. mpidl:method:: float update(0: string name, 1: string id, 2: datum row)
 
       :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :param id:   更新する点 ID
-      :param row:  点の新しいデータ
+      :param row:  点の新しい :mpidl:type:`datum`
       :return:     異常値
 
       点 ``id`` をデータ ``row`` で更新する。
-
 
    .. mpidl:method:: bool clear(0: string name)
 
@@ -135,15 +133,13 @@ Methods
 
       モデルを完全に消去する。
 
-
    .. mpidl:method:: float calc_score(0: string name, 1: datum row)
 
       :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
-      :param row:  datum
-      :return:     与えられたデータに対する異常度
+      :param row:  :mpidl:type:`datum`
+      :return:     与えられた ``row`` に対する異常度
 
       点を追加せずに、与えられた点データ ``row`` の異常度を計算する。
-
 
    .. mpidl:method:: list<string> get_all_rows(0: string name)
 
