@@ -31,7 +31,7 @@ Table of Contents
    references
    howtocontribute
    misc
-
+   aboutus
 
 Other Resources
 ===============
