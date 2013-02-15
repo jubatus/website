@@ -91,19 +91,18 @@ Methods
    .. mpidl:method:: int train(0: string name, 1: list<tuple<float, datum> > train_data)
 
       :param name:       タスクを識別する ZooKeeper クラスタ内でユニークな名前
-      :param train_data: floatとdatumで構成される組のリスト
+      :param train_data: float と :mpidl:type:`datum` で構成される組のリスト
       :return:           学習した件数 (``train_data`` の長さに等しい)
 
       学習し、モデルを更新する。
-      ``tuple<float, datum>`` は、datumとその値の組である。
+      ``tuple<float, datum>`` は、 :mpidl:type:`datum` とその値の組である。
       この関数は ``tuple<float, datum>`` をリスト形式でまとめて同時に受け付けることができる (バルク更新)。
-
 
    .. mpidl:method:: list<float>  estimate(0: string name, 1: list<datum>  estimate_data)
 
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
-      :param estimate_data: 推定するdatumのリスト
-      :return: 推定値のリスト (入れられたdatumの順に並ぶ)
+      :param name:          タスクを識別する ZooKeeper クラスタ内でユニークな名前
+      :param estimate_data: 推定する :mpidl:type:`datum` のリスト
+      :return:              推定値のリスト (入れられた :mpidl:type:`datum` の順に並ぶ)
 
       与えられた ``estimate_data`` から結果を推定する。
       この関数は :mpidl:type:`datum` をリスト形式でまとめて同時に受け付けることができる (バルク推定)。
