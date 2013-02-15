@@ -130,7 +130,7 @@ Generating Server/Keeper from IDL
 
 ::
 
-  $ jenerator -l cpp -o . -n jubatus -t kvs.idl
+  $ jenerator -l server -o . -n jubatus -t kvs.idl
 
 ``jenerator`` の詳細な使い方については :ref:`jenerator-ja` を参照すること。
 

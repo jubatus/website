@@ -130,7 +130,7 @@ Suppose the name of the example above is a file ``kvs.idl``, we can generate cod
 
 ::
 
-  $ jenerator -l cpp -o . -n jubatus -t kvs.idl
+  $ jenerator -l server -o . -n jubatus -t kvs.idl
 
 See :ref:`jenerator` for the detailed usage of ``jenerator``.
 

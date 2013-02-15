@@ -406,7 +406,8 @@ jenerator
 
 .. option:: -l <lang>
 
-   Language of the code to generate. Currently only ``cpp`` is supported.
+   Language of the client code to generate. Currently only ``cpp`` is supported.
+   Specify ``server`` if you need to generate servers and keepers.
 
 .. option:: -o <dirpath>
 
