@@ -97,7 +97,7 @@ Now build Jubatus.
   $ sudo ./waf install
   $ sudo ldconfig
 
-As this is a minimal configuration (see ``./waf configure --help`` for other configuration options available), some features like clustering and feature extraction plugins are not available.
+As this is a minimal configuration (see ``./waf configure --help`` for other configuration options available), some features like distributed mode and feature extraction plugins are not available.
 
 Other Environments
 ~~~~~~~~~~~~~~~~~~
