@@ -15,6 +15,7 @@ Data Structures
 
       Input data represented in string.
       It is represented as key-value pairs of data.
+      Name of keys cannot contain "$" sign.
 
    .. mpidl:member:: 1: list<tuple<string, double> > num_values
 

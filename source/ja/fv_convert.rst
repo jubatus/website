@@ -63,6 +63,8 @@ datumには2つのkey-valueが存在する。
     ]
   )
 
+キーの名前に "$" 記号を含めることはできない。
+
 例えばC++から利用する場合、datumは ``std::vector<std::pair<std::string, std::string> >`` と、 ``std::vector<std::pair<std::stirng, double> >`` の2つの要素からなっている。
 ここでは、 ``std::pair<T,U>`` をPython風のタプルで、 ``std::vector<T>`` をPython風のリストで表している。
 
@@ -161,7 +163,7 @@ string_filter_types
  正規表現にマッチした部分を、指定した文字列に変換する。このフィルターは ``--disable-re2`` 付きでコンパイルすると利用できない。
 
   :pattern:  マッチさせる正規表現を指定する。re2を利用するため、利用できる表現はre2のマニュアルを参照する。
-  :replace:  置き換え後の文字列を指定する。                                                                
+  :replace:  置き換え後の文字列を指定する。
 
  HTMLのすべてのタグを消すには、例えば以下のようなstring_filter_typeを宣言すればよいだろう。
 
@@ -178,7 +180,6 @@ string_filter_types
 
   :path:      プラグインのパスを指定する。
   :function:  プラグインの呼び出し関数を指定する。この値はプラグインによって異なる。
-
 
 
 string_filter_rules
@@ -272,6 +273,7 @@ string_types
 string_typesで文字列特徴抽出器を定義する。
 主に、パスなどの引数を指定しなければならない特徴抽出器は、一度string_typesで指定してから利用しなければならない。
 string_filter_typesなどと同様、<抽出器名>:<引数> からなる辞書を指定する。
+抽出器名に "@" 文字を含むことはできない。
 引数は文字列から文字列への辞書で、必ず"method"を指定する必要がある。
 それ以外に必要な引数は"method"に応じて異なる。
 指定できる"method"の値と、それぞれに対応した引数は以下のとおりである。

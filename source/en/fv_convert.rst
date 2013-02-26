@@ -63,6 +63,8 @@ The following is an example of a datum.
     ]
   )
 
+Name of keys cannot contain "$" sign.
+
 For example, a datum consists of ``std::vector<std::pair<std::string, std::string> >`` and  ``std::vector<std::pair<std::stirng, double> >`` in C++.
 ``std::pair<T,U>`` (resp.  ``std::vector<T>``) is to C++ what tuple (resp. vector) is to Python.
 
@@ -272,6 +274,7 @@ string_types
 Feature extractors of strings are defined in "string_types".
 Some feature extractors must be defined in "string_types". An exapmle of such extractors is one which requires arguments such as path.
 As "string_filter_types", it specifies a dictionary which consists of <extractor name>:<argument>.
+Name of extractors cannot contain "@" sign.
 <argument> is a dictionary whose key and value are both strings and it must contain a key named "method".
 The rest of the keys in <argument> are dependent on the value of "method".
 The followings are available values of "method" and keys that must be specified.

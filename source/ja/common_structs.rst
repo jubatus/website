@@ -15,6 +15,7 @@ Data Structures
 
       文字列で表現される入力データである。
       データのキーと値のペアの集合として表現される。
+      キーの名前に "$" 記号を含めることはできない。
 
    .. mpidl:member:: 1: list<tuple<string, double> > num_values
 
