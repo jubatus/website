@@ -450,7 +450,7 @@ Note that some plugins are not available depending on your compile options.
 .. describe:: libmecab_splitter.so
 
  We can specify this plugin in "string_types".
- Separate given Japanese document into words by MeCab and use each word as a feature.
+ Separate given Japanese document into words by `MeCab <http://code.google.com/p/mecab/>`_ and use each word as a feature.
  This plugin is available only when compiled with ``--enable-mecab``.
 
   :function:   Specify "create".
@@ -471,7 +471,7 @@ Note that some plugins are not available depending on your compile options.
 .. describe:: libux_splitter.so
 
  We can specify this plugin in "string_types".
- Extract keywords from given document by way of dictionary matching with ux-trie and use each keyword as a feature.
+ Extract keywords from given document by way of dictionary matching with `ux-trie <http://code.google.com/p/ux-trie/>`_ and use each keyword as a feature.
  Matching is a simple longest matching. Note that it is fast but precision may be low. 
  This plugin is available only when compiled with ``--enable-ux``.
 
@@ -492,8 +492,9 @@ Note that some plugins are not available depending on your compile options.
 .. describe:: libre2_splitter.so
 
  We can specify this plugin in "string_types".
- Extract keywords from given document by way of regular expression matching with re2 and use each keyword as a feature.
+ Extract keywords from given document by way of regular expression matching with `re2 <http://code.google.com/p/re2/>`_ and use each keyword as a feature.
  Matching is executed continuously, that is, every match is used as a feature.
+ For list of regular expressions available, refer to the `re2 documentation <http://code.google.com/p/re2/wiki/Syntax>`_.
  This plugin is available only when **NOT** compiled with ``--disable-re2``.
 
   :function:  Specifies "create".
