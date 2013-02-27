@@ -57,16 +57,16 @@ JSON の各フィールドは以下のとおりである
      {
        "method" : "lof",
        "parameter" : {
-         "nearest_neighbor_num" : 100,
+         "nearest_neighbor_num" : 10,
          "reverse_nearest_neighbor_num" : 30,
          "method" : "euclid_lsh",
          "parameter" : {
-           "lsh_num" : 8,
-           "table_num" : 8,
-           "probe_num" : 8,
-           "bin_width" : 8.2,
-           "seed" : 1234,
-           "retain_projection" : true
+           "lsh_num" : 64,
+           "table_num" : 4,
+           "seed" : 1091,
+           "probe_num" : 64,
+           "bin_width" : 100,
+           "retain_projection" : false
          }
        },
        "converter" : {
@@ -84,7 +84,6 @@ JSON の各フィールドは以下のとおりである
          ]
        }
      }
-
 
 
 Data Structures

@@ -84,7 +84,10 @@ JSON の各フィールドは以下のとおりである
   .. code-block:: javascript
 
      {
-       "method": "inverted_index"
+       "method": "lsh",
+       "parameter" : {
+         "bit_num" : 64
+       },
        "converter" : {
          "string_filter_types": {},
          "string_filter_rules":[],
@@ -98,7 +101,7 @@ JSON の各フィールドは以下のとおりである
          "num_rules": [
            {"key" : "*", "type" : "num"}
          ]
-       },
+       }
      }
 
 

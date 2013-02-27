@@ -85,7 +85,10 @@ Example:
   .. code-block:: javascript
 
      {
-       "method": "inverted_index"
+       "method": "lsh",
+       "parameter" : {
+         "bit_num" : 64
+       },
        "converter" : {
          "string_filter_types": {},
          "string_filter_rules":[],
@@ -99,9 +102,8 @@ Example:
          "num_rules": [
            {"key" : "*", "type" : "num"}
          ]
-       },
+       }
      }
-
 
 Data Structures
 ~~~~~~~~~~~~~~~
