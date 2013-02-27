@@ -4,7 +4,7 @@ Building Jubatus from Source
 Jubatus をソースからビルドすることは可能ですが、できる限りバイナリパッケージ (:doc:`quickstart` 参照) を使用することを推奨します。
 ソースからビルドする場合は、 `jubatus-installer <https://github.com/jubatus/jubatus-installer>`_ が参考になるでしょう。
 
-.. _requirements-ja:
+.. _requirements:
 
 Requirements
 ------------

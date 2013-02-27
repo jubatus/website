@@ -1,4 +1,4 @@
-.. _conversion-ja:
+.. _conversion:
 
 Data Conversion
 ===============
@@ -246,7 +246,7 @@ num_filter_rules
 
 "key"の指定の仕方は、string_filter_rulesを参照のこと。
 
-.. _construct-ja:
+.. _construct:
 
 Feature Extraction from Strings
 -------------------------------
@@ -429,7 +429,7 @@ Jubatus では特徴ベクトルのキーをハッシュ化することでメモ
 最適な ``hash_max_size`` の値は、使用するデータセットおよび環境により異なる。
 ``hash_max_size`` が制限するのは入力される datum のキー数ではなく、(変換後の) 特徴ベクトルのキー数であることに注意する。
 
-.. _conversion_plugin-ja:
+.. _conversion_plugin:
 
 Plugins
 -------

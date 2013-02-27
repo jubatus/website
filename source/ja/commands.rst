@@ -360,7 +360,7 @@ jubaconfig
 Utilities
 ---------
 
-.. _jubaconv-ja:
+.. _jubaconv:
 
 jubaconv
 ~~~~~~~~
@@ -414,7 +414,7 @@ jubaconv
 
    :option:`-o` に ``fv`` が指定されている場合のみ、このオプションを指定する必要がある。
 
-.. _jenerator-ja:
+.. _jenerator:
 
 jenerator
 ~~~~~~~~~
