@@ -178,7 +178,6 @@ The followings are available values of "method" and keys that must be specified.
 
  Use a plugin. See below for further detail.
 
-
   :path:      Specifies a path to the plugin.
   :function:  Specifies a function to be called in a plugin. It depends on the plugin.
 
@@ -190,16 +189,17 @@ Specifies rules how to apply filters.
 The rules are checked in order.
 If a datum is matched to a rule, the corresponding filter is applied and a converted value is stored to the datum.
 Application is called recursively, that is, rest of filters is applied to the original values and the converted values.
-Each rule is represented as a dictionary whose keys are "key", "type" and "suffix".
+Each rule is represented as a dictionary whose keys are "key", "except" (optional), "type" and "suffix".
 
  :key:       Specifies to which keys in a datum we apply the rule. We describe it in datail later.
+ :except:    Specifies which keys to exclude from the match. This is an optional parameter. We describe it in datail later.
  :type:      Specidies the name of the filter used. This filter must de defined in "string_filter_types". No filters are available by default.
  :suffix:    Specifies a suffix of a key where the result of filtering is stored. For example, if "suffix" is "-detagged" and a filter is applied to "name" key in a datum, the result is stored in "name-detagged" key.
 
-"key" is specified in one of the following formats.
+"key" and "except" can be specified in one of the following formats.
 For each key in a datum, all rules checked to be applicable.
 It means that if a single key matches n rules, every corresponding filter will be applied to the original key. Then, new n keys are added to the datum.
-Every "key" in this document is in the same format. Similarly, it happens that multiple rules are applied to a single key.
+Every "key" and "except" in this document is in the same format. Similarly, it happens that multiple rules are applied to a single key.
 
  ============= ====================
  Value         Meaning
@@ -211,6 +211,8 @@ Every "key" in this document is in the same format. Similarly, it happens that m
  otherwise     If the key is none of the above, it matches to keys that are identical to the given string.
  ============= ====================
 
+When "except" is specified and both "key" and "except" matched, the rule will be skipped.
+For example, by using {"key": "*", "except": "foo", ... }, you can define the rule which will be applied for every keys other than "foo".
 
 num_filter_types
 ~~~~~~~~~~~~~~~~
@@ -239,13 +241,14 @@ num_filter_rules
 ~~~~~~~~~~~~~~~~
 
 Like "string_filter_rules", it specifies rules how to apply filters.
-Each rule is a dictionary whose keys are "key", "type" and "suffix".
+Each rule is a dictionary whose keys are "key", "except" (optional), "type" and "suffix".
 
  :key:       Specifies to which keys in a datum we apply the rule. For further explanation, please read counterpart in "string_filter_rules" section.
+ :except:    Specifies which keys to exclude from the match. This is an optional parameter. For further explanation, please read counterpart in "string_filter_rules" section.
  :type:      Specidies a name of a filter used. This filter must de defined in "string_filter_types". No filter is available if no filter is defined in "string_filter_types".
  :suffix:    Specifies a suffix of a key where the result of a filtering is stored. For example, if "suffix" is "-detagged" and a filter is applied to "name" key in a datum, the result is stored in "name-detagged" key.
 
-Format of "key" is written in "string_filter_rules" section.
+Format of "key" and "except" is written in "string_filter_rules" section.
 
 .. _construct:
 
@@ -307,12 +310,13 @@ string_rules
 
 Specifies how to extract string features.
 As "string_filter_rules", it consists of multiple rules.
-Each rule is a dictionary whose keys are "key", "type", "sample_weight" and "global_weight".
+Each rule is a dictionary whose keys are "key", "except" (optional), "type", "sample_weight" and "global_weight".
 These rules specifies how we extract rules from given strings and their weights used in calculating scores.
 A weight is calculated with two parameters, "sample_weight" and "global_weight".
 In concrete, the weight is the product of these two weights.
 
  :key:       Specifies to which keys in a datum we apply the rule. For further explanation, please read counterpart in "string_filter_rules" section.
+ :except:    Specifies which keys to exclude from the match. This is an optional parameter. For further explanation, please read counterpart in "string_filter_rules" section.
  :type:      Specifies the name of an extractor in use. The extractor is either one defined in "string_types" or one of pre-defined extractors. The followings are the pre-defined extractors.
 
     ============= =====================
@@ -384,16 +388,12 @@ num_rules
 
 Specifies how to extract numeric features.
 As "string_rules", it consists of multiple rules.
-Each rule is a dictionary whose keys are "key" and "type".
+Each rule is a dictionary whose keys are "key", "except" (optional) and "type".
 It depends on "type" how to specify weight and name features.
 
- :key:
- 
-   Specifies to which keys in a datum we apply the rule. For further explanation, please read counterpart in "string_filter_rules" section.
-
- :type:
- 
-   Specifies the name of extractor in use. The extractor is either one defined in "num_types" or one of pre-defined extractors. The followings are the pre-defined extractors.
+ :key:    Specifies to which keys in a datum we apply the rule. For further explanation, please read counterpart in "string_filter_rules" section.
+ :except: Specifies which keys to exclude from the match. This is an optional parameter. For further explanation, please read counterpart in "string_filter_rules" section.
+ :type:   Specifies the name of extractor in use. The extractor is either one defined in "num_types" or one of pre-defined extractors. The followings are the pre-defined extractors.
 
     ============= =====================
     Value         Meaning
