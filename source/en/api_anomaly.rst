@@ -124,13 +124,6 @@ When using standalone mode, this must be left blank (``""``).
 
       Updates the point ``id`` with the data ``row``.
 
-   .. mpidl:method:: bool clear(0: string name)
-
-      :param name: string value to uniquely identifies a task in the ZooKeeper cluster
-      :return:     True when the model was cleared successfully
-
-      Completely clears the model.
-
    .. mpidl:method:: float calc_score(0: string name, 1: datum row)
 
       :param name: string value to uniquely identifies a task in the ZooKeeper cluster

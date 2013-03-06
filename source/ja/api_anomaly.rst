@@ -125,13 +125,6 @@ Methods
 
       点 ``id`` をデータ ``row`` で更新する。
 
-   .. mpidl:method:: bool clear(0: string name)
-
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
-      :return:     モデルの削除に成功した場合 True
-
-      モデルを完全に消去する。
-
    .. mpidl:method:: float calc_score(0: string name, 1: datum row)
 
       :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前

@@ -44,7 +44,6 @@ When using standalone mode, this must be left blank (``""``).
 
    Store the learing model to the local disk at **ALL** servers.
 
-
 .. mpidl:method:: bool load(0: string name, 1: string id)
 
    :param name: string value to uniquely identifies a task in the ZooKeeper cluster
@@ -53,6 +52,12 @@ When using standalone mode, this must be left blank (``""``).
 
    Restore the saved model from local disk at **ALL** servers.
 
+.. mpidl:method:: bool clear(0: string name)
+
+   :param name: string value to uniquely identifies a task in the ZooKeeper cluster
+   :return:     True when the model was cleared successfully
+
+   Completely clears the model at **ALL** servers.
 
 .. mpidl:method:: string get_config(0: string name)
 

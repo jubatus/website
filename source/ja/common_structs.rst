@@ -44,7 +44,6 @@ Methods
 
    **すべて** のサーバで学習モデルをローカルディスクに保存する。
 
-
 .. mpidl:method:: bool load(0: string name, 1: string id)
 
    :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
@@ -53,6 +52,12 @@ Methods
 
    **すべて** のサーバで、保存された学習モデルをローカルディスクから読み出す。
 
+.. mpidl:method:: bool clear(0: string name)
+
+   :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
+   :return:     モデルの削除に成功した場合 True
+
+   **すべて** のサーバで、モデルを完全に消去する。
 
 .. mpidl:method:: string get_config(0: string name)
 
@@ -61,7 +66,6 @@ Methods
 
    サーバの設定を取得する。
    取得される設定情報内容については、各サービスの API リファレンスを参照のこと。
-
 
 .. mpidl:method:: map<string, map<string, string> >  get_status(0: string name)
 

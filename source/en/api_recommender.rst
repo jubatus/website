@@ -149,13 +149,6 @@ When using standalone mode, this must be left blank (``""``).
       If the server that manages the row and the server that received this RPC request are same, this operation is reflected instantly.
       If not, update operation is reflected after mix.
 
-   .. mpidl:method:: bool clear(0: string name)
-
-      :param name: string value to uniquely identifies a task in the ZooKeeper cluster
-      :return:     True when the model was cleared successfully
-
-      Completely clears the model.
-
    .. mpidl:method:: datum complete_row_from_id(0: string name, 1: string id)
 
       :param name: string value to uniquely identifies a task in the ZooKeeper cluster
