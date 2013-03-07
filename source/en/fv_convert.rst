@@ -454,7 +454,7 @@ Note that some plugins are not available depending on your compile options.
  This plugin is available only when compiled with ``--enable-mecab``.
 
   :function:   Specify "create".
-  :arg:        Specify arguments to MeCab engine. "arg" is not specified, Mecab works with default configuration.
+  :arg:        Specify arguments to MeCab engine (in the following example, we use -d to specify the dictionary directory). "arg" is not specified, Mecab works with default configuration.
                Refer to the `document of MeCab <http://mecab.googlecode.com/svn/trunk/mecab/doc/mecab.html>`_ about how to specify arguments.
 
  .. code-block:: js
@@ -476,7 +476,7 @@ Note that some plugins are not available depending on your compile options.
  This plugin is available only when compiled with ``--enable-ux``.
 
   :function:   Specifies "create".
-  :dict_path:  Specifies a full path of a dictionary file. The dictionary file consists of keywords, one keyword for one line.
+  :dict_path:  Specifies a full path of a dictionary file. The dictionary file is a text file that consists of keywords, one keyword per one line.
 
  .. code-block:: js
 
@@ -485,7 +485,7 @@ Note that some plugins are not available depending on your compile options.
           "method": "dynamic",
           "path": "libux_splitter.so",
           "function": "create",
-          "dict_path": "/path/to/keyword/dic"
+          "dict_path": "/path/to/keyword/dic.txt"
         }
       }
 

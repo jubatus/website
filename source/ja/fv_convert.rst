@@ -454,7 +454,7 @@ Jubatusでは、デフォルトで以下の3つの文字列特徴量のプラグ
  ``--enable-mecab`` オプション付きでコンパイルした場合のみ利用可能である。
 
   :function:   "create"を指定する。
-  :arg:        MeCabエンジンに渡す引数を指定する。この指定がないと、MeCabのデフォルト設定で動作する。
+  :arg:        MeCabエンジンに渡す引数を指定する (例えば、以下の例では -d で辞書ファイルのディレクトリを指定している)。この指定がないと、MeCabのデフォルト設定で動作する。
                引数の指定の仕方は、 `MeCab のドキュメント <http://mecab.googlecode.com/svn/trunk/mecab/doc/mecab.html>`_ を参照すること。
 
  .. code-block:: js
@@ -476,7 +476,7 @@ Jubatusでは、デフォルトで以下の3つの文字列特徴量のプラグ
  ``--enable-ux`` オプション付きでコンパイルした場合のみ利用可能である。
 
   :function:   "create"を指定する。
-  :dict_path:  1行1キーワードで書かれた辞書ファイルの場所を、フルパスで指定する。
+  :dict_path:  1行1キーワードで書かれたテキスト形式の辞書ファイルを、フルパスで指定する。
 
  .. code-block:: js
 
@@ -485,7 +485,7 @@ Jubatusでは、デフォルトで以下の3つの文字列特徴量のプラグ
           "method": "dynamic",
           "path": "libux_splitter.so",
           "function": "create",
-          "dict_path": "/path/to/keyword/dic"
+          "dict_path": "/path/to/keyword/dic.txt"
         }
       }
 
