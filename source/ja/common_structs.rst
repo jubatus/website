@@ -30,6 +30,49 @@ Data Structures
       }
 
 
+Constructor
+~~~~~~~~~~~
+
+.. describe:: constructor(string host, int port, int timeout_sec)
+
+   新しい RPC クライアントのインスタンスを作成します。
+   ``timeout_sec`` には RPC メソッドの実行からレスポンスまでのタイムアウト時間を指定します。
+
+   現在、Python と Ruby クライアントでは ``timeout_sec`` を指定することができません。
+
+   コンストラクタの利用方法を以下に示します:
+
+.. code-block:: cpp
+
+   // C++
+   #include <jubatus/client.hpp>
+   using jubatus::classifier::client::classifier;
+   // ...
+   classifier client("localhost", 9199, 10);
+
+.. code-block:: python
+
+   # Python
+   from jubatus.classifier.client import classifier
+   # ...
+   client = classifier("localhost", 9199);
+
+.. code-block:: ruby
+
+   // Ruby
+   require 'jubatus/classifier/client'
+   include Jubatus::Classifier::Client
+   // ...
+   client = Classifier.new("localhost", 9199)
+
+.. code-block:: java
+
+   // Java
+   import us.jubat.classifier.ClassifierClient;
+   // ...
+   ClassifierClient client = new ClassifierClient("localhost", 9199, 10);
+
+
 Methods
 ~~~~~~~
 

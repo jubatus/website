@@ -30,6 +30,49 @@ Data Structures
       }
 
 
+Constructor
+~~~~~~~~~~~
+
+.. describe:: constructor(string host, int port, int timeout_sec)
+
+   Creates a new RPC client instance.
+   ``timeout_sec`` is a length of timeout between the RPC method invocation and response.
+
+   Currently, you cannot specify ``timeout_sec`` for Python and Ruby clients.
+
+   Example usage of constructors are as follows:
+
+.. code-block:: cpp
+
+   // C++
+   #include <jubatus/client.hpp>
+   using jubatus::classifier::client::classifier;
+   // ...
+   classifier client("localhost", 9199, 10);
+
+.. code-block:: python
+
+   # Python
+   from jubatus.classifier.client import classifier
+   # ...
+   client = classifier("localhost", 9199);
+
+.. code-block:: ruby
+
+   // Ruby
+   require 'jubatus/classifier/client'
+   include Jubatus::Classifier::Client
+   // ...
+   client = Classifier.new("localhost", 9199)
+
+.. code-block:: java
+
+   // Java
+   import us.jubat.classifier.ClassifierClient;
+   // ...
+   ClassifierClient client = new ClassifierClient("localhost", 9199, 10);
+
+
 Methods
 ~~~~~~~
 
