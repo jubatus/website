@@ -40,17 +40,17 @@ RPC Errors
 
  This is a type mismatch error between clients and servers.
 
- The common mistake is using integer instead of float in values of ``num_values``.
- Always cast the values in ``num_values`` as float.
+ A common mistake is using integer instead of float in values of ``num_values``.
+ Always cast values in ``num_values`` as float.
  If you are using literals like ``10``, replace it with ``10.0`` instead.
  Another common mistake is assigning ``NULL`` for objects like vector.
 
  This error may also occur if the version of the client library you installed is not compatible with the version of the Jubatus server you are connecting to.
  Check out the `Jubatus Wiki: Client Compatibility and Documentation`_ for the compatibility information.
 
-- Client library occasionally throws RPC timeout errors; it seems that the server automatically disconnects the clients. Why?
+- Client library occasionally throws RPC timeout errors; it seems that servers automatically disconnect clients. Why?
 
- Jubatus servers automatically disconnects the client when the idle timeout (which is given on the command line parameter :option:`server -t`) expires.
+ Jubatus servers automatically close connections when the idle timeout (given by the command line parameter :option:`server -t`) expires.
  You need to retry the RPC call to re-establish the connection.
 
  To disable this auto-disconnect feature, set :option:`server -t` to 0, which means "no timeout".
@@ -95,7 +95,7 @@ Anomaly detection
 
   It also reduces the computation time for LOF. However, the number should not be smaller than ``nearest_neighbornum`` .
 
-Misccelaneous
+Miscellaneous
 :::::::::::::
 
 - How does 'jubatus' read?
