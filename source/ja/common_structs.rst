@@ -117,3 +117,14 @@ Methods
 
    **すべての** サーバの内部状態を取得する。
    サーバはホスト名、ポート番号で識別する。
+
+.. mpidl:method:: mprpc_client get_client()
+
+   :return: MessagePack-RPC クライアントインスタンス
+
+   Jubatus クライアントライブラリが利用している内部の MessagePack-RPC クライアントインスタンスに対する参照を返却します。
+   これは RPC メソッドではありません。
+
+   このメソッドは、主に TCP 接続を明示的に切断したり、タイムアウトを変更したりするために使用します。
+
+   ``mprpc_client`` は MessagePack-RPC クライアントの型で、言語により異なります (`C++ <http://ci.jubat.us/job/msgpack-rpc/doxygen/classmsgpack_1_1rpc_1_1client.html>`_ / `Python <https://github.com/msgpack/msgpack-rpc-python/blob/master/msgpackrpc/client.py>`_ / `Ruby <http://msgpack.org/rpc/rdoc/current/MessagePack/RPC/Client.html>`_ / `Java <http://msgpack.org/rpc/javadoc/current/org/msgpack/rpc/Client.html>`_)。

@@ -110,7 +110,6 @@ When using standalone mode, this must be left blank (``""``).
    Returns server configuration from a server.
    For format of configuration, see API reference of each services.
 
-
 .. mpidl:method:: map<string, map<string, string> >  get_status(0: string name)
 
    :param name: string value to uniquely identifies a task in the ZooKeeper cluster
@@ -118,3 +117,14 @@ When using standalone mode, this must be left blank (``""``).
 
    Returns server status from **ALL** servers.
    Each server is represented by a pair of host name and port.
+
+.. mpidl:method:: mprpc_client get_client()
+
+  :return: MessagePack-RPC client instance
+
+  Returns the reference to the raw MessagePack-RPC client instance which is used by Jubatus client libraries.
+  This is not an RPC method.
+
+  The common use case of this method is to close the TCP connection explicitly or to change the timeout.
+
+  ``mprpc_client`` is a type of MessagePack-RPC client that is different between languages (`C++ <http://ci.jubat.us/job/msgpack-rpc/doxygen/classmsgpack_1_1rpc_1_1client.html>`_ / `Python <https://github.com/msgpack/msgpack-rpc-python/blob/master/msgpackrpc/client.py>`_ / `Ruby <http://msgpack.org/rpc/rdoc/current/MessagePack/RPC/Client.html>`_ / `Java <http://msgpack.org/rpc/javadoc/current/org/msgpack/rpc/Client.html>`_).
