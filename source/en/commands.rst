@@ -37,7 +37,7 @@ Jubatus server provides the machine learning feature.
 
 .. option:: -t <seconds>, --timeout <seconds>
 
-   Session timeout of RPC in seconds. [10]
+   Session timeout of RPC in seconds(``0`` means disable timeout). [10]
 
 .. option:: -d <dirpath>, --datadir <dirpath>
 
@@ -135,7 +135,7 @@ In distributed environment, Jubatus Keeper distributes requests from clients to 
 
 .. option:: -t <seconds>, --timeout <seconds>
 
-   Session timeout of RPC in seconds. [10]
+   Session timeout of RPC in seconds(``0`` means disable timeout). [10]
 
 .. option:: -z <zookeeper_list>, --zookeeper <zookeeper_list>
 
