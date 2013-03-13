@@ -93,7 +93,7 @@ Anomaly detection
 
  - 3: Decrease ``reverse_nearest_neighbor_num``
 
-  It also reduces the computation time for LOF. However, the number should not be smaller than ``nearest_neighbornum`` .
+  It also reduces the computation time for LOF. However, the number should not be smaller than ``nearest_neighbor_num`` .
 
 Miscellaneous
 :::::::::::::

@@ -93,7 +93,7 @@ Anomaly detection
 
  - 3: ``reverse_nearest_neighbor_num`` を小さくする
 
-  LOF の計算時間を短縮することができます。ただし、 ``nearest_neighbornum`` より小さい値にすることはできません。
+  LOF の計算時間を短縮することができます。ただし、 ``nearest_neighbor_num`` より小さい値にすることはできません。
 
 Miscellaneous
 :::::::::::::
