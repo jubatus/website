@@ -153,6 +153,14 @@ In distributed environment, Jubatus Keeper distributes requests from clients to 
 
    INFO, WARNING, ERROR, FATAL corresponds to 0, 1, 2, 3, respectively.
 
+.. option:: -E <seconds>, --pool_expire <seconds>
+
+   Session pool timeout in seconds. [60]
+
+.. option:: -S <num>, --pool_size <num>
+
+   Maximum size of session pool (``0`` means unlimited) [0]
+
 .. option:: -v, --version
 
    Print the version of Jubatus keeper.

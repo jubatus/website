@@ -153,6 +153,14 @@ Jubatus Keeper は、分散環境においてクライアントからのリク�
 
    INFO, WARNING, ERROR, FATAL はそれぞれ 0, 1, 2, 3 に相当する。
 
+.. option:: -E <seconds>, --pool_expire <seconds>
+
+   セッション・プールのタイムアウト時間 (秒)。 [60]
+
+.. option:: -S <num>, --pool_size <num>
+
+   セッション・プールの最大数。 ``0`` は制限を指定しないことを示す。 [0]
+
 .. option:: -v, --version
 
    Jubatus Keeper のバージョンを表示する。
