@@ -109,7 +109,7 @@ You can use `Homebrew tap repository <https://github.com/jubatus/homebrew-jubatu
 Other Environments
 ~~~~~~~~~~~~~~~~~~
 
-- Debian/GNU Linux runs all mode.
+- Debian GNU/Linux runs all mode.
 - Arch Linux runs standalone mode.
 - FreeBSD does not run, needs some fixed on pficommon.
 - We are waiting for report in other \*BSD systems and in Solaris.

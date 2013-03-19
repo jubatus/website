@@ -109,7 +109,7 @@ Mac OS X では、スタンドアロンモードのビルドと実行が試験�
 Other Environments
 ~~~~~~~~~~~~~~~~~~
 
-- Debian/GNU Linux では動作しています。
+- Debian GNU/Linux では動作しています。
 - Arch Linux ではスタンドアローンモードで動作しています。
 - FreeBSD では動作していません。pficommon を修正する必要があります。
 - 他の \*BSD systems や Solarisでの動作報告をお待ちしています。
