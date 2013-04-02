@@ -9,7 +9,7 @@ Jubatus をソースからビルドすることは可能ですが、できる限
 Requirements
 ------------
 
-Jubatus をソースからビルドするには、 ``gcc`` (バージョン 4.4 以降), ``pkg-config`` (バージョン 0.26 以降) および ``python`` (バージョン 2.6 以降,  ``waf`` で使用される) が必要です。
+Jubatus をソースからビルドするには、 ``gcc`` (バージョン 4.4 以降), ``pkg-config`` (バージョン 0.26 以降) および ``python`` (バージョン 2.4 以降,  ``waf`` で使用される) が必要です。
 加えて、以下のライブラリも必要になります。
 サポートされているライブラリのバージョンについては `Jubatus Wiki <https://github.com/jubatus/jubatus/wiki/Supported-Library-Versions>`_ をご覧ください。
 

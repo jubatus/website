@@ -4,20 +4,6 @@ Frequently Asked Questions (FAQs)
 Installation
 ::::::::::::
 
-- ``./waf configre`` が以下のエラーで失敗する
-
- このエラーは古い Python を利用している場合に発生します。Python 2.6 以降を利用してください。
-
-::
-
-  ...
-  line 298, in load_tool
-       __import__(d)
-     File "/Users/oliner/tmp/jubatus/unittest_gtest.py", line 8
-       C1 = b'#XXX'
-                ^
-  SyntaxError: invalid syntax
-
 - ``mecab_splitter.trivial`` と ``mecab_splitter_create.trivial`` の単体テストが通らない
 
  mecab 辞書と mecab コマンドで UTF-8 が使えるようになっていることを確かめてください。
