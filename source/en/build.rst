@@ -19,8 +19,8 @@ Software            Version    Mandatory Note
 msgpack             >= 0.5.7   ✔
 jubatus-mpio        0.4.1      ✔
 jubatus-msgpack-rpc 0.4.1      ✔         C++ client library must be installed.
-pficommon           master     ✔         msgpack-rpc (mprpc) must be enabled.
-google-glog         >= 0.3.2   ✔
+pficommon           master     ✔
+google-glog         >= 0.3.3   ✔
 mecab               >= 0.99              Required when configured with ``--enable-mecab``.
 re2                 master               Required when configured *without* ``--disable-re2``
 ux-trie             master               Required when configured with ``--enable-ux``.
@@ -72,14 +72,13 @@ Here's an example on Ubuntu 12.04 systems.
   $ tar xzf pficommon-master.tar.gz
   $ cd pficommon-master
   $ ./waf configure
-    -> ensure that pficommon is configured with msgpack-rpc support enbabled ("MessagePack RPC module: yes")
   $ ./waf build
   $ sudo ./waf install
   $ cd ..
 
-  $ wget http://google-glog.googlecode.com/files/glog-0.3.2.tar.gz
-  $ tar xzf glog-0.3.2.tar.gz
-  $ cd glog-0.3.2
+  $ wget http://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
+  $ tar xzf glog-0.3.3.tar.gz
+  $ cd glog-0.3.3
   $ ./configure
   $ make
   $ sudo make install
@@ -99,11 +98,17 @@ Now build Jubatus.
 
 As this is a minimal configuration (see ``./waf configure --help`` for other configuration options available), some features like distributed mode and feature extraction plugins are not available.
 
+Mac OS X
+~~~~~~~~
+
+We experimentally support building and running standalone mode on Mac OS X.
+
+You can use `Homebrew tap repository <https://github.com/jubatus/homebrew-jubatus>`_ for quick installation.
+
 Other Environments
 ~~~~~~~~~~~~~~~~~~
 
-- Mac OS X runs standalone mode by using llvm-gcc (c.f., `Homebrew formula <https://github.com/jubatus/jubatus/tree/master/tools/packaging/homebrew>`_).
-- Debian/GNU Linux runs all mode.
+- Debian GNU/Linux runs all mode.
 - Arch Linux runs standalone mode.
 - FreeBSD does not run, needs some fixed on pficommon.
 - We are waiting for report in other \*BSD systems and in Solaris.

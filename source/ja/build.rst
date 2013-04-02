@@ -19,8 +19,8 @@ Jubatus をソースからビルドするには、 ``gcc`` (バージョン 4.4 
 msgpack             >= 0.5.7   ✔
 jubatus-mpio        0.4.1      ✔
 jubatus-msgpack-rpc 0.4.1      ✔         C++ クライアントライブラリが必要である。
-pficommon           master     ✔         msgpack-rpc (mprpc) が有効であること。
-google-glog         >= 0.3.2   ✔
+pficommon           master     ✔
+google-glog         >= 0.3.3   ✔
 mecab               >= 0.99              ``--enable-mecab`` ありでビルドする場合のみ。
 re2                 master               ``--disable-re2`` *なし* でビルドする場合のみ。
 ux-trie             master               ``--enable-ux`` ありでビルドする場合のみ。
@@ -72,14 +72,13 @@ Ubuntu 12.04 でのビルドを行う例です。
   $ tar xzf pficommon-master.tar.gz
   $ cd pficommon-master
   $ ./waf configure
-    -> msgpack-rpc サポートが有効になっていることを確認してください ("MessagePack RPC module: yes")
   $ ./waf build
   $ sudo ./waf install
   $ cd ..
 
-  $ wget http://google-glog.googlecode.com/files/glog-0.3.2.tar.gz
-  $ tar xzf glog-0.3.2.tar.gz
-  $ cd glog-0.3.2
+  $ wget http://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
+  $ tar xzf glog-0.3.3.tar.gz
+  $ cd glog-0.3.3
   $ ./configure
   $ make
   $ sudo make install
@@ -99,11 +98,17 @@ Jubatus のビルドを行います。
 
 この例は最小限の設定でビルドしているため (どのようなオプションが利用可能かは ``./waf configure --help`` をご覧ください)、分散モードや特徴抽出プラグインなど一部の機能は利用できません。
 
+Mac OS X
+~~~~~~~~
+
+Mac OS X では、スタンドアロンモードのビルドと実行が試験的にサポートされています。
+
+`Homebrew tap リポジトリ <https://github.com/jubatus/homebrew-jubatus>`_ を使用すると簡単にインストールすることができます。
+
 Other Environments
 ~~~~~~~~~~~~~~~~~~
 
-- Mac OS X では llvm-gcc でビルドすることでスタンドアローンモードで動作しています (c.f., `Homebrew formula <https://github.com/jubatus/jubatus/tree/master/tools/packaging/homebrew>`_)。
-- Debian/GNU Linux では動作しています。
+- Debian GNU/Linux では動作しています。
 - Arch Linux ではスタンドアローンモードで動作しています。
 - FreeBSD では動作していません。pficommon を修正する必要があります。
 - 他の \*BSD systems や Solarisでの動作報告をお待ちしています。
