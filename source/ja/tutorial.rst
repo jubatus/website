@@ -17,7 +17,7 @@ News20は便宜上、80%の学習用データ(20news-bydate-train)と、20%の�
 
 * Jubatus サーバをスタンドアローン構成で起動する
 
-  * 分散環境での動作に興味がある方は、このチュートリアルの *後で* :doc:`tutorial_distributed` をご覧ください。
+  * 分散環境での動作に興味がある方は、このチュートリアルの *後で* :`tutorial_distributed` をご覧ください。
 
 * Jubatus サーバを JSON スタイル で設定する
 * Jubatus の分類器を ``train`` と ``classify`` API で使用する
@@ -76,9 +76,24 @@ Jubatus サーバは、デフォルトでは TCP 9199 番ポートを利用し�
 
 Jubatus と Jubatus クライアントは、TCP/IP ネットワーク経由で `MessagePack-RPC <http://msgpack.org>`_ プロトコルを使用して通信します。
 
-.. figure:: ../_static/single_single.png
-   :width: 70 %
-   :alt: single client, single server
+.. blockdiag::
+
+    blockdiag single_single {
+      group classifier{
+      color = "#77FF77"
+      jubaclassifier;
+      }
+
+      group client{
+      color = "#FF7777"
+      client;
+      }
+
+      client -> jubaclassifier;
+    }
+
+
+
 
 それでは、 `チュートリアルプログラム <https://github.com/jubatus/jubatus-tutorial-python>`_ とデータセットをダウンロードしましょう。
 
@@ -273,3 +288,19 @@ Use of Classifier API: Train & Classify
    ]]
 
 メッセージ ``d2`` は ``"comp.sys.mac.hardware"`` に投稿された可能性が高いことが分かりました。
+
+Other Tutorial Examples
+-------------------------
+
+本項では、Jubatus Clientの使い方を、サンプルプログラムを利用して解説します。
+
+.. toctree::
+   :maxdepth: 1
+
+   tutorial/classifier
+   tutorial/regression
+   tutorial/recommender
+   tutorial/graph
+   tutorial/stat
+   tutorial/anomaly
+

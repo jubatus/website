@@ -14,9 +14,14 @@ Feel free to make pull-requests to this repository.
 Requirements
 ------------
 
-* Sphinx 1.1.3 with pngmath extension
-    * Ubuntu packages: `python-sphinx`, `latex-cjk-japanese`, `texlive-latex-extra`, `dvipng`
+* Sphinx 1.1.3 + pngmath + blockdiag
 
+Easy setup for Ubuntu 12.04 systems:
+
+```
+# apt-get install python-sphinx latex-cjk-japanese texlive-latex-extra dvipng
+# pip install sphinxcontrib-blockdiag
+```
 
 How to Edit
 -----------
