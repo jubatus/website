@@ -105,3 +105,8 @@ Jubatus Team Members
   :role: Developer
   :contrib: Refactoring, Support
   :github: y-oda-oni-juba
+
+.. jubamember::
+  :name: 渡部 源太郎
+  :role: Developer
+  :github: gwtnb
