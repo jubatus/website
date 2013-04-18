@@ -117,3 +117,9 @@ Jubatus Team Members
   :github: t-abe
   :twitter: tabe2314
   :email: tabe@preferred.jp
+
+.. jubamember::
+  :name: Hiroaki Murase 
+  :role: Developer
+  :github: murasehiroaki
+
