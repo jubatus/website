@@ -34,7 +34,7 @@ Table of Contents
    quickstart
    overview/summary
    tutorial
-   distribute_mode
+   tutorial_distributed
    documentation
    references
    howtocontribute
