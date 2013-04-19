@@ -1,4 +1,4 @@
-IDL Support Status (2013 Mar.)
+IDL のサポート状況 (2013/03)
 ------------------------------
 
 現在、Jubatus は 6 種類の機械学習タスク (Classifier, Regression, Recommender, Stat, Graph, Anomaly) をサポートしています。

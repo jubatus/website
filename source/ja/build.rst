@@ -1,12 +1,12 @@
-Building Jubatus from Source
-============================
+Jubatus をソースからビルドする
+================================
 
 Jubatus をソースからビルドすることは可能ですが、できる限りバイナリパッケージ (:doc:`quickstart` 参照) を使用することを推奨します。
 ソースからビルドする場合は、 `jubatus-installer <https://github.com/jubatus/jubatus-installer>`_ が参考になるでしょう。
 
 .. _requirements:
 
-Requirements
+要件
 ------------
 
 Jubatus をソースからビルドするには、 ``gcc`` (バージョン 4.4 以降), ``pkg-config`` (バージョン 0.26 以降) および ``python`` (バージョン 2.4 以降,  ``waf`` で使用される) が必要です。
@@ -105,7 +105,7 @@ Mac OS X では、スタンドアロンモードのビルドと実行が試験�
 
 `Homebrew tap リポジトリ <https://github.com/jubatus/homebrew-jubatus>`_ を使用すると簡単にインストールすることができます。
 
-Other Environments
+その他の環境
 ~~~~~~~~~~~~~~~~~~
 
 - Debian GNU/Linux では動作しています。
