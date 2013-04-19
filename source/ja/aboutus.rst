@@ -1,7 +1,7 @@
-About Us
-========
+プロジェクトについて
+=====================
 
-Jubatus Team Members
+Jubatus チームメンバ
 --------------------
 
 .. jubamember::

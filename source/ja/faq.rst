@@ -1,7 +1,7 @@
-Frequently Asked Questions (FAQs)
+よくある質問と回答 (FAQs)
 =================================
 
-Installation
+インストール
 ::::::::::::
 
 - ``mecab_splitter.trivial`` と ``mecab_splitter_create.trivial`` の単体テストが通らない
@@ -73,7 +73,7 @@ Installation
  \ ``src/main/java``\ディレクトリの(default package)配下には、Jubatus recommenderを利用した簡単なプログラム「Client.java」が配置してあります。
 
 
-RPC Errors
+RPC エラー
 ::::::::::
 
 - Python クライアントの利用時に、"got socket.error: [Errno 99] Cannot assign requested address" (または ``EADDRINUSE`` など) が発生する
@@ -107,7 +107,7 @@ RPC Errors
  この自動切断機能を無効にするには、 :option:`server -t` を 0 (タイムアウトなし) に設定します。
  この場合、クライアントは :mpidl:meth:`get_client` を使用して TCP 接続を明示的に切断する必要があります。
 
-Distributed Enviroment
+分散環境
 ::::::::::::::::::::::
 
 - Jubatusサーバを複数台で分散させた場合、Mixが正常動作したか確認する方法はありますか?
@@ -128,7 +128,7 @@ Distributed Enviroment
  問題ありません。
  但し、各プロセスを単独のサーバで動作させた場合と比べ、処理性能が低下する可能性があります。またZooKeeperは奇数台でアンサンブルを構成することを推奨します。
 
-Study Model
+学習モデル
 :::::::::::
 
 - Classifier/Regression に学習させる場合、以下の違いによってモデルに差異は発生しますか?
@@ -138,7 +138,7 @@ Study Model
 
  モデルに差異は発生しません。
 
-Anomaly detection
+異常値検知
 :::::::::::::::::
 
 - jubaanomaly が常に 1.0 か無限値 (infinity) を返却する
@@ -177,7 +177,7 @@ Anomaly detection
 
   LOF の計算時間を短縮することができます。ただし、 ``nearest_neighbor_num`` より小さい値にすることはできません。
 
-Miscellaneous
+その他
 :::::::::::::
 
 - How does 'jubatus' read?
