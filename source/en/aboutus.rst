@@ -110,3 +110,10 @@ Jubatus Team Members
   :name: Gentaro Watanabe
   :role: Developer
   :github: gwtnb
+
+.. jubamember::
+  :name: Takashi Abe
+  :role: Developer
+  :github: t-abe
+  :twitter: tabe2314
+  :email: tabe@preferred.jp

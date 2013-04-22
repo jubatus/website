@@ -110,3 +110,10 @@ Jubatus チームメンバ
   :name: 渡部 源太郎
   :role: Developer
   :github: gwtnb
+
+.. jubamember::
+  :name: 阿部 厳
+  :role: Developer
+  :github: t-abe
+  :twitter: tabe2314
+  :email: tabe@preferred.jp
