@@ -117,3 +117,9 @@ Jubatus チームメンバ
   :github: t-abe
   :twitter: tabe2314
   :email: tabe@preferred.jp
+
+.. jubamember::
+  :name: 村瀬 博昭 
+  :role: Developer
+  :github: murasehiroaki
+
