@@ -60,7 +60,7 @@ def html_visit_jubamember_node(self, node):
             <div><span class="member-name">%s</span> ― %s</div>
     """ % (node['name'], node['role'])
 
-    # Expertise and Contributions
+    # Expertise, Contributions, Goal
     member_box += u"""
             <div class="member-relation">
     """
@@ -72,6 +72,10 @@ def html_visit_jubamember_node(self, node):
         member_box += u"""
               <div class="member-contrib">Contributions: %s</div>
         """ % node['contrib']
+    if 'goal' in node:
+        member_box += u"""
+              <div class="member-contrib">Goal for 2013: %s</div>
+        """ % node['goal']
 
     # Social Links
     member_box += u"""
@@ -122,6 +126,7 @@ class JubatusMemberDirective(Directive):
         'role': unicode,
         'expertise': unicode,
         'contrib': unicode,
+        'goal': unicode,
         'github': directives.uri,
         'twitter': directives.uri,
         'web': directives.uri,

@@ -80,6 +80,7 @@ Jubatus チームメンバ
   :name: 前橋 賢一
   :role: Developer
   :contrib: Release Management, OSS Promotion, Documentation
+  :goal: 分散クラスタ試験の自動実行、外部コントリビュータの拡大
   :github: kmaehashi
 
 .. jubamember::
