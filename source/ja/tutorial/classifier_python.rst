@@ -149,7 +149,7 @@ Python
 
  * method
  
-  分類に使用するアルコリズムを指定します。
+  分類に使用するアルゴリズムを指定します。
   今回は、AROW(Adaptive Regularization of Weight vectors)を指定しています。
 
 
