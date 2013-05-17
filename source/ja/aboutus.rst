@@ -125,7 +125,7 @@ Jubatus チームメンバ
   :github: murasehiroaki
 
 .. jubamember::
-  :name: 羅敏
+  :name: 羅 敏
   :role: Developer
   :expertise: Distributed DBMS System 
   :contrib: Development, Documentation
