@@ -1,4 +1,4 @@
-プロジェクトについて
+﻿プロジェクトについて
 =====================
 
 Jubatus チームメンバ
@@ -124,3 +124,11 @@ Jubatus チームメンバ
   :role: Developer
   :github: murasehiroaki
 
+.. jubamember::
+  :name: 羅敏
+  :role: Developer
+  :expertise: Distributed DBMS System 
+  :contrib: Development, Documentation
+  :goal: Expanding Realtime(Jubatus) market by combining with DWH. Enhence Jubatus performance by techniques in DBMS field.
+  :github: luomin
+  :email: luo.min@lab.ntt.co.jp
