@@ -10,6 +10,7 @@ Jubatus チームメンバ
   :role: Project Lead
   :expertise: Natural Language Processing, Text Mining
   :contrib: Project Management, Algorithm Development, Feature Converter, Client Generator
+  :goal: 外部の利用事例を10個作る
   :github: unnonouno
   :twitter: unnonouno
   :web: http://www.unnono.net
@@ -22,6 +23,7 @@ Jubatus チームメンバ
   :role: Algorithm Development Lead
   :expertise: Data Mining, Machine Learning
   :contrib: Algorithm Design and Development (Anomaly Detection), Business Development
+  :goal: Jubatusを取り巻くエコシステムを育てる：OSSコミュニティの拡大（200人規模のイベント）、3rd party開発者増やす（プルリク30本）、ビジネス展開（国内外に継続利用3社ずつ以上）
   :github: hido
   :twitter: sla
   :web: http://www.hidotech.com/
@@ -54,6 +56,7 @@ Jubatus チームメンバ
   :role: Developer
   :expertise: Distributed System
   :contrib: Architecture Design and Development
+  :goal: クラスタ追加機能、マルチテナント
   :github: kumagi
   :twitter: kumagi
   :blog: http://d.hatena.ne.jp/kumagi/
@@ -74,6 +77,7 @@ Jubatus チームメンバ
   :role: Project Lead
   :expertise: Information Security, Distributed System
   :contrib: Development, Performance Quality Management and patent survey
+  :goal: 外部開発者の参入障壁を下げる。3件以上のアルゴリズムを外部から取り込む。
   :github: odasatoshi
 
 .. jubamember::
@@ -95,6 +99,7 @@ Jubatus チームメンバ
   :role: Developer
   :expertise: Distributed System
   :contrib: Release Management, Refactoring
+  :goal: "フレームワーク"としての形を整える。Jubatusに適したよくある事例・問題は簡単に実現（実装）でき、難しい問題は工数が多くなってしまっても実現を可能にするAPI・モジュールを提供する。また、利用の指針となるインタフェースを提供する。
   :github: suma
   :twitter: suma90h
   :web: http://www.obfuscatism.net/
@@ -105,16 +110,19 @@ Jubatus チームメンバ
   :name: 小田 幸弘
   :role: Developer
   :contrib: Refactoring, Support
+  :goal: C++ 以外で algorithm/fv_converter をかけるようにする（開発者の新規参入を容易にするため）
   :github: y-oda-oni-juba
 
 .. jubamember::
   :name: 渡部 源太郎
   :role: Developer
+  :goal: C++11導入
   :github: gwtnb
 
 .. jubamember::
   :name: 阿部 厳
   :role: Developer
+  :goal: 画像・映像・音声の解析にJubatusを簡単に適用できるようにする
   :github: t-abe
   :twitter: tabe2314
   :email: tabe@preferred.jp
