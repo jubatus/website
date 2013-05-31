@@ -91,6 +91,7 @@ Jubatus チームメンバ
   :name: 今増 良平
   :role: Developer
   :contrib: Release Management, Documentation
+  :goal: 分散クラスタ試験の自動実行、運用性の向上
   :github: rimms
 
 .. jubamember::
