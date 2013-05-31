@@ -437,7 +437,7 @@ jenerator
 
 ``jenerator`` は拡張 MessagePack-IDL ファイルから、Keeper の実装、サーバのテンプレート、C++ クライアントを生成する。詳細は :doc:`server` を参照すること。
 
-``jenerator`` はデフォルトではインストールされない (ソースの ``src/tools/jenerator`` ディレクトリを参照)。
+``jenerator`` はデフォルトではインストールされない (ソースの ``tools/jenerator`` ディレクトリを参照)。
 
 .. code-block:: none
 

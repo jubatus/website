@@ -1,7 +1,7 @@
 Regression
 ----------
 
-* See `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/regression.idl>`_ for detailed specification.
+* See `IDL definition <https://github.com/jubatus/jubatus/blob/master/jubatus/server/server/regression.idl>`_ for detailed specification.
 * See :doc:`method` for detailed description of algorithms used in this server.
 
 

@@ -68,7 +68,7 @@ RPC インターフェースは `MessagePack-IDL <https://github.com/msgpack/msg
   - ``nolock`` ではロックは行われない。
 
 - "結合方法" には、API 呼び出しに対する複数のサーバからの結果を結合する方法を定義する。
-  利用可能なアグリゲータは `aggregators.hpp <https://github.com/jubatus/jubatus/blob/master/src/framework/aggregators.hpp>`_ に掲載されている。
+  利用可能なアグリゲータは `aggregators.hpp <https://github.com/jubatus/jubatus/blob/master/jubatus/server/framework/aggregators.hpp>`_ に掲載されている。
 
 なお、メソッドの戻り値型に ``void`` は利用できない。
 返り値が必要ない場合は、意味のない ``int`` や ``bool`` 型などを指定する必要がある。

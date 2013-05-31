@@ -68,7 +68,7 @@ Syntax of annotations for each methods is as follows.
   - When using ``nolock``, no locks are aquired in the server.
 
 - The "aggregation" annotation defines how to aggrate the results of API call from multiple servers.
-  Available aggregators are written in `aggregators.hpp <https://github.com/jubatus/jubatus/blob/master/src/framework/aggregators.hpp>`_.
+  Available aggregators are written in `aggregators.hpp <https://github.com/jubatus/jubatus/blob/master/jubatus/server/framework/aggregators.hpp>`_.
 
 ``void`` type cannot be used as the return type of methods.
 If the return value is not needed, you must add meaningless type such as ``int`` or ``bool``.

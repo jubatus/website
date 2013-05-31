@@ -437,7 +437,7 @@ jenerator
 
 ``jenerator`` generates implementation of keeper, server template and C++ client from extended MessagePack-IDL file. See :doc:`server` for details.
 
-``jenerator`` is not installed by default (see ``src/tools/jenerator`` in the source tree).
+``jenerator`` is not installed by default (see ``tools/jenerator`` in the source tree).
 
 .. code-block:: none
 
