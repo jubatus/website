@@ -53,5 +53,5 @@ See :ref:`conversion_plugin` for instruction on using .so files as a plugin.
 You can develop plugins of other feature extractors and filter in the same way.
 For other examples, see ``test_*.cpp`` in the ``src/fv_converter`` directory of Jubatus source code.
 
-When developing plugins, you can use `Plugin Development Skeleton Project <https://github.com/jubatus/jubatus-plugin-skelton.git>`_.
+When developing plugins, you can use `Plugin Development Skeleton Project <https://github.com/jubatus/jubatus-plugin-skeleton>`_.
 This skeleton implements a plugin that converts given string as a feature vector.

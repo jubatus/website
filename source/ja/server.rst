@@ -13,7 +13,7 @@ Jubatus に付属するコード生成器 ``jenerator`` と、MessagePack-IDL �
 #. ``mpidl`` を用いて、IDL から C++ 以外の言語 (Python/Ruby/Java など) のクライアントを生成する。
 #. RPC毎にサーバーが利用するユーザ定義クラスのインターフェースの実体、および必要に応じてmix操作を作成する。
 
-`スケルトンプロジェクト <https://github.com/jubatus/jubatus-service-skelton>`_ を利用すると、容易に開発を開始できる。
+`スケルトンプロジェクト <https://github.com/jubatus/jubatus-service-skeleton>`_ を利用すると、容易に開発を開始できる。
 
 IDL を使用する理由
 ---------------------

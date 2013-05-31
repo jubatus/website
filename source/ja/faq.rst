@@ -60,13 +60,13 @@
 
 - Javaのクライアントライブラリを利用した開発について
 
- JavaでJubatusクライアントの開発をする場合は、  `GitHub <https://github.com/jubatus/jubatus-java-skelton>`_ で公開されているスケルトンプロジェクト（Eclipseプロジェクトのテンプレート）を利用すると便利です。
+ JavaでJubatusクライアントの開発をする場合は、  `GitHub <https://github.com/jubatus/jubatus-java-skeleton>`_ で公開されているスケルトンプロジェクト（Eclipseプロジェクトのテンプレート）を利用すると便利です。
  以下の手順に従って、Java開発用スケルトンを利用してください。
 
  #. Eclipseを起動し、［File］－［Import…］を選択します。
  #. ［Git］>［Projects from Git］を選択し、［Next］ボタンをクリックします。
  #. ［URI］を選択し、［Next］ボタンをクリックします。
- #. ［URI］に「https://github.com/jubatus/jubatus-java-skelton.git」と入力し、［Next］ボタンをクリックします。
+ #. ［URI］に「https://github.com/jubatus/jubatus-java-skeleton.git」と入力し、［Next］ボタンをクリックします。
  #. ダイアログに従って操作を進め、[完了]ボタンをクリックします。
 
  一度、インポートが完了すれば、Mavenが自動的にJubatusクライアントライブラリをダウンロードします。

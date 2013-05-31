@@ -13,7 +13,7 @@ Flow of Development
 #. Generate client for languages other than C++ (e.g., Python/Ruby/Java) with ``mpidl`` from IDL.
 #. Implement codes of interface of user-defined class and (if necessary) mix operation.
 
-Use the `skeleton project <https://github.com/jubatus/jubatus-service-skelton>`_ to get started.
+Use the `skeleton project <https://github.com/jubatus/jubatus-service-skeleton>`_ to get started.
 
 Why We Use IDL
 --------------
