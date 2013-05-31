@@ -68,6 +68,7 @@ Jubatus チームメンバ
   :role: Developer
   :expertise: Machine Learning
   :contrib: Algorithm Design and Development (Recommender, Anomaly Detection, Graph Mining), Architecture Design and Development
+  :goal: アルゴリズム側の視点からモジュール化・フレームワーク化を進める、非定常データの学習を実装する、MIXに理論的裏付けを与える
   :github: beam2d
   :twitter: beam2d
   :email: tokui@preferred.jp
