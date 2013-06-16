@@ -2,7 +2,7 @@ Documentation
 =============
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    processes
    fv_convert
