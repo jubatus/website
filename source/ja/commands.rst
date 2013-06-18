@@ -447,7 +447,7 @@ jenerator
 
 .. option:: -l <lang>
 
-   生成するクライアントコードの言語。現在は ``cpp``, ``python``, ``ruby`` がサポートされている。
+   生成するクライアントコードの言語。現在は ``cpp``, ``java``, ``python``, ``ruby`` がサポートされている。
    ただし、サーバ/Keeper を生成したい場合は ``server`` を指定する。
 
 .. option:: -o <dirpath>

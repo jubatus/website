@@ -447,7 +447,7 @@ jenerator
 
 .. option:: -l <lang>
 
-   Language of the client code to generate. Currently ``cpp``, ``python``, and ``ruby`` are supported.
+   Language of the client code to generate. Currently ``cpp``, ``java``, ``python``, and ``ruby`` are supported.
    Specify ``server`` if you need to generate servers and keepers.
 
 .. option:: -o <dirpath>
