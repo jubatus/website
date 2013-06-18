@@ -258,6 +258,14 @@ jubactl
 
    If not specified, environment variable ``ZK`` will be used.
 
+.. option:: -i <id>, --id <id>
+
+   ID of file name to save or load.
+
+   Effective only when used with ``--cmd save`` and ``--cmd load``.
+
+   If not specified, the value that specified by ``--name`` will be used.
+
 .. option:: -B <interface>, --listen_if <interface>
 
    Option given when starting new server process (:option:`server -B`).

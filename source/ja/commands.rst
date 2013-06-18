@@ -258,6 +258,14 @@ jubactl
 
    指定されない場合は、環境変数 ``ZK`` が使用される。
 
+.. option:: -i <id>, --id <id>
+
+   学習モデルの保存、復元時に利用するファイル名のID。
+
+   ``--cmd save`` または ``--cmd load`` を指定した場合のみ有効である。
+
+   指定されない場合は、``--name` で指定した値が使用される。
+
 .. option:: -B <interface>, --listen_if <interface>
 
    サーバプロセスの開始時のオプションを指定する (:option:`server -B`).
