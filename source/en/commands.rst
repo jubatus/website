@@ -227,8 +227,8 @@ jubactl
    ========= =====================================================================================
    start     Start Jubatus servers
    stop      Stop Jubatus servers
-   save      Save the model to directory specified by :option:`server -t`
-   load      Load the model from directory specified by :option:`server -t`
+   save      Save the model to directory specified by :option:`server -d`
+   load      Load the model from directory specified by :option:`server -d`
    status    Print the status of servers, keepers and jubavisors
    ========= =====================================================================================
 
