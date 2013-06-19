@@ -52,6 +52,7 @@ RPC Errors
  Or, please set timeout enough longer than a client's connection lifetime.
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    faq_rpc_err_workaround

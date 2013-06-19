@@ -10,11 +10,11 @@ Common Issues
 
 + If you perform RPC, exceptions may be raised. When exceptions occur, in some client language, 
   connections aren't closed automatically.
-  To avoid resource leaks, You must catch exceptions and close connections explicitly.
-  It is also the same when you dispose an client object
+  To avoid resource leaks, you must catch exceptions and close connections explicitly.
+  It is also the same when you dispose an client object.
 
 + RPC errors caused by application layer problems like RPC method or type mismatching,
-  and also caused by transort layer problems like communication errors or timeout.
+  and also caused by transport layer problems like communication errors or timeout.
   Trasport layer problems may recover by retrying RPC.
 
 + You must consider the following points before retrying RPC:
@@ -23,7 +23,7 @@ Common Issues
     In general, re-performing one non-idempotent UPDATE method may make
     an EM model different.
     Ideally, we want to retry RPC only which isn't performed by server actually. 
-    But Jubatus client can't detect that. Thus, we restrict retrying UPDATE
+    But Jubatus client can't detect that. Thus, you need to restrict retrying UPDATE
     methods to idempotent ones.
     On the other hand, retrying ANALYZE methods aren't restricted.
 
@@ -43,7 +43,7 @@ Ruby
 + RPC performing code should guarantee explicit session closing by ``begin - ensure`` block.
   To close sessions explicitly, you execute client object's ``get_client.close``
 
-+ Any RPC exceptions are derived from ``MessagePack:RPC::RPCError``
++ Any RPC exceptions are derived from ``MessagePack::RPC::RPCError``
 
 + When transport layer error occurs by RPC,  ``MessagePack::RPC::TransportError`` 
   exception will be raised. Timeout raises ``MessagePack::RPC::TimeoutError`` 
@@ -56,18 +56,21 @@ Ruby
   You should catch these exceptions and close sessions explicitly.
   You can catch any RPC exceptions by ``RPCError``  excluding ``TrasportError`` and ``TimeoutError``
 
-::
+.. code-block:: ruby
+
+  require 'jubatus/classifier/client'
+  require 'jubatus/classifier/types'
+
+  RETRY_MAX = 3      # maximum number of retries
+  RETRY_INTERVAL = 3 # retry interval (sec)
 
   client = Jubatus::Classifier::Client::Classifier.new(host, port)
   begin
-      ...
-    retry_count = RETRY_MAX # limit of the number of retry
+    retry_count = RETRY_MAX # limit of the number of retries
     begin
-        ...
 
       # performing RPC
-      client.classify(...)
-        ...
+      client.classify(name, query_data)
 
     # retry against transport error and timeout
     rescue MessagePack::RPC::TimeoutError, MessagePack::RPC::TransportError => e
@@ -82,8 +85,6 @@ Ruby
       sleep RETRY_INTERVAL
       retry
     end
-
-      ...
 
   # catch any RPC exceptions
   rescue MessagePack::RPC::RPCError => e
@@ -113,18 +114,24 @@ Python
   You should catch these exceptions and close sessions explicitly.
   You can catch any RPC exceptions by ``RPCError`` excluding ``TransportError`` and ``TimeoutError``
 
-::
+.. code-block:: python
+
+  import jubatus
+  from jubatus.classifier.types import datum
+  import msgpackrpc
+  import time
+
+  retry_max = 3      # maximum number of retries
+  retry_interval = 3 # retry interval (sec)
 
   client = jubatus.Classifier(host, port)
   try:
-      ...
       retry_count = retry_max # limit of the number of retry
       while True:
-            ...
           try:
-                ...
+
               # performing RPC
-              client.classify(...)
+              client.classify(name, query_data)
               break
 
           # retry against transport error and timeout
@@ -175,7 +182,12 @@ C++
   will be raised respectively. Algorithm error will raise ``msgpack::rpc::remote_error``
   exception. You can catch these exceptions as ``rpc_error`` .
 
-::
+.. code-block:: c++
+
+  #include <jubatus/client.hpp>
+
+  #define RETRY_MAX 3      # maximum number of retries
+  #define RETRY_INTERVAL 3 # retry interval (sec)
 
   // RPC exception handler macro
   #define RPC_RETRY_EXCEPTION_COMMON_HANDLER()              \
@@ -187,22 +199,18 @@ C++
                                                             \
       // retry after some interval                          \
       std::cerr << e.what() << std::endl;                   \
-      ::sleep( retry_interval );                            \
+      ::sleep( RETRY_INTERVAL );                            \
       continue;
-
-    ...
 
   {
     jubatus::classifier::client::classifier client(host, port, 1.0);
     try {
-        ...
-      retry_count = RETRY_MAX;
+      int retry_count = RETRY_MAX;
       while(true) {
         try {
-            ...
+
           // performing RPC
-          results = client.classify(...);
-            ...
+          results = client.classify(name, query_data);
           break;
         // retry against transport errors and timeout
         } catch( msgpack::rpc::connection_closed_error &e ) {   
@@ -231,6 +239,6 @@ Java
   You **can not** distinguish errors by exception classes.
   You should catch ``RPCError`` exceptions and close sessions explicitly
 
-+ After closing session explicitly, You can retry RPC by same client object.
++ After closing session explicitly, you can retry RPC by same client object.
   But retrying RPC is not recommended because you can not detect transport layer error
   which may recover by retrying
