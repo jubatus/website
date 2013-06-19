@@ -45,7 +45,7 @@ Ruby
   接続の明示的な破棄を保証するようにします。
   接続の明示的な破棄には、クライアントオブジェクトの ``get_client.close`` を使います
 
-+ RPC呼び出しで発生するすべての例外は、 ``MessagePack:RPC::RPCError`` から派生しています
++ RPC呼び出しで発生するすべての例外は、 ``MessagePack::RPC::RPCError`` から派生しています
 
 + RPC呼び出しで、トランスポート層のエラーが発生した場合は ``MessagePack::RPC::TransportError`` が
   発生します。また、タイムアウトが発生した場合は ``MessagePack::RPC::TimeoutError`` が発生します。
@@ -58,18 +58,21 @@ Ruby
   これらの例外を捕捉し、接続を明示的に破棄します。 ``TrasportError`` および ``TimeoutError``
   以外の ``RPCError`` をまとめて捕捉してもよいでしょう
 
-::
+.. code-block:: ruby
+
+  require 'jubatus/classifier/client'
+  require 'jubatus/classifier/types'
+
+  RETRY_MAX = 3      # 再実行の上限回数
+  RETRY_INTERVAL = 3 # 再実行の間隔(秒)
 
   client = Jubatus::Classifier::Client::Classifier.new(host, port)
   begin
-      ...
-    retry_count = RETRY_MAX # 再実行の上限回数
+    retry_count = RETRY_MAX
     begin
-        ...
 
       # RPC実行
-      client.classify(...)
-        ...
+      client.classify(name, query_data)
 
     # トランスポート層エラーとタイムアウトは再実行する
     rescue MessagePack::RPC::TimeoutError, MessagePack::RPC::TransportError => e
@@ -84,8 +87,6 @@ Ruby
       sleep RETRY_INTERVAL
       retry
     end
-
-      ...
 
   # すべての RPCエラーを捕捉
   rescue MessagePack::RPC::RPCError => e
@@ -116,18 +117,24 @@ Python
   これらの例外を捕捉し、接続を明示的に破棄します。 ``TransportError`` および ``TimeoutError``
   以外の ``RPCError`` をまとめて捕捉してもよいでしょう
 
-::
+.. code-block:: python
+
+  import jubatus
+  from jubatus.classifier.types import datum
+  import msgpackrpc
+  import time
+
+  retry_max = 3      # 再実行の上限回数
+  retry_interval = 3 # 再実行の間隔(秒)
 
   client = jubatus.Classifier(host, port)
   try:
-      ...
-      retry_count = retry_max # 上限の回数
+      retry_count = retry_max
       while True:
-            ...
           try:
-                ...
+
               # RPC実行
-              client.classify(...)
+              client.classify(name, query_data)
               break
 
           # トランスポート層エラーとタイムアウトは再実行する
@@ -179,7 +186,12 @@ C++
   ``msgpack::rpc::remote_error`` 例外が発生します。
   これらの例外を ``rpc_error`` としてまとめて捕捉してもよいでしょう
 
-::
+.. code-block:: c++
+
+  #include <jubatus/client.hpp>
+
+  #define RETRY_MAX 3      # 再実行の上限回数
+  #define RETRY_INTERVAL 3 # 再実行の間隔(秒)
 
   // 例外ハンドラ マクロ
   #define RPC_RETRY_EXCEPTION_COMMON_HANDLER()    \
@@ -191,22 +203,18 @@ C++
                                                   \
       // 間隔をおいて再実行                        \
       std::cerr << e.what() << std::endl;         \
-      ::sleep( retry_interval );                  \
+      ::sleep( RETRY_INTERVAL );                  \
       continue;
 
-    ...
-
   {
-    jubatus::classifier::client::classifier client(host, port, 1.0);
+    jubatus::classifier::client::classifier client(host, port, 10.0);
     try {
-        ...
-      retry_count = RETRY_MAX;
+      int retry_count = RETRY_MAX;
       while(true) {
         try {
-            ...
+
           // RPC実行
-          results = client.classify(...);
-            ...
+          results = client.classify(name, query_data);
           break;
         // トランスポート層のエラーとタイムアウトは再実行する
         } catch( msgpack::rpc::connection_closed_error &e ) {   

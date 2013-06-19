@@ -66,7 +66,7 @@ Ruby
 
   client = Jubatus::Classifier::Client::Classifier.new(host, port)
   begin
-    retry_count = RETRY_MAX # limit of the number of retries
+    retry_count = RETRY_MAX
     begin
 
       # performing RPC
@@ -106,7 +106,7 @@ Python
   exception will be raised. Timeout raises ``msgpackrpc.error.TimeoutError`` exception.
   Server-side connection close also raises ``msgpackrpc.error.TimeoutError`` .
   You should catch these exceptions by ``try - except`` block and will retry RPC.
-  Before you retry, you must close sessions explicitly and **re-create client object**
+  Before you retry, you must close sessions explicitly and **re-create a client object**
 
 + When RPC method or type mismatching occur, ``msgpackrpc.error.CallError`` exception
   will be raised.
@@ -126,7 +126,7 @@ Python
 
   client = jubatus.Classifier(host, port)
   try:
-      retry_count = retry_max # limit of the number of retry
+      retry_count = retry_max
       while True:
           try:
 
@@ -203,7 +203,7 @@ C++
       continue;
 
   {
-    jubatus::classifier::client::classifier client(host, port, 1.0);
+    jubatus::classifier::client::classifier client(host, port, 10.0);
     try {
       int retry_count = RETRY_MAX;
       while(true) {
