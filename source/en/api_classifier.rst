@@ -21,7 +21,7 @@ We show each filed below:
       Value            Method
       ================ ===================================
       ``"perceptron"`` Use perceptron.
-      ``"PA"``         Use Passive Agressive (PA). [Crammer06]_
+      ``"PA"``         Use Passive Aggressive (PA). [Crammer06]_
       ``"PA1"``        Use PA-I. [Crammer06]_
       ``"PA2"``        Use PA-II. [Crammer06]_
       ``"CW"``         Use Confidence Weighted Learning. [Dredze08]_

@@ -21,7 +21,7 @@ We show each filed below:
       ================ ===================================
       Value            Method
       ================ ===================================
-      ``"PA"``         Use Passive Agressive. [Crammer06]_
+      ``"PA"``         Use Passive Aggressive. [Crammer06]_
       ================ ===================================
 
 

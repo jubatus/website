@@ -21,7 +21,7 @@ JSON の各フィールドは以下のとおりである。
       設定値           手法
       ================ ===================================
       ``"perceptron"`` パーセプトロン法を利用する。
-      ``"PA"``         Passive Agressive (PA) を利用する。 [Crammer06]_
+      ``"PA"``         Passive Aggressive (PA) を利用する。 [Crammer06]_
       ``"PA1"``        PA-I を利用する。 [Crammer06]_
       ``"PA2"``        PA-II を利用する。 [Crammer06]_
       ``"CW"``         Confidence Weighted Learning を利用する。 [Dredze08]_
