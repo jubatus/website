@@ -2,10 +2,11 @@
 =============
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
    fv_convert
    plugin
    build
    framework
+   faq_rpc_err_workaround
    faq

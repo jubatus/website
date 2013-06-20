@@ -51,13 +51,6 @@ RPC Errors
  In this case, clients must explicitly close the TCP connection using :mpidl:meth:`get_client`.
  Or, please set timeout enough longer than a client's connection lifetime.
 
-.. toctree::
-   :hidden:
-   :maxdepth: 1
-
-   faq_rpc_err_workaround
-
-
 Anomaly detection
 :::::::::::::::::
 

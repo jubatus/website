@@ -2,7 +2,7 @@ Documentation
 =============
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
    processes
    fv_convert
@@ -10,4 +10,5 @@ Documentation
    admin
    build
    framework
+   faq_rpc_err_workaround
    faq
