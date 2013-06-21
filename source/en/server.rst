@@ -2,15 +2,14 @@ Using Code Generators
 =====================
 
 Development of machine learning algorithms using Jubatus framework starts with writing an IDL (RPC interface definition).
-By using two code generator - ``jenerator`` (bundled tool with Jubatus) and ``mpidl`` (from MessagePack-IDL) - you can generate each component (server, keeper, client for each language) from the IDL.
-By using these generators, framework users don't need to focus on things other than implementing algorithms.
+By using a code generator - ``jenerator`` (bundled tool with Jubatus)  - you can generate each component (server, keeper, client for each language) from the IDL.
+By using this generator, framework users don't need to focus on things other than implementing algorithms.
 
 Flow of Development
 -------------------
 
 #. Define RPC interfaces that the service should have using IDL.
-#. Generate codes for server, keeper, common data structures and C++ client with ``jenerator`` from IDL.
-#. Generate client for languages other than C++ (e.g., Python/Ruby/Java) with ``mpidl`` from IDL.
+#. Generate codes for server, keeper, common data structures and clients (C++/Python/Ruby/Java) with ``jenerator`` from IDL.
 #. Implement codes of interface of user-defined class and (if necessary) mix operation.
 
 Use the `skeleton project <https://github.com/jubatus/jubatus-service-skeleton>`_ to get started.
