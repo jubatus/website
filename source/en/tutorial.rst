@@ -285,6 +285,7 @@ We provide tutorial for using different functions through Jubatus Client here.
 
    tutorial/classifier
    tutorial/regression
+   tutorial/recommender
    tutorial/graph
    tutorial/stat
    tutorial/anomaly
