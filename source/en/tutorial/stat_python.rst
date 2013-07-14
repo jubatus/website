@@ -110,24 +110,24 @@ The configuration information is given by the JSON unit. Here is the meaning of 
 
  1. Connect to Jubatus Server.
 
-  Connect to Jubatus Server (Row 13).
+  Connect to Jubatus Server (Line 13).
   Setting the IP addr., RPC port of Jubatus Server.
 
  2. Prepare the learning data
 
   StatClient send the <item_name, value> to the server side as training data, by using the push() method.
   In this sample program, the training data are generated from a .CSV file which contains the info. of 'fruit type', 'price', 'weight', 'diameter'.
-  The source data is read line by line from the .CSV file (Row 15-22). 
+  The source data is read line by line from the .CSV file (Line 15-22). 
 
  3. Data training (update the model)
 
-  The training data generated in Step 2 is send to the server site by using the push() method (Row 20-22) for training model there. Items of fruit are renamed as the fruit's name extended with the item's prefix, eg. item for a fruit's diameter is: fruit's name + "dia". 
+  The training data generated in Step 2 is send to the server site by using the push() method (Line 20-22) for training model there. Items of fruit are renamed as the fruit's name extended with the item's prefix, eg. item for a fruit's diameter is: fruit's name + "dia". 
  
  4. Output the result
 
   StatClient gets the different statistic results by using its methods.
-  For each type of fruits(Row 28), the program outputs its statistic results of all the items (Row 29).
-  Different methods are called (Row 30-35) in the loop above. Their contents are listed in the methods list above.
+  For each type of fruits(Line 28), the program outputs its statistic results of all the items (Line 29).
+  Different methods are called (Line 30-35) in the loop above. Their contents are listed in the methods list above.
       
 
 -------------------------------------

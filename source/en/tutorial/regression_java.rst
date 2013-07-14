@@ -12,7 +12,7 @@ In this sample program, we will explain 1) how to configure the learning-algorit
 
 **rent.json**
 
-.. code-block:: python
+.. code-block:: java
 
  01 : {
  02 :   "method": "PA",
@@ -41,250 +41,231 @@ In this sample program, we will explain 1) how to configure the learning-algorit
 .. code-block:: java
 
  001 : package rent;
- 002 : 
- 003 : import java.io.BufferedReader;
- 004 : import java.io.File;
- 005 : import java.io.FileNotFoundException;
- 006 : import java.io.FileReader;
- 007 : import java.io.IOException;
- 008 : import java.math.BigDecimal;
- 009 : import java.util.ArrayList;
- 010 : import java.util.Arrays;
- 011 : import java.util.Collections;
- 012 : import java.util.List;
- 013 : import java.util.Map;
- 014 : import java.util.HashMap;
- 015 : 
- 016 : import org.ho.yaml.Yaml;
- 017 : 
- 018 : import us.jubat.regression.Datum;
- 019 : import us.jubat.regression.RegressionClient;
- 020 : import us.jubat.regression.TupleFloatDatum;
- 021 : import us.jubat.regression.TupleStringDouble;
- 022 : import us.jubat.regression.TupleStringString;
- 023 : 
- 024 : public class rent {
- 025 : 	public static final String HOST = "127.0.0.1";
- 026 : 	public static final int PORT = 9199;
- 027 : 	public static final String NAME = "rent";
- 028 : 	public static final String FILE_PATH = "./src/main/resources/";
- 029 : 
- 030 : 	// Definie the column name in CSV file
- 031 : 	public static String[] CSV_COLUMN = {
- 032 : 		"rent",
- 033 : 		"distance",
- 034 : 		"space",
- 035 : 		"age",
- 036 : 		"stair",
- 037 : 		"aspect"
- 038 : 		};
- 039 : 
- 040 : 	// Item in String type
- 041 : 	public static String[] STRING_COLUMN = {
- 042 : 		"aspect"
- 043 : 		};
- 044 : 
- 045 : 	// Items in Double type
- 046 : 	public static String[] DOUBLE_COLUMN = {
- 047 : 		"distance",
- 048 : 		"space",
- 049 : 		"age",
- 050 : 		"stair",
- 051 : 		};
- 052 : 
- 053 : 	public void update(String cvsName) throws Exception {
- 054 : 		// 1. Connect to Jubatus Server
- 055 : 		RegressionClient client = new RegressionClient(HOST, PORT, 5);
- 056 : 
- 057 : 		// 2. Prepare the training data
- 058 : 		List<TupleFloatDatum> trainData = new ArrayList<TupleFloatDatum> ();
- 059 : 		Datum datum = null;
- 060 : 
- 061 : 		 try {
- 062 : 			File csv = new File(FILE_PATH + cvsName ); // CSVデータファイル
- 063 : 
- 064 : 			BufferedReader br = new BufferedReader(new FileReader(csv));
- 065 : 			List<String> strList = new ArrayList<String> ();
- 066 : 			List<String> doubleList = new ArrayList<String> ();
- 067 : 
- 068 : 			String line = "";
- 069 : 
- 070 : 			// read data line by line, until the last one.
- 071 : 			while ((line = br.readLine()) != null) {
- 072 : 				strList.clear();
- 073 : 				doubleList.clear();
- 074 : 				TupleFloatDatum train = new TupleFloatDatum();
- 075 : 
- 076 : 				// split the data in one line into items
- 077 : 				String[] strAry = line.split(",");
- 078 : 
- 079 : 				// check the number of CSV columns and the comment
- 080 : 				if( strAry.length != CSV_COLUMN.length || strAry[0].startsWith("#")){
- 081 : 					continue;
- 082 : 				}
- 083 : 
- 084 : 				// make lists for String and Double items
- 085 : 				for (int i=0; i<strAry.length; i++) {
- 086 : 					if(Arrays.toString(STRING_COLUMN).contains(CSV_COLUMN[i])){
- 087 : 						strList.add(strAry[i]);
- 088 : 					} else if(Arrays.toString(DOUBLE_COLUMN).contains(CSV_COLUMN[i])){
- 089 : 						doubleList.add(strAry[i]);
- 090 : 					}
- 091 : 				}
- 092 : 				// make datum
- 093 : 				datum = makeDatum(strList, doubleList);
- 094 : 
- 095 : 				train.first = Float.parseFloat(strAry[0]);
- 096 : 				train.second = datum;
- 097 : 
- 098 : 				trainData.add(train);
- 099 : 			}
- 100 : 			br.close();
- 101 : 
- 102 : 			// shuffle the training data
- 103 : 			Collections.shuffle(trainData);
- 104 : 
- 105 : 			// 3. Data training (update model)
- 106 : 			int trainCount = client.train( NAME, trainData);
- 107 : 
- 108 : 			System.out.print("train ... " + trainCount + "\n");
- 109 : 
- 110 : 		 } catch (FileNotFoundException e) {
- 111 : 			 // catch the exception in File object creation
- 112 : 			 e.printStackTrace();
- 113 : 		 } catch (IOException e) {
- 114 : 			 // catch the exception when closing BufferedReader object
- 115 : 			 e.printStackTrace();
- 116 : 		 }
- 117 : 		return;
- 118 : 	}
- 119 : 
- 120 : 	@SuppressWarnings("unchecked")
- 121 : 	public void analyze(String yamlName) throws Exception {
- 122 : 		RegressionClient client = new RegressionClient(HOST, PORT, 5);
- 123 : 
- 124 : 		// 4. Prepare the estimation data
- 125 : 		List<Datum> datumList = new ArrayList<Datum> ();
- 126 : 		// result list
- 127 : 		List<Float> result = new ArrayList<Float> ();
- 128 : 
- 129 : 		try {
- 130 : 			// read the configuration from YAML file
- 131 : 			Map<String, Object> hash = (HashMap<String, Object>) Yaml.load(new File(FILE_PATH + yamlName ));
- 132 : 
- 133 : 			// make the estimation data
- 134 : 			datumList.add(makeDatum(hash));
- 135 : 
- 136 : 			// 5. Predict by the model learned
- 137 : 			result.addAll(client.estimate( NAME, datumList));
- 138 : 
- 139 : 			// change the result into BigDecimal type
- 140 : 			BigDecimal bd = new BigDecimal(result.get(0));
- 141 : 			// rounding at the 2nd decimal
- 142 : 			BigDecimal bd2 = bd.setScale(1, BigDecimal.ROUND_HALF_UP);
- 143 : 
- 144 : 			// 6. Output result
- 145 : 			System.out.print("rent .... " + bd2 );
- 146 : 
- 147 : 		} catch (FileNotFoundException e) {
- 148 : 			 // capture the exception in File object creation.
- 149 : 			 e.printStackTrace();
- 150 : 		}
- 151 : 
- 152 : 		return;
- 153 : 	}
- 154 : 
- 155 : 	// Create the lists with the name given in the Datum (for list)
- 156 : 	private Datum makeDatum(List<String> strList, List<String> doubleList) {
- 157 : 
- 158 : 		Datum datum = new Datum();
- 159 : 		datum.string_values = new ArrayList<TupleStringString>();
- 160 : 		datum.num_values = new ArrayList<TupleStringDouble>();
- 161 : 
- 162 : 		for( int i = 0 ; i < strList.size() ; i++) {
- 163 : 			TupleStringString data = new TupleStringString();
- 164 : 			data.first = STRING_COLUMN[i];
- 165 : 			data.second = strList.get(i);
- 166 : 
- 167 : 			datum.string_values.add(data);
- 168 : 		}
- 169 : 
- 170 : 		try {
- 171 : 			for( int i = 0 ; i < doubleList.size() ; i++) {
- 172 : 				TupleStringDouble data = new TupleStringDouble();
- 173 : 				data.first = DOUBLE_COLUMN[i];
- 174 : 				data.second = Double.parseDouble(doubleList.get(i));
- 175 : 
- 176 : 				datum.num_values.add(data);
- 177 : 			}
- 178 : 		} catch (NumberFormatException e){
- 179 : 			e.printStackTrace();
- 180 : 			return null;
- 181 : 		}
- 182 : 
- 183 : 		return datum;
- 184 : 	}
- 185 : 
- 186 : 	// Create the lists with the name given in the Datum (for Map)
- 187 : 	private Datum makeDatum(Map<String, Object> hash) {
- 188 : 
- 189 : 		Datum datum = new Datum();
- 190 : 		datum.string_values = new ArrayList<TupleStringString>();
- 191 : 		datum.num_values = new ArrayList<TupleStringDouble>();
- 192 : 
- 193 : 		for( int i = 0 ; i < STRING_COLUMN.length ; i++) {
- 194 : 			// Insert into Datum only if it is contained by HashMap and not NULL
- 195 : 			if( hash.containsKey(STRING_COLUMN[i]) && hash.get(STRING_COLUMN[i]) != null ) {
- 196 : 				TupleStringString data = new TupleStringString();
- 197 : 
- 198 : 				data.first = STRING_COLUMN[i];
- 199 : 				data.second = hash.get(STRING_COLUMN[i]).toString();
- 200 : 
- 201 : 				datum.string_values.add(data);
- 202 : 			}
- 203 : 		}
- 204 : 
- 205 : 		try {
- 206 : 			for( int i = 0 ; i < DOUBLE_COLUMN.length ; i++) {
- 207 : 				// Insert into Datum only if it is contained by HashMap and not NULL
- 208 : 				if( hash.containsKey(DOUBLE_COLUMN[i]) && hash.get(DOUBLE_COLUMN[i]) != null ) {
- 209 : 					TupleStringDouble data = new TupleStringDouble();
- 210 : 
- 211 : 					data.first = DOUBLE_COLUMN[i];
- 212 : 					data.second = Double.parseDouble(hash.get(DOUBLE_COLUMN[i]).toString());
- 213 : 
- 214 : 					datum.num_values.add(data);
- 215 : 				}
- 216 : 			}
- 217 : 		} catch (NumberFormatException e){
- 218 : 			e.printStackTrace();
- 219 : 			return null;
- 220 : 		}
- 221 : 
- 222 : 		return datum;
- 223 : 	}
- 224 : 
- 225 : 	// Main methods
- 226 : 	public static void main(String[] args) throws Exception {
- 227 : 
- 228 : 		if(args.length < 1){
- 229 : 			System.out.print("Please set the arguments.\n" +
- 230 : 							"1st argument： YML file name (required)\n" +
- 231 : 							"2nd argument： CSV file name (when there is training data)\n");
- 232 : 			return;
- 233 : 		}
- 234 : 
- 235 : 		// when there is the 2nd argument, start the update method for model training.
- 236 : 		if(args.length > 1 && !"".equals(args[1])){
- 237 : 			new rent().update(args[1]);
- 238 : 		}
- 239 : 		if(!"".equals(args[0])){
- 240 : 			new rent().analyze(args[0]);
- 241 : 		}
- 242 : 
- 243 : 		System.exit(0);
- 244 : 	}
- 245 : }
+ 
+ 002 : import java.io.BufferedReader;
+ 003 : import java.io.File;
+ 004 : import java.io.FileNotFoundException;
+ 005 : import java.io.FileReader;
+ 006 : import java.io.IOException;
+ 007 : import java.math.BigDecimal;
+ 008 : import java.util.ArrayList;
+ 009 : import java.util.Arrays;
+ 010 : import java.util.Collections;
+ 011 : import java.util.List;
+ 012 : import java.util.Map;
+ 013 : import java.util.HashMap;
+ 014 : import org.ho.yaml.Yaml;
+ 015 : import us.jubat.regression.Datum;
+ 016 : import us.jubat.regression.RegressionClient;
+ 017 : import us.jubat.regression.TupleFloatDatum;
+ 018 : import us.jubat.regression.TupleStringDouble;
+ 019 : import us.jubat.regression.TupleStringString;
+
+ 020 : public class rent {
+ 021 : 	public static final String HOST = "127.0.0.1";
+ 022 : 	public static final int PORT = 9199;
+ 023 : 	public static final String NAME = "rent";
+ 024 : 	public static final String FILE_PATH = "./src/main/resources/";
+
+ 025 : 	// Definie the column name in CSV file
+ 026 : 	public static String[] CSV_COLUMN = {
+ 027 : 		"rent",
+ 028 : 		"distance",
+ 029 : 		"space",
+ 030 : 		"age",
+ 031 : 		"stair",
+ 032 : 		"aspect"
+ 033 : 		};
+
+ 034 : 	// Item in String type
+ 035 : 	public static String[] STRING_COLUMN = {
+ 036 : 		"aspect"
+ 037 : 		};
+
+ 038 : 	// Items in Double type
+ 039 : 	public static String[] DOUBLE_COLUMN = {
+ 040 : 		"distance",
+ 041 : 		"space",
+ 042 : 		"age",
+ 043 : 		"stair",
+ 044 : 		};
+
+ 045 : 	public void update(String cvsName) throws Exception {
+ 046 : 		// 1. Connect to Jubatus Server
+ 047 : 		RegressionClient client = new RegressionClient(HOST, PORT, 5);
+
+ 048 : 		// 2. Prepare the training data
+ 049 : 		List<TupleFloatDatum> trainData = new ArrayList<TupleFloatDatum> ();
+ 050 : 		Datum datum = null;
+
+ 051 : 		 try {
+ 052 : 			File csv = new File(FILE_PATH + cvsName ); // CSV Data File
+ 053 : 			BufferedReader br = new BufferedReader(new FileReader(csv));
+ 054 : 			List<String> strList = new ArrayList<String> ();
+ 055 : 			List<String> doubleList = new ArrayList<String> ();
+ 056 : 			String line = "";
+
+ 057 : 			// read data line by line, until the last one.
+ 058 : 			while ((line = br.readLine()) != null) {
+ 059 : 				strList.clear();
+ 060 : 				doubleList.clear();
+ 061 : 				TupleFloatDatum train = new TupleFloatDatum();
+
+ 062 : 				// split the data in one line into items
+ 063 : 				String[] strAry = line.split(",");
+
+ 064 : 				// check the number of CSV columns and the comment
+ 065 : 				if( strAry.length != CSV_COLUMN.length || strAry[0].startsWith("#")){
+ 066 : 					continue;
+ 067 : 				}
+
+ 068 : 				// make lists for String and Double items
+ 069 : 				for (int i=0; i<strAry.length; i++) {
+ 070 : 					if(Arrays.toString(STRING_COLUMN).contains(CSV_COLUMN[i])){
+ 071 : 						strList.add(strAry[i]);
+ 072 : 					} else if(Arrays.toString(DOUBLE_COLUMN).contains(CSV_COLUMN[i])){
+ 073 : 						doubleList.add(strAry[i]);
+ 074 : 					}
+ 075 : 				}
+ 
+ 076 : 				// make datum
+ 077 : 				datum = makeDatum(strList, doubleList);
+ 078 : 				train.first = Float.parseFloat(strAry[0]);
+ 079 : 				train.second = datum;
+ 080 : 				trainData.add(train);
+ 081 : 			}
+ 082 : 			br.close();
+
+ 083 : 			// shuffle the training data
+ 084 : 			Collections.shuffle(trainData);
+
+ 085 : 			// 3. Data training (update model)
+ 086 : 			int trainCount = client.train( NAME, trainData);
+ 087 : 			System.out.print("train ... " + trainCount + "\n");
+ 088 : 		 } catch (FileNotFoundException e) {
+ 089 : 			 // catch the exception in File object creation
+ 090 : 			 e.printStackTrace();
+ 091 : 		 } catch (IOException e) {
+ 092 : 			 // catch the exception when closing BufferedReader object
+ 093 : 			 e.printStackTrace();
+ 094 : 		 }
+ 095 : 		return;
+ 096 : 	}
+
+ 097 : 	@SuppressWarnings("unchecked")
+ 098 : 	public void analyze(String yamlName) throws Exception {
+ 099 : 		RegressionClient client = new RegressionClient(HOST, PORT, 5);
+
+ 100 : 		// 4. Prepare the estimation data
+ 101 : 		List<Datum> datumList = new ArrayList<Datum> ();
+
+ 102 : 		// result list
+ 103 : 		List<Float> result = new ArrayList<Float> ();
+ 104 : 		try {
+ 105 : 			// read the configuration from YAML file
+ 106 : 			Map<String, Object> hash = (HashMap<String, Object>) Yaml.load(new File(FILE_PATH + yamlName ));
+
+ 107 : 			// make the estimation data
+ 108 : 			datumList.add(makeDatum(hash));
+
+ 109 : 			// 5. Predict by the model learned
+ 110 : 			result.addAll(client.estimate( NAME, datumList));
+
+ 111 : 			// change the result into BigDecimal type
+ 112 : 			BigDecimal bd = new BigDecimal(result.get(0));
+ 113 : 			// rounding at the 2nd decimal
+ 114 : 			BigDecimal bd2 = bd.setScale(1, BigDecimal.ROUND_HALF_UP);
+
+ 115 : 			// 6. Output result
+ 116 : 			System.out.print("rent .... " + bd2 );
+
+ 117 : 		} catch (FileNotFoundException e) {
+ 118 : 			 // capture the exception in File object creation.
+ 119 : 			 e.printStackTrace();
+ 120 : 		}
+ 121 : 		return;
+ 122 : 	}
+
+ 123 : 	// Create the lists with the name given in the Datum (for list)
+ 124 : 	private Datum makeDatum(List<String> strList, List<String> doubleList) {
+
+ 125 : 		Datum datum = new Datum();
+ 126 : 		datum.string_values = new ArrayList<TupleStringString>();
+ 127 : 		datum.num_values = new ArrayList<TupleStringDouble>();
+
+ 128 : 		for( int i = 0 ; i < strList.size() ; i++) {
+ 129 : 			TupleStringString data = new TupleStringString();
+ 130 : 			data.first = STRING_COLUMN[i];
+ 131 : 			data.second = strList.get(i);
+ 132 : 			datum.string_values.add(data);
+ 133 : 		}
+
+ 134 : 		try {
+ 135 : 			for( int i = 0 ; i < doubleList.size() ; i++) {
+ 136 : 				TupleStringDouble data = new TupleStringDouble();
+ 137 : 				data.first = DOUBLE_COLUMN[i];
+ 138 : 				data.second = Double.parseDouble(doubleList.get(i));
+ 139 : 				datum.num_values.add(data);
+ 140 : 			}
+ 141 : 		} catch (NumberFormatException e){
+ 142 : 			e.printStackTrace();
+ 143 : 			return null;
+ 144 : 		}
+ 145 : 		return datum;
+ 146 : 	}
+
+ 147 : 	// Create the lists with the name given in the Datum (for Map)
+ 148 : 	private Datum makeDatum(Map<String, Object> hash) {
+
+ 149 : 		Datum datum = new Datum();
+ 150 : 		datum.string_values = new ArrayList<TupleStringString>();
+ 151 : 		datum.num_values = new ArrayList<TupleStringDouble>();
+
+ 152 : 		for( int i = 0 ; i < STRING_COLUMN.length ; i++) {
+ 153 : 			// Insert into Datum only if it is contained by HashMap and not NULL
+ 154 : 			if( hash.containsKey(STRING_COLUMN[i]) && hash.get(STRING_COLUMN[i]) != null ) {
+ 155 : 				TupleStringString data = new TupleStringString();
+ 156 : 				data.first = STRING_COLUMN[i];
+ 157 : 				data.second = hash.get(STRING_COLUMN[i]).toString();
+ 158 : 				datum.string_values.add(data);
+ 159 : 			}
+ 160 : 		}
+
+ 161 : 		try {
+ 162 : 			for( int i = 0 ; i < DOUBLE_COLUMN.length ; i++) {
+ 163 : 				// Insert into Datum only if it is contained by HashMap and not NULL
+ 164 : 				if( hash.containsKey(DOUBLE_COLUMN[i]) && hash.get(DOUBLE_COLUMN[i]) != null ) {
+ 165 : 					TupleStringDouble data = new TupleStringDouble();
+ 166 : 					data.first = DOUBLE_COLUMN[i];
+ 167 : 					data.second = Double.parseDouble(hash.get(DOUBLE_COLUMN[i]).toString());
+ 168 : 					datum.num_values.add(data);
+ 169 : 				}
+ 170 : 			}
+ 171 : 		} catch (NumberFormatException e){
+ 172 : 			e.printStackTrace();
+ 173 : 			return null;
+ 174 : 		}
+ 175 : 		return datum;
+ 176 : 	}
+ 
+ 177 : 	// Main methods
+ 178 : 	public static void main(String[] args) throws Exception {
+ 179 : 		if(args.length < 1){
+ 180 : 			System.out.print("Please set the arguments.\n" +
+ 181 : 							"1st argument： YML file name (required)\n" +
+ 182 : 							"2nd argument： CSV file name (when there is training data)\n");
+ 183 : 			return;
+ 184 : 		}
+ 185 : 		// when there is the 2nd argument, start the update method for model training.
+ 186 : 		if(args.length > 1 && !"".equals(args[1])){
+ 187 : 			new rent().update(args[1]);
+ 188 : 		}
+ 189 : 		if(!"".equals(args[0])){
+ 190 : 			new rent().analyze(args[0]);
+ 191 : 		}
+ 192 : 		System.exit(0);
+ 193 : 	}
+ 194 : }
  
 
 **myhome.yml**
@@ -350,7 +331,7 @@ We explain the learning and prediction processes in this example.
  
  1. Connect to Jubatus Server
 
-  Connect to Jubatus Server (Row 55)
+  Connect to Jubatus Server (Line 47)
   Setting the IP addr., RPC port of Jubatus Server, and the connection waiting time.
 
  2. Prepare the training data
@@ -408,25 +389,25 @@ We explain the learning and prediction processes in this example.
     
   Here is the detailed process for making the training data in this sample.
   
-  First, declare the variable of training data "trainDat", as a TupleFloatDatum List (Row 58).
+  First, declare the variable of training data "trainDat", as a TupleFloatDatum List (Line 49).
   Next, read the source file (CSV file) of the training data.
-  Here, FileReader() and BuffererdReader() is used to read the items in CVS file line by line (Row 71-100).
-  Split the data read from each line in CSV file, by the ',' mark (Row 77).
-  Using the defined CSV item list (CSV_COLUMN),String item list (STRING_COLUMN) and Double item list (Double_COLUMN) to transfer the CSV data into strList or doubleList, if the item is in String or Double type (Row 85-91).
-  Then, create the "Datum" by using the 2 lists, as the arguments in the private method of [makeDatum] (Row 93).
+  Here, FileReader() and BuffererdReader() is used to read the items in CVS file line by line (Line 57-81).
+  Split the data read from each line in CSV file, by the ',' mark (Line 63).
+  Using the defined CSV item list (CSV_COLUMN),String item list (STRING_COLUMN) and Double item list (Double_COLUMN) to transfer the CSV data into strList or doubleList, if the item is in String or Double type (Line 64-75).
+  Then, create the "Datum" by using the 2 lists, as the arguments in the private method of [makeDatum] (Line 77).
    
-  The string item list and double item list in the arguments of [makeDatum] method are used to generate the TupleStringString list and TupleStringDouble list, respecitively (Row 156-184).
-  At first, create the instance of Datum class component: "string_values" list and "num_values" list (Row 158-160).
-  Next, generate the TupleStringString by reading the items from strList. The first element is the column name (as the key), and the second element is the value. The data is added into the string_values list (Row 162-168).
-  The Double type items are processed in the similar way as String type items, to generate TupleStringDouble. Please note that the elements of num_values are added with type conversion, because the argument is of String type List while the num_values in Datum is of Double type (Row 174).
+  The string item list and double item list in the arguments of [makeDatum] method are used to generate the TupleStringString list and TupleStringDouble list, respecitively (Line 124-146).
+  At first, create the instance of Datum class component: "string_values" list and "num_values" list (Line 126-127).
+  Next, generate the TupleStringString by reading the items from strList. The first element is the column name (as the key), and the second element is the value. The data is added into the string_values list (Line 129-132).
+  The Double type items are processed in the similar way as String type items, to generate TupleStringDouble. Please note that the elements of num_values are added with type conversion, because the argument is of String type List while the num_values in Datum is of Double type (Line 138).
   Now, the Datum is created.
   
-  The Datum created in [makeDatum] above is appended with the rent label, so as to be used as one piece of training data (argument 'train' in Row 95-96).
-  By looping the above processes, source data in the CSV file will be transferred into the training data line by line and stored in the trainData List (Row 103).
+  The Datum created in [makeDatum] above is appended with the rent label, so as to be used as one piece of training data (argument 'train' in Line 78-79).
+  By looping the above processes, source data in the CSV file will be transferred into the training data line by line and stored in the trainData List (Line 80).
 
  3. Model Training (update learning model
 
-  Input the training data generated in step.2 into the train() method (Row 106).
+  Input the training data generated in step.2 into the train() method (Line 86).
   The first parameter in train() is the unique name for task identification in Zookeeper.
   (use null charactor "" for the stand-alone mode)
   The second parameter specifies the Datum generated in step.2.
@@ -439,17 +420,17 @@ We explain the learning and prediction processes in this example.
   Here, we generate the data for prediction by using the YAML file (please download the library `JYaml <http://jyaml.sourceforge.net/download.html>`_ )
   YAML is one kind of data format, in which objects and structure data are serialized.
   
-  Read the YAML file (myhome.yml) as a HashMap (Row 131).
+  Read the YAML file (myhome.yml) as a HashMap (Line 106).
   Generate the prediction Datum by using the [makeDatum] method, as simliar as Step 2, with the HashMap.
   
-  However, since the argument used here is HashMap, although the output is the same, the generation process is different (Row 187-223).
+  However, since the argument used here is HashMap, although the output is the same, the generation process is different (Line 148-176).
   In addition, there is no need to fill all the items in one Datum. The only required conditions are created in the Datum. 
   
   Add the Datum into the prediction data list, and send it into the estimate() method in "RegressionClient" for prediction.
   
  5. Prediction by the regression model
 
-  The prediction results are returned as a list by the estimate() method (Row 137).
+  The prediction results are returned as a list by the estimate() method (Line 116).
 
  6. Output the result
 

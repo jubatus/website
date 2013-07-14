@@ -134,22 +134,22 @@ We explain the learning and recommendation processes in this example.
  
  1. Connect to Jubatus Server
 
-  Connect to Jubatus Server (Row 8)
+  Connect to Jubatus Server (Line 8)
   Setting the IP addr., RPC port of Jubatus Server.
 
 
  2. Prepare the training data
 
-  Prepare the Datum for model training (Row 11). Basically, the training datum contains two parts, string_values & num_values, each of StringString type & StringDouble type, respectively. Because in this sample, only the "movie-id"(String type) & "movie-ranking"(Integer type) are used for training the model, only the num_values part is filled with the data while leaving the string_values "null". 
+  Prepare the Datum for model training (Line 11). Basically, the training datum contains two parts, string_values & num_values, each of StringString type & StringDouble type, respectively. Because in this sample, only the "movie-id"(String type) & "movie-ranking"(Integer type) are used for training the model, only the num_values part is filled with the data while leaving the string_values "null". 
 
   Here is the detailed process for making the training data in this sample.
   
-  First, read the source file (u.data) of the training data (Row 10).
-  Split the data in each line by '\t' (Row 11). Get the 'movie-id' & 'movie-ranking' value, and fill them into the training datum (Row 12). Leaving the datum's string-string_value as 'null', because no string-string type data is used as input.
+  First, read the source file (u.data) of the training data (Line 10).
+  Split the data in each line by '\t' (Line 11). Get the 'movie-id' & 'movie-ranking' value, and fill them into the training datum (Line 12). Leaving the datum's string-string_value as 'null', because no string-string type data is used as input.
 
  3. Model Training (update learning model
 
-  Input the training data generated in step.2 into the update_row() method (Row 15).
+  Input the training data generated in step.2 into the update_row() method (Line 15).
   The first parameter in update_row() is the unique name for task identification in Zookeeper.
   (use null charactor "" for the stand-alone mode)
   The second parameter specifies the unique ID for each players. In this example, the "name" of each player is used as the ID.

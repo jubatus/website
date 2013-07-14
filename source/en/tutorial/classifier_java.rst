@@ -14,7 +14,7 @@ In this sample program, we will explain 1) how to configure the learning-algorit
 .. code-block:: java
 
  01: {
- 02:   "method": "AROW",
+ 02:   "method": "ALine",
  03:   "converter": {
  04:     "num_filter_types": {},
  05:     "num_filter_rules": [],
@@ -89,7 +89,7 @@ In this sample program, we will explain 1) how to configure the learning-algorit
  040:		return t;
  041:	}
 
- 042:	public static void main(String[] args) throws Exception {
+ 042:	public static void main(String[] args) thLines Exception {
  043:		String host = "127.0.0.1";
  044:		int port = 9199;
  045:		String name = "test";
@@ -138,7 +138,7 @@ The configuration information is given by the JSON unit. Here is the meaning of 
 
  * method
  
-  Specify the algorithm used in Classification. In this example, the AROW (Adaptive Regularization of Weight vectors) is used.
+  Specify the algorithm used in Classification. In this example, the ALine (Adaptive Regularization of Weight vectors) is used.
 
  * converter
  
@@ -146,7 +146,7 @@ The configuration information is given by the JSON unit. Here is the meaning of 
 
  * parameter
 
-  Specify the parameter that passed to the algorithm. The parameter varis when the method is changed. In this example, the method is specified as 'AROW', with [regularization_weight: 1.0]. In addition, the parameter 'regularization_weight' in different algorithms plays different roles and affects differently, so please pay attention to setting the value of it for each algorithm. When 'regularization_weight' parameter becomes bigger, the learning spead will increase, while the noice will decrease.
+  Specify the parameter that passed to the algorithm. The parameter varis when the method is changed. In this example, the method is specified as 'ALine', with [regularization_weight: 1.0]. In addition, the parameter 'regularization_weight' in different algorithms plays different roles and affects differently, so please pay attention to setting the value of it for each algorithm. When 'regularization_weight' parameter becomes bigger, the learning spead will increase, while the noice will decrease.
    
    
 **GenderMain.java**
@@ -157,12 +157,12 @@ First of all, to write the Client program for Classifier, we can use the Classif
 
  1. How to connect to Jubatus Server
 
-  Connect to Jubatus Server (Row 46).
+  Connect to Jubatus Server (Line 46).
   Setting the IP addr., RPC port of Jubatus Server, and the connection waiting time.
 
  2. Prepare the learning data
 
-  Make a dataset for the data to be learnt <TupleStringDatum>(Row 47).
+  Make a dataset for the data to be learnt <TupleStringDatum>(Line 47).
   
   The dataset is input into the train() method in ClassifierClient, for the learning process. The figure below shows the structure of the data being leant.
 
@@ -192,26 +192,26 @@ First of all, to write the Client program for Classifier, we can use the Classif
   
   Here is the procedure of making study data.
 
-  To make study data, the private method "makeTrainDatum" is used (Row 47-56). An arrayList of TupleStringDatum is declared (Row 37). Then the data in the format as defined in TupleStringDatum class is generated.
+  To make study data, the private method "makeTrainDatum" is used (Line 47-56). An arrayList of TupleStringDatum is declared (Line 37). Then the data in the format as defined in TupleStringDatum class is generated.
 
-  TupleStringString and TupleStringDouble lists are declared in line Row 27 and 31, respectively, and stored in "Datum". Then, by using the method "makeDatum", data to be studied is stored in the two key-value lists, due to their different data types (Row 24-34).
+  TupleStringString and TupleStringDouble lists are declared in line Line 27 and 31, respectively, and stored in "Datum". Then, by using the method "makeDatum", data to be studied is stored in the two key-value lists, due to their different data types (Line 24-34).
 
-  In this example, the key-value lists in TupleStringString format have the kyes of "hair", "top", and "bottom"; and their values, for example, are "short", "sweater", and "jeans". The key-value list in TupleStringDatum format have the key of "height", and its value, for example, "1.70" (Row 48). 
+  In this example, the key-value lists in TupleStringString format have the kyes of "hair", "top", and "bottom"; and their values, for example, are "short", "sweater", and "jeans". The key-value list in TupleStringDatum format have the key of "height", and its value, for example, "1.70" (Line 48). 
 
-  According to the flow above, the training data is generated (Row 47-56). 
+  According to the flow above, the training data is generated (Line 47-56). 
 
   
  3. Model training (update learning model)
 
-  We train our learning model by using the method train() at Row 57, with the data generated in step.2 above. The first parameter in train() is the unique name for task identification in Zookeeper.
+  We train our learning model by using the method train() at Line 57, with the data generated in step.2 above. The first parameter in train() is the unique name for task identification in Zookeeper.
 
  4. Prepare the prediction data
 
-  Different from training data, prediction data does not contain "lable", and it is only stored in the Datum unit by using makeDatum() (Row 58-60). 
+  Different from training data, prediction data does not contain "lable", and it is only stored in the Datum unit by using makeDatum() (Line 58-60). 
 
  5. Data prediction
 
-  By inputting the testdata arraylist generated in step.4 into the classify() method of ClassifierClient (Row 61-62), the prediction result will be stored in the EstimateResult list (Row 63), and each r.label, r.score stands for the prediction result and the confidence of each input testdata respectively (Row 65).
+  By inputting the testdata arraylist generated in step.4 into the classify() method of ClassifierClient (Line 61-62), the prediction result will be stored in the EstimateResult list (Line 63), and each r.label, r.score stands for the prediction result and the confidence of each input testdata respectively (Line 65).
 
 
 

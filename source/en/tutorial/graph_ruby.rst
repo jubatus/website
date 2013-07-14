@@ -210,22 +210,22 @@ The configuration information is given by the JSON unit. Here is the meaning of 
 
  1. Connect to Jubatus Server
 
-  Connect to Jubatus Server (Row 92).
+  Connect to Jubatus Server (Line 92).
   Setting the IP addr., RPC port of Jubatus Server.
 
  2. Regist the preset query
   
-  The 'add_shortest_path_query' method must be registered beforehand. Therefore, the 'PresetQuery' is made (Row 95) and registed by 'add_shortest_path_query' (Row 96).
+  The 'add_shortest_path_query' method must be registered beforehand. Therefore, the 'PresetQuery' is made (Line 95) and registed by 'add_shortest_path_query' (Line 96).
   
  3. Generate the graph
 
   Make the graph composed of Yamanote-line and Chuou-line.
-  Firstly, the private method [create_graph] is called at (Row 99-100).
+  Firstly, the private method [create_graph] is called at (Line 99-100).
   The first argument in [create_graph] is the GraphClient made in Step. 1. 
   The second argument is the return value from method [get_station_join].
 
   Method [get_station_join] makes the combination list of two neighbor stations.
-  The station XML file is downloaded from Web (Row 28-49).
+  The station XML file is downloaded from Web (Line 28-49).
   Contents of the XML file likes below.
   In this sample program, we ignore the factor of 'distance', and only consider the connections between stations. So, the values in <station_name1>, <station_name2> are not used in the program.  
    
@@ -265,9 +265,9 @@ The configuration information is given by the JSON unit. Here is the meaning of 
    -Snip-
 
   Now, we input the value of <station_cd1> in the XML file into the instance variable 'station1' in [StationJoin] class, and the value of <station_cd2> in to 'station2'.
-  The number of instance created in [StationJoin] is the same as the number of <station_join> tags, and they are sotred in the ArrayList that created at Row 26 （Row 37-48).
+  The number of instance created in [StationJoin] is the same as the number of <station_join> tags, and they are sotred in the ArrayList that created at Line 26 （Line 37-48).
   
-  Next, we make the graph by using the list created above (Row 54-66).
+  Next, we make the graph by using the list created above (Line 54-66).
   The method [create_graph] performs the following task.
 
    3-1. Add station information and ID.
@@ -277,24 +277,24 @@ The configuration information is given by the JSON unit. Here is the meaning of 
     Make the bi-link between the registed station to its neighbor stations. Here, a link means a route. (eg. Harajuku <-> Shibuya, etc.)    
 
   3-1. Add station information and ID.
-   Method [add_station] is called (Row 56-57), to add every pair of neighboring nodes <station1, station2> in to the graph. 
-   Method [add_station] will check the map of 'stations'. If the map contains the specified station, the station_id will be returned; Otherwise, a new node is created, and its ID is returned after storing the nodeID and station name into the 'stations' map (Row 68-78).
+   Method [add_station] is called (Line 56-57), to add every pair of neighboring nodes <station1, station2> in to the graph. 
+   Method [add_station] will check the map of 'stations'. If the map contains the specified station, the station_id will be returned; Otherwise, a new node is created, and its ID is returned after storing the nodeID and station name into the 'stations' map (Line 68-78).
    Mehods [create_node] and [update_node] in GraphClient regist the new node.
    At first, [create_node] method is called with its argument set by an unique task name in the ZooKeeper cluster, and the returned value is the nodeId.
-   After that, a node is added into the graph. Then, we regist the key-value <name, "station name"> into the 'property' (Row 73).
-   Finally, [update_node] method updates the 'property' with the node created at Row 73 (Row 74).
+   After that, a node is added into the graph. Then, we regist the key-value <name, "station name"> into the 'property' (Line 73).
+   Finally, [update_node] method updates the 'property' with the node created at Line 73 (Line 74).
    
   3-2. Create links between the added two neighbor stations
-   After adding the two neighbor stations by method [addStation], we create the bi-links between station1 and station2 (Row 59-62).
+   After adding the two neighbor stations by method [addStation], we create the bi-links between station1 and station2 (Line 59-62).
    Method [create_edge] is used to create the bi-links.
    The second argument means the start node's ID. The third argument is an edge instance, which has the nodeID of both start and end nodes of the edge.
    
-  The [update_index] method in Row 64 is used for locally Mix operation, do not use it in distributed environment.
+  The [update_index] method in Line 64 is used for locally Mix operation, do not use it in distributed environment.
 
 
  4. Show the stations
 
-  In step 3-1, station name and station ID(nodeID) are stored into the "stations". Here, we output the stations names by the ascending order of their IDs (Row 81-88).
+  In step 3-1, station name and station ID(nodeID) are stored into the "stations". Here, we output the stations names by the ascending order of their IDs (Line 81-88).
   
  **search_route.rb**
  
@@ -303,24 +303,24 @@ The configuration information is given by the JSON unit. Here is the meaning of 
 
   1. Connect to Jubatus Server
 
-   Connect to Jubatus Server (Row 17).
+   Connect to Jubatus Server (Line 17).
    Setting the IP addr., RPC port of Jubatus Server.
 
    
   2. Prepare the query
 
-   Prepare the query for the shortest path calculation (Row 20-21).
-   Create the shortest_path_query required by the [get_shortest_path] method (Row 20).
+   Prepare the query for the shortest path calculation (Line 20-21).
+   Create the shortest_path_query required by the [get_shortest_path] method (Line 20).
    Store the start node's & end node's nodeIDs into the first & second arguments in the 'types.shortest_path_query'. The third argument is the number of 'maxhop', the search process will be truncated if it fails to find the route within the specified number of 'maxhop'.
    Also note, the query should be registed by "add_shortest_path_query" beforehand.
 
   3. Calculate the shortes path
 
-   By specifying the "shortest_path_query" that created in Step.2, [get_shortest_path] method will find the shortest path (Row 24). 
+   By specifying the "shortest_path_query" that created in Step.2, [get_shortest_path] method will find the shortest path (Line 24). 
 
   4. Show the results
 
-   Show the ID of stations that on the shortes path calculated in Step 3 (Row 27-35).
+   Show the ID of stations that on the shortes path calculated in Step 3 (Line 27-35).
 
 
 ------------------------------------

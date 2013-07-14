@@ -40,79 +40,72 @@ In this sample program, we will explain 1) how to configure the learning-algorit
 .. code-block:: java
 
  01:  package us.jubat.example.ml;
- 02: 
- 03:  import java.io.BufferedReader;
- 04:  import java.io.File;
- 05:  import java.io.FileNotFoundException;
- 06:  import java.io.FileReader;
- 07:  import java.io.IOException;
- 08:  import java.util.ArrayList;
- 09:  import java.util.Arrays;
- 10:  import java.util.List;
- 11:  import us.jubat.recommender.RecommenderClient;
- 12:  import us.jubat.recommender.Datum;
- 13:  import us.jubat.recommender.TupleStringDouble;
- 14:  import us.jubat.recommender.TupleStringString; 
+ 
+ 02:  import java.io.BufferedReader;
+ 03:  import java.io.File;
+ 04:  import java.io.FileNotFoundException;
+ 05:  import java.io.FileReader;
+ 06:  import java.io.IOException;
+ 07:  import java.util.ArrayList;
+ 08:  import java.util.Arrays;
+ 09:  import java.util.List;
+ 10:  import us.jubat.recommender.RecommenderClient;
+ 11:  import us.jubat.recommender.Datum;
+ 12:  import us.jubat.recommender.TupleStringDouble;
+ 13:  import us.jubat.recommender.TupleStringString; 
 
- 15:  public class Update {
- 16:   public static final String HOST = "127.0.0.1";
- 17:   public static final int PORT = 9199;
- 18:   public static final String NAME = "ML";
- 19:   public static final String Data_PATH = "../dat/ml-100k/u.data";
- 20: 
- 21:   public void start() throws Exception {
- 22:           // 1. Connect to Jubatus Server
- 23:           RecommenderClient client = new RecommenderClient(HOST, PORT, 5);
- 24: 
- 25:           // 2. Prepare training data
- 26: 
- 27:           try{
- 28:                   File csv = new File(Data_PATH); // read data file
- 29:  
- 30:                   BufferedReader br = new BufferedReader(new FileReader(csv));
- 31: 
- 32:                   String line = "";
- 33: 
- 34:                   // read the file line by line til the end
- 35:                   while ((line = br.readLine()) != null) {
- 36: 
- 37: 
- 38:                        Datum datum = new Datum();
- 39:                        datum.string_values = new ArrayList<TupleStringString>();
- 40:                        datum.num_values = new ArrayList<TupleStringDouble>();
- 41:                        // split the line for items
- 42:                        String[] strAry = line.split("\t");
- 43:   
- 44:                        try{
- 45:                            TupleStringDouble data = new TupleStringDouble();
- 46:                            data.first = strAry[1];
- 47:                            data.second = Double.parseDouble(strAry[2]);
- 48:                            datum.num_values.add(data);
- 49: 
- 50:                        }catch(NumberFormatException e){
- 51:                        }
- 52: 
- 53:                        //3. training the model
- 54:                        client.update_row(NAME, strAry[0], datum);
- 55:                   }
- 56:                   br.close();
- 57: 
- 58:           } catch (FileNotFoundException e) {
- 59:                 // capture exception when creating file object
- 60:                 e.printStackTrace();
- 61:           } catch (IOException e) {
- 62:                 // capture exception when close BufferedReader object
- 63:                 e.printStackTrace();
- 64:        }
- 65:        return;
- 66:   }
- 67:
- 68:   // Main method
- 69:   public static void main(String[] args) throws Exception {
- 70:        new Update().start();
- 71:        System.exit(0);
- 72:   }
- 73: }
+ 14:  public class Update {
+ 15:   public static final String HOST = "127.0.0.1";
+ 16:   public static final int PORT = 9199;
+ 17:   public static final String NAME = "ML";
+ 18:   public static final String Data_PATH = "../dat/ml-100k/u.data";
+ 
+ 19:   public void start() throws Exception {
+ 20:           // 1. Connect to Jubatus Server
+ 21:           RecommenderClient client = new RecommenderClient(HOST, PORT, 5);
+  
+ 22:           // 2. Prepare training data 
+ 23:           try{
+ 24:                   File csv = new File(Data_PATH); // read data file
+ 25:                   BufferedReader br = new BufferedReader(new FileReader(csv));
+ 26:                   String line = "";
+ 
+ 27:                   // read the file line by line til the end
+ 28:                   while ((line = br.readLine()) != null) {
+ 29:                        Datum datum = new Datum();
+ 30:                        datum.string_values = new ArrayList<TupleStringString>();
+ 31:                        datum.num_values = new ArrayList<TupleStringDouble>();
+ 
+ 32:                        // split the line for items
+ 33:                        String[] strAry = line.split("\t");
+ 34:                        try{
+ 35:                            TupleStringDouble data = new TupleStringDouble();
+ 36:                            data.first = strAry[1];
+ 37:                            data.second = Double.parseDouble(strAry[2]);
+ 38:                            datum.num_values.add(data);
+ 39:                        }catch(NumberFormatException e){
+ 40:                        }
+ 
+ 41:                        //3. training the model
+ 42:                        client.update_row(NAME, strAry[0], datum);
+ 43:                   }
+ 44:                   br.close();
+ 45:           } catch (FileNotFoundException e) {
+ 46:                 // capture exception when creating file object
+ 47:                 e.printStackTrace();
+ 48:           } catch (IOException e) {
+ 49:                 // capture exception when close BufferedReader object
+ 50:                 e.printStackTrace();
+ 51:        }
+ 52:        return;
+ 53:   }
+ 
+ 54:   // Main method
+ 55:   public static void main(String[] args) throws Exception {
+ 56:        new Update().start();
+ 57:        System.exit(0);
+ 58:   }
+ 59: }
 
 
 **Analyze.java**
@@ -120,51 +113,47 @@ In this sample program, we will explain 1) how to configure the learning-algorit
 .. code-block:: java
 
  01:  package us.jubat.example.ml;
- 02:
- 03:  import java.io.BufferedReader;
- 04:  import java.io.File;
- 05:  import java.io.FileNotFoundException;
- 06:  import java.io.FileReader;
- 07:  import java.io.IOException;
- 08:  import java.util.ArrayList;
- 09:  import java.util.List;
- 10:  
- 11:  
- 12:  import us.jubat.recommender.RecommenderClient;
- 13:  import us.jubat.recommender.TupleStringFloat; 
- 14: 
- 15:  public class Analyze {
- 16:    public static final String HOST = "127.0.0.1";
- 17:    public static final int PORT = 9199;
- 18:    public static final String NAME = "ML";
- 19: 
- 20:   
- 21: 
- 22:    public void start() throws Exception {
- 23:        // 1. Connect to Jubatus Server
- 24:        RecommenderClient client = new RecommenderClient(HOST, PORT, 5);
- 25: 
- 26:        // 2. Get the recommended results for every user
- 27:        List<TupleStringFloat> rec = new ArrayList<TupleStringFloat>(); 
- 28:   
- 29:        for (int i=0; i<=100000; i++) {
- 30:          rec = client.similar_row_from_id("movie_len", Integer.toString(i), 10);                         
- 31:        //3. Output result
- 32:          System.out.print("audience " + Integer.toString(i) + " is similar to : " );
- 33:          for (int j=0; j<10; j++){
- 34:              System.out.print(rec.get(j).first + " ");
- 35:          }
- 36:          System.out.println();
- 37:        }
- 38:        return;
- 39:    }
- 40: 
- 41:    // Main method
- 42:    public static void main(String[] args) throws Exception {
- 43:        new Analyze().start();
- 44:        System.exit(0);
- 45:    }
- 46: }
+ 
+ 02:  import java.io.BufferedReader;
+ 03:  import java.io.File;
+ 04:  import java.io.FileNotFoundException;
+ 05:  import java.io.FileReader;
+ 06:  import java.io.IOException;
+ 07:  import java.util.ArrayList;
+ 08:  import java.util.List;
+ 09:  import us.jubat.recommender.RecommenderClient;
+ 10:  import us.jubat.recommender.TupleStringFloat; 
+ 
+ 11:  public class Analyze {
+ 12:    public static final String HOST = "127.0.0.1";
+ 13:    public static final int PORT = 9199;
+ 14:    public static final String NAME = "ML";
+ 
+ 15:    public void start() throws Exception {
+ 16:        // 1. Connect to Jubatus Server
+ 17:        RecommenderClient client = new RecommenderClient(HOST, PORT, 5);
+ 
+ 18:        // 2. Get the recommended results for every user
+ 19:        List<TupleStringFloat> rec = new ArrayList<TupleStringFloat>(); 
+ 20:        for (int i=0; i<=100000; i++) {
+ 21:          rec = client.similar_row_from_id("movie_len", Integer.toString(i), 10);                         
+ 
+ 22:        //3. Output result
+ 23:          System.out.print("audience " + Integer.toString(i) + " is similar to : " );
+ 24:          for (int j=0; j<10; j++){
+ 25:              System.out.print(rec.get(j).first + " ");
+ 26:          }
+ 27:          System.out.println();
+ 28:        }
+ 29:        return;
+ 30:    }
+ 
+ 31:    // Main method
+ 32:    public static void main(String[] args) throws Exception {
+ 33:        new Analyze().start();
+ 34:        System.exit(0);
+ 35:    }
+ 36: }
 
 
 
@@ -209,29 +198,29 @@ We explain the learning and recommendation processes in this example.
 
  1. Connect to Jubatus Server
 
-  Connect to Jubatus Server (Row 23)
+  Connect to Jubatus Server (Line 21)
   Setting the IP addr., RPC port of Jubatus Server, and the connection waiting time.
 
 
  2. Prepare the training data
 
-  Prepare the Datum for model training (Row 35-51). Basically, the training datum contains two parts, string_values & num_values, each of StringString type & StringDouble type, respectively. Because in this sample, only the "movie-id"(String type) & "movie-ranking"(Integer type) are used for training the model, only the num_values part is filled with the data while leaving the string_values "null". 
+  Prepare the Datum for model training (Line 23-40). Basically, the training datum contains two parts, string_values & num_values, each of StringString type & StringDouble type, respectively. Because in this sample, only the "movie-id"(String type) & "movie-ranking"(Integer type) are used for training the model, only the num_values part is filled with the data while leaving the string_values "null". 
 
   Here is the detailed process for making the training data in this sample.
   
   First, read the source file (u.data) of the training data.
-  Here, BuffererdReader() is used to read the items in source file line by line (Row 35).
-  Split the data in each line by '\t' (Row 42). And use 'movie-id' & 'movie-ranking' value to fill the datum.num_values (Row 45-48). Leaving the datum.string_values 'null', because no stringstring type data is used as input.
+  Here, BuffererdReader() is used to read the items in source file line by line (Line 25).
+  Split the data in each line by '\t' (Line 33). And use 'movie-id' & 'movie-ranking' value to fill the datum.num_values (Line 35-38). Leaving the datum.string_values 'null', because no stringstring type data is used as input.
   
  
  3. Model Training (update learning model
 
-  Input the training data generated in step.2 into the update_row() method (Row 54).
+  Input the training data generated in step.2 into the update_row() method (Line 42).
   The first parameter in update_row() is the unique name for task identification in Zookeeper.
   (use null charactor "" for the stand-alone mode)
   The second parameter specifies the unique ID for each audience. In this example, it is the "id" of each audience.
   The third parameter is the Datum for each audience, that generated in Step 2.
-  Now, the Datum of one audience has been learnt. By looping the Steps 2 & 3 above (Row 35), all the audiences' data in the u.data file will be learnt.
+  Now, the Datum of one audience has been learnt. By looping the Steps 2 & 3 above (Line 28), all the audiences' data in the u.data file will be learnt.
 
 **Analyze.java**
 
@@ -241,12 +230,11 @@ We explain the learning and recommendation processes in this example.
   
  2. Get the recommended results for every user
 
-  In step 2, we firstly declare a result list 'rec', to store the returned list from Jubatus server at line 27.  In this sample, the returned value contains the <"audience-id", "similarity-degree">, so the 'rec' is in StringFloat type. Then, we try to get the recommended results for the whole audiences (line 29), whose ids are in {1, 100000}, one by one.  The 1st parameter in client's method "similar_row_from_id()"  is used as an identity for the model in Jubatus server, which could in any terms; the 2nd parameter is the id of current audience, whose similar audiences you are looking for; the 3rd parameter is the number of most liked audience you want to be returned. In this example, we want to get the most liked 10 people returned in result.
+  In step 2, we firstly declare a result list 'rec', to store the returned list from Jubatus server at line 19.  In this sample, the returned value contains the <"audience-id", "similarity-degree">, so the 'rec' is in StringFloat type. Then, we try to get the recommended results for the whole audiences (line 20), whose ids are in {1, 100000}, one by one.  The 1st parameter in client's method "similar_row_from_id()"  is used as an identity for the model in Jubatus server, which could in any terms; the 2nd parameter is the id of current audience, whose similar audiences you are looking for; the 3rd parameter is the number of most liked audience you want to be returned. In this example, we want to get the most liked 10 people returned in result.
 
  3. Output result
 
-  In step 3, we print out the returned data in 'rec'. For simplicity, the first part in each 'rec', which is the similar audience's id, is print out (line 34).
-Note that, among teh returned 10 'id's, the top-1 is the input audiences itself. Because it has the highest similarity to herself.
+  In step 3, we print out the returned data in 'rec'. For simplicity, the first part in each 'rec', which is the similar audience's id, is print out (line 25). Note that, among the returned 10 'id's, the top-1 is the input audiences itself. Because it has the highest similarity to herself.
   
 
 ------------------------------------

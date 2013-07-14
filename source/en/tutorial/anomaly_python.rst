@@ -28,18 +28,18 @@ In this sample program, we will explain 1) how to configure the learning-algorit
  13 :    "retain_projection" : true
  14 :   }
  15 :  },
- 16 : 
- 17 :  "converter" : {
- 18 :   "string_filter_types": {},
- 19 :   "string_filter_rules": [],
- 20 :   "num_filter_types": {},
- 21 :   "num_filter_rules": [],
- 22 :   "string_types": {},
- 23 :   "string_rules": [{"key":"*", "type":"str", "global_weight" : "bin", "sample_weight" : "bin"}],
- 24 :   "num_types": {},
- 25 :   "num_rules": [{"key" : "*", "type" : "num"}]
- 26 :  }
- 27 : }
+ 
+ 16 :  "converter" : {
+ 17 :   "string_filter_types": {},
+ 18 :   "string_filter_rules": [],
+ 19 :   "num_filter_types": {},
+ 20 :   "num_filter_rules": [],
+ 21 :   "string_types": {},
+ 22 :   "string_rules": [{"key":"*", "type":"str", "global_weight" : "bin", "sample_weight" : "bin"}],
+ 23 :   "num_types": {},
+ 24 :   "num_rules": [{"key" : "*", "type" : "num"}]
+ 25 :  }
+ 26 : }
 
  
 
@@ -161,18 +161,18 @@ The configuration information is given by the JSON unit. Here is the meaning of 
  
  1. Connect to Jubatus Server
 
-  Connect to Jubatus Server (Row 12)。
+  Connect to Jubatus Server (Line 12)。
   Setting the IP addr., RPC port of Jubatus Server.
 
  2. Prepare the learning data
 
   AnomalyClient will send the Datum to Jubatus server for data learning or anomaly detection, by using its "add" method.
-  In this example, the result-data in KDD Cup(Knowledge Discovery and Data Mining Cup) is used as the trainning data. At first, the program read the training data from the TEXT file, one line at a time (Row 15). The data in TEXT file are seperated by commas, so we split the items by ’,’ (Row 16).
-  Then, we make the data items stored in datum unit for model training later.(Row 18-65).
+  In this example, the result-data in KDD Cup(Knowledge Discovery and Data Mining Cup) is used as the trainning data. At first, the program read the training data from the TEXT file, one line at a time (Line 15). The data in TEXT file are seperated by commas, so we split the items by ’,’ (Line 16).
+  Then, we make the data items stored in datum unit for model training later.(Line 18-65).
   
  3. Model training (update learning model)
 
-  Input the training data generated in step.2 into the add() method of AnomalyClient (Row 68).
+  Input the training data generated in step.2 into the add() method of AnomalyClient (Line 68).
   The first parameter in add() is the unique name for task identification in Zookeeper.
   (use null charactor "" for the stand-alone mode)
   The second parameter specifies the Datum generated in step.2.
@@ -181,7 +181,7 @@ The configuration information is given by the JSON unit. Here is the meaning of 
  4. Display result
 
   Display the returned value from add() method after a correction checking.
-  The anomaly value should not be infinity or　1.0　(Row 71-72).
+  The anomaly value should not be infinity or　1.0　(Line 71-72).
 
 
 -------------------------------------

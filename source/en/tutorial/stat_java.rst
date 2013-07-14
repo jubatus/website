@@ -11,7 +11,7 @@ In this sample program, we will explain 1) how to configure the learning-algorit
 
 **stat.json**
 
-.. code-block:: python
+.. code-block:: java
 
  1 : {
  2 :   "window_size": 500
@@ -23,88 +23,83 @@ In this sample program, we will explain 1) how to configure the learning-algorit
 .. code-block:: java
 
  01 : package stat;
- 02 : 
- 03 : import java.io.BufferedReader;
- 04 : import java.io.File;
- 05 : import java.io.FileNotFoundException;
- 06 : import java.io.FileReader;
- 07 : import java.io.IOException;
- 08 : import java.util.ArrayList;
- 09 : import java.util.HashMap;
- 10 : 
- 11 : import us.jubat.stat.*;
- 12 : 
- 13 : public class Stat {
- 14 : 	public static final String HOST = "127.0.0.1";
- 15 : 	public static final int PORT = 9199;
- 16 : 	public static final String NAME = "stat_tri";
- 17 : 	public static final String FILE_PATH = "./src/main/resources/";
- 18 : 	public static final String CSV_NAME = "fruit.csv";
- 19 : 
- 20 : 	// Definie the column name in CSV file
- 21 : 	public static String[] CSV_COLUMN = { "fruit", "diameter", "weight", "price" };
- 22 : 
- 23 : 	@SuppressWarnings("serial")
- 24 : 	public void execute() throws Exception {
- 25 : 		// 1. Connect to Jubatus Server
- 26 : 		StatClient stat = new StatClient(HOST, PORT, 5);
- 27 : 
- 28 : 		HashMap<String, String> fruit = new HashMap<String, String>();
- 29 : 
- 30 : 		// 2. Prepare the training data
- 31 : 		try {
- 32 : 			File csv = new File(FILE_PATH + CSV_NAME ); // CSV Data file
- 33 : 
- 34 : 			BufferedReader br = new BufferedReader(new FileReader(csv));
- 35 : 			String line = "";
- 36 : 
- 37 : 			// read data line by line, until the last one.
- 38 : 			while ((line = br.readLine()) != null) {
- 39 : 				// split the data in one line into items
- 40 : 				String[] strAry = line.split(",");
- 41 : 
- 42 : 				for (int i=0; i<strAry.length; i++) {
- 43 : 					fruit.put(CSV_COLUMN[i], strAry[i]);
- 44 : 				}
- 45 : 				// 3. Data training (update model)
- 46 : 				stat.push(NAME, fruit.get("fruit") + "dia" , Float.valueOf(fruit.get("diameter")));
- 47 : 				stat.push(NAME, fruit.get("fruit") + "wei" , Float.valueOf(fruit.get("weight")));
- 48 : 				stat.push(NAME, fruit.get("fruit") + "pri" , Float.valueOf(fruit.get("price")));
- 49 : 			}
- 50 : 			br.close();
- 51 : 
- 52 : 			stat.save(NAME, "stat.dat");
- 53 : 			stat.load(NAME, "stat.dat");
- 54 : 
- 55 : 			// 4. Output result
- 56 : 			for (String fr : new ArrayList<String>(3) {{add("orange");add("apple");add("melon");}}) {
- 57 : 				for ( String par : new ArrayList<String>(3) {{add("dia");add("wei");add("pri");}}) {
- 58 : 					System.out.print("sum : " + fr +  par + " " + stat.sum(NAME, fr + par) + "\n");
- 59 : 					System.out.print("sdv : " + fr +  par + " " + stat.stddev(NAME, fr + par) + "\n");
- 60 : 					System.out.print("max : " + fr +  par + " " + stat.max(NAME, fr + par) + "\n");
- 61 : 					System.out.print("min : " + fr +  par + " " + stat.min(NAME, fr + par) + "\n");
- 62 : 					System.out.print("ent : " + fr +  par + " " + stat.entropy(NAME, fr + par) + "\n");
- 63 : 					System.out.print("mmt : " + fr +  par + " " + stat.moment(NAME, fr + par, 1, 0.0) + "\n");
- 64 : 				}
- 65 : 			}
- 66 : 		} catch (FileNotFoundException e) {
- 67 : 			 // capture the exception in File object creation.
- 68 : 			 e.printStackTrace();
- 69 : 		} catch (IOException e) {
- 70 : 			 // capture the exception when close BufferedReader object.
- 71 : 			 e.printStackTrace();
- 72 : 		}
- 73 : 
- 74 : 		return;
- 75 : 	}
- 76 : 
- 77 : 	// Main method
- 78 : 	public static void main(String[] args) throws Exception {
- 79 : 
- 80 : 		new Stat().execute();
- 81 : 		System.exit(0);
- 82 : 	}
- 83 : }
+ 
+ 02 : import java.io.BufferedReader;
+ 03 : import java.io.File;
+ 04 : import java.io.FileNotFoundException;
+ 05 : import java.io.FileReader;
+ 06 : import java.io.IOException;
+ 07 : import java.util.ArrayList;
+ 08 : import java.util.HashMap;
+ 09 : import us.jubat.stat.*;
+ 
+ 10 : public class Stat {
+ 11 : 	public static final String HOST = "127.0.0.1";
+ 12 : 	public static final int PORT = 9199;
+ 13 : 	public static final String NAME = "stat_tri";
+ 14 : 	public static final String FILE_PATH = "./src/main/resources/";
+ 15 : 	public static final String CSV_NAME = "fruit.csv";
+ 
+ 16 : 	// Definie the column name in CSV file
+ 17 : 	public static String[] CSV_COLUMN = { "fruit", "diameter", "weight", "price" };
+ 
+ 18 : 	@SuppressWarnings("serial")
+ 19 : 	public void execute() throws Exception {
+ 20 : 		// 1. Connect to Jubatus Server
+ 21 : 		StatClient stat = new StatClient(HOST, PORT, 5);
+ 22 : 		HashMap<String, String> fruit = new HashMap<String, String>();
+
+ 23 : 		// 2. Prepare the training data
+ 24 : 		try {
+ 25 : 			File csv = new File(FILE_PATH + CSV_NAME ); // CSV Data file
+ 26 : 			BufferedReader br = new BufferedReader(new FileReader(csv));
+ 27 : 			String line = "";
+ 
+ 28 : 			// read data line by line, until the last one.
+ 29 : 			while ((line = br.readLine()) != null) {
+ 
+ 30 : 				// split the data in one line into items
+ 31 : 				String[] strAry = line.split(",");
+ 32 : 				for (int i=0; i<strAry.length; i++) {
+ 33 : 					fruit.put(CSV_COLUMN[i], strAry[i]);
+ 34 : 				}
+ 
+ 35 : 				// 3. Data training (update model)
+ 36 : 				stat.push(NAME, fruit.get("fruit") + "dia" , Float.valueOf(fruit.get("diameter")));
+ 37 : 				stat.push(NAME, fruit.get("fruit") + "wei" , Float.valueOf(fruit.get("weight")));
+ 38 : 				stat.push(NAME, fruit.get("fruit") + "pri" , Float.valueOf(fruit.get("price")));
+ 39 : 			}
+ 40 : 			br.close();
+ 41 : 			stat.save(NAME, "stat.dat");
+ 42 : 			stat.load(NAME, "stat.dat");
+ 
+ 43 : 			// 4. Output result
+ 44 : 			for (String fr : new ArrayList<String>(3) {{add("orange");add("apple");add("melon");}}) {
+ 45 : 				for ( String par : new ArrayList<String>(3) {{add("dia");add("wei");add("pri");}}) {
+ 46 : 					System.out.print("sum : " + fr +  par + " " + stat.sum(NAME, fr + par) + "\n");
+ 47 : 					System.out.print("sdv : " + fr +  par + " " + stat.stddev(NAME, fr + par) + "\n");
+ 48 : 					System.out.print("max : " + fr +  par + " " + stat.max(NAME, fr + par) + "\n");
+ 49 : 					System.out.print("min : " + fr +  par + " " + stat.min(NAME, fr + par) + "\n");
+ 50 : 					System.out.print("ent : " + fr +  par + " " + stat.entropy(NAME, fr + par) + "\n");
+ 51 : 					System.out.print("mmt : " + fr +  par + " " + stat.moment(NAME, fr + par, 1, 0.0) + "\n");
+ 52 : 				}
+ 53 : 			}
+ 54 : 		} catch (FileNotFoundException e) {
+ 55 : 			 // capture the exception in File object creation.
+ 56 : 			 e.printStackTrace();
+ 57 : 		} catch (IOException e) {
+ 58 : 			 // capture the exception when close BufferedReader object.
+ 59 : 			 e.printStackTrace();
+ 60 : 		}
+ 61 : 		return;
+ 62 : 	}
+ 
+ 63 : 	// Main method
+ 64 : 	public static void main(String[] args) throws Exception {
+ 65 : 		new Stat().execute();
+ 66 : 		System.exit(0);
+ 67 : 	}
+ 68 : }
 
 
 --------------------------------
@@ -158,24 +153,24 @@ The configuration information is given by the JSON unit. Here is the meaning of 
  
  1. Connect to Jubatus Server.
 
-  Connect to Jubatus Server (Row 26).
+  Connect to Jubatus Server (Line 21).
   Setting the IP addr., RPC port of Jubatus Server, and the connection waiting time.
 
  2. Prepare the learning data
 
   StatClient send the <item_name, value> to the server side as training data, by using the push() method.
   In this sample program, the training data are generated from a .CSV file which contains the info. of 'fruit type', 'price', 'weight', 'diameter'.
-  At first, the source data is read line by line from the .CSV file, by FileReader() and BufferedReader() (Row 32-49). Every line data is split into items by the ',' (Row 40). And then, every item, with its item_name that stored in CSV_COLUMN, are stored in to a <HashMap> fruit list (Row 42-44). 
+  At first, the source data is read line by line from the .CSV file, by FileReader() and BufferedReader() (Line 25-34). Every line data is split into items by the ',' (Line 31). And then, every item, with its item_name that stored in CSV_COLUMN, are stored in to a <HashMap> fruit list (Line 32-33). 
  
  3. Data training (update the model)
 
-  The training data in <HashMap> fruit is send to the server site by using the push() method (Row 46-48) for training model there. 
+  The training data in <HashMap> fruit is send to the server site by using the push() method (Line 36-38) for training model there. 
  
  4. Output the result
 
   StatClient gets the different statistic results by using its methods.
-  For each type of fruits(Row 56), the program outputs its statistic results of all the items (Row 57).
-  Different methods are called (Row 58-63) in the loop above. Their contents are listed in the methods list above.
+  For each type of fruits(Line 44), the program outputs its statistic results of all the items (Line 45).
+  Different methods are called (Line 46-51) in the loop above. Their contents are listed in the methods list above.
   
 -------------------------------------
 Run the sample program

@@ -110,14 +110,14 @@ First of all, to write the Client program for Classifier, we can use the Classif
 
  1. How to connect to Jubatus Server
 
-  Connect to Jubatus Server (Row 7).
+  Connect to Jubatus Server (Line 7).
   Setting the IP addr., RPC port of Jubatus Server.
 
  2. Prepare the learning data
 
-  Make a train_data array list for the data to be learnt (Row 8-18).
+  Make a train_data array list for the data to be learnt (Line 8-18).
   
-  The train_data generated in list<tuple<string, datum>> format is input into the train() method (Row 19), for the learning process. The figure below shows the structure of the data being leant.
+  The train_data generated in list<tuple<string, datum>> format is input into the train() method (Line 19), for the learning process. The figure below shows the structure of the data being leant.
 
 
   +---------------------------------------------------------------------------------------------------------------------+
@@ -144,21 +144,21 @@ First of all, to write the Client program for Classifier, we can use the Classif
   
   Here is the procedure of making study data.
 
-  To make study data, the train_data is generated (Row 8-18).
+  To make study data, the train_data is generated (Line 8-18).
 
   In this example, each data has its "label" at the begining, and followed by the datum parts including the key-value lists in String:String format and String:Integer format, respecitively. 
 
  3. Model training (update learning model)
 
-  We train our learning model by using the method train() at Row 19, with the data generated in step.2 above. The first parameter in train() is the unique name for task identification in Zookeeper.
+  We train our learning model by using the method train() at Line 19, with the data generated in step.2 above. The first parameter in train() is the unique name for task identification in Zookeeper.
 
  4. Prepare the prediction data
 
-  Different from training data, prediction data does not contain its "lable", and it is only stored in the datum unit (Row 20-24). 
+  Different from training data, prediction data does not contain its "lable", and it is only stored in the datum unit (Line 20-24). 
 
  5. Data prediction
 
-  By inputting the testdata arraylist generated in step.4 into the classify() method (Row 25), the prediction result will be stored in the result list (Row 26), and each r.label, r.score stands for the prediction result and the confidence of each input testdata respectively (Row 28).
+  By inputting the testdata arraylist generated in step.4 into the classify() method (Line 25), the prediction result will be stored in the result list (Line 26), and each r.label, r.score stands for the prediction result and the confidence of each input testdata respectively (Line 28).
 
 
 

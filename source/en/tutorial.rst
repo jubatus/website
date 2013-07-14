@@ -289,6 +289,3 @@ We provide tutorial for using different functions through Jubatus Client here.
    tutorial/graph
    tutorial/stat
    tutorial/anomaly
-
-Currently we don't have a recommender tutorial in English.
-So far, please refer to the `movielens example <https://github.com/jubatus/jubatus-example/tree/master/movielens>`_.
