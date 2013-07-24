@@ -280,7 +280,7 @@ jubactl
 
    ``--cmd save`` または ``--cmd load`` を指定した場合のみ有効である。
 
-   指定されない場合は、``--name` で指定した値が使用される。
+   指定されない場合は、 ``--name`` で指定した値が使用される。
 
 .. option:: -B <interface>, --listen_if <interface>
 
