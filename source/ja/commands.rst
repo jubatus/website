@@ -95,6 +95,14 @@ Jubatus サーバは機械学習の機能を提供する。
 
    更新カウントは、学習モデルを更新する API (分類器の ``train`` など) を呼ぶたびにインクリメントされる。
 
+.. option:: -Z <seconds>, --zookeeper_timeout <seconds>
+
+   ZooKeeper セッションのタイムアウト時間 (秒)。 [10]
+
+.. option:: -I <seconds>, --interconnect_timeout <seconds>
+
+   Jubatus サーバ間で利用する RPC リクエストのタイムアウト時間 (秒)。 [10]
+
 .. option:: -v, --version
 
    Jubatus サーバのバージョンを表示する。
@@ -140,6 +148,14 @@ Jubatus Keeper は、分散環境においてクライアントからのリク�
    RPC セッションのタイムアウト時間 (秒)。 [10]
 
    ``0`` はタイムアウトを無効にすることを示す。
+
+.. option:: -Z <seconds>, --zookeeper_timeout <seconds>
+
+   ZooKeeper セッションのタイムアウト時間 (秒)。 [10]
+
+.. option:: -I <seconds>, --interconnect_timeout <seconds>
+
+   Jubatus Keeper と Jubatus サーバ間の RPC リクエストのタイムアウト時間 (秒)。 [10]
 
 .. option:: -z <zookeeper_list>, --zookeeper <zookeeper_list>
 
@@ -317,6 +333,18 @@ jubactl
 .. option:: -I <count>, --interval_count <count>
 
    サーバプロセスの開始時のオプションを指定する (:option:`server -i`).
+
+   ``--cmd start`` を指定した場合のみ有効である。
+
+.. option:: -Z <seconds>, --zookeeper_timeout <seconds>
+
+   サーバプロセスの開始時のオプションを指定する (:option:`server -Z`).
+
+   ``--cmd start`` を指定した場合のみ有効である。
+
+.. option:: -R <seconds>, --interconnect_timeout <seconds>
+
+   サーバプロセスの開始時のオプションを指定する (:option:`server -I`).
 
    ``--cmd start`` を指定した場合のみ有効である。
 
