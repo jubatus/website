@@ -20,8 +20,8 @@ Jubatus と Jubatus クライアントのバージョンは異なることがあ
    common_structs
    api_classifier
    api_regression
-   api_nearest_neighbor
    api_recommender
+   api_nearest_neighbor
    api_anomaly
    api_stat
    api_graph
