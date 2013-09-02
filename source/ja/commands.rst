@@ -69,6 +69,10 @@ Jubatus サーバは機械学習の機能を提供する。
 
    指定されていない場合、Jubatus サーバはスタンドアローンモードで動作する。
 
+.. option:: -m <model>, --model_file <model>
+
+   サーバ起動時に読み込むモデルファイルへのパスを指定する。
+
 .. option:: -n <name>, --name <name>
 
    インスタンス名 (タスクを識別する ZooKeeper クラスタ内でユニークな名前)。

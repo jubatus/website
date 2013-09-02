@@ -69,6 +69,10 @@ Jubatus server provides the machine learning feature.
 
    If not specified, Jubatus servers run in standalone mode.
 
+.. option:: -m <model>, --model_file <model>
+
+   Path of the model file to load at startup.
+
 .. option:: -n <name>, --name <name>
 
    The instance name, which is a value to uniquely identify a task in the ZooKeeper cluster.
