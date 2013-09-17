@@ -107,10 +107,6 @@ Methods
 
 .. mpidl:service:: nearest_neighbor
 
-   .. mpidl:method:: bool init_table(0: string name)
-
-      TODO
-
    .. mpidl:method:: bool set_row(0: string name, 1: string id, 2: datum d)
 
       :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前

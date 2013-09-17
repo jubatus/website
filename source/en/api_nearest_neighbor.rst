@@ -107,10 +107,6 @@ When using standalone mode, this must be left blank (``""``).
 
 .. mpidl:service:: nearest_neighbor
 
-   .. mpidl:method:: bool init_table(0: string name)
-
-      TODO
-
    .. mpidl:method:: bool set_row(0: string name, 1: string id, 2: datum d)
 
       :param name: string value to uniquely identifies a task in the ZooKeeper cluster
