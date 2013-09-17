@@ -117,9 +117,9 @@ In this sample program, we will explain 1) how to configure the learning-algorit
  089 : 				if (node.getFirstChild() != null) {
  090 : 					nodeValue = node.getFirstChild().getNodeValue();
  091 : 				}
- 092 : 				if (nodeName == "station_name1") {
+ 092 : 				if (nodeName.equals(station_name1)) {
  093 : 					station1 = nodeValue;
- 094 : 				} else if (nodeName == "station_name2") {
+ 094 : 				} else if (nodeName.equals(station_name2)) {
  095 : 					station2 = nodeValue;
  096 : 				}
  097 : 			}
@@ -479,4 +479,5 @@ Run the sample program
   19    Kanda
   147   Ochanomizu
   144   Yotsuya
+
 
