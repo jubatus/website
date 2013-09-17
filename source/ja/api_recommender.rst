@@ -91,7 +91,7 @@ JSON の各フィールドは以下のとおりである。
      {
        "method": "lsh",
        "parameter" : {
-         "bit_num" : 64
+         "hash_num" : 64
        },
        "converter" : {
          "string_filter_types": {},
