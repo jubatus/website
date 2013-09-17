@@ -76,7 +76,7 @@ JSON の各フィールドは以下のとおりである。
 
    nearest_neighbor:*
       ``*`` に入れた近傍探索器のパラメータを記述する。
-      詳細は :docs:`api_nearest_neighbor` を参照。
+      詳細は :doc:`api_nearest_neighbor` を参照。
 
 
 .. describe:: converter

@@ -18,14 +18,16 @@ We show each filed below:
 
    .. table::
 
-      ==================== ===================================
-      Value                Method
-      ==================== ===================================
-      ``"inverted_index"`` Use Inverted Index.
-      ``"minhash"``        Use MinHash. [Ping2010]_
-      ``"lsh"``            Use Locality Sensitive Hashing.
-      ``"euclid_lsh"``     Use Euclid-distance LSH. [Andoni2005]_
-      ==================== ===================================
+      ======================= ===================================
+      Value                   Method
+      ======================= ===================================
+      ``"inverted_index"``    Use Inverted Index.
+      ``"minhash"``           Use MinHash. [Ping2010]_
+      ``"lsh"``               Use Locality Sensitive Hashing.
+      ``"euclid_lsh"``        Use Euclid-distance LSH. [Andoni2005]_
+
+      ``"nearest_neighbor:*`` Use an implementation of ``nearest_neighbor`` of which algorithm name is specified in ``*`` .
+      ======================= ===================================
 
 
 .. describe:: parameter
@@ -73,6 +75,10 @@ We show each filed below:
         When it is ``true``, projection vectors for hashing are cached in memory.
         Response time is lower though more memory is required.
         (Boolean)
+
+   nearest_neighbor:*
+      Describe the parameter set for the nearest neighbor that is specified in ``*`` .
+      Please refer to :doc:`api_nearest_neighbor` for more details.
 
 
 .. describe:: converter
