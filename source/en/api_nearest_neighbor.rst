@@ -9,7 +9,7 @@ Configuration
 ~~~~~~~~~~~~~
 
 Configuration is given as a JSON file.
-We show each filed below:
+We show each field below:
 
 .. describe:: method
 
@@ -33,21 +33,21 @@ We show each filed below:
    Its format differs for each ``method``.
 
    lsh
-     :bitnum:
+     :hash_num:
         Bit length of hash values.
         The bigger it is, the more accurate results you can get, but the more memory is required.
         (Integer)
 
    minhash
-     :bitnum:
-        Number of hash values.
+     :hash_num:
+        Bit length of hash values.
         The bigger it is, the more accurate results you can get, but the more memory is required.
         (Integer)
 
    euclid_lsh
      :hash_num:
-        Number of hash values.
-        The bigger it is, the more accurate results you can get, but the fewer results you can find and the more memory is required.
+        Bit length of hash values.
+        The bigger it is, the more accurate results you can get, but the more memory is required.
         (Integer)
 
 .. describe:: converter
@@ -62,7 +62,7 @@ Example:
      {
        "method": "lsh",
        "parameter" : {
-         "bit_num" : 64
+         "hash_num" : 64
        },
        "converter" : {
          "string_filter_types": {},
@@ -89,7 +89,7 @@ Data Structures
    Represents a result of nearest neighbor methods.
    It is a list of tuple of string and float.
    The string value is a row ID and the float value is a similarity or distance for the ID.
-   It depend on the API if the float value represents similarity or distance.
+   It depends on the API if the float value represents similarity or distance.
    If the float value is a similarity value, higher value means higher similarity with the query of the row ID.
    Otherwise, smaller value means closer distance with the query of the row ID.
 
@@ -115,7 +115,7 @@ When using standalone mode, this must be left blank (``""``).
       :return:     True if this function updates models successfully
 
       Updates the row whose id is ``id`` with given ``row``.
-      If the row with the same ``id`` already exists, the row is differential updated with ``row``.
+      If the row with the same ``id`` already exists, the row is overwritten with ``row`` (note that this behavior is different from that of recommender).
       Otherwise, new row entry will be created.
       If the server that manages the row and the server that received this RPC request are same, this operation is reflected instantly.
       If not, update operation is reflected after mix.
@@ -125,7 +125,7 @@ When using standalone mode, this must be left blank (``""``).
       :param name: string value to uniquely identifies a task in the ZooKeeper cluster
       :param id:  row ID in the nearest neighbor search table
       :param size: number of rows to be returned
-      :return:     row IDs that are the nearest to the row ``id`` and their /distance values
+      :return:     row IDs that are the nearest to the row ``id`` and their distance values
 
       Returns ``size`` rows (at maximum) that have most similar :mpidl:type:`datum` to ``id`` and their distance values.
 
