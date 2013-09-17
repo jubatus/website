@@ -46,13 +46,13 @@ We show each filed below:
         (Integer)
 
    lsh
-     :bit_num:
+     :hash_num:
         Bit length of hash values.
         The bigger it is, the more accurate results you can get, but the more memory is required.
         (Integer)
 
    euclid_lsh
-     :lsh_num:
+     :hash_num:
         Number of hash values.
         The bigger it is, the more accurate results you can get, but the fewer results you can find and the more memory is required.
         (Integer)
@@ -93,7 +93,7 @@ Example:
      {
        "method": "lsh",
        "parameter" : {
-         "bit_num" : 64
+         "hash_num" : 64
        },
        "converter" : {
          "string_filter_types": {},
