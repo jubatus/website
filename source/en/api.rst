@@ -21,6 +21,7 @@ See the `Jubatus Wiki <https://github.com/jubatus/jubatus/wiki/Client-Compatibil
    api_classifier
    api_regression
    api_recommender
+   api_nearest_neighbor
    api_anomaly
    api_stat
    api_graph

@@ -18,14 +18,15 @@ JSON の各フィールドは以下のとおりである。
 
    .. table::
 
-      ==================== ===================================
-      設定値               手法
-      ==================== ===================================
-      ``"inverted_index"`` 転置インデックスを利用する。
-      ``"minhash"``        MinHash を利用する。 [Ping2010]_
-      ``"lsh"``            Locality Sensitive Hashing を利用する。
-      ``"euclid_lsh"``     Euclid 距離版の LSH を利用する。 [Andoni2005]_
-      ==================== ===================================
+      ======================= ===================================
+      設定値                  手法
+      ======================= ===================================
+      ``"inverted_index"``    転置インデックスを利用する。
+      ``"minhash"``           MinHash を利用する。 [Ping2010]_
+      ``"lsh"``               Locality Sensitive Hashing を利用する。
+      ``"euclid_lsh"``        Euclid 距離版の LSH を利用する。 [Andoni2005]_
+      ``"nearest_neighbor:*`` ``nearest_neighbor`` 実装を利用する。 ``*`` に近傍探索のアルゴリズム名を入れる。
+      ======================= ===================================
 
 
 .. describe:: parameter
@@ -43,13 +44,13 @@ JSON の各フィールドは以下のとおりである。
         (Integer)
 
    lsh
-     :bit_num:
+     :hash_num:
         ハッシュ値のビット数を指定する。
         大きくすると正確な値に近づく代わりに、多くのメモリを消費する。
         (Integer)
 
    euclid_lsh
-     :lsh_num:
+     :hash_num:
         ハッシュの数を指定する。
         大きくすると正確な値に近づく代わりに、再現率が低下し、また多くのメモリを消費する。
         (Integer)
@@ -73,6 +74,10 @@ JSON の各フィールドは以下のとおりである。
         レスポンス時間が低下する代わりに、メモリを消費する。
         (Boolean)
 
+   nearest_neighbor:*
+      ``*`` に入れた近傍探索器のパラメータを記述する。
+      詳細は :doc:`api_nearest_neighbor` を参照。
+
 
 .. describe:: converter
 
@@ -86,7 +91,7 @@ JSON の各フィールドは以下のとおりである。
      {
        "method": "lsh",
        "parameter" : {
-         "bit_num" : 64
+         "hash_num" : 64
        },
        "converter" : {
          "string_filter_types": {},

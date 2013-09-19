@@ -20,7 +20,8 @@ We show each filed below:
       ==================== ===================================
       Value                Method
       ==================== ===================================
-      ``"lof"``            Use Local Outlier Factor. [Breunig2000]_
+      ``"lof"``            Use Local Outlier Factor based on recommender. [Breunig2000]_
+      ``"light_lof"``      Use a variant of LOF based on nearest neighbor.
       ==================== ===================================
 
 .. describe:: parameter
@@ -44,6 +45,22 @@ We show each filed below:
         Parameters of the recommender for nearest neighbor search.
         Refer ``parameter`` in :doc:`api_recommender`.
 
+   light_lof
+     :nearest_neighbor_num:
+        Number of neighbors
+        The bigger it is, the less false-positives are found, but the more false-negatives are found.
+        (Integer)
+     :reverse_nearest_neighbor_num:
+        Number of reverse neighbors to update, when annomaly measure values are update.
+        The bigger it is,  the more accurately measures are updated, but the longer update-time is required.
+        (Integer)
+     :method:
+        Algorithm name of nearest neighbor for nearest neighbor search.
+        Refer ``method`` in :doc:`api_nearest_neighbor`.
+     :parameter:
+        Parameters of the nearest neighbor for nearest neighbor search.
+        Refer ``parameter`` in :doc:`api_nearest_neighbor`.
+
 
 .. describe:: converter
 
@@ -61,7 +78,7 @@ Example:
          "reverse_nearest_neighbor_num" : 30,
          "method" : "euclid_lsh",
          "parameter" : {
-           "lsh_num" : 64,
+           "hash_num" : 64,
            "table_num" : 4,
            "seed" : 1091,
            "probe_num" : 64,

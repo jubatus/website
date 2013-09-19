@@ -20,7 +20,8 @@ JSON の各フィールドは以下のとおりである。
       ==================== ===================================
       設定値               手法
       ==================== ===================================
-      ``"lof"``            Local Outlier Factor を利用する。 [Breunig2000]_
+      ``"lof"``            Recommenderベースの Local Outlier Factor を利用する。 [Breunig2000]_
+      ``"light_lof"``      Nearest Neighborベースの LOF を利用する。
       ==================== ===================================
 
 .. describe:: parameter
@@ -44,6 +45,22 @@ JSON の各フィールドは以下のとおりである。
         近傍探索に利用するレコメンダーに渡すパラーメータを指定する。
         :doc:`api_recommender` で説明される ``parameter`` を指定する。
 
+   light_lof
+     :nearest_neighbor_num:
+        対象データに対する近傍の数を指定する。
+        大きくすると誤検出が減る代わりに、検出漏れが増える。
+        (Integer)
+     :reverse_nearest_neighbor_num:
+        異常値の情報更新する際に、逆近傍候補の個数を指定する。
+        大きくすると検出が正確になる代わりに、更新に時間がかかる。
+        (Integer)
+     :method:
+        近傍探索に利用する近傍探索器のアルゴリズムを指定する。
+        :doc:`api_nearest_neighbor` で説明される ``method`` を指定する。
+     :parameter:
+        近傍探索に利用する近傍探索器に渡すパラメータを指定する。
+        :doc:`api_nearest_neighbor` で説明される ``parameter`` を指定する。
+
 
 .. describe:: converter
 
@@ -61,7 +78,7 @@ JSON の各フィールドは以下のとおりである。
          "reverse_nearest_neighbor_num" : 30,
          "method" : "euclid_lsh",
          "parameter" : {
-           "lsh_num" : 64,
+           "hash_num" : 64,
            "table_num" : 4,
            "seed" : 1091,
            "probe_num" : 64,

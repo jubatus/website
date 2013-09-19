@@ -18,14 +18,16 @@ We show each filed below:
 
    .. table::
 
-      ==================== ===================================
-      Value                Method
-      ==================== ===================================
-      ``"inverted_index"`` Use Inverted Index.
-      ``"minhash"``        Use MinHash. [Ping2010]_
-      ``"lsh"``            Use Locality Sensitive Hashing.
-      ``"euclid_lsh"``     Use Euclid-distance LSH. [Andoni2005]_
-      ==================== ===================================
+      ======================= ===================================
+      Value                   Method
+      ======================= ===================================
+      ``"inverted_index"``    Use Inverted Index.
+      ``"minhash"``           Use MinHash. [Ping2010]_
+      ``"lsh"``               Use Locality Sensitive Hashing.
+      ``"euclid_lsh"``        Use Euclid-distance LSH. [Andoni2005]_
+
+      ``"nearest_neighbor:*`` Use an implementation of ``nearest_neighbor`` of which algorithm name is specified in ``*`` .
+      ======================= ===================================
 
 
 .. describe:: parameter
@@ -44,13 +46,13 @@ We show each filed below:
         (Integer)
 
    lsh
-     :bit_num:
+     :hash_num:
         Bit length of hash values.
         The bigger it is, the more accurate results you can get, but the more memory is required.
         (Integer)
 
    euclid_lsh
-     :lsh_num:
+     :hash_num:
         Number of hash values.
         The bigger it is, the more accurate results you can get, but the fewer results you can find and the more memory is required.
         (Integer)
@@ -74,6 +76,10 @@ We show each filed below:
         Response time is lower though more memory is required.
         (Boolean)
 
+   nearest_neighbor:*
+      Describe the parameter set for the nearest neighbor that is specified in ``*`` .
+      Please refer to :doc:`api_nearest_neighbor` for more details.
+
 
 .. describe:: converter
 
@@ -87,7 +93,7 @@ Example:
      {
        "method": "lsh",
        "parameter" : {
-         "bit_num" : 64
+         "hash_num" : 64
        },
        "converter" : {
          "string_filter_types": {},
