@@ -32,22 +32,24 @@ Run ``jubaclassifier`` program, which provides classification feature, specifyin
 ::
 
   $ jubaclassifier -f /path/to/share/jubatus/example/config/classifier/pa.json
-  I0110 13:43:07.789201  1855 server_util.cpp:196] starting jubaclassifier 0.4.2 RPC server at 192.168.0.1:9199
-      pid            : 1855
-      user           : oda
-      mode           : standalone mode
-      timeout        : 10
-      thread         : 2
-      datadir        : /tmp
-      logdir         : 
-      loglevel       : INFO(0)
-      zookeeper      : 
-      name           : 
-      join           : false
-      interval sec   : 16
-      interval count : 512
-  I0110 13:43:07.789721  1855 server_util.cpp:69] load config from local file :/path/to/share/jubatus/example/config/classifier/pa.json 
-  I0110 13:43:07.790897  1855 classifier_serv.cpp:110] config loaded: {
+  I0110 13:43:07.789201  1855 server_util.cpp:250] starting jubaclassifier 0.5.0 RPC server at 192.168.0.1:9199
+      pid                  : 1855
+      user                 : oda
+      mode                 : standalone mode
+      timeout              : 10
+      thread               : 2
+      datadir              : /tmp
+      logdir               : 
+      loglevel             : INFO(0)
+      zookeeper            : 
+      name                 : 
+      join                 : false
+      interval sec         : 16
+      interval count       : 512
+      zookeeper timeout    : 10
+      interconnect timeout : 10
+  I0110 13:43:07.789721  1855 server_util.cpp:77] load config from local file :/path/to/share/jubatus/example/config/classifier/pa.json
+  I0110 13:43:07.790897  1855 classifier_serv.cpp:117] config loaded: {
     "converter" : {
       "string_filter_types" : {},
       "string_filter_rules" : [],
@@ -246,8 +248,8 @@ In the following example, ``d1`` is a datum constructed from a message, and ``"c
 
 .. code-block:: python
 
-  d1 = types.datum([["message" , "I want to buy mac book air..."]], [])
-  client.train("", [("comp.sys.mac.hardware", d1)])
+  d1 = Datum({"message" : "I want to buy mac book air..."})
+  client.train([("comp.sys.mac.hardware", d1)])
 
 Repeat training the model using many instances of labels and messages in this way.
 
@@ -256,8 +258,8 @@ Now, call ``classify`` API to analyze with models.
 
 .. code-block:: python
 
-  d2 = types.datum([["message" , "Just bought a new mac book air..."]], [])
-  result = client.classify("", [d2])
+  d2 = Datum({"message" : "Just bought a new mac book air..."})
+  result = client.classify([d2])
 
 The result is as follows.
 
