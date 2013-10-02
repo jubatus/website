@@ -2,16 +2,16 @@
 =================
 
 
-Jubatusのインストール
----------------------
+Jubatus のインストール
+----------------------
 
-Ubuntu Server 12.04 LTS (x86_64) と Red Hat Enterprise Linux 6.2 以降 (x86_64) が公式にサポートされています。
-
+Red Hat Enterprise Linux 6.2 以降 (64-bit) と Ubuntu Server 12.04 LTS (64-bit) を公式にサポートしています。
 これらのシステムでは、Jubatus のすべてのコンポーネントをバイナリパッケージでインストールすることができます。
-その他のシステムでのインストールについては :doc:`build` を参照してください。
 
-Yumレポジトリ (RHEL)
-~~~~~~~~~~~~~~~~~~~~~
+また、その他の Linux 環境 (32-bit を含む) と Mac OS X が試験的にサポートされています。
+
+Red Hat Enterprise Linux 6.2 以降 (64-bit)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 以下のコマンドを実行して、Jubatus の Yum リポジトリをシステムに登録します。
 
@@ -25,8 +25,8 @@ Yumレポジトリ (RHEL)
 
   $ sudo yum install jubatus jubatus-client
 
-Apt レポジトリ (Ubuntu)
-~~~~~~~~~~~~~~~~~~~~~~~
+Ubuntu Server 12.04 LTS (64-bit)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 以下の行を ``/etc/apt/sources.list.d/jubatus.list`` に記述して、Jubatus の Apt リポジトリをシステムに登録します。
 
@@ -62,6 +62,17 @@ csh または tcsh をお使いの場合は、こちらを使用してくださ�
 
   $ source /opt/jubatus/profile.csh
 
+その他の Linux 環境 (32-bit を含む)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`jubatus-installer <https://github.com/jubatus/jubatus-installer>`_ を使用するか、 :doc:`build` を参照してソースからビルドしてください。
+
+Mac OS X
+~~~~~~~~~
+
+Homebrew をお使いの場合は、 `tap リポジトリ <https://github.com/jubatus/homebrew-jubatus>`_ を使用すると簡単にインストールが行えます。
+
+それ以外の場合は、 `jubatus-installer`_ を使用するか、 :doc:`build` を参照してソースからビルドしてください。
 
 Jubatus クライアントのインストール
 -----------------------------------

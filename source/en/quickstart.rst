@@ -5,13 +5,13 @@ Quick Start
 Install Jubatus
 ---------------
 
-We officially support Ubuntu Server 12.04 LTS (x86_64) and Red Hat Enterprise Linux 6.2 or later (x86_64).
-
+We officially support Red Hat Enterprise Linux 6.2 or later (64-bit) and Ubuntu Server 12.04 LTS (64-bit).
 On supported systems, you can install all components of Jubatus using binary packages.
-For other systems, see :doc:`build`.
 
-Yum Repository (RHEL)
-~~~~~~~~~~~~~~~~~~~~~
+Other Linux distributions (including 32-bit) and Mac OS X are experimentally supported.
+
+Red Hat Enterprise Linux 6.2 or later (64-bit)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Run the following command to register Jubatus Yum repository to the system.
 
@@ -25,8 +25,8 @@ Now install ``jubatus`` and ``jubatus-client`` package.
 
   $ sudo yum install jubatus jubatus-client
 
-Apt Repository (Ubuntu)
-~~~~~~~~~~~~~~~~~~~~~~~
+Ubuntu Server 12.04 LTS (64-bit)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Write the following line to ``/etc/apt/sources.list.d/jubatus.list`` to register Jubatus Apt repository to the system.
 
@@ -62,6 +62,17 @@ If you're using csh or tcsh, use this instead:
 
   $ source /opt/jubatus/profile.csh
 
+Other Linux Distributions (including 32-bit)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Use `jubatus-installer <https://github.com/jubatus/jubatus-installer>`_ or see :doc:`build` to build from source.
+
+Mac OS X
+~~~~~~~~
+
+If you're using Homebrew, you can use `tap repository <https://github.com/jubatus/homebrew-jubatus>`_ for installation.
+
+In other case, use `jubatus-installer <https://github.com/jubatus/jubatus-installer>`_ or see :doc:`build` to build from source.
 
 Install Jubatus Client Libraries
 --------------------------------
