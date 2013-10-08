@@ -32,7 +32,7 @@ Jubatus updates a model instantaneously just after receiving a data, and it anal
 Deep-Analysis
 -------------
 
-Jubatus supports many ways of deep analysis; classification, regression, statistics, and recommendation.
+Jubatus supports many ways of deep analysis, including classification, regression, statistics, recommendation and clustering.
 
 
 Difference from Hadoop and Mahout
