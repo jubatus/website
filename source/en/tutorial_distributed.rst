@@ -10,9 +10,27 @@ Distributed Mode
 
 You can run Jubatus in a distributed environment using ZooKeeper and Jubatus proxies.
 
-.. figure:: ../_static/single_multi.png
-   :width: 70 %
-   :alt: single client, multi servers
+.. blockdiag::
+
+    blockdiag single_multi {
+      group classifier{
+      color = "#77FF77"
+      jubaclassifier1;
+      jubaclassifier2;
+      jubaclassifier3;
+      }
+
+      group client{
+      color = "#FF7777"
+      client;
+      }
+
+      group proxy{
+      color = "#7777FF"
+      jubaclassifier_proxy;
+      }
+      client -> jubaclassifier_proxy -> jubaclassifier1, jubaclassifier2, jubaclassifier3;
+    }
 
 Setup ZooKeeper
 ~~~~~~~~~~~~~~~
@@ -115,9 +133,38 @@ IP Address     Processes
 
 For the best practices, see :doc:`admin`.
 
-.. figure:: ../_static/multi_multi.png
-   :width: 70 %
-   :alt: multi clients, multi servers
+.. blockdiag::
+
+    blockdiag multi_multi {
+      group classifier{
+      color = "#77FF77"
+      jubaclassifier1; jubaclassifier2; jubaclassifier3
+      }
+
+      group client{
+      color = "#FF7777"
+      client1;
+      client2;
+      client3;
+      }
+
+      group proxy{
+      color = "#7777FF"
+      jubaclassifier_proxy1;
+      jubaclassifier_proxy2;
+      jubaclassifier_proxy3;
+      }
+      
+      client1 -> jubaclassifier_proxy1 -> jubaclassifier1;
+                 jubaclassifier_proxy1 -> jubaclassifier2;
+                 jubaclassifier_proxy1 -> jubaclassifier3;
+      client2 -> jubaclassifier_proxy2 -> jubaclassifier1;
+                 jubaclassifier_proxy2 -> jubaclassifier2;
+                 jubaclassifier_proxy2 -> jubaclassifier3;
+      client3 -> jubaclassifier_proxy3 -> jubaclassifier1;
+                 jubaclassifier_proxy3 -> jubaclassifier2;
+                 jubaclassifier_proxy3 -> jubaclassifier3;
+      }
 
 ZooKeepers & Jubatus Proxies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
