@@ -78,9 +78,21 @@ For example, to use port 19199:
 
 Jubatus and Jubatus clients communicate with each other in `MessagePack-RPC <http://msgpack.org>`_ protocol over the TCP/IP network.
 
-.. figure:: ../_static/single_single.png
-   :width: 70 %
-   :alt: single client, single server
+.. blockdiag::
+
+    blockdiag single_single {
+      group classifier{
+      color = "#77FF77"
+      jubaclassifier;
+      }
+
+      group client{
+      color = "#FF7777"
+      client;
+      }
+
+      client -> jubaclassifier;
+    }
 
 OK, let's download the `tutorial program <https://github.com/jubatus/jubatus-tutorial-python>`_ and the dataset.
 
