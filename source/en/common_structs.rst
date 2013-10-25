@@ -74,8 +74,6 @@ Constructor
    When using standalone mode, this must be left blank (``""``).
    ``timeout_sec`` is a length of timeout between the RPC method invocation and response.
 
-   Currently, you cannot specify ``timeout_sec`` for Python and Ruby clients.
-
    Example usage of constructors are as follows:
 
 .. code-block:: cpp

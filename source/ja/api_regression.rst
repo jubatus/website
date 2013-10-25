@@ -108,8 +108,7 @@ Methods
       :return:           学習した件数 (``train_data`` の長さに等しい)
 
       学習し、モデルを更新する。
-      ``tuple<float, datum>`` は、 :mpidl:type:`datum` とその値の組である。
-      この関数は ``tuple<float, datum>`` をリスト形式でまとめて同時に受け付けることができる (バルク更新)。
+      この関数は ``scored_datum`` をリスト形式でまとめて同時に受け付けることができる (バルク更新)。
 
    .. mpidl:method:: list<float>  estimate(0: list<datum>  estimate_data)
 

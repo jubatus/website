@@ -100,6 +100,10 @@ Data Structures
    Represents a preset query.
    See the description below for details.
 
+   .. mpidl:member:: 0: list<query> edge_query
+
+   .. mpidl:member:: 1: list<query> node_query
+
    .. code-block:: c++
 
       message preset_query {

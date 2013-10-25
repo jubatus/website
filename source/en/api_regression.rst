@@ -108,8 +108,7 @@ Methods
       :return:           Number of trained datum (i.e., the length of the ``train_data``)
 
       Trains and updates the model.
-      ``tuple<float, datum>`` is a tuple of :mpidl:type:`datum` and its value.
-      This function is designed to allow bulk update with list of ``tuple<float, datum>``.
+      This function is designed to allow bulk update with list of ``scored_datum``.
 
    .. mpidl:method:: list<float>  estimate(0: list<datum>  estimate_data)
 

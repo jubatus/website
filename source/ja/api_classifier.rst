@@ -162,8 +162,8 @@ Methods
       :return:      学習した件数 (``data`` の長さに等しい)
 
       学習しモデルを更新する。
-      ``tuple<string, datum>`` は、 :mpidl:type:`datum` とその label の組である。
-      この API は ``tuple<string, datum>`` をリスト形式でまとめて同時に受け付けることができる (バルク更新)。
+      ``labeled_datum`` は、 :mpidl:type:`datum` とその label の組である。
+      この API は ``labeled_datum`` をリスト形式でまとめて同時に受け付けることができる (バルク更新)。
 
    .. mpidl:method:: list<list<estimate_result> > classify(0: list<datum> data)
 
