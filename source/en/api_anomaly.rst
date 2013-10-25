@@ -110,11 +110,11 @@ Data Structures
 
    Represents ID with its score.
 
-   .. mpidl:message:: 0: string id
+   .. mpidl:member:: 0: string id
 
       Data ID.
 
-   .. mpidl:message:: 1: float score
+   .. mpidl:member:: 1: float score
 
       Score.
 

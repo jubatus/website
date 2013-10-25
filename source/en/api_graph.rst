@@ -138,7 +138,7 @@ Data Structures
 .. mpidl:message:: shortest_path_query
 
    Represents a shortest path query information.
-   See the description of ``shortest_path`` method for details.
+   See the description of ``get_shortest_path`` method for details.
 
    .. code-block:: c++
 

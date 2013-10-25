@@ -101,6 +101,7 @@ Data Structures
    詳細は以下の説明を参照すること。
 
    .. mpidl:member:: 0: list<query> edge_query
+
    .. mpidl:member:: 1: list<query> node_query
 
    .. code-block:: c++
@@ -137,7 +138,7 @@ Data Structures
 .. mpidl:message:: shortest_path_query
 
    最短パスリクエストの情報を表す。
-   詳細は ``shortest_path`` メソッドの説明を参照すること。
+   詳細は ``get_shortest_path`` メソッドの説明を参照すること。
 
    .. code-block:: c++
 

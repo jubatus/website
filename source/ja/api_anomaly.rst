@@ -110,11 +110,11 @@ Data Structures
 
    スコア付きのデータIDを表す。 
 
-   .. mpidl:message:: 0: string id
+   .. mpidl:member:: 0: string id
 
       データのIDを表す。
 
-   .. mpidl:message:: 1: float score
+   .. mpidl:member:: 1: float score
 
       IDに対して紐付かれたスコアを表す。
 
