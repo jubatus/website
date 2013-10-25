@@ -85,31 +85,34 @@ JSON の各フィールドは以下のとおりである。
 Data Structures
 ~~~~~~~~~~~~~~~
 
-.. mpidl:type:: neighbor_result
+.. mpidl:message:: id_with_score
 
-   近傍探索の結果を表す。
-   string と float のタプルのリストである。
-   string の値は行 ID であり、float の値はその ID に対応するクエリとの類似度または距離である。
-   float 値が類似度を表すか距離を表すかは API によって異なる。
-   類似度の場合には、類似度が高いほど探索対象の点との類似性が高いことを意味する。
-   一方、距離の場合には距離が小さいほど探索対象の点との類似性が高いことを意味する。
+   スコア付きのデータIDを表す。 
+
+   .. mpidl:member:: 0: string id
+
+      データのIDを表す。
+
+   .. mpidl:member:: 1: float score
+
+      IDに対して紐付かれた近傍性のスコアを表す。
+      近傍性の値が大きいほど、よりお互いの近傍性が高いことを意味する。
 
    .. code-block:: c++
 
-      type neighbor_result = list<tuple<string, float> >
+      message id_with_score {
+        0: string id
+        1: float score
+      }
 
 
 Methods
 ~~~~~~~
 
-各メソッドの最初のパラメタ ``name`` は、タスクを識別する ZooKeeper クラスタ内でユニークな名前である。
-スタンドアロン構成では、空文字列 (``""``) を指定する。
-
 .. mpidl:service:: nearest_neighbor
 
-   .. mpidl:method:: bool set_row(0: string name, 1: string id, 2: datum d)
+   .. mpidl:method:: bool set_row(0: string id, 1: datum d)
 
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :param id:   行 ID
       :param d:    行に対応する :mpidl:type:`datum`
       :return:     モデルの更新に成功した場合 True
@@ -120,36 +123,32 @@ Methods
       更新操作を受け付けたサーバが当該行を持つサーバと同一であれば、操作は即時反映される。
       異なるサーバであれば、mix 後に反映される。
 
-   .. mpidl:method:: neighbor_result neighbor_row_from_id(0: string name, 1: string id, 2: uint size)
+   .. mpidl:method:: list<id_with_score> neighbor_row_from_id(0: string id, 1: uint size)
 
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :param id:   近傍探索テーブル内の行を表す ID
       :param size: 返す近傍点の個数
       :return:     ``id`` で指定した近傍の id とその距離の値のリスト
 
       指定した行 ``id`` に近い行とその距離のリストを (最大で) ``size`` 個返す。
 
-   .. mpidl:method:: neighbor_result neighbor_row_from_data(0: string name, 1: datum query, 2: uint size)
+   .. mpidl:method:: list<id_with_score> neighbor_row_from_data(0: datum query, 1: uint size)
 
-      :param name:  タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :param query: 近傍探索の対象となる :mpidl:type:`datum`
       :param size:  返す近傍点の個数
       :return:      ``query`` の近傍の id とその距離の値のリスト
 
       指定した ``query`` に近い :mpidl:type:`datum` を持つ行とその ``query`` との距離のリストを (最大で) ``size`` 個返す。
 
-   .. mpidl:method:: neighbor_result similar_row_from_id(0: string name, 1: string id, 2: int ret_num)
+   .. mpidl:method:: list<id_with_score> similar_row_from_id(0: string id, 1: int ret_num)
 
-      :param name:    タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :param id:      近傍探索テーブル内の行を表す ID
       :param ret_num: 返す近傍点の個数
       :return:        ``id`` で指定した近傍の id とその距離の値のリスト
 
       指定した行 ``id`` に近い行とその類似度のリストを (最大で) ``size`` 個返す。
 
-   .. mpidl:method:: neighbor_result similar_row_from_data(0: string name, 1: datum query, 2: int ret_num)
+   .. mpidl:method:: list<id_with_score> similar_row_from_data(0: datum query, 1: int ret_num)
 
-      :param name:    タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :param query:   近傍探索の対象となる :mpidl:type:`datum`
       :param ret_num: 返す近傍点の個数
       :return:        ``query`` の近傍の id とその類似度の値のリスト

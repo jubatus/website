@@ -106,52 +106,69 @@ Example:
 Data Structures
 ~~~~~~~~~~~~~~~
 
-None.
+.. mpidl:message:: id_with_score
+
+   Represents ID with its score.
+
+   .. mpidl:member:: 0: string id
+
+      Data ID.
+
+   .. mpidl:member:: 1: float score
+
+      Score.
+
+   .. code-block:: c++
+
+      message id_with_score {
+        0: string id
+        1: float score
+      }
 
 Methods
 ~~~~~~~
 
-For all methods, the first parameter of each method (``name``) is a string value to uniquely identify a task in the ZooKeeper cluster.
-When using standalone mode, this must be left blank (``""``).
-
 .. mpidl:service:: anomaly
 
-   .. mpidl:method:: bool clear_row(0: string name, 1: string id)
+   .. mpidl:method:: bool clear_row(0: string id)
 
-      :param name: string value to uniquely identifies a task in the ZooKeeper cluster
       :param id:   point ID to be removed
       :return:     True when the point was cleared successfully
 
       Clears a point data with ID ``id``.
 
-   .. mpidl:method:: tuple<string, float> add(0: string name, 1: datum row)
+   .. mpidl:method:: id_with_score add(0: datum row)
 
-     :param name: string value to uniquely identifies a task in the ZooKeeper cluster
      :param row:  :mpidl:type:`datum` for the point
      :return:     Tuple of the point ID and the anomaly measure value
 
      Adds a point data ``row``.
 
-   .. mpidl:method:: float update(0: string name, 1: string id, 2: datum row)
+   .. mpidl:method:: float update(0: string id, 1: datum row)
 
-      :param name: string value to uniquely identifies a task in the ZooKeeper cluster
       :param id:   point ID to update
       :param row:  new :mpidl:type:`datum` for the point
       :return:     Anomaly measure value
 
       Updates the point ``id`` with the data ``row``.
 
-   .. mpidl:method:: float calc_score(0: string name, 1: datum row)
+   .. mpidl:method:: float overwrite(0: string id, 1: datum row)
 
-      :param name: string value to uniquely identifies a task in the ZooKeeper cluster
+      :param id:  point ID to overwrite
+      :param row: new :mpidl:type:`datum` for the point
+      :return:    Anomaly measure value
+
+      Overwrites the point ``id`` with the data ``row``.
+
+   .. mpidl:method:: float calc_score(0: datum row)
+
       :param row:  :mpidl:type:`datum`
       :return:     Anomaly measure value for given ``row``
 
       Calculates an anomaly measure value for the point data ``row`` without adding a point.
 
-   .. mpidl:method:: list<string> get_all_rows(0: string name)
+   .. mpidl:method:: list<string> get_all_rows()
 
-      :param name: string value to uniquely identifies a task in the ZooKeeper cluster
       :return:     List of all point IDs
 
       Returns the list of all point IDs.
