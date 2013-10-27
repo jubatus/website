@@ -9,7 +9,7 @@ In fact, the future of data analytics platform should expand to three directions
 Jubatus is the first open source platform for online distributed machine learning on the data streams of Big Data. We use a loose model sharing architecture for efficient training and sharing of machine learning models, by defining three fundamental operations; Update, Mix, and Analyze, in a similar way with the Map and Reduce operations in Hadoop.
 The point is how to reduce the size of model and the number of the Mix operations while keeping high accuracy, since Mix-ing large models for many times causes high networking cost and high latency in the distributed environment.
 
-Then our development team includes competent researchers who combine the latest advances in online machine learning, distributed computing, and randomized algorithms to provide efficient machine learning features for Jubatus. Currently, Jubatus supports basic tasks including classification, regression, and recommendation. A demo system for tweet categorization on fast Twitter data streams is available.
+Then our development team includes competent researchers who combine the latest advances in online machine learning, distributed computing, and randomized algorithms to provide efficient machine learning features for Jubatus. Currently, Jubatus supports basic tasks including classification, regression, clustering, nearest neighbor, outlier detection, and recommendation. A demo system for tweet categorization on fast Twitter data streams is available.
 
 
 Jubatus is the first open source platform for online distributed machine learning on the data streams of Big Data.
@@ -32,7 +32,7 @@ Jubatus updates a model instantaneously just after receiving a data, and it anal
 Deep-Analysis
 -------------
 
-Jubatus supports many ways of deep analysis, including classification, regression, statistics, recommendation and clustering.
+Jubatus supports most tasks for deep analysis, including classification, regression, nearest neighbor, recommendation, anomaly detection, clustering, cluster analysis, simple statistics, and graph analysis, 
 
 
 Difference from Hadoop and Mahout
