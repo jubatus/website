@@ -185,8 +185,8 @@ C++
 
   #include <jubatus/client.hpp>
 
-  #define RETRY_MAX 3      # maximum number of retries
-  #define RETRY_INTERVAL 3 # retry interval (sec)
+  #define RETRY_MAX 3       // maximum number of retries
+  #define RETRY_INTERVAL 3  // retry interval (sec)
 
   // RPC exception handler macro
   #define RPC_RETRY_EXCEPTION_COMMON_HANDLER()              \

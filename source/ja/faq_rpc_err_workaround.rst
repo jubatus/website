@@ -189,8 +189,8 @@ C++
 
   #include <jubatus/client.hpp>
 
-  #define RETRY_MAX 3      # 再実行の上限回数
-  #define RETRY_INTERVAL 3 # 再実行の間隔(秒)
+  #define RETRY_MAX 3       // 再実行の上限回数
+  #define RETRY_INTERVAL 3  // 再実行の間隔(秒)
 
   // 例外ハンドラ マクロ
   #define RPC_RETRY_EXCEPTION_COMMON_HANDLER()    \
