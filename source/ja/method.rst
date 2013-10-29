@@ -187,3 +187,54 @@ References
 **Local Outlier Factor**
   .. [Breunig2000] Markus M. Breunig, Hans-Peter Kriegel, Raymond T. Ng, Jörg Sander, **LOF: Identifying Density-Based Local Outliers**, SIGMOD, 2000.
 
+Nearest Neighbor
+================
+
+Overview
+--------
+
+近傍探索は，登録されたデータ集合の中から，クエリとして与えられたデータに類似したものを高速に取り出す問題である．
+この問題はレコメンダを用いても解くことができるが，近傍探索のみが目的ならば登録時のもともとのデータ表現を保存する必要がない．
+そこでレコメンダから近傍探索に必要ない推薦に関する機能を削ったものがnearest_neighborである．
+
+近傍探索のアルゴリズムはこの他に，push/pull型のMIXをサポートしている．
+
+Data Structure
+--------------
+
+近傍探索のアルゴリズムはすべてハッシュ法をベースにしている．
+カラム指向のデータ構造を用いており，各アイテムごとにバージョン情報を保持している．
+push/pull型のMIXにおいて，アイテム単位のバージョン情報を用いてモデルの差分を生成してプロセス間で交換する。
+
+Algorithm
+---------
+
+lsh
+~~~
+
+コサイン類似度を近似する局所近傍ハッシュ(Locality Sensitive Hash, LSH)を利用した近傍探索器である．アルゴリズムの詳細はレコメンダのlshと同様である．
+
+minhash
+~~~~~~~
+
+b-Bit Minwise Hashを用いた近傍探索記である。アルゴリズムの詳細はレコメンダのminhashと同様である。
+
+euclid_lsh
+~~~~~~~~~~
+
+ユークリッド距離について類似するアイテムを取得するための近傍探索記である．近傍探索器のeuclid_lshはレコメンダのものとは大きく実装が異なる．
+
+近傍探索器のeuclid_lshではコサイン類似度を近似するLSHを用いてユークリッド距離を近似計算する．登録された各データに対してLSHが出力するビット列とデータベクトルのユークリッドノルム値を保存する．データベクトル :math:`x_1` と :math:`x_2` のなす角を :math:`\theta(x_1, x_2)` は，これらの :math:`r` ビットLSH値の間のハミング距離を :math:`d_H(x_1, x_2)` として :math:`\theta(x_1, x_2)={d_H(x_1, x_2)\over r}\cdot2\pi` で与えられる．これとデータベクトルのユークリッドノルム :math:`\lVert x_1\lVert`, :math:`\lVert x_2\lVert` を用いて次式でユークリッド距離を計算することができる．
+
+.. math::
+   \lVert x_1-x_2\lVert^2 = \lVert x_1\lVert^2 + \lVert x_2\lVert^2 - 2\lVert x_1\lVert \lVert x_2\lVert \cos\theta(x_1, x_2).
+
+nearest_neighborにおけるeuclid_lshは，各データごとにLSHのハッシュ値とノルム値を保存する．クエリ時には全ハッシュ値・ノルム値を走査して上式に従ってユークリッド距離を計算し，距離が小さいものから指定した個数だけ取得する．
+
+Clustering
+==========
+
+Overview
+--------
+
+TODO
