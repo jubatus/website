@@ -53,26 +53,25 @@ Ruby
   ``begin - rescue`` ブロックでこれらの例外を捕捉し、RPCを再実行します。RPC再実行を行うためには、
   接続を一旦明示的に破棄する必要があります
 
-+ RPC呼び出しで、メソッド名や型の不一致、アルゴリズムのエラーが発生した場合は、
-  ``MessagePack::RPC::RemoteError`` または ``MessagePack::RPC::CallError`` 例外が発生します。
++ RPC呼び出しで、メソッド名や型の不一致が発生した場合は ``Jubatus::Common::InterfaceMismatch`` 例外が発生します。
+  アルゴリズムのエラーが発生した場合は ``MessagePack::RPC::RemoteError`` または ``MessagePack::RPC::CallError`` 例外が発生します。
   これらの例外を捕捉し、接続を明示的に破棄します。 ``TrasportError`` および ``TimeoutError``
   以外の ``RPCError`` をまとめて捕捉してもよいでしょう
 
 .. code-block:: ruby
 
   require 'jubatus/classifier/client'
-  require 'jubatus/classifier/types'
 
   RETRY_MAX = 3      # 再実行の上限回数
   RETRY_INTERVAL = 3 # 再実行の間隔(秒)
 
-  client = Jubatus::Classifier::Client::Classifier.new(host, port)
+  client = Jubatus::Classifier::Client::Classifier.new(host, port, name, timeout)
   begin
     retry_count = RETRY_MAX
     begin
 
       # RPC実行
-      client.classify(name, query_data)
+      client.classify(query_data)
 
     # トランスポート層エラーとタイムアウトは再実行する
     rescue MessagePack::RPC::TimeoutError, MessagePack::RPC::TransportError => e
@@ -89,7 +88,7 @@ Ruby
     end
 
   # すべての RPCエラーを捕捉
-  rescue MessagePack::RPC::RPCError => e
+  rescue MessagePack::RPC::RPCError, Jubatus::Common::InterfaceMismatch => e
     $stderr.puts e
   ensure
     # 接続は必ず破棄
@@ -111,7 +110,7 @@ Python
   ``try - except`` ブロックでこれらの例外を捕捉し、RPCを再実行します。RPC再実行を行うためには、
   接続を一旦明示的に破棄し、さらに **クライアントオブジェクトを再生成する必要があります**
 
-+ RPC呼び出しで、メソッド名や型の不一致が発生した場合は、 ``msgpackrpc.error.CallError`` が
++ RPC呼び出しで、メソッド名や型の不一致が発生した場合は、 ``jubatus.common.client.InterfaceMismatch`` が
   発生します。アルゴリズムのエラーやその他のエラーが発生した場合は
   ``msgpackrpc.error.RPCError`` が発生します。
   これらの例外を捕捉し、接続を明示的に破棄します。 ``TransportError`` および ``TimeoutError``
@@ -120,21 +119,21 @@ Python
 .. code-block:: python
 
   import jubatus
-  from jubatus.classifier.types import datum
+  from jubatus.common import Datum
   import msgpackrpc
   import time
 
   retry_max = 3      # 再実行の上限回数
   retry_interval = 3 # 再実行の間隔(秒)
 
-  client = jubatus.Classifier(host, port)
+  client = jubatus.Classifier(host, port, name, timeout)
   try:
       retry_count = retry_max
       while True:
           try:
 
               # RPC実行
-              client.classify(name, query_data)
+              client.classify(query_data)
               break
 
           # トランスポート層エラーとタイムアウトは再実行する
@@ -146,7 +145,7 @@ Python
 
               # 再実行の準備: 接続を明示的に破棄し、クライアントオブジェクト再生成
               client.get_client().close()
-              client = jubatus.Classifier(host, port)
+              client = jubatus.Classifier(host, port, name, timeout)
   
               # 間隔をおいて再実行
               print e
@@ -154,7 +153,7 @@ Python
               continue
 
   # 全ての RPCエラーを捕捉
-  except msgpackrpc.error.RPCError as e:
+  except (msgpackrpc.error.RPCError, jubatus.common.client.InterfaceMismatch) as e:
       print e
 
   finally:
@@ -198,7 +197,7 @@ C++
       // 再実行回数の上限に達したら諦める           \
       if ( --retry_count <= 0 ) throw;            \
                                                   \
-      // 再実行の準備: 一旦 接続を明示的に破棄      \
+      // 再実行の準備: 一旦 接続を明示的に破棄      \:
       client.get_client().close();                \
                                                   \
       // 間隔をおいて再実行                        \
@@ -207,14 +206,14 @@ C++
       continue;
 
   {
-    jubatus::classifier::client::classifier client(host, port, 10.0);
+    jubatus::classifier::client::classifier client(host, port, name, timeout);
     try {
       int retry_count = RETRY_MAX;
       while(true) {
         try {
 
           // RPC実行
-          results = client.classify(name, query_data);
+          results = client.classify(query_data);
           break;
         // トランスポート層のエラーとタイムアウトは再実行する
         } catch( msgpack::rpc::connection_closed_error &e ) {   

@@ -51,26 +51,25 @@ Ruby
   You should catch these exceptions by ``begin - rescue`` block and will retry RPC.
   Before you retry, you must close sessions explicitly.
 
-+ When RPC methods mismatching, type mismatching or algorithm errors occur by RPC,
-  ``MessagePack::RPC::RemoteError`` or ``MessagePack::RPC::CallError`` exception will be raised.
++ When RPC methods mismatching, type mismatching errors occur by RPC, ``Jubatus::Common::InterfaceMismatch`` exception will be raised.
+  When algorithm errors occur by RPC, ``MessagePack::RPC::RemoteError`` or ``MessagePack::RPC::CallError`` exception will be raised.
   You should catch these exceptions and close sessions explicitly.
   You can catch any RPC exceptions by ``RPCError``  excluding ``TrasportError`` and ``TimeoutError``
 
 .. code-block:: ruby
 
   require 'jubatus/classifier/client'
-  require 'jubatus/classifier/types'
 
   RETRY_MAX = 3      # maximum number of retries
   RETRY_INTERVAL = 3 # retry interval (sec)
 
-  client = Jubatus::Classifier::Client::Classifier.new(host, port)
+  client = Jubatus::Classifier::Client::Classifier.new(host, port, name, timeout)
   begin
     retry_count = RETRY_MAX
     begin
 
       # performing RPC
-      client.classify(name, query_data)
+      client.classify(query_data)
 
     # retry against transport error and timeout
     rescue MessagePack::RPC::TimeoutError, MessagePack::RPC::TransportError => e
@@ -87,7 +86,7 @@ Ruby
     end
 
   # catch any RPC exceptions
-  rescue MessagePack::RPC::RPCError => e
+  rescue MessagePack::RPC::RPCError, Jubatus::Common::InterfaceMismatch => e
     $stderr.puts e
   ensure
     # close session always
@@ -108,7 +107,7 @@ Python
   You should catch these exceptions by ``try - except`` block and will retry RPC.
   Before you retry, you must close sessions explicitly and **re-create a client object**
 
-+ When RPC method or type mismatching occur, ``msgpackrpc.error.CallError`` exception
++ When RPC method or type mismatching occur, ``jubatus.common.client.InterfaceMismatch`` exception
   will be raised.
   Algorithm error and other RPC errors raise ``msgpackrpc.error.RPCError`` exception.
   You should catch these exceptions and close sessions explicitly.
@@ -117,21 +116,21 @@ Python
 .. code-block:: python
 
   import jubatus
-  from jubatus.classifier.types import datum
+  from jubatus.common import Datum
   import msgpackrpc
   import time
 
   retry_max = 3      # maximum number of retries
   retry_interval = 3 # retry interval (sec)
 
-  client = jubatus.Classifier(host, port)
+  client = jubatus.Classifier(host, port, name, timeout)
   try:
       retry_count = retry_max
       while True:
           try:
 
               # performing RPC
-              client.classify(name, query_data)
+              client.classify(query_data)
               break
 
           # retry against transport error and timeout
@@ -143,7 +142,7 @@ Python
 
               # preparing retry: close session explicitly and re-create client object
               client.get_client().close()
-              client = jubatus.Classifier(host, port)
+              client = jubatus.Classifier(host, port, name, timeout)
   
               # retry after some interval
               print e
@@ -151,7 +150,7 @@ Python
               continue
 
   # catch any RPC exceptions
-  except msgpackrpc.error.RPCError as e:
+  except (msgpackrpc.error.RPCError, jubatus.common.client.InterfaceMismatch) as e:
       print e
 
   finally:
@@ -203,14 +202,14 @@ C++
       continue;
 
   {
-    jubatus::classifier::client::classifier client(host, port, 10.0);
+    jubatus::classifier::client::classifier client(host, port, name, timeout);
     try {
       int retry_count = RETRY_MAX;
       while(true) {
         try {
 
           // performing RPC
-          results = client.classify(name, query_data);
+          results = client.classify(query_data);
           break;
         // retry against transport errors and timeout
         } catch( msgpack::rpc::connection_closed_error &e ) {   
