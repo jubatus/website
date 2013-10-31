@@ -275,6 +275,5 @@ k-平均法はこれを参考にしながら， [Feldman2011a]_ で構築され�
 Reference
 ---------
 
-.. [MacQueen1967] J. MacQueen. "Some methods for classification and analysis of multivariate observations." Proc. Fifth Berkeley Symp. on Math. Statist. and Prob., Vol. 1 (Univ. of Calif. Press, 1967), 281-297.
 .. [Feldman2011a] D. Feldman, M. Langberg. "A Unified Framework for Approximating and Clustering Data." STOC '11: Proceedings of the 43rd annual ACM Symposium on Theory of Computing, pp. 569-578.
 .. [Feldman2011b] D. Feldman, M. Faulkner, A. Krause. "Scalable Training of Mixture Models via Coresets." Advances in Neural Information Processing Systems 24, 2011.
