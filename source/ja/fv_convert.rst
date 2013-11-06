@@ -535,8 +535,8 @@ string_typesなどと同様、 <抽出器名>: <引数> からなる辞書を指
 binary_rules
 ~~~~~~~~~~~~
 
-数値特徴の抽出規則を指定する。
-tring_rulesなどと同様、複数の規則を羅列する。
+バイナリ特徴の抽出規則を指定する。
+string_rulesなどと同様、複数の規則を羅列する。
 各規則は、"key", "except" (オプション), "type"からなる辞書で指定する。
 重みの付け方や特徴名の指定の仕方もそれぞれの"type"ごとに異なる。
 
@@ -565,8 +565,6 @@ Jubatus では特徴ベクトルのキーをハッシュ化することでメモ
     "string_rules": [{"key": "*", "type" : "str", "sample_weight": "bin", "global_weight" : "bin"}],
     "num_types": {},
     "num_rules": [{"key" : "*", "type" : "num"}],
-    "string_types": {},
-    "string_rules": [],
     "binary_types": {},
     "binary_rules": [],
     "hash_max_size": 16
