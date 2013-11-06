@@ -33,19 +33,23 @@ It is probable that doing some tuning this configuration to obtain training mode
    "num_types": {},
    "num_rules": [
      { "key": "*",  "type": "num" }
-   ]
+   ],
+   "binary_types": {},
+   "binary_rules": []
  }
 
 Datum
 -----
 
 It is very simple key-value called "datum" that we can use as a data type in Jubatus.
-datum has two key-value's.
+datum has three key-value's.
 One is "string_values", whose key and value are both string data.
-The other is "num_values", whose key is string data as string_values is, but value is numeric data.
+The second is "num_values", whose key is string data as string_values is, but value is numeric data.
+The last is "binary_values", whose key is string data as string_values is, but value is arbitrary binary data.
 We can store in string_values arbitrary text data such as name, text, profession etc.
-And we can store in num_values arbitrary numeric data such as age, income, the number of access etc. as a floating value.
-The data-conversion module extracts features which are used in machine learning tasks from these two types of data.
+We can store in num_values arbitrary numeric data such as age, income, the number of access etc. as a floating value.
+And, we can store in binary_values arbitrary binary data such as multimedia data like images and sounds.
+The data-conversion module extracts features which are used in machine learning tasks from these three types of data.
 Each key-value is represented neither as a map type nor a dictionary type, but as a set of pairs of keys and values for efficiency.
 The following is an example of a datum.
 
@@ -60,12 +64,15 @@ The following is an example of a datum.
     [
       ("user/age", 29.0),
       ("user/income", 100000.0)
+    ],
+    [
+      ("user/image", "xxxxxxxx")
     ]
   )
 
 Name of keys cannot contain "$" sign.
 
-For example, a datum consists of ``std::vector<std::pair<std::string, std::string> >`` and  ``std::vector<std::pair<std::stirng, double> >`` in C++.
+For example, a datum consists of ``std::vector<std::pair<std::string, std::string> >`` ,  ``std::vector<std::pair<std::stirng, double> >`` and ``std::vector<std::pair<std::string, std::string> >`` in C++.
 ``std::pair<T,U>`` (resp.  ``std::vector<T>``) is to C++ what tuple (resp. vector) is to Python.
 
 Flow of Data Conversion
@@ -73,13 +80,15 @@ Flow of Data Conversion
 
 The following is the overview of data conversion.
 
-As datum consists of string data and numeric data, there are flows of processing for each type of data.
+As datum consists of string data, numeric data and binary data, there are flows of processing for each type of data.
 
 For string data, first "string_filter_rules" is applied and the filtered data are added to the datum.
 Then, features are extracted from string data with "string_rules".
 
 For numeric data, first "num_filter_rules" is applied and filtered data are added to the datum.
 Then, features are extracted from string data with "num_rules".
+
+For binary data, features are extracted from binary data with "binary_rules".
 
 As some filters and feature extractors requires arguments, these are available in "string_rules" and "num_rules" if we prepare them in "string_types" and "num_types", respectively.
 
@@ -404,6 +413,42 @@ It depends on "type" how to specify weight and name features.
     ============= =====================
 
 
+Feature Extraction from Binary Data
+-----------------------------------
+
+As with strings, feature extraction rules are also described for binary types.
+We can make user-defined extractors for binary types, too.
+
+binary_types
+~~~~~~~~~~~~
+
+Feature extractors for binary data are defined in "binary_types".
+As with "string_types", it specifies a dictionary which consists of <extractor name>:<argument>.
+<argument> is a dictionary whose keys and values are both strings and must contain a key named "method".
+The rest of keys in <argument> are dependent on the value of "method".
+The followings are available values of "method" and keys that must be specified.
+
+.. describe:: dynamic
+
+ Use a plugin. See below for further detail.
+
+  :path:      Specifies a path to a plugin.
+  :function:  Specifies a function to be called in a plugin.
+
+
+binary_rules
+~~~~~~~~~~~~
+
+Specifies how to extract binary features.
+As "string_rules", it consists of multiple rules.
+Each rule is a dictionary whose keys are "key", "except" (optional) and "type".
+It depends on "type" how to specify weight and name features.
+
+ :key:    Specifies to which keys in a datum we apply the rule. For further explanation, please read counterpart in "string_filter_rules" section.
+ :except: Specifies which keys to exclude from the match. This is an optional parameter. For further explanation, please read counterpart in "string_filter_rules" section.
+ :type:   Specifies the name of extractor in use. The extractor is either one defined in "binary_types". Note that no pre-defined extractors are prepared.
+
+
 Hashing Key of Feature Vector
 -----------------------------
 
@@ -424,6 +469,8 @@ To use this option, specify the ``hash_max_size`` in the converter configuration
     "string_rules": [{"key": "*", "type" : "str", "sample_weight": "bin", "global_weight" : "bin"}],
     "num_types": {},
     "num_rules": [{"key" : "*", "type" : "num"}],
+    "binary_types": {},
+    "binary_rules": [],
     "hash_max_size": 16
   }
 
