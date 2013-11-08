@@ -156,6 +156,8 @@ By applying these two filters, we obtain the datum like this:
     ]
   )
 
+These "types" and "rules" are optional.
+When you don't specify these configurations, they are regarded as empty lists.
 Next section is devoted to more precise explanations of each filter.
 
 string_filter_types
