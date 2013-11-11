@@ -1,8 +1,7 @@
 Clustering
 ----------
 
-* 詳細な仕様は `IDL 定義 <https://github.com/jubatus/jubatus/blob/master/jubatus/server/server/clustering.idl>`_ と、
-  `分析用サーバのIDL 定義 <https://github.com/jubatus/jubatus/blob/master/jubatus/server/server/cluster_analysisidl>`_ を参照してください。
+* 詳細な仕様は `IDL 定義 <https://github.com/jubatus/jubatus/blob/master/jubatus/server/server/clustering.idl>`_ を参照してください。
 
 
 Configuration
@@ -113,7 +112,7 @@ Methods
       :points:     追加する点のリスト
       :return:     点の追加に成功した場合 True
 
-      ID ``id`` で指定される点データを削除する。
+      点データを追加する。
 
    .. mpidl:method:: uint get_revision(0: string name)
 

@@ -24,6 +24,7 @@ Jubatus と Jubatus クライアントのバージョンは異なることがあ
    api_nearest_neighbor
    api_anomaly
    api_stat
+   apt_clustering
    api_graph
 
 .. toctree::
