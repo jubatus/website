@@ -36,12 +36,12 @@ JSON の各フィールドは以下のとおりである。
      点を圧縮するアルゴリズムを指定する．
      ``simple``, ``compressive_kmeans``, ``compressice_gmm`` から選ぶことができる。
 
-   :backet_size:
+   :bucket_size:
      一度に圧縮する点数．ここではデータセットのサイズに等しく設定する．
      (Integer)
 
-   :backet_length:
-     TBF
+   :bucket_length:
+     ミニバッチのサイズ
      (Integer)
 
    :compresed_backet_size:
@@ -54,11 +54,11 @@ JSON の各フィールドは以下のとおりである。
      (Integer)
 
    :forgetting_factor:
-     TBF
+     忘却定数 ``c_f``
      (double)
 
    :forgetting_threshold:
-     TBF
+     重みにかけられた忘却係数の和がこの値を超えたら，それより上位のレベルには圧縮しないようにする.
      (double)
 
 .. describe:: converter

@@ -36,18 +36,18 @@ We show each filed below:
      Specify alghorithm for compressing points
      You can choose in ``simple``, ``compressive_kmeans`` and ``compressive_gmm``. 
 
-   :backet_size:
+   :bucket_size:
      Number of bulk compression size.
      You should set equal to dataset size.
      (Integer)
 
-   :backet_length:
-     TBF
+   :bucket_length:
+     Size of mini batch clustering.
      (Integer)
 
-   :compresed_backet_size:
-     Number of compressed backet_size.
-     Compression ratio = (compressed_backet_size/backet_size)
+   :compresed_bucket_size:
+     Number of compressed bucket_size.
+     Compression ratio = (compressed_bucket_size/bucket_size)
        (Integer)
 
    :bicriteria_base_size:
@@ -55,11 +55,11 @@ We show each filed below:
      (Integer)
 
    :forgetting_factor:
-     TBF
+     forgetting factor
      (double)
 
    :forgetting_threshold:
-     TBF
+     When summation of forgetting factors are this value, It will not compress more.
      (double)
 
 .. describe:: converter
