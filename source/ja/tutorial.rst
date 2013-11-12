@@ -300,9 +300,14 @@ Classifier API: 学習(train) と 分類(classify)
    :maxdepth: 1
 
    tutorial/classifier
-   tutorial/regression
    tutorial/recommender
+   tutorial/regression
    tutorial/graph
    tutorial/stat
+
+.. toctree::
+   :hidden:
+
    tutorial/anomaly
 
+Anomaly、Nearnest_Neighbor、Clustering のチュートリアルは、現在準備中です。

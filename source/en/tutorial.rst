@@ -301,7 +301,10 @@ We provide tutorial for using different functions through Jubatus Client here.
    tutorial/regression
    tutorial/graph
    tutorial/stat
+
+.. toctree::
+   :hidden:
+
    tutorial/anomaly
 
-Currently we don't have a recommender tutorial in English.
-So far, please refer to the `movielens example <https://github.com/jubatus/jubatus-example/tree/master/movielens>`_.
+Currently, we are preparing tutorials of Recommender, Anomaly, Nearnest_Neighbor and Clustering.
