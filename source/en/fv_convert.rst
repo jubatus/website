@@ -171,10 +171,13 @@ The followings are available values of "method" and keys that must be specified.
 
 .. describe:: regexp
 
- This filter converts substrings that a specified regular expression matches to a specified string. It is unavailable if compiled with ``--disable-re2``.
+ This filter converts substrings that a specified regular expression matches to a specified string.
 
-  :pattern:  Specifies a regular expression to match. This filter uses re2. For available expressions, please refer to documents of re2.
+  :pattern:  Specifies a regular expression to match.
   :replace:  Specifies a string to replace with.
+
+ For list of regular expressions available, refer to the documentation of the regular expression engine (`oniguruma <http://www.geocities.jp/kosako3/oniguruma/doc/RE.txt>`_ or `re2 <http://code.google.com/p/re2/wiki/Syntax>`_).
+ The regular expression engine can be selected at compile time (oniguruma is used when using binary packages).
 
  For example, in order to remove all HTML tags, we should define such a string_filter_type.
 
@@ -218,7 +221,7 @@ Every "key" and "except" in this document is in the same format. Similarly, it h
  "\*" or ""    Matches all keys in a datum. That is, this rule is applied to every keys in the datum.
  "XXX\*"       Matches keys whose prefixes are "XXX".
  "\*XXX"       Matches keys whose suffixes are "XXX".
- "/XXX/"       "XXX" is interpreted as a regular expression. Matches keys that the expression matches. It is unavailable if compiled with --disable-re2.
+ "/XXX/"       "XXX" is interpreted as a regular expression. Matches keys that the expression matches.
  otherwise     If the key is none of the above, it matches to keys that are identical to the given string.
  ============= ====================
 
@@ -306,6 +309,41 @@ The followings are available values of "method" and keys that must be specified.
       "string_types": {
         "bigram":  { "method": "ngram", "char_num": "2" },
         "trigram": { "method": "ngram", "char_num": "3" }
+      }
+
+.. describe:: regexp
+
+ Extract keywords from given document by way of regular expression matching with and use each keyword as a feature.
+ Matching is executed continuously, that is, every match is used as a feature.
+
+  :pattern:   Specifies mathing pattrn.
+  :group:     Specifies group to be extracted as a keyword. If this value is 0, whole match is used as a keyword. If value is positive integer, only specified group extracted with () is used. Default value is 0. "group" must be specified with string type (e.g. "2"), not numeric type (e.g. 2).
+
+ For list of regular expressions available, refer to the documentation of the regular expression engine (`oniguruma <http://www.geocities.jp/kosako3/oniguruma/doc/RE.txt>`_ or `re2 <http://code.google.com/p/re2/wiki/Syntax>`_).
+ The regular expression engine can be selected at compile time (oniguruma is used when using binary packages).
+
+ The following is simplest example in which we extract every representation of date (YYYY/MM/DD).
+
+ .. code-block:: js
+
+      "string_types": {
+        "date": {
+          "method": "regexp",
+          "function": "create",
+          "pattern": "[0-9]{4}/[0-9]{2}/[0-9]{2}"
+        }
+      }
+
+ If we use only a part of the matches, we make use of "group" argument. For example, representation of age may be extracted with such a configuration.
+
+ .. code-block:: js
+
+      "string_types": {
+        "age": {
+          "method": "regexp",
+          "pattern": "(age|Age)([ :=])([0-9]+)",
+          "group": "3"
+        }
       }
 
 .. describe:: dynamic
@@ -535,44 +573,5 @@ Note that some plugins are not available depending on your compile options.
           "path": "libux_splitter.so",
           "function": "create",
           "dict_path": "/path/to/keyword/dic.txt"
-        }
-      }
-
-.. describe:: libre2_splitter.so
-
- We can specify this plugin in "string_types".
- Extract keywords from given document by way of regular expression matching with `re2 <http://code.google.com/p/re2/>`_ and use each keyword as a feature.
- Matching is executed continuously, that is, every match is used as a feature.
- For list of regular expressions available, refer to the `re2 documentation <http://code.google.com/p/re2/wiki/Syntax>`_.
- This plugin is available only when **NOT** compiled with ``--disable-re2``.
-
-  :function:  Specifies "create".
-  :pattern:   Specifies mathing pattrn.
-  :group:     Specifies group to be extracted as a keyword. If this value is 0, whole match is used as a keyword. If value is positive integer, only specified group extracted with () is used. Default value is 0. "group" must be specified with string type (e.g. "2"), not numeric type (e.g. 2).
-
- The following is simplest example in which we extract every representation of date.
-
- .. code-block:: js
-
-      "string_types": {
-        "date": {
-          "method": "dynamic",
-          "path": "libre2_splitter.so",
-          "function": "create",
-          "pattern": "[0-9]{4}/[0-9]{2}/[0-9]{2}"
-        }
-      }
-
- If we use only a part of the matches, we make use of "group" argument. For example, representation of age may be extracted with such a configuration.
-
- .. code-block:: js
-
-      "string_types": {
-        "age": {
-          "method": "dynamic",
-          "path": "libre2_splitter.so",
-          "function": "create",
-          "pattern": "(age|Age)([ :=])([0-9]+)",
-          "group": "3"
         }
       }

@@ -182,10 +182,13 @@ string_filter_types
 
 .. describe:: regexp
 
- 正規表現にマッチした部分を、指定した文字列に変換する。このフィルターは ``--disable-re2`` 付きでコンパイルすると利用できない。
+ 正規表現にマッチした部分を、指定した文字列に変換する。
 
-  :pattern:  マッチさせる正規表現を指定する。re2を利用するため、利用できる表現はre2のマニュアルを参照する。
+  :pattern:  マッチさせる正規表現を指定する。
   :replace:  置き換え後の文字列を指定する。
+
+ 利用できる正規表現は、使用する正規表現エンジンのドキュメント (`oniguruma <http://www.geocities.jp/kosako3/oniguruma/doc/RE.txt>`_ または `re2 <http://code.google.com/p/re2/wiki/Syntax>`_) を参照すること。
+ 使用する正規表現エンジンはコンパイル時に選択可能である (バイナリパッケージでインストールした場合は oniguruma が使用される)。
 
  HTMLのすべてのタグを消すには、例えば以下のようなstring_filter_typeを宣言すればよいだろう。
 
@@ -229,7 +232,7 @@ datum がある規則の条件を満たした場合、そのルールが適用�
  "\*" or ""    全ての要素にマッチする。"key"にこれが指定されると必ず適用されることになる。
  "XXX\*"       末尾に\*をつけると、その前のみをプレフィックスとして使用する。つまり、"XXX"で始まるkeyのみにマッチする。
  "\*XXX"       先頭に\*をつけると、その後のみをサフィックスとして使用する。つまり、"XXX"で終わるkeyのみにマッチする。
- "/XXX/"       2つのスラッシュ(/)で囲うと、その間の表現を正規表現とみなして、正規表現でマッチする。--disable-re2付きでコンパイルすると利用できない。
+ "/XXX/"       2つのスラッシュ(/)で囲うと、その間の表現を正規表現とみなして、正規表現でマッチする。
  その他        以上のいずれでもない場合は、与えられた文字列と一致するkeyのみにマッチする。
  ============= ====================
 
@@ -379,6 +382,40 @@ string_filter_typesなどと同様、<抽出器名>:<引数> からなる辞書�
       "string_types": {
         "bigram":  { "method": "ngram", "char_num": "2" },
         "trigram": { "method": "ngram", "char_num": "3" }
+      }
+
+.. describe:: regexp
+
+ 与えられた文書から正規表現を利用してキーワードを抜き出して、それぞれを特徴量として利用する。
+ 正規表現マッチは連続的に行われ、マッチした箇所全てを特徴として使う。
+
+  :pattern: マッチさせる正規表現を指定する。
+  :group:   キーワードとして取り出すグループを指定する。0ならマッチした全体で、1以上の値を指定すると () で取り出したグループだけをキーワードとする。省略すると0として扱う。
+
+ 利用できる正規表現は、使用する正規表現エンジンのドキュメント (`oniguruma <http://www.geocities.jp/kosako3/oniguruma/doc/RE.txt>`_ または `re2 <http://code.google.com/p/re2/wiki/Syntax>`_) を参照すること。
+ 使用する正規表現エンジンはコンパイル時に選択可能である (バイナリパッケージでインストールした場合は oniguruma が使用される)。
+
+ 最も簡単な例として、以下では日付表現 (YYYY/MM/DD) を全て取り出す。
+
+ .. code-block:: js
+
+      "string_types": {
+        "date": {
+          "method": "regexp",
+          "pattern": "[0-9]{4}/[0-9]{2}/[0-9]{2}"
+        }
+      }
+
+ パターンの一部だけを利用するときは、 "group" 引数を利用する。たとえば、以下の様な設定で年齢が取れるだろう。
+
+ .. code-block:: js
+
+      "string_types": {
+        "age": {
+          "method": "regexp",
+          "pattern": "(age|Age)([ :=])([0-9]+)",
+          "group": "3"
+        }
       }
 
 .. describe:: dynamic
@@ -631,44 +668,5 @@ Jubatusでは、デフォルトで以下の3つの文字列特徴量のプラグ
           "path": "libux_splitter.so",
           "function": "create",
           "dict_path": "/path/to/keyword/dic.txt"
-        }
-      }
-
-.. describe:: libre2_splitter.so
-
- string_typesで指定できる。
- `re2 <http://code.google.com/p/re2/>`_ を利用して、与えられた文書から正規表現を利用してキーワードを抜き出して、それぞれを特徴量として利用する。
- 正規表現マッチは連続的に行われ、マッチした  箇所全てを特徴として使う。
- 利用可能な正規表現は `re2 のドキュメント <http://code.google.com/p/re2/wiki/Syntax>`_ を参照すること。
- ``--disable-re2`` オプションを **指定せずに** コンパイルした場合のみ利用可能である。
-
-  :function:  "create"を指定する。
-  :pattern:    マッチさせる正規表現を指定する。
-  :group:      キーワードとして取り出すグループを指定する。0ならマッチした全体で、1以上の値を指定すると () で取り出したグループだけをキーワードとする。省略すると0として扱う。
-
- 最も簡単な例として、以下では日付表現を全て取り出す。
-
- .. code-block:: js
-
-      "string_types": {
-        "date": {
-          "method": "dynamic",
-          "path": "libre2_splitter.so",
-          "function": "create",
-          "pattern": "[0-9]{4}/[0-9]{2}/[0-9]{2}"
-        }
-      }
-
- パターンの一部だけを利用するときは、 "group" 引数を利用する。たとえば、以下の様な設定で年齢が取れるだろう。
-
- .. code-block:: js
-
-      "string_types": {
-        "age": {
-          "method": "dynamic",
-          "path": "libre2_splitter.so",
-          "function": "create",
-          "pattern": "(age|Age)([ :=])([0-9]+)",
-          "group": "3"
         }
       }
