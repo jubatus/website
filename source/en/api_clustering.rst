@@ -107,46 +107,40 @@ When using standalone mode, this must be left blank (``""``).
 
 .. mpidl:service:: clustering
 
-   .. mpidl:method:: bool push(0: string name, 1: list<datum> points)
+   .. mpidl:method:: bool push(0: list<datum> points)
 
-      :param name: string value to uniquely identifies a task in the ZooKeeper cluster
       :points:     list of :mpidl:type:`datum` for the point 
       :return:     True when the point was added successfully
 
       Adds points. 
 
-   .. mpidl:method:: uint get_revision(0: string name)
+   .. mpidl:method:: uint get_revision()
 
-      :param name: string value to uniquely identifies a task in the ZooKeeper cluster
       :return:     revesion of cluster
 
       Return revesion of cluster
 
-   .. mpidl:method:: list<list<tuple<double, datum> > > get_core_members(0: string name)
+   .. mpidl:method:: list<list<weighted_datum > > get_core_members()
 
-      :param name: string value to uniquely identifies a task in the ZooKeeper cluster
       :return:     coreset of cluster
 
       Returns coreset of cluster
 
-   .. mpidl:method:: list<datum> get_k_center(0: string name)
+   .. mpidl:method:: list<datum> get_k_center()
 
-      :param name: string value to uniquely identifies a task in the ZooKeeper cluster
       :return:     cluster centers
 
       Returns ``k`` cluster centers
 
-   .. mpidl:method:: datum get_nearest_center(0: string name, 1: datum point)
+   .. mpidl:method:: datum get_nearest_center(0: datum point)
 
-      :param name: string value to uniquely identifies a task in the ZooKeeper cluster
       :param point:  :mpidl:type:`datum`
       :return:     nearest cluster center
 
       Returns nearest cluster center without adding ``point`` to cluster.
 
-   .. mpidl:method:: list<tuple<double, datum> > get_nearest_members(0: string name, 1: datum point)
+   .. mpidl:method:: list<weighted_datum > get_nearest_members(0: datum point)
 
-      :param name: string value to uniquely identifies a task in the ZooKeeper cluster
       :param point: :mpidl:type:`datum`
       :return:     coreset
 

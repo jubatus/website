@@ -106,46 +106,40 @@ Methods
 
 .. mpidl:service:: clustering
 
-   .. mpidl:method:: bool push(0: string name, 1: list<datum> points)
+   .. mpidl:method:: bool push(0: list<datum> points)
 
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
-      :points:     追加する点のリスト
-      :return:     点の追加に成功した場合 True
+      :param points: 追加する点のリスト
+      :return:       点の追加に成功した場合 True
 
       点データを追加する。
 
-   .. mpidl:method:: uint get_revision(0: string name)
+   .. mpidl:method:: uint get_revision()
 
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :return:     クラスタ状態のバージョン
 
       クラスタ状態のバージョンを返す．
 
-   .. mpidl:method:: list<list<tuple<double, datum> > > get_core_members(0: string name)
+   .. mpidl:method:: list<list<weighted_datum > > get_core_members()
 
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :return:     クラスタの概略
 
       クラスタのコアセットを返す。
 
-   .. mpidl:method:: list<datum> get_k_center(0: string name)
+   .. mpidl:method:: list<datum> get_k_center()
 
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :return:     クラスタ中心
 
       ``k`` 個のクラスタ中心を返す．
 
-   .. mpidl:method:: datum get_nearest_center(0: string name, 1: datum point)
+   .. mpidl:method:: datum get_nearest_center(0: datum point)
 
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :param point:  :mpidl:type:`datum`
       :return:     与えられた点に最も近いクラスタ中心
 
       点を追加せずに、与えられた点データ ``point`` に最も近いクラスタ中心を返す．
 
-   .. mpidl:method:: list<tuple<double, datum> > get_nearest_members(0: string name, 1: datum point)
+   .. mpidl:method:: list<weighted_datum > get_nearest_members(0: datum point)
 
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :param point: 指定する点
       :return:     点のリスト
 
