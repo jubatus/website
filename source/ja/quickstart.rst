@@ -23,7 +23,13 @@ Red Hat Enterprise Linux 6.2 以降 (64-bit)
 
 ::
 
+  // RHEL の場合
+  $ sudo yum --enablerepo=rhel-6-server-optional-rpms install jubatus jubatus-client
+
+  // RHEL クローン (CentOS, Scientific Linux など) の場合
   $ sudo yum install jubatus jubatus-client
+
+RHEL では、依存パッケージ (``oniguruma``) のインストールに ``rhel-6-server-optional-rpms`` リポジトリを使用している点に注意してください。
 
 Ubuntu Server 12.04 LTS (64-bit)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
