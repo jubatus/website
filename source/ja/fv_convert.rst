@@ -187,6 +187,7 @@ string_filter_types
   :replace:  置き換え後の文字列を指定する。
 
  利用できる正規表現は、使用する正規表現エンジンのドキュメント (`oniguruma <http://www.geocities.jp/kosako3/oniguruma/doc/RE.txt>`_ または `re2 <http://code.google.com/p/re2/wiki/Syntax>`_) を参照すること。
+ 使用する正規表現エンジンはコンパイル時に選択可能である (バイナリパッケージでインストールした場合は oniguruma が使用される)。
 
  HTMLのすべてのタグを消すには、例えば以下のようなstring_filter_typeを宣言すればよいだろう。
 
@@ -391,6 +392,7 @@ string_filter_typesなどと同様、<抽出器名>:<引数> からなる辞書�
   :group:   キーワードとして取り出すグループを指定する。0ならマッチした全体で、1以上の値を指定すると () で取り出したグループだけをキーワードとする。省略すると0として扱う。
 
  利用できる正規表現は、使用する正規表現エンジンのドキュメント (`oniguruma <http://www.geocities.jp/kosako3/oniguruma/doc/RE.txt>`_ または `re2 <http://code.google.com/p/re2/wiki/Syntax>`_) を参照すること。
+ 使用する正規表現エンジンはコンパイル時に選択可能である (バイナリパッケージでインストールした場合は oniguruma が使用される)。
 
  最も簡単な例として、以下では日付表現 (YYYY/MM/DD) を全て取り出す。
 

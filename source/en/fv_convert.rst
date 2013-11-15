@@ -175,6 +175,7 @@ The followings are available values of "method" and keys that must be specified.
   :replace:  Specifies a string to replace with.
 
  For list of regular expressions available, refer to the documentation of the regular expression engine (`oniguruma <http://www.geocities.jp/kosako3/oniguruma/doc/RE.txt>`_ or `re2 <http://code.google.com/p/re2/wiki/Syntax>`_).
+ The regular expression engine can be selected at compile time (oniguruma is used when using binary packages).
 
  For example, in order to remove all HTML tags, we should define such a string_filter_type.
 
@@ -317,6 +318,7 @@ The followings are available values of "method" and keys that must be specified.
   :group:     Specifies group to be extracted as a keyword. If this value is 0, whole match is used as a keyword. If value is positive integer, only specified group extracted with () is used. Default value is 0. "group" must be specified with string type (e.g. "2"), not numeric type (e.g. 2).
 
  For list of regular expressions available, refer to the documentation of the regular expression engine (`oniguruma <http://www.geocities.jp/kosako3/oniguruma/doc/RE.txt>`_ or `re2 <http://code.google.com/p/re2/wiki/Syntax>`_).
+ The regular expression engine can be selected at compile time (oniguruma is used when using binary packages).
 
  The following is simplest example in which we extract every representation of date (YYYY/MM/DD).
 
