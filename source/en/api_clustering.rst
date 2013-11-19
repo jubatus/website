@@ -12,7 +12,7 @@ We show each filed below:
 
 .. describe:: method
 
-   Soecify algorithm for clustering.
+   Specify algorithm for clustering.
    You can use these algorithms.
 
    .. table::
@@ -33,12 +33,12 @@ We show each filed below:
      (Integer)
 
    :compressor_method:
-     Specify alghorithm for compressing points
-     You can choose in ``simple``, ``compressive_kmeans`` and ``compressive_gmm``. 
+     Specify alghorithm for compressing points.
+     You can choose from ``simple``, ``compressive_kmeans`` and ``compressive_gmm``. 
 
    :bucket_size:
      Number of bulk compression size.
-     You should set equal to dataset size.
+     It can be smaller than dataset size.
      (Integer)
 
    :bucket_length:
@@ -51,7 +51,7 @@ We show each filed below:
        (Integer)
 
    :bicriteria_base_size:
-     Number of compress roughness.
+     Specify roughness of compression.
      (Integer)
 
    :forgetting_factor:
@@ -59,7 +59,7 @@ We show each filed below:
      (double)
 
    :forgetting_threshold:
-     When summation of forgetting factors are this value, It will not compress more.
+     When the summation of forgetting factors exceeds this value, it will not compress any more.     
      (double)
 
 .. describe:: converter
@@ -116,7 +116,7 @@ When using standalone mode, this must be left blank (``""``).
 
    .. mpidl:method:: uint get_revision()
 
-      :return:     revesion of cluster
+      :return:     revision of cluster
 
       Return revesion of cluster
 
