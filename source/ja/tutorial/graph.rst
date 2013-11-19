@@ -10,7 +10,7 @@ Graph
 サンプルプログラムの概要
 ----------------------------------
 
-鉄道路線の最短経路 (ホップ数) を推定するプログラム「`train_route <https://github.com/jubatus/jubatus-example/tree/master/train_route>`_」を用いて説明していきます。
+鉄道路線の最短経路 (ホップ数) を推定するプログラム「 `train_route <https://github.com/jubatus/jubatus-example/tree/master/train_route>`_ 」を用いて説明していきます。
 
 最初に、鉄道の接続を表すグラフを作成します。今回は山手線と中央線の接続を表すグラフを作成します。
 

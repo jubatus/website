@@ -10,7 +10,7 @@ Regression
 サンプルプログラムの概要
 -----------------------------------
 
-サンプルとして、駅からの距離、専有面積、築年数等の条件から家賃を推測するプログラム「`rent <https://github.com/jubatus/jubatus-example/tree/master/rent>`_」を用いて説明していきます。
+サンプルとして、駅からの距離、専有面積、築年数等の条件から家賃を推測するプログラム「 `rent <https://github.com/jubatus/jubatus-example/tree/master/rent>`_ 」を用いて説明していきます。
 
 最初に、賃貸情報サイトから取得した「S町の1Rマンション」の賃貸情報 (`rent-data.csv <https://raw.github.com/jubatus/jubatus-example/master/rent/dat/rent-data.csv>`_) をクライアント側で用意し、推定するためのモデルを ``jubaregression`` に学習させます。
 

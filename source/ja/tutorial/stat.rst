@@ -10,7 +10,7 @@ Stat
 サンプルプログラムの概要
 -----------------------------------
 
-サンプルとして、オレンジ・りんご・メロンの直径・重さ・価格を学習し、フルーツ毎にパラメータの合計値や標準偏差など統計分析をするプログラム「`trivial_stat <https://github.com/jubatus/jubatus-example/tree/master/trivial_stat>`_」を用いて説明していきます。
+サンプルとして、オレンジ・りんご・メロンの直径・重さ・価格を学習し、フルーツ毎にパラメータの合計値や標準偏差など統計分析をするプログラム「 `trivial_stat <https://github.com/jubatus/jubatus-example/tree/master/trivial_stat>`_ 」を用いて説明していきます。
 
 最初に、サンプル用に人工的に作成したデータセット (`fruit.csv <https://raw.github.com/jubatus/jubatus-example/master/trivial_stat/dat/fruit.csv>`_) をクライアント側で用意し、統計分析するためのモデルを ``jubastat`` に学習させます。
 

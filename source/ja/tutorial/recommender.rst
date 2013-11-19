@@ -10,7 +10,7 @@ Recommender
 サンプルプログラムの概要
 -----------------------------------
 
-サンプルとして、2012年日本プロ野球の野手成績を学習し、似たタイプ（成績）の野手を推薦するプログラム「`npb_similar_player <https://github.com/jubatus/jubatus-example/tree/master/npb_similar_player>`_」を用いて説明していきます。
+サンプルとして、2012年日本プロ野球の野手成績を学習し、似たタイプ（成績）の野手を推薦するプログラム「 `npb_similar_player <https://github.com/jubatus/jubatus-example/tree/master/npb_similar_player>`_ 」を用いて説明していきます。
 
 最初に、 `プロ野球データfreak <http://baseball-data.com/>`_ から取得した「規定打席の1/3以上の全野手のデータ」を打席数順にソートした CSV データ (`baseball.csv <https://raw.github.com/jubatus/jubatus-example/master/npb_similar_player/dat/baseball.csv>`_) をクライアント側で用意し、推薦するためのモデルを ``jubarecommender`` に学習させます。
 
