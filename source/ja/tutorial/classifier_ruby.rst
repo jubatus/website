@@ -164,7 +164,7 @@ JSONの各フィールドは以下の通りです。
 
     今回はmethodで"AROW"を指定していますので、「"regularization_weight" : 1.0」を指定します。
     なお、各アルゴリズムのregularization_weightパラメータ（学習に対する感度パラメータ）はアルゴリズム中における役割が異なるため、アルゴリズム毎に適切な値は異なることに注意してください。
-    regularization_weightパラメータは大きくすると学習が早くなりますが、代わりにノイズに弱くなります。
+    一般に、regularization_weightパラメータは大きくすると学習が早くなりますが、代わりにノイズに弱くなります。
 
 **shogun.rb**
 
@@ -210,12 +210,12 @@ Classifierのクライアントプログラムは、 Jubatus::Classifier::Client
     |"北条"       |"name"     |"義時"           |            |               |            |                |
     +-------------+-----------+-----------------+------------+---------------+------------+----------------+
 
-    Array<String, Datum>はDatumとそのlabelの組みです。
+    Array<String, Datum>はDatumとそのlabelの組です。
     サンプルでは、labelに将軍の姓を格納しています。
 
     Datumとは、Jubatusで利用できるkey-valueデータ形式のことです。
     特徴ベクトルに置き換えると、keyが特徴、valueが特徴量に相当します。
-    Datumには3つのkey-valueが存在します。
+    Datumには3種類のkey-valueが存在します。
     1つはキーも値も文字列の文字列データ（string_values）です。
     1つはキーは同様に文字列で、値は数値の数値データ(num_values)です。
     もう1つは、キーは同様に文字列で、値は文字列のバイナリデータ(binary_values)です。
@@ -240,7 +240,7 @@ Classifierのクライアントプログラムは、 Jubatus::Classifier::Client
     「nameが"慶喜"」の将軍の姓は何かを予測させるため、学習時と同様に構造体dataの宣言で初期値として、Datumのstring_valuesに"name"と"慶喜"を設定します（77-82行目）。
 
 5. 学習データに基づく予測
-    4\. で作成したDatumのArrayを、classifyメソッドに渡すことで、予測値のArrayを得ることができます（84行目）。
+    4\. で作成したDatumのArrayを、classifyメソッドに渡すことで、予測値のArrayを得ることができます（84行目）。予測値は、あるlabelと、そのlabelに対する所属の確信度を表すscoreのペアで表されています。
 
 6. 結果の出力
     結果出力、5. で得たArrayを参照することで予測値を見ることができます。
@@ -259,6 +259,8 @@ Classifierのクライアントプログラムは、 Jubatus::Classifier::Client
      $ jubaclassifier --configpath shogun.json
 
 * Jubatus Clientでの作業
+    サンプルクライアントプログラムを実行します。
+
     ::
 
      $ ruby shogun.rb
