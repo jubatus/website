@@ -93,7 +93,7 @@ The configuration information is given by the JSON unit. Here is the meaning of 
     Specify the configurations in feature converter. In this sample, we will classify a person into male or female through the features of 'length of hair', 'top clothes', 'bottom clothese' and 'height'. The "string_values" and "num_values" are stored in key-value pairs without using "\*_filter_types" configuration.
 
 * parameter
-    Specify the parameter that passed to the algorithm. The parameter varis when the method is changed. In this example, the method is specified as 'AROW', with [regularization_weight: 1.0]. In addition, the parameter 'regularization_weight' in different algorithms plays different roles and affects differently, so please pay attention to setting the value of it for each algorithm. When 'regularization_weight' parameter becomes bigger, the learning spead will increase, while the noice will decrease.
+    Specify the parameter that passed to the algorithm. The parameter varies when the method is changed. In this example, the method is specified as 'AROW', with [regularization_weight: 1.0]. In addition, the parameter 'regularization_weight' in different algorithms plays different roles and affects differently, so please pay attention to setting the value of it for each algorithm. When 'regularization_weight' parameter becomes bigger, the learning spead will increase, while the noice will decrease.
 
 **gender.py**
 
@@ -140,7 +140,7 @@ First of all, to write the Client program for Classifier, we can use the Classif
     |             | | "top"    | | "T shirt"   |            |               |            |               |
     |             | | "bottom" | | "jeans"     |            |               |            |               |
     +-------------+------------+---------------+------------+---------------+------------+---------------+
-    |"feale"      | | "hair"   | | "long"      | "height"   | 1.43          |            |               |
+    |"female"     | | "hair"   | | "long"      | "height"   | 1.43          |            |               |
     |             | | "top"    | | "jacket"    |            |               |            |               |
     |             | | "bottom" | | "skirt"     |            |               |            |               |
     +-------------+------------+---------------+------------+---------------+------------+---------------+
