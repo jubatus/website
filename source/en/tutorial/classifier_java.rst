@@ -110,32 +110,41 @@ Explanation
 
 **gender.json**
 
-The configuration information is given by the JSON unit. Here is the meaning of each JSON filed.
+This JSON file give the configuration information. Here are the meanings of the JSON fields.
 
 * method
-    Specify the algorithm used in Classification. In this example, the AROW (Adaptive Regularization of Weight vectors) is used.
+    Specify the algorithm used in classification. In this example, the AROW (Adaptive Regularization of Weight vectors) algorithm is used.
+    Note that this part is irrelevant to the client methods in the Java code.
 
 * converter
-    Specify the configurations in feature converter. In this sample, we will classify a person into male or female through the features of 'length of hair', 'top clothes', 'bottom clothese' and 'height'. The "string_values" and "num_values" are stored in key-value pairs without using "\*_filter_types" configuration.
+    Specify the configurations in feature converter.
+
+    In this sample, we will classify a person into male or female based on the features of 'length of hair', 'top clothes', 'bottom clothese' and 'height'. The "string_values" and "num_values" are stored in key-value pairs without using "\*_filter_types" configuration.
+    Note that we do not have configuration for"binary_values" since there is no binary feature.
 
 * parameter
-    Specify the parameter that passed to the algorithm. The parameter varies when the method is changed. In this example, the method is specified as 'AROW', with [regularization_weight: 1.0]. In addition, the parameter 'regularization_weight' in different algorithms plays different roles and affects differently, so please pay attention to setting the value of it for each algorithm. When 'regularization_weight' parameter becomes bigger, the learning spead will increase, while the noice will decrease.
+    Specify the parameter that is passed to the algorithm.
+
+    The parameter set varies depending on the selected method. Since we use 'AROW' in this example, we set [regularization_weight: 1.0]. 
+
+    Note that the parameter 'regularization_weight', which represents sensitivity to model change, plays different roles and affects differently among different algorithms. Pay attention to choose an appopriate value for each algorithm. 
+    In general, when the 'regularization_weight' parameter is large. the model fast converges to a better model, while it is also poor at handling noise.
 
 **GenderMain.java**
 
-We explain the learning and prediction processes in this example codes.
+We explain the learning and prediction processes.
 
-First of all, to write the Client program for Classifier, we can use the ClassifierClient class defined in 'us.jubat.classifier'. There are two methods used in this program. The 'train' method for learning process, and the 'classify' method for prediction with the data learnt.
+To write the Client program for Classifier, we can use the ClassifierClient class defined in 'us.jubat.classifier' package. There are two important client methods used in this program, 'train' method for learning process, and 'classify' method for prediction with the trained model.
 
 1. How to connect to Jubatus Server
     Connect to Jubatus Server (Line 32).
 
-    Setting the IP addr, RPC port of Jubatus Server, the unique name for task identification in Zookeeper and the value of request timeout.
+    Setting the IP addr, RPC port number of Jubatus Server, the unique name for task identification in Zookeeper, and the request timeout.
 
-2. Prepare the learning data
-    Make a dataset for the data to be learnt (Line 34-43).
+2. Prepare the training data
+    Make a training dataset (Line 34-43).
 
-    The dataset is input into the train() method in ClassifierClient, for the learning process. The figure below shows the structure of the data being leant.
+    The dataset is input into the train() method in ClassifierClient, for the learning process. The figure below shows the structure of the traaining data.
 
     +----------------------------------------------------------------------------------------------------+
     |LabeledDatum[]                                                                                      |
@@ -171,38 +180,38 @@ First of all, to write the Client program for Classifier, we can use the Classif
     |             | | "bottom" | | "skirt"     |            |               |            |               |
     +-------------+------------+---------------+------------+---------------+------------+---------------+
 
-    trainData is the array of LabeledDatum. LabeledDatum is a pair of Datum and its label. In this sample, the label demonstrates the class name each Datum belongs to. Each Datum stores the data in key-value pairs, which is the format readable by Jubatus. The key can be recognized as the feature vector. Inside the Datum, there are 3 kinds of key-value lists, string_values, num_values and binary_values. Each of these uses StringValue class, NumValue class and BinaryValue class. For example, the "hair", "top", "bottom" values are StirngValue, While the "height" value is NumValue. Therefore, they are stored separately inside each Datum.
+    trainData is an array of LabeledDatum. LabeledDatum is a pair of Datum and its class label. In this sample, the label demonstrates the class name to which each Datum belongs. Each Datum is represented as key-value pairs, which are the data format that Jubatus can read. The key can be recognized as the name of the feature, and the value is the feature value. Inside the Datum, there can be three kinds of key-value lists, string_values, num_values and binary_values. They use the StringValue class, the NumValue class, and the BinaryValue class, respectively. For example, the "hair", "top", and "bottom" values are StringValue, while the "height" value is NumValue. Therefore, they are stored separately inside the Datum.
 
-    Here is the procedure of making study data.
+    Here is the procedure of making training data.
 
-    To make study data, the private method "makeTrainDatum" is used (Line 22-25).
+    To make training data, the private method "makeTrainDatum" is used (Line 22-25).
 
-    In this example, the key-value lists have the keys of "hair", "top", and "bottom" and their String type values registered through addString method, for example, are "short", "sweater", and "jeans". In addition, The key-value list have the key of "height", and its double type value registered through addNumber method, for example, "1.70" (Line 16-19).
+    In this example, the key-value lists for string_values have the keys of "hair", "top", and "bottom". Their string values are registered in addString method. for instance, "short", "sweater", and "jeans", respectively. In addition, the key-value list for num_values has the key of "height", and its double type value is registered in addNumber method, for instance, 1.70 (Line 16-19).
 
-    According to the flow above, the training data is generated.
+    Based on this flow, the training dataset is generated.
 
 3. Model training (update learning model)
-    We train our learning model by using the method train() (Line 45), with the data generated in step.2 above.
+    We train our model by using the client method train() (Line 45), with the data generated in Step 2.
 
-4. Prepare the prediction data
-    Different from training data, prediction data does not contain "lable", and it is only stored in the Datum unit by using makeDatum() (Line 14-20).
+4. Prepare the test data
+    We generate test dataset in the same way with Step 2.
 
-5. Data prediction
-    By inputting the testData generated in step.4 into the classify() method of ClassifierClient (Line 51-52), the prediction result will be stored in the EstimateResult List (Line 55). EstimateResult contains label and score means the confidence of each label (Line 56).
+    Different from the training data, test data does not contain class label, so that only Datum unit is generated by using makeDatum() (Line 14-20).
+
+5. Prediction based on trained model
+    By inputting the test tata generated in Step 4 into the classify() method of ClassifierClient (Line 51-52), the prediction result will be stored in the list of EstimateResult (Line 55). Each EstimateResult contains a pair of label and score that represents the confidence of belonging to the label, for all of the labels (Line 56).
 
 
 ------------------------------------
 Run the sample program
 ------------------------------------
 
-* At Jubatus Server
+* For Jubatus Server
     start "jubaclassifier" process.
 
     ::
 
      $ jubaclassifier --configpath gender.json
 
-* At Jubatus Client
-    Get the required package and Java client ready.
-
-    Run!
+* For Jubatus Client
+    Get the required package and Java client ready and run.
