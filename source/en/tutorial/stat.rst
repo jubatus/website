@@ -23,21 +23,17 @@ Processing flow
 
 The flow of development using Jubatus Client is following:
 
- 1. Connection settings to ``jubastat``
+1. Connection settings to ``jubastat``
+    Setting the HOST and RPC port of ``jubastat`` .
 
-  Setting the HOST and RPC port of ``jubastat`` .
+2. Prepare the training data
+    Read the fruit-data from the downloaded CSV file line by line.
 
- 2. Prepare the training data
+3. Data training (update the model)
+    Use the ``push`` method to send the fruit-data to ``jubastat`` and training the model there.
 
-  Read the fruit-data from the downloaded CSV file line by line.
-
- 3. Data training (update the model)
-
-  Use the ``push`` method to send the fruit-data to ``jubastat`` and training the model there.
-
- 4. Output the result
-
-  Use the methods to get total-value, standard deviation, etc. And output them.
+4. Output the result
+    Use the methods to get total-value, standard deviation, etc. And output them.
 
 
 --------------------------------

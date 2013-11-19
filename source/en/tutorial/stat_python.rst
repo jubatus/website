@@ -65,106 +65,91 @@ Explanation
 
 The configuration information is given by the JSON unit. Here is the meaning of each JSON filed.
 
- * window_size
- 
-  Specify the amount of value to be retained. (Integer)
-  
+* window_size
+    Specify the amount of value to be retained. (Integer)
+
 
 **stat.py**
 
 Stat.py reads the 'price', 'weight', 'diameter' of fruits from the .csv file, and send the info. to Jubatus server. The methods used are listed below.
- 
- * bool push(0: string key, 1: double val)
 
-  Set the attribute info. "key"'s value with "val".
+* bool push(0: string key, 1: double val)
+    Set the attribute info. "key"'s value with "val".
 
- * double sum(0: string key)
+* double sum(0: string key)
+    Return the summary value in the attribute "key".
 
-  Return the summary value in the attribute "key". 
+* double stddev(0: string key)
+    Return the standard deviation of values in the attribute "key".
 
- * double stddev(0: string key)
+* double max(0: string key)
+    Return the maximum value of values in the attribute "key".
 
-  Return the standard deviation of values in the attribute "key".
+* double min(0: string key)
+    Return the minimum value of values in the attribute "key".
 
- * double max(0: string key)
+* double entropy(0: string key)
+    Return the entropy of values in the attribute "key".
 
-  Return the maximum value of values in the attribute "key".
+* double moment(0: string key, 1: int degree, 2: double center)
+    Return the degree-th moment about 'center' of values in the attribute "key".
 
- * double min(0: string key)
+1. Connect to Jubatus Server.
+    Connect to Jubatus Server (Line 12).
 
-  Return the minimum value of values in the attribute "key".
+    Setting the IP addr, RPC port of Jubatus Server and the unique name for task identification in Zookeeper.
 
- * double entropy(0: string key)
+2. Prepare the learning data
+    Stat client send the <item_name, value> to the server side as training data, by using the push() method.
+    In this sample program, the training data are generated from a .CSV file which contains the info. of 'fruit type', 'price', 'weight', 'diameter'.
+    The source data is read line by line from the .CSV file (Line 14-21). 
 
-  Return the entropy of values in the attribute "key".
+3. Data training (update the model)
+    The training data generated in Step 2 is send to the server site by using the push() method (Line 19-21) for training model there. Items of fruit are renamed as the fruit's name extended with the item's prefix, eg. item for a fruit's diameter is: fruit's name + "dia". 
 
- * double moment(0: string key, 1: int degree, 2: double center)
+4. Output the result
+    Stat client gets the different statistic results by using its methods.
+    For each type of fruits(Line 24), the program outputs its statistic results of all the items (Line 25).
+    Different methods are called (Line 26-31) in the loop above. Their contents are listed in the methods list above.
 
-  Return the degree-th moment about 'center' of values in the attribute "key".
-
-
- 1. Connect to Jubatus Server.
-
-  Connect to Jubatus Server (Line 12).
-  Setting the IP addr, RPC port of Jubatus Server and the unique name for task identification in Zookeeper.
-
- 2. Prepare the learning data
-
-  Stat client send the <item_name, value> to the server side as training data, by using the push() method.
-  In this sample program, the training data are generated from a .CSV file which contains the info. of 'fruit type', 'price', 'weight', 'diameter'.
-  The source data is read line by line from the .CSV file (Line 14-21). 
-
- 3. Data training (update the model)
-
-  The training data generated in Step 2 is send to the server site by using the push() method (Line 19-21) for training model there. Items of fruit are renamed as the fruit's name extended with the item's prefix, eg. item for a fruit's diameter is: fruit's name + "dia". 
- 
- 4. Output the result
-
-  Stat client gets the different statistic results by using its methods.
-  For each type of fruits(Line 24), the program outputs its statistic results of all the items (Line 25).
-  Different methods are called (Line 26-31) in the loop above. Their contents are listed in the methods list above.
-      
 
 -------------------------------------
 Run the sample program
 -------------------------------------
 
-**[At Jubatus Server]**
+* At Jubatus Server
+    start "jubagraph" process.
 
- start "jubagraph" process.
- 
- ::
- 
-  $ jubastat --configpath stat.json
- 
+    ::
 
-**[At Jubatus Client]**
+     $ jubastat --configpath stat.json
 
- Get the required package and Python client ready.
- 
-**[Output]**
+* At Jubatus Client
+    Get the required package and Python client ready.
 
-::
+    Output:
 
- sum : orangedia 1503.399996995926
- sdv : orangedia 10.868084068651045
- max : orangedia 54.29999923706055
- min : orangedia -2.0999999046325684
- ent : orangedia 0.0
- mmt : orangedia 28.911538403767807
- sum : orangewei 10394.399948120117
- sdv : orangewei 54.92258724344468
- max : orangewei 321.6000061035156
- min : orangewei 39.5
- ent : orangewei 0.0
- mmt : orangewei 196.1207537381154
- sum : orangepri 1636.0
- sdv : orangepri 7.936154992801973
- max : orangepri 50.0
- min : orangepri 6.0
- ent : orangepri 0.0
- mmt : orangepri 30.867924528301888
- sum : appledia 2902.0000019073486
- sdv : appledia 15.412238321876663
- …
- …(omitted)
+    ::
+
+     sum : orangedia 1503.399996995926
+     sdv : orangedia 10.868084068651045
+     max : orangedia 54.29999923706055
+     min : orangedia -2.0999999046325684
+     ent : orangedia 0.0
+     mmt : orangedia 28.911538403767807
+     sum : orangewei 10394.399948120117
+     sdv : orangewei 54.92258724344468
+     max : orangewei 321.6000061035156
+     min : orangewei 39.5
+     ent : orangewei 0.0
+     mmt : orangewei 196.1207537381154
+     sum : orangepri 1636.0
+     sdv : orangepri 7.936154992801973
+     max : orangepri 50.0
+     min : orangepri 6.0
+     ent : orangepri 0.0
+     mmt : orangepri 30.867924528301888
+     sum : appledia 2902.0000019073486
+     sdv : appledia 15.412238321876663
+     ...
+     ... (omitted)

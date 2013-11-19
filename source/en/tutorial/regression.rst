@@ -25,29 +25,23 @@ Processing flow
 
 The flow of development using Jubatus Client is following:
 
- 1. Connection settings to ``jubaregression``
+1. Connection settings to ``jubaregression``
+    Setting the HOST and RPC port of ``jubaregression`` .
 
-  Setting the HOST and RPC port of ``jubaregression`` .
+2. Prepare the training data
+    Get the rent-data from the downloaded CSV file.
 
- 2. Prepare the training data
+3. Data training (update the model)
+    Use the ``train`` method to send the rent-data to ``jubaregression`` and training the model there.
 
-  Get the rent-data from the downloaded CSV file.
+4. Prepare the data for estimation
+    Pre-process and send the estimation data to ``jubaregression`` .
 
- 3. Data training (update the model)
+5. Predict the data
+    Use the ``estimate`` method to predict the input data (step.4) by using the model trained at step.3.
 
-  Use the ``train`` method to send the rent-data to ``jubaregression`` and training the model there.
-
- 4. Prepare the data for estimation
-
-  Pre-process and send the estimation data to ``jubaregression`` .
-
- 5. Predict the data
-
-  Use the ``estimate`` method to predict the input data (step.4) by using the model trained at step.3.
-
- 6. Return the result
-
-  Output the return value of ``estimate`` as the results.
+6. Return the result
+    Output the return value of ``estimate`` as the results.
 
 
 --------------------------------

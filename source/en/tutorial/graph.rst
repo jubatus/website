@@ -25,33 +25,26 @@ Processing flow
 
 The flow of development using Jubatus Client is following:
 
- 1. Connection settings to ``jubagraph``
+1. Connection settings to ``jubagraph``
+    Setting the HOST and RPC port of ``jubagraph`` .
 
-  Setting the HOST and RPC port of ``jubagraph`` .
+2. Register the pre-set query
+    Register the queries which to be used for the shortest path calculation.
 
- 2. Register the pre-set query
+3. Create graph
+    Get the stations information in Yamanote-line and Chuou-line，and create the route-graph.
 
-  Register the queries which to be used for the shortest path calculation.
+4. Set station ID
+    Display the stations in route-graph by their station_id.
 
- 3. Create graph
+5. Prepare the query
+    Prepare the query for the shortest path calculation.
 
-  Get the stations information in Yamanote-line and Chuou-line，and create the route-graph.
+6. Get the shortest path
+    Calculate the shortest path between the two stations assigned in the query at step.5.
 
- 4. Set station ID
-
-  Display the stations in route-graph by their station_id.
-
- 5. Prepare the query
-
-  Prepare the query for the shortest path calculation.
-
- 6. Get the shortest path
-
-  Calculate the shortest path between the two stations assigned in the query at step.5.
-
- 7. Display the result
-
-  Display the result in step.6.
+7. Display the result
+    Display the result in step.6.
 
 
 --------------------------------

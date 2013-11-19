@@ -35,29 +35,23 @@ Scenario
 
 The flow of development using Jubatus Client is following:
 
- 1. Connection settings to ``jubaclassifier``
+1. Connection settings to ``jubaclassifier``
+    Setting the HOST and RPC port of ``jubaclassifier`` .
 
-  Setting the HOST and RPC port of ``jubaclassifier`` .
+2. Prepare the training data
+    Make some pair of class and features.
 
- 2. Prepare the training data
+3. Data training (update the model)
+    Send the training data to ``jubaclassifier`` using ``train`` method.
 
-  Make some pair of class and features.
+4. Prepare the test data
+    Make the feature data.
 
- 3. Data training (update the model)
+5. Classify the test data
+    Send the test data to ``jubaclassifier`` using ``classify`` method.
 
-  Send the training data to ``jubaclassifier`` using ``train`` method.
-
- 4. Prepare the test data
-
-  Make the feature data.
-
- 5. Classify the test data
-
-  Send the test data to ``jubaclassifier`` using ``classify`` method.
-
- 6. Output the result
-
-  Compare the score value of each classes. And output the class with highest score.
+6. Output the result
+    Compare the score value of each classes. And output the class with highest score.
 
 
 --------------------------------
