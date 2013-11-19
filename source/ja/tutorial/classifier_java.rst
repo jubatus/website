@@ -245,18 +245,19 @@ Classifierのクライアントプログラムは、us.jubat.classifierパッケ
 
     Datumとは、Jubatusで利用できるkey-valueデータ形式のことです。
     特徴ベクトルに置き換えると、keyが特徴、valueが特徴量に相当します。
-    Datumには3つのkey-valueが存在します。1つはキーも値も文字列の文字列データ（string_values）です。
-    1つはキーは同様に文字列で、値は数値の数値データ(num_values)です。
-    もう1つは、キーは同様に文字列で、値は文字列のバイナリデータ(binary_values)です。
-    それぞれ、StringValueクラス、NumValueクラス、BinaryValueクラスで表します。
+    Datumには3つのkey-valueが存在します。
+    1つはキーも値も文字列の文字列データ（stringValues）です。
+    もう1つはキーが同様に文字列で、値は数値の数値データ(numValues)です。
+    最後は、キーは同様に文字列で、値はバイト配列のバイナリデータ(binaryValues)です。
+    それぞれ、StringValueクラス、NumValueクラス、BinaryValueクラスのリストで表します。
 
-    今回は、将軍の名から姓を当てるプログラムなので、string_valuesのkeyに文字列"name"、valueに歴代将軍の名を格納します。
-    今回のサンプルには含まれませんが、仮に"徳川"というグループに「徳川家の身長(height)は170cm以上である」という特徴を追加したい場合は、num_valuesのkeyに文字列"height"、valueに170を格納します。
+    今回は、将軍の名から姓を当てるプログラムなので、stringValuesのkeyに文字列"name"、valueに歴代将軍の名を格納します。
+    今回のサンプルには含まれませんが、仮に"徳川"というグループに「徳川家の身長(height)は170cm以上である」という特徴を追加したい場合は、numValuesのkeyに文字列"height"、valueに170.0を格納します。
 
     このサンプルでの学習データ作成の手順は下記の流れで行います。
 
     学習を行うprivateメソッド「train」（38-90行目）で、LabeledDatumの配列を宣言します。
-    それぞれの要素には、将軍の姓をlabelに、「addString」メソッドで名をstring_valuesを追加したDatumから構成されるLabeledDatumを設定します（39-81行目）。
+    それぞれの要素には、将軍の姓をlabelに、「addString」メソッドで名をstringValuesに追加したDatumから構成されるLabeledDatumを設定します（39-81行目）。
 
     以上のようにして作成したLabeledDatumの配列をシャッフルします（86行目）。
     これで、学習用データの作成が完了します。
