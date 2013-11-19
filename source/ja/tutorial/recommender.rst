@@ -14,7 +14,8 @@ Recommender
 
 最初に、 `プロ野球データfreak <http://baseball-data.com/>`_ から取得した「規定打席の1/3以上の全野手のデータ」を打席数順にソートした CSV データ (`baseball.csv <https://raw.github.com/jubatus/jubatus-example/master/npb_similar_player/dat/baseball.csv>`_) をクライアント側で用意し、推薦するためのモデルを ``jubarecommender`` に学習させます。
 
-次に、推薦用の入力データとして学習時と同様にCSVファイルから名前だけを抽出し ``jubarecommender`` に与えます。 ``jubarecommender`` は先ほど学習したモデルを用い、タイプ（成績）が似ている野手を推薦し返却するので、クライアント側では受け取った結果を出力します。
+次に、推薦用の入力データとして学習時と同様にCSVファイルから名前だけを抽出し ``jubarecommender`` に与えます。
+``jubarecommender`` は先ほど学習したモデルを用い、タイプ（成績）が似ている野手を推薦し返却するので、クライアント側では受け取った結果を出力します。
 
 例えば、推薦用の入力データとして「中田翔」を渡すと、「player 中田翔 is similar to : 井口資仁 新井貴浩 中村紀洋」と似たタイプ（成績）の野手トップ3が返却されます。
 
