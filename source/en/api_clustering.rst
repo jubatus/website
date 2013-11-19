@@ -48,7 +48,7 @@ We show each filed below:
    :compresed_bucket_size:
      Number of compressed bucket_size.
      Compression ratio = (compressed_bucket_size/bucket_size)
-       (Integer)
+     (Integer)
 
    :bicriteria_base_size:
      Specify roughness of compression.

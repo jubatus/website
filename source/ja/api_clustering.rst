@@ -47,7 +47,7 @@ JSON の各フィールドは以下のとおりである。
    :compresed_backet_size:
      backet_sizeを何点に圧縮するか．
      圧縮率=(compressed_backet_size/backet_size)である．
-       (Integer)
+     (Integer)
 
    :bicriteria_base_size:
      圧縮の粗さに関係するパラメータ．
