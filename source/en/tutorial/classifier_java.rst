@@ -144,7 +144,7 @@ To write the Client program for Classifier, we can use the ClassifierClient clas
 2. Prepare the training data
     Make a training dataset (Line 34-43).
 
-    The dataset is input into the train() method in ClassifierClient, for the learning process. The figure below shows the structure of the traaining data.
+    The dataset is input into the train() method in ClassifierClient, for the learning process. The figure below shows the structure of the training data.
 
     +----------------------------------------------------------------------------------------------------+
     |LabeledDatum[]                                                                                      |
