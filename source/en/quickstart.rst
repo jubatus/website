@@ -23,7 +23,13 @@ Now install ``jubatus`` and ``jubatus-client`` package.
 
 ::
 
+  // For RHEL
+  $ sudo yum --enablerepo=rhel-6-server-optional-rpms install jubatus jubatus-client
+
+  // For RHEL clones (CentOS, Scientific Linux, etc.)
   $ sudo yum install jubatus jubatus-client
+
+Note that we use ``rhel-6-server-optional-rpms`` repository to install dependency package (``oniguruma``) on RHEL.
 
 Ubuntu Server 12.04 LTS (64-bit)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
