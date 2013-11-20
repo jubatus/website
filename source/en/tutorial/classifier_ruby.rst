@@ -7,7 +7,7 @@ Here we explain the Ruby sample program of Classifier.
 Source_code
 --------------------------------
 
-In this sample program, we will explain 1) how to configure the learning-algorithms that used by Jubatus, with the example file 'gender.json'; 2) how to learn the training data and make predictions based on them, with the example file ‘gender.rb’. Here are the source codes of 'gender.json' and 'gender.rb'.
+In this sample program, we will explain 1) how to configure the learning-algorithms that used by Jubatus, with the example file 'gender.json'; 2) how to learn from the training data and make predictions based on them, with the example file ‘gender.rb’. Here are the source codes of 'gender.json' and 'gender.rb'.
 
 
 **gender.json**
@@ -101,19 +101,19 @@ The configuration information is given by the JSON unit. Here is the meaning of 
 
 **gender.rb**
 
-We explain the learning and prediction processes in this example codes.
+We explain the learning and prediction processes in these example codes.
 
-First of all, to write the Client program for Classifier, we can use the Classifier class defined in 'Jubatus::Classifier::Client'. There are two methods used in this program. The 'train' method for learning process, and the 'classify' method for prediction with the data learnt.
+First of all, to write the Client program for Classifier, we can use the Classifier class defined in 'Jubatus::Classifier::Client'. There are two methods used in this program. The 'train' method for learning process, and the 'classify' method for prediction with the data .
 
 1. How to connect to Jubatus Server
     Connect to Jubatus Server (Line 9).
 
     Setting the IP addr, RPC port of Jubatus Server and the unique name for task identification in Zookeeper.
 
-2. Prepare the learning data
-    Make a train_data Array for the data to be learnt (Line 11-21).
+2. Prepare the training data
+    Make a train_data Array for the data to be  (Line 11-21).
 
-    The train_data generated in Array<Array<String, Datum>> format is input into the train() method (Line 23), for the learning process. The figure below shows the structure of the data being leant.
+    The train_data generated in Array<Array<String, Datum>> format is input into the train() method (Line 23) for learning process. The following table shows the structure of the training data.
 
     +-------------------------------------------------------------------------------------------------------+
     |Array<Array<String, Datum>>                                                                            |
@@ -149,16 +149,16 @@ First of all, to write the Client program for Classifier, we can use the Classif
     |             | | "bottom" | | "skirt"      |            |                |            |                |
     +-------------+------------+----------------+------------+----------------+------------+----------------+
 
-    Array<String, Datum> contains the Datum and its label. In this sample, the label demonstrates the class name each Datum belongs to. Each Datum stores the data in key-value pairs, which is the format readable by Jubatus. The key can be recognized as the feature vector. Inside the Datum, there are 3 kinds of key-value lists, string_values, num_values and binary_values. For example, the "hair", "top", "bottom" values are in string format, While the "height"'s value is in numeric format. Therefore, they are stored sepeately inside each Datum.
+    Array<String, Datum> contains the Datum and its label. In this sample, the label means the name of class which each Datum belongs to. Each Datum stores the data in key-value pairs, which is readable format for Jubatus. The key can be recognized as the feature vector. Inside the Datum, there are three kinds of key-value lists, string_values, num_values and binary_values. For example, the "hair", "top" and "bottom" values are in string format, While the "height" value is in numeric format. Therefore, they are stored sepeately inside each Datum.
 
 3. Model training (update learning model)
-    We train our learning model by using the method train() at Line 23, with the data generated in step.2 above.
+    We update our learning model by using the method train() at Line 23, with the data generated in step.2 above.
 
 4. Prepare the prediction data
     Different from training data, prediction data does not contain its "lable", and it is only stored in the Datum unit (Line 25-29).
 
 5. Data prediction
-    By inputting test_data Array generated in step.4 into the classify() method (Line 31), the prediction result will be stored in the result Array (Line 31. The prediction result contains label and score means the confidence of each label (Line 35).
+    By inputting test_data Array generated in step.4 into the classify() method (Line 31), the prediction result will be stored in the result Array (Line 31. The result contains "label" and "score". "score" means the confidence of each "label" (Line 35).
 
 ------------------------------------
 Run the sample program
