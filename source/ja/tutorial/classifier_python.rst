@@ -8,7 +8,7 @@ Python
 --------------------------------
 
 このサンプルプログラムでは、学習アルゴリズム等の設定をするshogun.jsonとデータの学習及び学習データに基づく予測を行うshogun.pyを利用します。
-以下にshogun.jsonとShogun.pyのソースコードを記載します。
+以下にshogun.jsonとshogun.pyのソースコードを記載します。
 
 **shogun.json**
 
