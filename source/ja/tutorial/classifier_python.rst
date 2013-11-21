@@ -127,7 +127,7 @@ Python
      for d in data:
          res = client.classify([d])
          # get the predicted shogun name
-         sys.stdout.write(max(res[0], key = lambda x: x.score).label)
+         sys.stdout.write(max(res[0], key=lambda x: x.score).label)
          sys.stdout.write(' ')
          sys.stdout.write(d.string_values[0][1].encode('utf-8'))
          sys.stdout.write('\n')
