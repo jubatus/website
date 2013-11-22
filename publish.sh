@@ -28,5 +28,8 @@ find . -mindepth 1 -and \
 
 cp -a ../build/html/* .
 git add -A
-git commit -m "autocommit by publish.sh"
-git push origin master
+if git commit -m "autocommit by publish.sh"; then
+  git push origin master
+else
+  echo "Nothing to commit: website is up-to-date."
+fi
