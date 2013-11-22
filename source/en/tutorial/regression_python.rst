@@ -144,51 +144,54 @@ Explanation
 
 **rent.json**
 
-The configuration information is given by the JSON unit. Here is the meaning of each JSON filed.
+This JSON file give the configuration information. Here are the meanings of the JSON fields.
 
 * method
-    Specify the algorithm used in regression. 
-    Currently, we have "PA" (Passive Aggressive) only, so we specify it with "PA".
+    Specify the algorithm used in regression.
+    Currently, we have 'PA' (Passive Aggressive) only, so we specify it with 'PA'.
 
 * converter
    Specify the configurations in feature converter.
-   In this example, we will set the "num_rules" and "string_rules".
 
-   "num_rules" are used to specify the extraction rules of numercial features.
-   "key" is "*", it means all the "key" are taken into consideration, "type" is "num", it means the number(value) specified will be directly used as the input for training the model.
+   In this example, we will set the 'num_rules' and 'string_rules'.
+
+   'num_rules' are used to specify the extraction rules of numercial features.
+   ``"key" : "*"``, it means all the key are taken into consideration, ``"type" : "num"``, it means the value specified will be directly used as the input for training the model.
    For example, if the "age = 2", use 2 as the input; if the "stair = 6", use 6 as the input.
 
-   "string_rules" are used to specify the extraction rules of string features.
-   Here, "key = aspect", "type = str", "sample_weight = bin", and "global_weight = bin".
-   Their meaning are: the "aspect" is treated as a string, and used as the input feature without reform; the weight of each key-value feature is specified to be "1"; and the global weight of each feature is specified to be "1".
+   'string_rules' are used to specify the extraction rules of string features.
+   Here, ``"key" : "aspect", "type : str", "sample_weight : bin", "global_weight : bin"`` .
+   Their meaning are the 'aspect' is treated as a string, and used as the input feature without reform; the weight of each key-value feature is specified to be '1'; and the global weight of each feature is specified to be '1'.
 
 * parameter
    Specify the parameters to be passed to the algorithm.
-   The method specified here is "PA", with its configuration as ""sensitivity" and "regularization_weight".
+   The method specified here is 'PA', with its configuration as 'sensitivity' and 'regularization_weight'.
 
-   "sensitivity" specifies the tolerable range of error. When its value increases, it becomes resistant to noise, but makes errors remain easily instead.
-   "regularization_weight" specifies the sensitivity parameter in the learning. When its value increases, the learning becomes faster, but the method become susceptible to the noise.
+   'sensitivity' specifies the tolerable range of error. When its value increases, it becomes resistant to noise, but makes errors remain easily instead.
+   'regularization_weight' specifies the sensitivity parameter in the learning.
+   In general, when the 'regularization_weight' parameter is large. the model fast converges to a better model, while it is also poor at handling noise.
 
-   In addition, the "regularization_weight" above plays various roles in different algorithms, so please be careful in configuring its values in different algorithms.
+   In addition, the 'regularization_weight' above plays various roles in different algorithms, so please be careful in configuring its values in different algorithms.
 
 
 **main.py**
 
 
-We explain the learning and prediction processes in this example codes.
+We explain the learning and prediction processes.
 
-To write the Client program for Regression, we can use the Regression class defined in 'jubatus.regression'. There are two methods used in this program. The 'train' method for learning process, and the 'estimate' method for prediction with the data learnt.
+To write the Client program for Regression, we can use the Regression class defined in 'jubatus.regression'.
+There are two methods used in this program. The 'train' method for learning process, and the 'estimate' method for prediction with the trained model.
 
 1. Connect to Jubatus Server
     Connect to Jubatus Server (Line 35)
 
-    Setting the IP addr, RPC port of Jubatus Server and the unique name for task identification in Zookeeper.
+    Setting the IP addr, RPC port number of Jubatus Server and the unique name for task identification in Zookeeper.
 
 2. Prepare the training data
     In this sample program, only if the training data source (CSV file) is specified by the option "-t", processes of step 2-3 is taken. Here we explain these processes.
 
     Regression puts the training data into the List of list<tuple<float, Datum>>, and sends the data to train() methods for the model training.
-    In this example, the training data is generated from the CSV file that privided by a housing rental website. 
+    In this example, the training data is generated from the CSV file that privided by a housing rental website.
     Factors in the rental information includes rent, aspect, distance, space, age and stairs.
     Figure below shows the training data. (The following are four examples from over one hundred housing info. listed in the rent-data.csv)
 
@@ -246,7 +249,7 @@ To write the Client program for Regression, we can use the Regression class defi
     The string items and double items are stored into the Datum consturctor of as a dictionary object (Line 49-55), respectively.
     Finally, the Datum is appended with the rent label, so as to be used as one piece of training data (argument 'train' in Line 55).
 
-3. Model Training (update learning model
+3. Model Training (update learning model)
     Input the training data generated in step.2 into the train() method (Line 58).
     The parameter specifies the train_data generated in step.2.
 
@@ -260,7 +263,7 @@ To write the Client program for Regression, we can use the Regression class defi
 
     Add the Datum into the prediction data list, and send it into the estimate() method in "Regression" for prediction.
 
-5. Prediction by the regression model
+5. Prediction based on trained model
     The prediction results are returned as a list by the estimate() method (Line 74).
 
 6. Output the result
@@ -272,7 +275,7 @@ To write the Client program for Regression, we can use the Regression class defi
 Run the sample program
 ------------------------------------
 
-* At Jubatus Server
+* For Jubatus Server
     start "jubaregression" process.
 
     ::
@@ -280,7 +283,7 @@ Run the sample program
      $ jubaregression --configpath rent.json
 
 
-* At Jubatus Client
+* For Jubatus Client
     Install the command line aplication for using this sample program.
 
     ::
