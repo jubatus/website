@@ -60,6 +60,7 @@ RPC インターフェースは `MessagePack-IDL <https://github.com/msgpack/msg
   - ``random`` はランダムに選択されたいずれか 1 台のサーバーへリクエストを送信することを表す。
 
 - "ロック種類" には、リクエストのread/writeを ``analysis``, ``update``, ``nolock`` のいずれかで定義する。
+  :doc:`common_structs` にある ``save``, ``load`` のような共通的なメソッドについては、
 
   - ``analysis`` では、サーバ側で read ロックされることになり、複数のスレッドからの同時アクセスが可能となる。
   - ``update`` では、サーバー側で write ロックされることになり、安全にデータを更新することができる。
@@ -94,6 +95,10 @@ RPC インターフェースは `MessagePack-IDL <https://github.com/msgpack/msg
     #@broadcast #@update #@pass
     int clear()
   }
+
+なお、 :doc:`common_structs` にある ``save``, ``load`` のような共通的なメソッドは、IDL に定義する必要はない。
+これらのメソッドのアノテーションは ``jenerator`` のなかで指定される。
+
 
 ``jenerator`` のビルド
 ~~~~~~~~~~~~~~~~~~~~~~

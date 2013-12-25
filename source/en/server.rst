@@ -95,6 +95,8 @@ Here is a example of MessagePack-IDL with annotation.
     int clear()
   }
 
+In addition, common methods such as ``save``, ``load`` described in :doc:`common_structs` are not necessary to define by MessagePack-IDL.
+Annotations of these methods are specified by ``jenerator`` .
 
 Building ``jenerator``
 ~~~~~~~~~~~~~~~~~~~~~~
