@@ -88,14 +88,6 @@ Jubatus サーバは機械学習の機能を提供する。
    ``linear_mixer``, ``random_mixer``, ``broadcast_mixer``, ``skip_mixer`` のいずれかが指定できる。
    エンジンによって、使用可能な MIX 戦略は異なる。
 
-.. option:: -j, --join
-
-   既存のクラスタに参加する。
-
-   新しいプロセスは、このオプションを指定してクラスタに参加しなければ機械学習が動作しない。
-
-   このオプションは現在実装されていない。
-
 .. option:: -s <seconds>, --interval_sec <seconds>
 
    毎 ``<seconds>`` 秒おきに mix を行う。 [16]
@@ -332,12 +324,6 @@ jubactl
 .. option:: -X, --mixer
 
    サーバプロセスの開始時のオプションを指定する (:option:`server -x`).
-
-   ``--cmd start`` を指定した場合のみ有効である。
-
-.. option:: -J, --join
-
-   サーバプロセスの開始時のオプションを指定する (:option:`server -j`).
 
    ``--cmd start`` を指定した場合のみ有効である。
 
