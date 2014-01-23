@@ -92,11 +92,15 @@ Jubatus サーバは機械学習の機能を提供する。
 
    毎 ``<seconds>`` 秒おきに mix を行う。 [16]
 
+   ``0`` を指定すると、時間契機での mix の起動を行わない。
+
 .. option:: -i <count>, --interval_count <count>
 
    毎 ``<count>`` 更新ごとに mix を行う。 [512]
 
    更新カウントは、学習モデルを更新する API (分類器の ``train`` など) を呼ぶたびにインクリメントされる。
+
+   ``0`` を指定すると、更新契機での mix の起動を行わない。
 
 .. option:: -Z <seconds>, --zookeeper_timeout <seconds>
 
