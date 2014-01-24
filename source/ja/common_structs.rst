@@ -144,6 +144,15 @@ Methods
    **すべての** サーバの内部状態を取得する。
    サーバはホスト名、ポート番号で識別する。
 
+.. mpidl:method:: map<string, map<string, string> > get_proxy_status()
+
+   :return:     プロキシの内部状態。最上位の map のキーは ``ホスト名_ポート番号`` 形式である。
+
+   プロキシの内部状態を取得する。
+
+   このメソッドは、 **プロキシ** に対して使用する。
+   サーバに対して使用すると、RPCエラーが返却される。
+
 .. mpidl:method:: mprpc_client get_client()
 
    :return: MessagePack-RPC クライアントインスタンス
