@@ -92,11 +92,15 @@ Jubatus server provides the machine learning feature.
 
    Invoke "mix" in every ``<seconds>`` second. [16]
 
+   Specifying ``0`` disables time-based mix invocation.
+
 .. option:: -i <count>, --interval_count <count>
 
    Invoke "mix" in every ``<count>`` updates. [512]
 
    The update is counted when API that updates the training model (such as ``train`` in the classifier) is called.
+
+   Specifying ``0`` disables update-based mix invocation.
 
 .. option:: -Z <seconds>, --zookeeper_timeout <seconds>
 
