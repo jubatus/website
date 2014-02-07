@@ -38,17 +38,23 @@ JSON の各フィールドは以下のとおりである。
         大きくすると正確な値に近づく代わりに、多くのメモリを消費し、探索時間も増す。
         (Integer)
 
+        * 推奨値: 1 <= ``hash_num`` <= ``LONG_MAX``
+
    minhash
      :hash_num:
         ハッシュのビット数を指定する。
         大きくすると正確な値に近づく代わりに、多くのメモリを消費し、探索時間も増す。
         (Integer)
 
+        * 推奨値: 1 <= ``hash_num`` <= ``LONG_MAX``
+
    euclid_lsh
      :hash_num:
         ハッシュの個数を指定する。
         大きくすると正確な値に近づく代わりに、多くのメモリを消費し、探索時間も増す。
         (Integer)
+
+        * 推奨値: 1 <= ``hash_num`` <= ``LONG_MAX``
 
 
 .. describe:: converter

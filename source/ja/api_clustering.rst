@@ -27,39 +27,63 @@ JSON の各フィールドは以下のとおりである。
 .. describe:: parameter
 
    アルゴリズムに渡すパラーメータを指定する。
- 
-   :k:
-     いくつのクラスタに分割するか、を指定する。
-     (Integer)
+   ``method`` に応じて渡す一部のパラメータが異なる。
 
-   :compressor_method:
-     点を圧縮するアルゴリズムを指定する．
-     ``simple``, ``compressive_kmeans``, ``compressice_gmm`` から選ぶことができる。
+   kmeans, gmm 共通
+     :k:
+        いくつのクラスタに分割するか、を指定する。
+        (Integer)
 
-   :bucket_size:
-     一度に圧縮する点数．データセットのサイズに等しく設定する．
-     (Integer)
+        * 推奨値: 1 <= ``k`` <= ``INT_MAX``
 
-   :bucket_length:
-     ミニバッチのサイズ
-     (Integer)
+     :bucket_size:
+        一度に圧縮する点数．データセットのサイズに等しく設定する。
+        (Integer)
 
-   :compresed_backet_size:
-     backet_sizeを何点に圧縮するか．
-     圧縮率=(compressed_backet_size/backet_size)である．
-     (Integer)
+        * 推奨値: 2 <= ``bucket_size`` <= ``INT_MAX``
 
-   :bicriteria_base_size:
-     圧縮の粗さに関係するパラメータ．
-     (Integer)
+     :bucket_length:
+        ミニバッチのサイズ。
+        (Integer)
 
-   :forgetting_factor:
-     忘却定数 ``c_f``
-     (double)
+        * 推奨値: 2 <= ``bucket_length`` <= ``INT_MAX``
 
-   :forgetting_threshold:
-     重みにかけられた忘却係数の和がこの値を超えたら，それより上位のレベルには圧縮しないようにする.
-     (double)
+     :compresed_backet_size:
+        ``backet_size`` を何点に圧縮するかを指定する。
+        圧縮率 = (``compressed_backet_size`` / ``backet_size`` )である。
+        (Integer)
+
+        * 推奨値: ``bicriteria_base_size`` < ``compresed_backet_size`` < ``bucket_size``
+
+     :bicriteria_base_size:
+        圧縮の粗さに関係するパラメータ。
+        (Integer)
+
+        * 推奨値: 1 <= ``bicriteria_base_size`` < ``compresed_backet_size``
+
+     :forgetting_factor:
+        忘却定数 ``c_f`` 。
+        (Float)
+
+        * 推奨値: 0.0 <= ``forgetting_factor`` <= ``DBL_MAX``
+
+     :forgetting_threshold:
+        重みにかけられた忘却係数の和がこの値を超えたら、それより上位のレベルには圧縮しないようにする。
+        (Float)
+
+        * 推奨値: 0.0 <= ``forgetting_threshold`` <= 1.0
+
+   kmeans
+     :compressor_method:
+        点を圧縮するアルゴリズムを指定する。
+        ``simple``, ``compressive_kmeans`` から選ぶことができる。
+        (String)
+
+   gmm
+     :compressor_method:
+        点を圧縮するアルゴリズムを指定する。
+        ``simple``, ``compressive_gmm`` から選ぶことができる。
+        (String)
 
 .. describe:: converter
 
