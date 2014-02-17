@@ -34,44 +34,44 @@ JSON の各フィールドは以下のとおりである。
         いくつのクラスタに分割するか、を指定する。
         (Integer)
 
-        * 推奨値: 1 <= ``k`` <= ``INT_MAX``
+        * 値域: 1 <= ``k``
 
      :bucket_size:
         一度に圧縮する点数．データセットのサイズに等しく設定する。
         (Integer)
 
-        * 推奨値: 2 <= ``bucket_size`` <= ``INT_MAX``
+        * 値域: 2 <= ``bucket_size``
 
      :bucket_length:
         ミニバッチのサイズ。
         (Integer)
 
-        * 推奨値: 2 <= ``bucket_length`` <= ``INT_MAX``
+        * 値域: 2 <= ``bucket_length``
 
      :compresed_backet_size:
         ``backet_size`` を何点に圧縮するかを指定する。
         圧縮率 = (``compressed_backet_size`` / ``backet_size`` )である。
         (Integer)
 
-        * 推奨値: ``bicriteria_base_size`` < ``compresed_backet_size`` < ``bucket_size``
+        * 値域: ``bicriteria_base_size`` < ``compresed_backet_size`` < ``bucket_size``
 
      :bicriteria_base_size:
         圧縮の粗さに関係するパラメータ。
         (Integer)
 
-        * 推奨値: 1 <= ``bicriteria_base_size`` < ``compresed_backet_size``
+        * 値域: 1 <= ``bicriteria_base_size`` < ``compresed_backet_size``
 
      :forgetting_factor:
         忘却定数 ``c_f`` 。
         (Float)
 
-        * 推奨値: 0.0 <= ``forgetting_factor`` <= ``DBL_MAX``
+        * 値域: 0.0 <= ``forgetting_factor``
 
      :forgetting_threshold:
         重みにかけられた忘却係数の和がこの値を超えたら、それより上位のレベルには圧縮しないようにする。
         (Float)
 
-        * 推奨値: 0.0 <= ``forgetting_threshold`` <= 1.0
+        * 値域: 0.0 <= ``forgetting_threshold`` <= 1.0
 
    kmeans
      :compressor_method:

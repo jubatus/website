@@ -38,7 +38,7 @@ JSON の各フィールドは以下のとおりである。
         大きくすると正確な値に近づく代わりに、多くのメモリを消費し、探索時間も増す。
         (Integer)
 
-        * 推奨値: 1 <= ``hash_num`` <= ``LONG_MAX``
+        * 値域: 1 <= ``hash_num``
 
    minhash
      :hash_num:
@@ -46,7 +46,7 @@ JSON の各フィールドは以下のとおりである。
         大きくすると正確な値に近づく代わりに、多くのメモリを消費し、探索時間も増す。
         (Integer)
 
-        * 推奨値: 1 <= ``hash_num`` <= ``LONG_MAX``
+        * 値域: 1 <= ``hash_num``
 
    euclid_lsh
      :hash_num:
@@ -54,7 +54,7 @@ JSON の各フィールドは以下のとおりである。
         大きくすると正確な値に近づく代わりに、多くのメモリを消費し、探索時間も増す。
         (Integer)
 
-        * 推奨値: 1 <= ``hash_num`` <= ``LONG_MAX``
+        * 値域: 1 <= ``hash_num``
 
 
 .. describe:: converter

@@ -14,7 +14,7 @@ JSON の各フィールドは以下のとおりである。
    保持する値の数を指定する。
    (Integer)
 
-   * 推奨値: 1 <= ``window_size`` <= ``UINT_MAX``
+   * 値域: 1 <= ``window_size``
 
 
 例:

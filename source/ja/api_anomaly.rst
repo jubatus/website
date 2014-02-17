@@ -35,14 +35,14 @@ JSON の各フィールドは以下のとおりである。
         大きくすると誤検出が減る代わりに、検出漏れが増える。
         (Integer)
 
-        * 推奨値: 2 <= ``nearest_neighbor_num`` <= ``INT_MAX``
+        * 値域: 2 <= ``nearest_neighbor_num``
 
      :reverse_nearest_neighbor_num:
         異常値の情報を更新する際に、逆近傍候補の個数を指定する。
         大きくすると検出が正確になる代わりに、更新に時間がかかる。
         (Integer)
 
-        * 推奨値: ``nearest_neighbor_num`` <= ``reverse_nearest_neighbor_num`` <= ``INT_MAX``
+        * 値域: ``nearest_neighbor_num`` <= ``reverse_nearest_neighbor_num``
 
      :method:
         近傍探索に利用するレコメンダーのアルゴリズムを指定する。
@@ -58,14 +58,14 @@ JSON の各フィールドは以下のとおりである。
         大きくすると誤検出が減る代わりに、検出漏れが増える。
         (Integer)
 
-        * 推奨値: 2 <= ``nearest_neighbor_num`` <= ``INT_MAX``
+        * 値域: 2 <= ``nearest_neighbor_num``
 
      :reverse_nearest_neighbor_num:
         異常値の情報更新する際に、逆近傍候補の個数を指定する。
         大きくすると検出が正確になる代わりに、更新に時間がかかる。
         (Integer)
 
-        * 推奨値: ``nearest_neighbor_num`` <= ``reverse_nearest_neighbor_num`` <= ``INT_MAX``
+        * 値域: ``nearest_neighbor_num`` <= ``reverse_nearest_neighbor_num``
 
      :method:
         近傍探索に利用する近傍探索器のアルゴリズムを指定する。

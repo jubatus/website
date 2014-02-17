@@ -48,7 +48,7 @@ JSON の各フィールドは以下のとおりである。
         元論文 [Crammer06]_ における :math:`C` に相当する。
         (Float)
 
-        * 推奨値: 0.0 < ``regularization_weight`` <= ``FLT_MAX``
+        * 値域: 0.0 < ``regularization_weight``
 
    PA2
      :regularization_weight:
@@ -57,7 +57,7 @@ JSON の各フィールドは以下のとおりである。
         元論文 [Crammer06]_ における :math:`C` に相当する。
         (Float)
 
-        * 推奨値: 0.0 < ``regularization_weight`` <= ``FLT_MAX``
+        * 値域: 0.0 < ``regularization_weight``
 
    CW
      :regularization_weight:
@@ -66,7 +66,7 @@ JSON の各フィールドは以下のとおりである。
         元論文 [Dredze08]_ における :math:`\phi` に相当する。
         (Float)
 
-        * 推奨値: 0.0 < ``regularization_weight`` <= ``FLT_MAX``
+        * 値域: 0.0 < ``regularization_weight``
 
    AROW
      :regularization_weight:
@@ -75,7 +75,7 @@ JSON の各フィールドは以下のとおりである。
         元論文 [Crammer09b]_ における :math:`1/r` に相当する。
         (Float)
 
-        * 推奨値: 0.0 < ``regularization_weight`` <= ``FLT_MAX``
+        * 値域: 0.0 < ``regularization_weight``
 
    NHERD
      :regularization_weight:
@@ -84,7 +84,7 @@ JSON の各フィールドは以下のとおりである。
         元論文 [Crammer10]_ における :math:`C` に相当する。
         (Float)
 
-        * 推奨値: 0.0 < ``regularization_weight`` <= ``FLT_MAX``
+        * 値域: 0.0 < ``regularization_weight``
 
 
 .. describe:: converter

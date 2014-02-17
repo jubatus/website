@@ -36,7 +36,7 @@ JSON の各フィールドは以下のとおりである。
         大きくするとノイズに強くなる代わりに、誤差が残りやすくなる。
         (Float)
 
-        * 推奨値: 0.0 <= ``sensitivity`` <= ``FLT_MAX``
+        * 値域: 0.0 <= ``sensitivity``
 
      :regularization_weight:
         学習に対する感度パラメータを指定する。
@@ -44,7 +44,7 @@ JSON の各フィールドは以下のとおりである。
         元論文 [Crammer06]_ における :math:`C` に相当する。
         (Float)
 
-        * 推奨値: 0.0 < ``regularization_weight`` <= ``FLT_MAX``
+        * 値域: 0.0 < ``regularization_weight``
 
 
 .. describe:: converter
