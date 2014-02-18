@@ -45,32 +45,51 @@ We show each filed below:
         The bigger it is, the more accurate results you can get, but the more memory is required.
         (Integer)
 
+        * Range: 1 <= ``hash_num``
+
    lsh
      :hash_num:
         Bit length of hash values.
         The bigger it is, the more accurate results you can get, but the more memory is required.
         (Integer)
 
+        * Range: 1 <= ``hash_num``
+
    euclid_lsh
      :hash_num:
         Number of hash values.
         The bigger it is, the more accurate results you can get, but the fewer results you can find and the more memory is required.
         (Integer)
+
+        * Range: 1 <= ``hash_num``
+
      :table_num:
         Number of tables.
         The bigger it is, the mroe results you can find, but the more memory is required and the longer response time is required.
         (Integer)
+
+        * Range: 1 <= ``table_num``
+
      :bin_width:
         Quantization step size.
         The bigger it is, the more results you can find, but the longer response time is required.
         (Float)
+
+        * Range: 0.0 < ``bin_width``
+
      :probe_num:
         Number of bins to find.
         The bigger it is, the more results you can find, but the longer response time is required.
         (Integer)
+
+        * Range: 0 <= ``probe_num``
+
      :seed:
         Seed of random number generator.
         (Integer)
+
+        * Range: 0 <= ``seed``
+
      :retain_projection:
         When it is ``true``, projection vectors for hashing are cached in memory.
         Response time is lower though more memory is required.
