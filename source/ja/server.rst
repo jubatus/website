@@ -95,8 +95,21 @@ RPC インターフェースは `MessagePack-IDL <https://github.com/msgpack/msg
     int clear()
   }
 
-なお、 :doc:`common_structs` にある ``save``, ``load`` のような共通的なメソッドは、IDL に定義する必要はない。
-これらのメソッドのアノテーションは ``jenerator`` のなかで指定される。
+以下のサーバー向けのRPCメソッドは ``jenerator`` によって、自動的に各サービスに追加される。
+
+.. code-block:: c++
+
+  #@random #@analysis
+  string get_config()
+
+  #@broadcast #@analysis #@all_and
+  bool save(0: string id)
+
+  #@broadcast #@analysis #@all_and
+  bool load(0: string id)
+
+  #@broadcast #@analysis #@merge
+  map<string, map<string, string> > get_status()
 
 
 ``jenerator`` のビルド

@@ -95,8 +95,22 @@ Here is a example of MessagePack-IDL with annotation.
     int clear()
   }
 
-In addition, common methods such as ``save``, ``load`` described in :doc:`common_structs` are not necessary to define by MessagePack-IDL.
-Annotations of these methods are specified by ``jenerator`` .
+The following RPC methods for server are automatically appended to each service by ``jenerator``:
+
+.. code-block:: c++
+
+  #@random #@analysis
+  string get_config()
+
+  #@broadcast #@analysis #@all_and
+  bool save(0: string id)
+
+  #@broadcast #@analysis #@all_and
+  bool load(0: string id)
+
+  #@broadcast #@analysis #@merge
+  map<string, map<string, string> > get_status()
+
 
 Building ``jenerator``
 ~~~~~~~~~~~~~~~~~~~~~~
