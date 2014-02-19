@@ -95,9 +95,16 @@ JSON の各フィールドは以下のとおりである。
   .. code-block:: javascript
 
      {
-       "method" : "simple",
+       "method" : "kmeans",
        "parameter" : {
-         }
+         "k" : 3,
+         "compressor_method" : "compressive_kmeans",
+         "bucket_size" : 1000,
+         "compressed_bucket_size" : 100,
+         "bicriteria_base_size" : 10,
+         "bucket_length" : 2,
+         "forgetting_factor" : 0.0,
+         "forgetting_threshold" : 0.5
        },
        "converter" : {
          "string_filter_types" : {},
