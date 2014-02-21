@@ -105,7 +105,7 @@ The following RPC methods for server are automatically appended to each service 
   #@broadcast #@analysis #@all_and
   bool save(0: string id)
 
-  #@broadcast #@analysis #@all_and
+  #@broadcast #@update #@all_and
   bool load(0: string id)
 
   #@broadcast #@analysis #@merge
