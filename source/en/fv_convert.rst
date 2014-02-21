@@ -72,7 +72,7 @@ The following is an example of a datum.
 
 Name of keys cannot contain "$" sign.
 
-For example, a datum consists of ``std::vector<std::pair<std::string, std::string> >`` ,  ``std::vector<std::pair<std::stirng, double> >`` and ``std::vector<std::pair<std::string, std::string> >`` in C++.
+For example, a datum consists of ``std::vector<std::pair<std::string, std::string> >`` ,  ``std::vector<std::pair<std::string, double> >`` and ``std::vector<std::pair<std::string, std::string> >`` in C++.
 ``std::pair<T,U>`` (resp.  ``std::vector<T>``) is to C++ what tuple (resp. vector) is to Python.
 
 Flow of Data Conversion

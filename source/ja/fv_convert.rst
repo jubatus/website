@@ -84,7 +84,7 @@ binary_values には画像や音声などのマルチメディアデータなど
 
 キーの名前に "$" 記号を含めることはできない。
 
-例えばC++から利用する場合、datumは ``std::vector<std::pair<std::string, std::string> >`` 、 ``std::vector<std::pair<std::stirng, double> >`` 、 ``std::vector<std::pair<std::string, std::string> >`` の3つの要素からなっている。
+例えばC++から利用する場合、datumは ``std::vector<std::pair<std::string, std::string> >`` 、 ``std::vector<std::pair<std::string, double> >`` 、 ``std::vector<std::pair<std::string, std::string> >`` の3つの要素からなっている。
 ここでは、 ``std::pair<T,U>`` をPython風のタプルで、 ``std::vector<T>`` をPython風のリストで表している。
 
 データ変換の流れ
