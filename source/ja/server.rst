@@ -99,7 +99,7 @@ RPC インターフェースは `MessagePack-IDL <https://github.com/msgpack/msg
 
 .. code-block:: c++
 
-  #@random #@analysis
+  #@random #@analysis #@pass
   string get_config()
 
   #@broadcast #@analysis #@all_and

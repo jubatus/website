@@ -99,7 +99,7 @@ The following RPC methods for server are automatically appended to each service 
 
 .. code-block:: c++
 
-  #@random #@analysis
+  #@random #@analysis #@pass
   string get_config()
 
   #@broadcast #@analysis #@all_and
