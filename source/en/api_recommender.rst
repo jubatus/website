@@ -143,6 +143,7 @@ Data Structures
    .. mpidl:member:: 1: float score
 
       Score.
+      Range of scores is ``0 <= score <= 1`` (less than or equal to ``-0`` when using ``euclid_lsh``).
 
    .. code-block:: c++
 
