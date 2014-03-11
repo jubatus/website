@@ -232,7 +232,7 @@ Methods
       :param rhs:  別の :mpidl:type:`datum`
       :return:     ``lhs`` と ``rhs`` の類似度
 
-      指定した 2 つの :mpidl:type:`datum` の類似度を返す。
+      指定した 2 つの :mpidl:type:`datum` の類似度スコア (``id_with_score`` の ``score`` メンバを参照) を返す。
 
    .. mpidl:method:: float calc_l2norm(0: datum row)
 

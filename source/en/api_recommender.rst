@@ -227,7 +227,7 @@ Methods
       :param rhs:  another :mpidl:type:`datum`
       :return:     similarity between ``lhs`` and ``rhs``
 
-      Returns the similarity between two :mpidl:type:`datum`.
+      Returns the similarity score (see ``score`` member of ``id_with_score``) between two :mpidl:type:`datum`.
 
    .. mpidl:method:: float calc_l2norm(0: datum row)
 
