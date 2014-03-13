@@ -144,6 +144,12 @@ Methods
    Returns server status from **ALL** servers.
    Each server is represented by a pair of host name and port.
 
+.. mpidl:method:: bool do_mix()
+
+   :return:     True when model mixed successfully
+
+   Force cluster to fire mix
+
 .. mpidl:method:: map<string, map<string, string> >  get_proxy_status()
 
    :return:     Internal state for proxy. The key of most outer map is in form of ``hostname_portnumber``.

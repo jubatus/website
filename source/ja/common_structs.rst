@@ -144,6 +144,12 @@ Methods
    **すべての** サーバの内部状態を取得する。
    サーバはホスト名、ポート番号で識別する。
 
+.. mpidl:method:: bool do_mix()
+
+   :return:     Mix が成功した場合 True
+
+   Update回数や経過時間に関係なく、Mixを強制的に一度実行させる。
+
 .. mpidl:method:: map<string, map<string, string> > get_proxy_status()
 
    :return:     プロキシの内部状態。最上位の map のキーは ``ホスト名_ポート番号`` 形式である。
