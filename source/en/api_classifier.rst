@@ -196,3 +196,4 @@ Methods
 
       Append new label.
       If the label is already exist, it fails.
+      New label is add when label found in ``train`` method argument, too.
