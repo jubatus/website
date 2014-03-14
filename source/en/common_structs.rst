@@ -159,16 +159,16 @@ Methods
 
    Get ``name`` of target cluster of this client object.
    ``name`` is a string value to uniquely identify a task in the ZooKeeper cluster.
-   This method does **not** any network communication.
+   This is not an RPC method.
 
-.. mpidl:method:: void set_name(string new_name)
+.. mpidl:method:: void set_name(0: string new_name)
 
    :param id:   Name of new target cluster
 
    Set ``name`` of target cluster of this client object.
    ``name`` is a string value to uniquely identify a task in the ZooKeeper cluster.
    You can switch the target Jubatus cluster among multiple tasks with one client object.
-   This method does **not** any network communication.
+   This is not an RPC method.
 
 .. mpidl:method:: mprpc_client get_client()
 
