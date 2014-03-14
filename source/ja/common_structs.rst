@@ -153,6 +153,24 @@ Methods
    このメソッドは、 **プロキシ** に対して使用する。
    サーバに対して使用すると、RPCエラーが返却される。
 
+
+.. mpidl:method:: string get_name()
+
+   :return:     ターゲットに指定されているクラスタの名前
+
+   このクライアントインスタンスが参照している先のクラスタの ``name`` を獲得する。
+   ``name`` とは、タスクを識別する ZooKeeper クラスタ内でユニークな名前である。
+   これは RPC メソッドではない。
+
+.. mpidl:method:: void set_name(0: string new_name)
+
+   :param id:   新しくターゲットに指定したいクラスタの名前
+
+   このクライアントインスタンスがターゲットとして参照する ``name`` を設定する。
+   ``name`` とは、タスクを識別する ZooKeeper クラスタ内でユニークな名前である。
+   このメソッドを使う事で、一つのクライアントインスタンスを使って異なるタスクのクラスタに接続することができる。
+   これは RPC メソッドではない。
+
 .. mpidl:method:: mprpc_client get_client()
 
    :return: MessagePack-RPC クライアントインスタンス
