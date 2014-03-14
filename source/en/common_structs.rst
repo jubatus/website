@@ -148,7 +148,9 @@ Methods
 
    :return:     True when model mixed successfully
 
-   Force cluster to fire mix
+   Force cluster to fire mix.
+   Call this RPC to Jubatus server **directly**.
+   When you call this to proxy, RPC error will be raised.
 
 .. mpidl:method:: map<string, map<string, string> >  get_proxy_status()
 
