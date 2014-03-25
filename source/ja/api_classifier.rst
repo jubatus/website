@@ -191,8 +191,8 @@ Methods
 
    .. mpidl:method:: bool set_label(0: string new_label)
 
-      :param data: 追加するラベル名
-      :return:     追加に成功した場合 True 既にラベルが存在した場合 False
+      :param new_label: 追加するラベル名
+      :return:          追加に成功した場合 True 既にラベルが存在した場合 False
 
       新しいラベルを追加する。
       既に同名のラベルが登録されていた場合失敗する。

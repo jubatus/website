@@ -187,12 +187,12 @@ Methods
 
       :return:     list of all labels in the jubatus
 
-      Returns all label list
+      Returns all label list.
 
    .. mpidl:method:: bool set_label(0: string new_label)
 
-      :param data: name of new label
-      :return:     True if the new label was not exist. False if the label already exists.
+      :param new_label: name of new label
+      :return:          True if the new label was not exist. False if the label already exists.
 
       Append new label.
       If the label is already exist, it fails.
