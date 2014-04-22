@@ -104,6 +104,13 @@ Jubatus と Jubatus クライアントは、TCP/IP ネットワーク経由で `
   $ cd jubatus-tutorial-python
   $ wget http://people.csail.mit.edu/jrennie/20Newsgroups/20news-bydate.tar.gz
   $ tar xvzf 20news-bydate.tar.gz
+
+`jubaclassifier` を再起動します。
+この時、チュートリアル用に用意された設定ファイルを利用して下さい。
+先ほど使用したサンプルの設定では動作しません。
+
+::
+
   $ jubaclassifier --configpath config.json
 
 チュートリアルプログラムを実行します。
