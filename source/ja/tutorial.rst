@@ -7,7 +7,7 @@
 シナリオ
 ----------
 
-このチュートリアルでは、自然言語の分類に対する評価用データとして有名な `News20 <http://people.csail.mit.edu/jrennie/20Newsgroups/>`_ (``20news-bydate.tar.gz``) を利用します。
+このチュートリアルでは、自然言語の分類に対する評価用データとして有名な `News20 <http://qwone.com/~jason/20Newsgroups/>`_ (``20news-bydate.tar.gz``) を利用します。
 News20では、話題が20個のニュースグループに分かれており、人々は自分が適していると思ったニュースグループに投稿します。
 News20は便宜上、80%の学習用データ(20news-bydate-train)と、20%の実験用データ(20news-bydata-test)の二種類に分けられています。
 
@@ -102,7 +102,7 @@ Jubatus と Jubatus クライアントは、TCP/IP ネットワーク経由で `
 
   $ git clone https://github.com/jubatus/jubatus-tutorial-python.git
   $ cd jubatus-tutorial-python
-  $ wget http://people.csail.mit.edu/jrennie/20Newsgroups/20news-bydate.tar.gz
+  $ wget http://qwone.com/~jason/20Newsgroups//20news-bydate.tar.gz
   $ tar xvzf 20news-bydate.tar.gz
   $ jubaclassifier --configpath config.json
 
