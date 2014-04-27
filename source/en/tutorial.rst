@@ -102,8 +102,8 @@ OK, let's download the `tutorial program <https://github.com/jubatus/jubatus-tut
   $ wget http://people.csail.mit.edu/jrennie/20Newsgroups/20news-bydate.tar.gz
   $ tar xvzf 20news-bydate.tar.gz
 
-Reboot `jubaclassifier` with the given cofiguration file, that is prepared for this tutorial.
-Do not use an example configuration file used before.
+Reboot `jubaclassifier` with ``config.json`` , which is a configuration file prepared for this tutorial.
+Note: do not use the previous configuration file ( ``pa.json`` ) that was used above.
 
 ::
 
