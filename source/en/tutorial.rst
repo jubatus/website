@@ -7,7 +7,7 @@ Before trying the tutorial, you need to install Jubatus and Jubatus Python clien
 Scenario
 --------
 
-This tutorial uses `News20 <http://qwone.com/~jason/20Newsgroups/>`_ dataset (``20news-bydate.tar.gz``) which is a popular for experiments in text classification.
+This tutorial uses `News20 <http://qwone.com/~jason/20Newsgroups/>`_ dataset (``20news-bydate.tar.gz``), which is  popular for experiments in text classification.
 News20 has 20 different newsgroups and users post their message on a suitable newsgroup.
 News20 is divided into learning data (20news-bydate-train, 80%) and experimental data (20news-bydata-test, 20%).
 
