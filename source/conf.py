@@ -24,7 +24,7 @@ sys.path.append(os.path.abspath('../../exts'))
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 #extensions = ['sphinxcontrib.blockdiag', 'sphinxcontrib_netdiag', 'sphinxcontrib_seqdiag']
 #extensions = ['sphinxcontrib.blockdiag', 'sphinx.ext.autodoc', 'rst2pdf.pdfbuilder']
-extensions = ['sphinx.ext.autodoc', 'sphinxcontrib.blockdiag', 'sphinx.ext.pngmath', 'mpidl_domain', 'jubamember'] #, 'rst2pdf.pdfbuilder']
+extensions = ['sphinx.ext.autodoc', 'sphinxcontrib.blockdiag', 'sphinx.ext.pngmath', 'mpidl_domain', 'jubamember', 'sphinxcontrib.rubydomain'] #, 'rst2pdf.pdfbuilder']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['../../_templates']
