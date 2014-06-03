@@ -8,7 +8,7 @@ Configuration
 ~~~~~~~~~~~~~
 
 Configuration is given as a JSON file.
-We show each filed below:
+We show each field below:
 
 .. describe:: method
 
@@ -34,6 +34,20 @@ We show each filed below:
    Specify parameters for the algorithm.
    Its format differs for each ``method``.
    Note that adequate value for ``refularization_weight`` differ for each algorithm.
+
+   Specify parameters for the algorithm.
+   Its format differs for each ``method``.
+
+   common
+     :unlearner:
+        Specify unlearner strategy.
+        You can specify ``unlearner`` strategy described in :doc:`api_unlearner`.
+        Labels will be deleted based on strategy specified here.
+
+     :unlearner_parameter:
+        Specify unlearner parameter.
+        You can specify ``unlearner_parameter`` :doc:`api_unlearner`.
+        Labels in excess of this number will be deleted automatically.
 
    perceptron
      None

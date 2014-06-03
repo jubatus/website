@@ -32,6 +32,17 @@ We show each field below:
    Specify parameters for the algorithm.
    Its format differs for each ``method``.
 
+   common
+     :unlearner:
+        Specify unlearner strategy.
+        You can specify ``unlearner`` strategy described in :doc:`api_unlearner`.
+        Data will be deleted based on strategy specified here.
+
+     :unlearner_parameter:
+        Specify unlearner parameter.
+        You can specify ``unlearner_parameter`` :doc:`api_unlearner`.
+        Data in excess of this number will be deleted automatically.
+
    lsh
      :hash_num:
         Bit length of hash values.

@@ -75,6 +75,17 @@ We show each filed below:
         Parameters of the nearest neighbor for nearest neighbor search.
         Refer ``parameter`` in :doc:`api_nearest_neighbor`.
 
+     :unlearner:
+        Specify unlearner strategy.
+        You can specify ``unlearner`` strategy described in :doc:`api_unlearner`.
+        Data will be deleted based on strategy specified here.
+
+     :unlearner_parameter:
+        Specify unlearner parameter.
+        You can specify ``unlearner_parameter`` :doc:`api_unlearner`.
+        Data in excess of this number will be deleted automatically.
+
+     note: ``unlearner`` and ``unlearner_parameter`` **can be omitted** .
 
 .. describe:: converter
 

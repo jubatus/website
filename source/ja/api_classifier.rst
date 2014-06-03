@@ -31,9 +31,22 @@ JSON の各フィールドは以下のとおりである。
 
 .. describe:: parameter
 
-   アルゴリズムに渡すパラーメータを指定する。
+   アルゴリズムに渡すパラメータを指定する。
    ``method`` に応じて渡すパラメータは異なる。
    なお、各アルゴリズムの ``regularization_weight`` パラメータはアルゴリズム中における役割が異なるため、アルゴリズム毎に適切な値は異なることに注意する。
+
+   共通
+     :unlearner:
+        忘却機能に利用するUnlearnerのアルゴリズムを指定する。
+        :doc:`api_unlearner` で説明される ``unlearner`` を指定する。
+        ここで指定された方法に基づいてラベルを忘却する。
+
+     :unlearner_parameter:
+        忘却機能に利用するUnlearnerに渡すパラメータを指定する。
+        :doc:`api_unlearner` で説明される ``unlearner_parameter`` を指定する。
+        ここで指定された件数以上のラベルを忘却する。
+
+     なおこれら2つのパラメータは省略可能である。
 
    perceptron
      なし

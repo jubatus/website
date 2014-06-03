@@ -52,6 +52,14 @@ JSON の各フィールドは以下のとおりである。
         近傍探索に利用するレコメンダーに渡すパラメータを指定する。
         :doc:`api_recommender` で説明される ``parameter`` を指定する。
 
+     :unlearner:
+        忘却機能に利用するUnlearnerのアルゴリズムを指定する。
+        :doc:`api_unlearner` で説明される ``method`` を指定する。
+
+     :unlearner_parameter:
+        忘却機能に利用するUnlearnerに渡すパラメータを指定する。
+        :doc:`api_unlearner` で説明される ``parameter`` を指定する。
+
    light_lof
      :nearest_neighbor_num:
         対象データに対する近傍の数を指定する。
@@ -75,6 +83,26 @@ JSON の各フィールドは以下のとおりである。
         近傍探索に利用する近傍探索器に渡すパラメータを指定する。
         :doc:`api_nearest_neighbor` で説明される ``parameter`` を指定する。
 
+     :unlearner:
+        忘却機能に利用するUnlearnerのアルゴリズムを指定する。
+        :doc:`api_unlearner` で説明される ``method`` を指定する。
+
+     :unlearner_parameter:
+        忘却機能に利用するUnlearnerに渡すパラメータを指定する。
+        :doc:`api_unlearner` で説明される ``parameter`` を指定する。
+
+
+     :unlearner:
+        忘却機能に利用するUnlearnerのアルゴリズムを指定する。
+        :doc:`api_unlearner` で説明される ``unlearner`` を指定する。
+        ここで指定された方法に基づいてデータを忘却する。
+
+     :unlearner_parameter:
+        忘却機能に利用するUnlearnerに渡すパラメータを指定する。
+        :doc:`api_unlearner` で説明される ``unlearner_parameter`` を指定する。
+        ここで指定された件数以上のデータは自動的に削除される。
+
+     なお ``unlearner`` と ``unlearner_parameter`` のパラメータは **省略可能** である。
 
 .. describe:: converter
 
