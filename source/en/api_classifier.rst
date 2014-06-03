@@ -49,6 +49,8 @@ We show each field below:
         You can specify ``unlearner_parameter`` :doc:`api_unlearner`.
         Labels in excess of this number will be deleted automatically.
 
+     note: ``unlearner`` and ``unlearner_parameter`` **can be omitted** .
+
    perceptron
      None
 

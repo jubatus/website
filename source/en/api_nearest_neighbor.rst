@@ -43,6 +43,8 @@ We show each field below:
         You can specify ``unlearner_parameter`` :doc:`api_unlearner`.
         Data in excess of this number will be deleted automatically.
 
+     note: ``unlearner`` and ``unlearner_parameter`` **can be omitted** .
+
    lsh
      :hash_num:
         Bit length of hash values.
