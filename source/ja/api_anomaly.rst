@@ -49,7 +49,7 @@ JSON の各フィールドは以下のとおりである。
         :doc:`api_recommender` で説明される ``method`` を指定する。
 
      :parameter:
-        近傍探索に利用するレコメンダーに渡すパラーメータを指定する。
+        近傍探索に利用するレコメンダーに渡すパラメータを指定する。
         :doc:`api_recommender` で説明される ``parameter`` を指定する。
 
    light_lof
