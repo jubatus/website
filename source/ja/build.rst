@@ -16,6 +16,7 @@ Jubatus をソースからビルドするには、 ``gcc`` (バージョン 4.4 
 =================== ========== ========= ======================================================
 ソフトウェア        バージョン 必須      備考
 =================== ========== ========= ======================================================
+jubatus_core        >= 0.0.1   ✔
 msgpack             >= 0.5.7   ✔
 jubatus-mpio        0.4.1      ✔
 jubatus-msgpack-rpc 0.4.1      ✔         C++ クライアントライブラリが必要である。
@@ -82,6 +83,14 @@ Ubuntu 12.04 でのビルドを行う例です。
 Jubatus のビルドを行います。
 
 ::
+
+  $ wget -O jubatus_core.tar.gz https://github.com/jubatus/jubatus_core/archive/master.tar.gz
+  $ tar xzf jubatus_core.tar.gz
+  $ cd jubatus_core-master
+  $ ./waf configure
+  $ ./waf build
+  $ sudo ./waf install
+  $ sudo ldconfig
 
   $ wget -O jubatus-master.tar.gz https://github.com/jubatus/jubatus/archive/master.tar.gz
   $ tar xzf jubatus-master.tar.gz
