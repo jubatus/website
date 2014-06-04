@@ -16,6 +16,7 @@ For supported version of libraries, refer to the `Jubatus Wiki <https://github.c
 =================== ========== ========= ======================================================
 Software            Version    Mandatory Note
 =================== ========== ========= ======================================================
+jubatus_core        >= 0.0.1   ✔
 msgpack             >= 0.5.7   ✔
 jubatus-mpio        0.4.1      ✔
 jubatus-msgpack-rpc 0.4.1      ✔         C++ client library must be installed.
@@ -82,6 +83,14 @@ Here's an example on Ubuntu 12.04 systems.
 Now build Jubatus.
 
 ::
+
+  $ wget -O jubatus_core.tar.gz https://github.com/jubatus/jubatus_core/archive/master.tar.gz
+  $ tar xzf jubatus_core.tar.gz
+  $ cd jubatus_core-master
+  $ ./waf configure
+  $ ./waf build
+  $ sudo ./waf install
+  $ sudo ldconfig
 
   $ wget -O jubatus-master.tar.gz https://github.com/jubatus/jubatus/archive/master.tar.gz
   $ tar xzf jubatus-master.tar.gz
