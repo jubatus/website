@@ -197,3 +197,12 @@ Methods
       Append new label.
       If the label is already exist, it fails.
       New label is add when label found in ``train`` method argument, too.
+
+   .. mpidl:method:: bool delete_label(0: string target_label)
+
+      :param target_label: deleting label name
+      :return:          True if jubatus success to delete label. False if the label is not exists.
+
+      Deleting label.
+      True if jubatus success to delete. False if the label is not exists.
+

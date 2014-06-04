@@ -197,3 +197,11 @@ Methods
       新しいラベルを追加する。
       既に同名のラベルが登録されていた場合失敗する。
       ラベルは ``train`` 実行時にも自動的に追加される。
+
+   .. mpidl:method:: bool delete_label(0: string target_label)
+
+      :param target_label: 消去するラベル名
+      :return:          消去に成功した場合 True ラベルが存在しなかった場合 False
+
+      ラベルを消去する。
+      成功時に True 失敗時に False を返す。
