@@ -101,6 +101,12 @@ OK, let's download the `tutorial program <https://github.com/jubatus/jubatus-tut
   $ cd jubatus-tutorial-python
   $ wget http://people.csail.mit.edu/jrennie/20Newsgroups/20news-bydate.tar.gz
   $ tar xvzf 20news-bydate.tar.gz
+
+Reboot `jubaclassifier` with ``config.json`` , which is a configuration file prepared for this tutorial.
+Note: do not use the previous configuration file ( ``pa.json`` ) that was used above.
+
+::
+
   $ jubaclassifier --configpath config.json
 
 Then, run the program.
