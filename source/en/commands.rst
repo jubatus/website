@@ -148,7 +148,7 @@ In distributed environment, Jubatus Proxy distributes requests from clients to s
 
 .. option:: -c <num>, --thread <num>
 
-   Number of threads to accept RPC connection. [16]
+   Number of threads to accept RPC connection. [4]
 
 .. option:: -t <seconds>, --timeout <seconds>
 
