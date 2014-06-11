@@ -20,7 +20,7 @@ jubatus_core        >= 0.0.1   ✔
 msgpack             >= 0.5.7   ✔
 jubatus-mpio        0.4.1      ✔
 jubatus-msgpack-rpc 0.4.1      ✔         C++ クライアントライブラリが必要である。
-google-glog         >= 0.3.3   ✔
+log4cxx             >= 0.10.0  ✔
 oniguruma           >= 5.9     [1]_
 re2                 master     [1]_      ``--enable-re2`` ありでビルドする場合のみ。
 mecab               >= 0.99              ``--enable-mecab`` ありでビルドする場合のみ。
@@ -37,7 +37,7 @@ zookeeper           >= 3.3               ``--enable-zookeeper`` ありでビル�
 `msgpack <http://msgpack.org/>`_,
 `jubatus-mpio <https://github.com/jubatus/jubatus-mpio>`_,
 `jubatus-msgpack-rpc <https://github.com/jubatus/jubatus-msgpack-rpc>`_,
-`google-glog <http://code.google.com/p/google-glog/>`_,
+`log4cxx <http://logging.apache.org/log4cxx/>`_,
 `oniguruma <http://www.geocities.jp/kosako3/oniguruma/index_ja.html>`_,
 `re2 <http://code.google.com/p/re2/>`_,
 `mecab <http://code.google.com/p/mecab/>`_,
@@ -54,7 +54,7 @@ Ubuntu 12.04 でのビルドを行う例です。
 
   $ sudo apt-get install build-essential git-core pkg-config
 
-  $ sudo apt-get install libmsgpack-dev libonig-dev
+  $ sudo apt-get install libmsgpack-dev libonig-dev liblog4cxx10-dev
 
   $ wget http://download.jubat.us/files/source/jubatus_mpio/jubatus_mpio-0.4.1.tar.gz
   $ tar xzf jubatus_mpio-0.4.1.tar.gz
@@ -67,14 +67,6 @@ Ubuntu 12.04 でのビルドを行う例です。
   $ wget http://download.jubat.us/files/source/jubatus_msgpack-rpc/jubatus_msgpack-rpc-0.4.1.tar.gz
   $ tar xzf jubatus_msgpack-rpc-0.4.1.tar.gz
   $ cd jubatus_msgpack-rpc-0.4.1
-  $ ./configure
-  $ make
-  $ sudo make install
-  $ cd ..
-
-  $ wget http://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
-  $ tar xzf glog-0.3.3.tar.gz
-  $ cd glog-0.3.3
   $ ./configure
   $ make
   $ sudo make install
