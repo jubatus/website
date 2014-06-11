@@ -148,7 +148,7 @@ Jubatus Proxy は、分散環境においてクライアントからのリクエ
 
 .. option:: -c <num>, --thread <num>
 
-   RPC リクエストを受け付けるスレッド数。 [16]
+   RPC リクエストを受け付けるスレッド数。 [4]
 
 .. option:: -t <seconds>, --timeout <seconds>
 
