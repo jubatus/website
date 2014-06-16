@@ -20,7 +20,7 @@ jubatus_core        >= 0.0.1   ✔
 msgpack             >= 0.5.7   ✔
 jubatus-mpio        0.4.1      ✔
 jubatus-msgpack-rpc 0.4.1      ✔         C++ client library must be installed.
-google-glog         >= 0.3.3   ✔
+log4cxx             >= 0.10.0  ✔
 oniguruma           >= 5.9     [1]_
 re2                 master     [1]_      Required when configured with ``--enable-re2``.
 mecab               >= 0.99              Required when configured with ``--enable-mecab``.
@@ -37,7 +37,7 @@ When binary packages are not available, you also need to build these libraries f
 `msgpack <http://msgpack.org/>`_,
 `jubatus-mpio <https://github.com/jubatus/jubatus-mpio>`_,
 `jubatus-msgpack-rpc <https://github.com/jubatus/jubatus-msgpack-rpc>`_,
-`google-glog <http://code.google.com/p/google-glog/>`_,
+`log4cxx <http://logging.apache.org/log4cxx/>`_,
 `oniguruma <http://www.geocities.jp/kosako3/oniguruma/index.html>`_,
 `re2 <http://code.google.com/p/re2/>`_,
 `mecab <http://code.google.com/p/mecab/>`_,
@@ -54,7 +54,7 @@ Here's an example on Ubuntu 12.04 systems.
 
   $ sudo apt-get install build-essential git-core pkg-config
 
-  $ sudo apt-get install libmsgpack-dev libonig-dev
+  $ sudo apt-get install libmsgpack-dev libonig-dev liblog4cxx10-dev
 
   $ wget http://download.jubat.us/files/source/jubatus_mpio/jubatus_mpio-0.4.1.tar.gz
   $ tar xzf jubatus_mpio-0.4.1.tar.gz
@@ -67,14 +67,6 @@ Here's an example on Ubuntu 12.04 systems.
   $ wget http://download.jubat.us/files/source/jubatus_msgpack-rpc/jubatus_msgpack-rpc-0.4.1.tar.gz
   $ tar xzf jubatus_msgpack-rpc-0.4.1.tar.gz
   $ cd jubatus_msgpack-rpc-0.4.1
-  $ ./configure
-  $ make
-  $ sudo make install
-  $ cd ..
-
-  $ wget http://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
-  $ tar xzf glog-0.3.3.tar.gz
-  $ cd glog-0.3.3
   $ ./configure
   $ make
   $ sudo make install
