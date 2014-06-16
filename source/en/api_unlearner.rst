@@ -31,6 +31,12 @@ We show each field below:
      Specify the upper-limit of data quantity.
      The smaller it is, the less memory usage, the more fast, the less accurately.
 
+   :sticky_pattern:
+     Specify pattern of IDs to exclude from unlearning.
+     Patterns can be specified in the same format as in ``key`` of rules in :doc:`fv_convert`.
+     This parameter is only available when using ``lru``.
+     (String)
+
 .. describe:: example
 
    .. code-block:: javascript
