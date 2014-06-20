@@ -34,6 +34,12 @@ JSON の各フィールドは以下のとおりである。
 
      * 値域: 0 < ``max_size`` < 2147483647
 
+   :sticky_pattern:
+     忘却の対象外とする ID のパターンを指定する。
+     パターンの指定方法は :doc:`fv_convert` の適用規則で使用される ``key`` と同様である。
+     ``lru`` 利用時のみ指定できる。
+     (String)
+
 .. describe:: 例
 
    .. code-block:: javascript
