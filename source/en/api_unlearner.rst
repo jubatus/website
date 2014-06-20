@@ -34,6 +34,8 @@ We show each field below:
      Specify pattern of IDs to exclude from unlearning.
      Patterns can be specified in the same format as in ``key`` of rules in :doc:`fv_convert`.
      This parameter is only available when using ``lru``.
+     This parameter is optional.
+     If not specified, no IDs are excluded from unlearning.
      (String)
 
 .. describe:: example
