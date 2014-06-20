@@ -38,15 +38,17 @@ JSON の各フィールドは以下のとおりである。
    共通
      :unlearner:
         忘却機能に利用するUnlearnerのアルゴリズムを指定する。
+        忘却機能を利用しない場合、 このパラメータを省略する。
         :doc:`api_unlearner` で説明される ``unlearner`` を指定する。
         ここで指定された方法に基づいてラベルを忘却する。
 
      :unlearner_parameter:
         忘却機能に利用するUnlearnerに渡すパラメータを指定する。
         :doc:`api_unlearner` で説明される ``unlearner_parameter`` を指定する。
+        ``unlearner`` を設定する場合、 ``unlearner_parameter`` の指定は必須である。
         ここで指定された件数以上のラベルを忘却する。
 
-     なおこれら2つのパラメータは **省略可能** である。
+     これら2つのパラメータは **省略可能** である。
 
    perceptron
      なし
