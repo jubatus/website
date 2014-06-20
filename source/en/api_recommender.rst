@@ -107,7 +107,7 @@ We show each filed below:
      :unlearner_parameter:
         Specify unlearner parameter.
         You can specify ``unlearner_parameter`` :doc:`api_unlearner`.
-        You cannot omit this parameter when you specify ``unlearner`` .
+        You cannot omit this parameter when you specify ``unlearner``.
         Data in excess of this number will be deleted automatically.
 
      note: ``unlearner`` and ``unlearner_parameter`` **can be omitted** .
