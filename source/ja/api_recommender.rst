@@ -25,7 +25,7 @@ JSON の各フィールドは以下のとおりである。
       ``"minhash"``                         MinHash を利用する。 [Ping2010]_
       ``"lsh"``                             Locality Sensitive Hashing を利用する。
       ``"euclid_lsh"``                      Euclid 距離版の LSH を利用する。 [Andoni2005]_
-      ``"nearest_neighbor_recommender:*"``  ``nearest_neighbor`` 実装を利用する。 ``*`` に近傍探索のアルゴリズム名を入れる。
+      ``"nearest_neighbor_recommender"``    ``nearest_neighbor`` 実装を利用する。
       ===================================== ===================================
 
 
@@ -93,9 +93,14 @@ JSON の各フィールドは以下のとおりである。
         レスポンス時間が低下する代わりに、メモリを消費する。
         (Boolean)
 
-   nearest_neighbor:*
-      ``*`` に入れた近傍探索器のパラメータを記述する。
-      詳細は :doc:`api_nearest_neighbor` を参照。
+   nearest_neighbor_recommender
+     :method:
+        近傍探索に使用するアルゴリズムを指定する。
+        使用可能なアルゴリズムの一覧は :doc:`api_nearest_neighbor` を参照のこと。
+
+     :parameter:
+        アルゴリズムに渡すパラメータを指定する。
+        パラメータの一覧は :doc:`api_nearest_neighbor` を参照のこと。
 
      :unlearner:
         忘却機能に利用するUnlearnerのアルゴリズムを指定する。
