@@ -1,7 +1,7 @@
 Unlearner
 ----------
 
-* このアルゴリズムは単品では使用されず、 :doc:`classifier`, :doc:`nearest_neighbor`, :doc:`anomaly` のconfig経由で指定され利用される。
+* このアルゴリズムは単品では使用されず、 :doc:`api_classifier`, :doc:`api_nearest_neighbor`, :doc:`api_anomaly` のconfig経由で指定され利用される。
 
 Configuration
 ~~~~~~~~~~~~~

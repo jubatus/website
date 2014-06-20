@@ -1,7 +1,7 @@
 Unlearner
 ----------
 
-* This algorithm is used only via configurations of :doc:`classifier` or :doc:`nearest_neighbor` or :doc:`anomaly`.
+* This algorithm is used only via configurations of :doc:`api_classifier` or :doc:`api_nearest_neighbor` or :doc:`api_anomaly`.
 
 Configuration
 ~~~~~~~~~~~~~
@@ -16,7 +16,7 @@ We show each field below:
    .. table::
 
       ================ ===================================
-      設定値           手法
+      Value            Method
       ================ ===================================
       ``"randomn"``    Delete data randomly
       ``"lru"``        Delete data upon Least-Recently-Used strategy
