@@ -1,7 +1,7 @@
 Unlearner
 ----------
 
-* This algorithm is used only via configurations of :doc:`api_classifier` or :doc:`api_nearest_neighbor` or :doc:`api_anomaly`.
+* This algorithm is used only via configurations of :doc:`api_classifier` or :doc:`api_recommender` or :doc:`api_anomaly`.
 
 Configuration
 ~~~~~~~~~~~~~
@@ -18,14 +18,13 @@ We show each field below:
       ================ ===================================
       Value            Method
       ================ ===================================
-      ``"randomn"``    Delete data randomly
-      ``"lru"``        Delete data upon Least-Recently-Used strategy
+      ``"random"``     Delete data randomly
+      ``"lru"``        Delete data upon Least-Recently-Updated strategy
       ================ ===================================
 
 .. describe:: unlearner_parameter
 
    Specify parameters for the algorithm.
-   Its format is common for each unlearner strategy.
 
    :max_size:
      Specify the upper-limit of data quantity.
@@ -42,6 +41,8 @@ We show each field below:
    .. code-block:: javascript
 
       {
-        "unlearner_method" : "lru",
-        "unlearner_parameter" : 16777216
+        "unlearner" : "lru",
+        "unlearner_parameter" : {
+          "max_size": 16777216
+        }
       }
