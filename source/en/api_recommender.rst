@@ -25,7 +25,7 @@ We show each field below:
       ``"minhash"``                         Use MinHash. [Ping2010]_
       ``"lsh"``                             Use Locality Sensitive Hashing.
       ``"euclid_lsh"``                      Use Euclid-distance LSH. [Andoni2005]_
-      ``"nearest_neighbor_recommender:*"``  Use an implementation of ``nearest_neighbor`` of which algorithm name is specified in ``*`` .
+      ``"nearest_neighbor_recommender"``    Use an implementation of ``nearest_neighbor``.
       ===================================== ===================================
 
 
@@ -94,9 +94,14 @@ We show each field below:
         Response time is lower though more memory is required.
         (Boolean)
 
-   nearest_neighbor:*
-      Describe the parameter set for the nearest neighbor that is specified in ``*`` .
-      Please refer to :doc:`api_nearest_neighbor` for more details.
+   nearest_neighbor_recommender
+     :method:
+        Specify algorithm for nearest neighbor.
+        Refer to :doc:`api_nearest_neighbor` for the list of algorithms available.
+
+    :parameter:
+        Specify parameters for the algorithm.
+        Refer to :doc:`api_nearest_neighbor` for the list of parameters.
 
      :unlearner:
         Specify unlearner strategy.
