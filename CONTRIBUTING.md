@@ -1,5 +1,5 @@
-How to contributions
-======================
+How to contribute
+=================
 
 Please check our Contibution guideline first.
 
