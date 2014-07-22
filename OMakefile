@@ -16,12 +16,14 @@ SPHINXBUILD   = sphinx-build
 paper         =
 builddir      = build
 srcdir        = source
+supplementdir = supplement
+langs         = en ja
 sources       = $(find $(srcdir) -type=f)
 
 # Internal variables.
 paperopt_a4     = -D latex_paper_size=a4
 paperopt_letter = -D latex_paper_size=letter
-ALLSPHINXOPTS   = -d $(builddir)/doctrees $(sphinxopts) $(srcdir) # $(paperopt_$(paper)) $(sphinxopts) .
+ALLSPHINXOPTS   = $(sphinxopts) # $(paperopt_$(paper)) $(sphinxopts) .
 
 .PHONY: help clean html dirhtml pickle json htmlhelp qthelp latex changes linkcheck doctest singlehtml
 
@@ -54,8 +56,13 @@ clean:
 	-rm -rf $(builddir)/*
 
 DepBuild(target, message) =
-	$(target): $(sources) $(srcdir)/conf.py # $(SPHINXBUILD)
-		$(SPHINXBUILD) -b $(target) $(ALLSPHINXOPTS) $(builddir)/$(target)
+	$(target): $(sources) # $(SPHINXBUILD)
+		foreach(lang, $(langs)):
+			$(SPHINXBUILD) -b $(target) $(ALLSPHINXOPTS) \
+				-d $(builddir)/doctrees/$(lang) \
+				$(srcdir)/$(lang) \
+				$(builddir)/$(target)/$(lang)
+		/bin/cp -rf $(supplementdir)/* $(builddir)
 		eprintln( $(message) )
 
 # # In fact I'd like to write like following:

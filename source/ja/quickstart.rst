@@ -1,17 +1,17 @@
-Quick Start
-===========
+クイックスタート
+=================
 
 
-Install Jubatus
----------------
+Jubatus のインストール
+----------------------
 
-Ubuntu Server 12.04 LTS (x86_64) と Red Hat Enterprise Linux 6.2 以降 (x86_64) が公式にサポートされています。
-
+Red Hat Enterprise Linux 6.2 以降 (64-bit) と Ubuntu Server 12.04 LTS (64-bit) を公式にサポートしています。
 これらのシステムでは、Jubatus のすべてのコンポーネントをバイナリパッケージでインストールすることができます。
-その他のシステムでのインストールについては :doc:`build` を参照してください。
 
-Yum Repository (RHEL)
-~~~~~~~~~~~~~~~~~~~~~
+また、その他の Linux 環境 (32-bit を含む) と Mac OS X が試験的にサポートされています。
+
+Red Hat Enterprise Linux 6.2 以降 (64-bit)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 以下のコマンドを実行して、Jubatus の Yum リポジトリをシステムに登録します。
 
@@ -23,10 +23,16 @@ Yum Repository (RHEL)
 
 ::
 
+  // RHEL の場合
+  $ sudo yum --enablerepo=rhel-6-server-optional-rpms install jubatus jubatus-client
+
+  // RHEL クローン (CentOS, Scientific Linux など) の場合
   $ sudo yum install jubatus jubatus-client
 
-Apt Repository (Ubuntu)
-~~~~~~~~~~~~~~~~~~~~~~~
+RHEL では、依存パッケージ (``oniguruma``) のインストールに ``rhel-6-server-optional-rpms`` リポジトリを使用している点に注意してください。
+
+Ubuntu Server 12.04 LTS (64-bit)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 以下の行を ``/etc/apt/sources.list.d/jubatus.list`` に記述して、Jubatus の Apt リポジトリをシステムに登録します。
 
@@ -62,9 +68,20 @@ csh または tcsh をお使いの場合は、こちらを使用してくださ�
 
   $ source /opt/jubatus/profile.csh
 
+その他の Linux 環境 (32-bit を含む)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Install Jubatus Client Libraries
---------------------------------
+`jubatus-installer <https://github.com/jubatus/jubatus-installer>`_ を使用するか、 :doc:`build` を参照してソースからビルドしてください。
+
+Mac OS X
+~~~~~~~~~
+
+Homebrew をお使いの場合は、 `tap リポジトリ <https://github.com/jubatus/homebrew-jubatus>`_ を使用すると簡単にインストールが行えます。
+
+それ以外の場合は、 `jubatus-installer`_ を使用するか、 :doc:`build` を参照してソースからビルドしてください。
+
+Jubatus クライアントのインストール
+-----------------------------------
 
 Jubatus を使ったクライアントアプリケーションは C++, Python, Ruby または Java で記述することができます。
 クライアントアプリケーションから Jubatus を使うには、各言語のクライアントライブラリをインストールする必要があります。
@@ -95,7 +112,7 @@ Ubuntu では、以下のコマンドを実行します。
 Python
 ~~~~~~
 
-クライアント (Python 2.7 以降が必要) は `PyPI <http://pypi.python.org/pypi/jubatus>`_ で配布されています。
+クライアント (Python 2.6 以降が必要) は `PyPI <http://pypi.python.org/pypi/jubatus>`_ で配布されています。
 
 ::
 
@@ -114,7 +131,7 @@ Ubuntu では ``pip`` のインストールに ``python-pip`` パッケージを
 Ruby
 ~~~~
 
-クライアント (Ruby 1.9 以降が必要) は `RubyGems <http://rubygems.org/gems/jubatus>`_ で配布されています。
+クライアント (Ruby 1.9 が必要) は `RubyGems <http://rubygems.org/gems/jubatus>`_ で配布されています。
 
 ::
 
@@ -140,28 +157,29 @@ Java
      <dependency>
        <groupId>us.jubat</groupId>
        <artifactId>jubatus</artifactId>
-       <version>0.4.0</version>
+       <version>[0.6,)</version>
      </dependency>
    </dependencies>
 
 
-Try Tutorial
-------------
+チュートリアル
+---------------
 
 :doc:`tutorial` を試してみましょう (Python クライアントが必要です)。
 
 
-Write Your Application
+作ってみよう！
 ----------------------
 
 おめでとうございます!
 これで、Jubatus を使ってあなた独自のアプリケーションを書く準備ができました。
 Jubatus がどのような機能を持っているか知るには、 :doc:`api` をチェックしてください。
 
-C++ または Java でクライアントを開発する場合は、以下のスケルトンプロジェクトを使用すると便利です。
+各言語のスケルトンプロジェクトを使用すると、容易にアプリケーションの開発を始めることができます。
 
-  - `C++ クライアント開発用スケルトン <https://github.com/jubatus/jubatus-cpp-skelton>`_
-  - `Java クライアント開発用スケルトン <https://github.com/jubatus/jubatus-java-skelton>`_ (Eclipse プロジェクトのテンプレート)
-  - Python をお使いの方は、 `チュートリアルのリポジトリ <https://github.com/jubatus/jubatus-tutorial-python>`_ をご覧ください。
+- `C++ クライアント開発用スケルトン <https://github.com/jubatus/jubatus-cpp-skeleton>`_
+- `Python クライアント開発用スケルトン <https://github.com/jubatus/jubatus-python-skeleton>`_
+- `Ruby クライアント開発用スケルトン <https://github.com/jubatus/jubatus-ruby-skeleton>`_
+- `Java クライアント開発用スケルトン <https://github.com/jubatus/jubatus-java-skeleton>`_ (Eclipse プロジェクトのテンプレート)
 
 `jubatus-example <https://github.com/jubatus/jubatus-example>`_ リポジトリでは、Jubatus を利用したアプリケーションの実例を見ることができます。

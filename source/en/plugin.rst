@@ -12,7 +12,7 @@ Plugin for Data Conversion
 
 To develop a fv_converter plugin, follow the instructions below.
 
-#. Include ``jubatus/plugin.hpp``.
+#. Include ``jubatus/core/plugin.hpp``.
 #. Inherit a base class (or a framework of plugin) and implement an arbitrary module for feature extraction or filter.
 #. Write a function that creates an instance of the class and returns a pointer to it.
    The function must be enclosed in ``extern "C"`` to make it visible from C code.
@@ -20,7 +20,7 @@ To develop a fv_converter plugin, follow the instructions below.
 
 As an example, we describe how to develop a plugin for feature extraction from strings (``string_types``).
 
-In this case, a base class you need to inherit is ``jubatus::word_splitter``.
+In this case, a base class you need to inherit is ``jubatus::core::fv_converter::word_splitter``.
 ``word_splitter`` class consists of the only member function named ``split`` which takes a string as an argument, splits the string and returns boundaries for each split parts.
 Boundaries is a vector of pair of two ``size_t`` s, where the first value of the pair is the byte of the string where the part starts, and the second value is the length of the part.
 
@@ -28,12 +28,12 @@ The following is an example code.
 
 .. code-block:: c++
 
- #include <jubatus/plugin.hpp>
+ #include <jubatus/core/plugin.hpp>
  #include <map>
  
  using namespace std;
  
- class my_splitter : public jubatus::word_splitter {
+ class my_splitter : public jubatus::core::fv_converter::word_splitter {
   public:
     void split(const string& string,
                vector<pair<size_t, size_t> >& ret_boundaries) {
@@ -51,7 +51,7 @@ Compile this file, link it with ``libjubaconverter.so`` and you will get a plugi
 See :ref:`conversion_plugin` for instruction on using .so files as a plugin.
 
 You can develop plugins of other feature extractors and filter in the same way.
-For other examples, see ``test_*.cpp`` in the ``src/fv_converter`` directory of Jubatus source code.
+For other examples, see ``test_*.cpp`` in the ``jubatus/core/fv_converter`` directory of Jubatus source code.
 
-When developing plugins, you can use `Plugin Development Skeleton Project <https://github.com/jubatus/jubatus-plugin-skelton.git>`_.
+When developing plugins, you can use `Plugin Development Skeleton Project <https://github.com/jubatus/jubatus-plugin-skeleton>`_.
 This skeleton implements a plugin that converts given string as a feature vector.

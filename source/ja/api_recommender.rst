@@ -1,7 +1,7 @@
 Recommender
 -----------
 
-* 詳細な仕様は `IDL 定義 <https://github.com/jubatus/jubatus/blob/master/src/server/recommender.idl>`_ を参照してください。
+* 詳細な仕様は `IDL 定義 <https://github.com/jubatus/jubatus/blob/master/jubatus/server/server/recommender.idl>`_ を参照してください。
 * 使用されているアルゴリズムの詳細については :doc:`method` を参照してください。
 
 
@@ -9,7 +9,7 @@ Configuration
 ~~~~~~~~~~~~~
 
 設定は単体の JSON で与えられる。
-JSON の各フィールドは以下のとおりである
+JSON の各フィールドは以下のとおりである。
 
 .. describe:: method
 
@@ -18,61 +18,103 @@ JSON の各フィールドは以下のとおりである
 
    .. table::
 
-      ==================== ===================================
-      設定値               手法
-      ==================== ===================================
-      ``"inverted_index"`` 転置インデックスを利用する。
-      ``"minhash"``        MinHash を利用する。 [Li10]_
-      ``"lsh"``            Locality Sensitive Hashing を利用する。
-      ``"euclid_lsh"``     Euclid 距離版の LSH を利用する。 [Andoni06]_
-      ==================== ===================================
+      ===================================== ===================================
+      設定値                                手法
+      ===================================== ===================================
+      ``"inverted_index"``                  転置インデックスを利用する。
+      ``"minhash"``                         MinHash を利用する。 [Ping2010]_
+      ``"lsh"``                             Locality Sensitive Hashing を利用する。
+      ``"euclid_lsh"``                      Euclid 距離版の LSH を利用する。 [Andoni2005]_
+      ``"nearest_neighbor_recommender"``    ``nearest_neighbor`` 実装を利用する。
+      ===================================== ===================================
 
 
 .. describe:: parameter
 
-   アルゴリズムに渡すパラーメータを指定する。
+   アルゴリズムに渡すパラメータを指定する。
    ``method`` に応じて渡すパラメータは異なる。
 
    inverted_index:
      なし
-   
+
    minhash
      :hash_num:
         ハッシュの個数を指定する。
         大きくすると正確な値に近づく代わりに、多くのメモリを消費する。
         (Integer)
 
+        * 値域: 1 <= ``hash_num``
+
    lsh
-     :bit_num:
+     :hash_num:
         ハッシュ値のビット数を指定する。
         大きくすると正確な値に近づく代わりに、多くのメモリを消費する。
         (Integer)
 
+        * 値域: 1 <= ``hash_num``
+
    euclid_lsh
-     :lsh_num:
+     :hash_num:
         ハッシュの数を指定する。
         大きくすると正確な値に近づく代わりに、再現率が低下し、また多くのメモリを消費する。
         (Integer)
+
+        * 値域: 1 <= ``hash_num``
+
      :table_num:
         テーブルの数を指定する。
         大きくすると再現率が向上する代わりに、多くのメモリを消費し、レスポンスに時間がかかる。
         (Integer)
+
+        * 値域: 1 <= ``table_num``
+
      :bin_width:
         量子化幅を指定する。
         大きくすると再現率が向上する代わりに、レスポンスに時間がかかる。
         (Float)
+
+        * 値域: 0.0 < ``bin_width``
+
      :probe_num:
         探索するビンの数を指定する。
         大きくすると再現率が向上する代わりに、レスポンスに時間がかかる。
         (Integer)
+
+        * 値域: 0 <= ``probe_num``
+
      :seed:
         内部で利用している乱数のシードを指定する。
         (Integer)
+
+        * 値域: 0 <= ``seed``
+
      :retain_projection:
         ``true`` ならハッシュに利用する射影ベクトルをキャッシュする。
         レスポンス時間が低下する代わりに、メモリを消費する。
         (Boolean)
 
+   nearest_neighbor_recommender
+     :method:
+        近傍探索に使用するアルゴリズムを指定する。
+        使用可能なアルゴリズムの一覧は :doc:`api_nearest_neighbor` を参照のこと。
+
+     :parameter:
+        アルゴリズムに渡すパラメータを指定する。
+        パラメータの一覧は :doc:`api_nearest_neighbor` を参照のこと。
+
+     :unlearner:
+        忘却機能に利用するUnlearnerのアルゴリズムを指定する。
+        忘却機能を利用しない場合、 このパラメータを省略する。
+        :doc:`api_unlearner` で説明される ``unlearner`` を指定する。
+        ここで指定された方法に基づいてラベルを忘却する。
+
+     :unlearner_parameter:
+        忘却機能に利用するUnlearnerに渡すパラメータを指定する。
+        :doc:`api_unlearner` で説明される ``unlearner_parameter`` を指定する。
+        ``unlearner`` を設定する場合、 ``unlearner_parameter`` の指定は必須である。
+        ここで指定された件数以上のラベルを忘却する。
+
+     なおこれら2つのパラメータは **省略可能** である。
 
 .. describe:: converter
 
@@ -84,7 +126,10 @@ JSON の各フィールドは以下のとおりである
   .. code-block:: javascript
 
      {
-       "method": "inverted_index"
+       "method": "lsh",
+       "parameter" : {
+         "hash_num" : 64
+       },
        "converter" : {
          "string_filter_types": {},
          "string_filter_rules":[],
@@ -98,23 +143,33 @@ JSON の各フィールドは以下のとおりである
          "num_rules": [
            {"key" : "*", "type" : "num"}
          ]
-       },
+       }
      }
 
 
 Data Structures
 ~~~~~~~~~~~~~~~
 
-.. mpidl:type:: similar_result
+.. mpidl:message:: id_with_score
 
-   近傍性の結果を表す。
-   string と float のタプルのリストである。
-   string の値は行 ID であり、float の値はその ID に対応する近傍性である。
-   近傍性の値が大きいほど、よりお互いの近傍性が高いことを意味する。
+   スコア付きのデータIDを表す。 
+
+   .. mpidl:member:: 0: string id
+
+      データのIDを表す。
+
+   .. mpidl:member:: 1: float score
+
+      IDに対して紐付かれた近傍性のスコアを表す。
+      近傍性の値が大きいほど、よりお互いの近傍性が高いことを意味する。
+      値域は ``0 <= score <= 1`` (``euclid_lsh`` の場合は ``-0`` 以下) となる。
 
    .. code-block:: c++
 
-      type similar_result = list<tuple<string, float> >
+      message id_with_score {
+        0: string id
+        1: float score
+      }
 
 
 Methods
@@ -125,20 +180,18 @@ Methods
 
 .. mpidl:service:: recommender
 
-   .. mpidl:method:: bool clear_row(0: string name, 1: string id)
+   .. mpidl:method:: bool clear_row(0: string id)
 
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :param id:   削除する行 ID
-      :return:     行の削除に成功した場合 True 
+      :return:     行の削除に成功した場合 True
 
-      ``id`` で指定される行を推薦テーブルから削除する。 
+      ``id`` で指定される行を推薦テーブルから削除する。
 
 
-   .. mpidl:method:: bool update_row(0: string name, 1: string id, 2: datum row)
+   .. mpidl:method:: bool update_row(0: string id, 1: datum row)
 
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
-      :param id:   行 ID 
-      :param row:  datum
+      :param id:   行 ID
+      :param row:  行に対応する :mpidl:type:`datum`
       :return:     モデルの更新に成功した場合 True
 
       行 ID ``id`` のデータを ``row`` を利用して更新する。
@@ -147,84 +200,61 @@ Methods
       更新操作を受け付けたサーバが当該行を持つサーバーと同一であれば、操作は即次反映される。
       異なるサーバーであれば、mix 後に反映される。
 
+   .. mpidl:method:: datum complete_row_from_id(0: string id)
 
-   .. mpidl:method:: bool clear(0: string name)
-
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
-      :return:     モデルの削除に成功した場合 True
- 
-      モデルを完全に消去する。
-
-
-   .. mpidl:method:: datum complete_row_from_id(0: string name, 1: string id)
-
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :param id:   行 ID
       :return:     ``id`` の近傍から未定義の値を補完した :mpidl:type:`datum`
 
       行 ``id`` の中で欠けている値を近傍から予測し、補完された :mpidl:type:`datum` を返す。
 
-   .. mpidl:method:: datum complete_row_from_datum(0: string name, 1: datum row)
+   .. mpidl:method:: datum complete_row_from_datum(0: datum row)
 
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :param row:  補完したい値が欠けた :mpidl:type:`datum`
-      :return:     指定したdatumで構成されるrowの中で欠けている値を補完したdatum
+      :return:     指定した :mpidl:type:`datum` で構成される row の中で欠けている値を補完した :mpidl:type:`datum`
 
-      指定した datum ``row`` で欠けている値を近傍から予測し、補完された datum を返す。
+      指定した ``row`` で欠けている値を近傍から予測し、補完された :mpidl:type:`datum` を返す。
 
+   .. mpidl:method:: list<id_with_score> similar_row_from_id(0: string id, 1: uint size)
 
-   .. mpidl:method:: similar_result similar_row_from_id(0: string name, 1: string id, 2: uint size)
-
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :param id:   推薦テーブル内の行を表すID
       :param size: 返す近傍の数
       :return:     ``id`` で指定した近傍のidとその近傍性の値のリスト
 
       指定した行 ``id`` に近い行とその近傍性のリストを (最大で) ``size`` 個返す。
 
+   .. mpidl:method:: list<id_with_score> similar_row_from_datum(0: datum row, 1: uint size)
 
-   .. mpidl:method:: similar_result similar_row_from_datum(0: string name, 1: datum row, 2: uint size)
+      :param row:  補完したい :mpidl:type:`datum`
+      :param size: 返す近傍の数
+      :return:     ``row`` から構成された ``similar_result``
 
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
-      :param row:  補完したいdatum
-      :param ret_num: 返す近傍の数
-      :return: ``row`` から構成された ``similar_result``
+      指定した ``row`` に近い :mpidl:type:`datum` を持つ行とその近傍性のリストを (最大で) ``size`` 個返す。
 
-      指定したdatum ``data`` に近い行とその近傍性のリストを ``size`` 個返す。
+   .. mpidl:method:: datum decode_row(0: string id)
 
-
-   .. mpidl:method:: datum decode_row(0: string name, 1: string id)
-
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :param id:   推薦テーブル内の行を表すID
-      :return:     行 ID ``id`` に対応する datum
+      :return:     行 ID ``id`` に対応する :mpidl:type:`datum`
 
-      行 ``id`` の ``datum`` 表現を返す。
-      ただし、fv_converterで不可逆な処理を行なっている ``datum`` は復元されない。
+      行 ``id`` の :mpidl:type:`datum` を返す。
+      ただし、fv_converterで不可逆な処理を行なっている :mpidl:type:`datum` は復元されない。
 
+   .. mpidl:method:: list<string> get_all_rows()
 
-   .. mpidl:method:: list<string> get_all_rows(0:string name)
-
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
       :return:     すべての行の ID リスト
 
       すべての行の ID リストを返す。
 
+   .. mpidl:method:: float calc_similarity(0: datum lhs, 1:datum rhs)
 
-   .. mpidl:method:: float calc_similarity(0: string name, 1: datum lhs, 2:datum rhs)
-
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
-      :param lhs:  datum
-      :param rhs:  別の datum
+      :param lhs:  :mpidl:type:`datum`
+      :param rhs:  別の :mpidl:type:`datum`
       :return:     ``lhs`` と ``rhs`` の類似度
 
-      指定した 2 つの datum の類似度を返す。
+      指定した 2 つの :mpidl:type:`datum` の類似度スコア (``id_with_score`` の ``score`` メンバを参照) を返す。
 
+   .. mpidl:method:: float calc_l2norm(0: datum row)
 
-   .. mpidl:method:: float calc_l2norm(0: string name, 1: datum row)
-
-      :param name: タスクを識別する ZooKeeper クラスタ内でユニークな名前
-      :param row:  datum
+      :param row:  :mpidl:type:`datum`
       :return:     ``row`` の L2 ノルム
- 
-      指定した datum ``row`` の L2 ノルムを返す。
+
+      指定した ``row`` の L2 ノルムを返す。

@@ -39,21 +39,23 @@ Jubatus server provides the machine learning feature.
 
    Session timeout of RPC in seconds. [10]
 
+   ``0`` means disable timeout.
+
 .. option:: -d <dirpath>, --datadir <dirpath>
 
    Path of directory to save and load training models using ``save`` and ``load`` RPC requests. [/tmp]
 
 .. option:: -l <dirpath>, --logdir <dirpath>
 
-   Path of directory to output log files.
+   Path of directory to output ZooKeeper log files.
 
    If not specified, logs are dumped to the standard error.
 
-.. option:: -e <level>, --loglevel <level>
+.. option:: -g <log_config>, --log_config <log_config>
 
-   Minimal level of log to output. [0]
+   Path of the logging configuration file in log4cxx (XML) format.
 
-   INFO, WARNING, ERROR, FATAL corresponds to 0, 1, 2, 3, respectively.
+   If not specified, logs are dumped to the standard output.
 
 .. option:: -f <config>, --configpath <config>
 
@@ -67,6 +69,10 @@ Jubatus server provides the machine learning feature.
 
    If not specified, Jubatus servers run in standalone mode.
 
+.. option:: -m <model>, --model_file <model>
+
+   Path of the model file to load at startup.
+
 .. option:: -n <name>, --name <name>
 
    The instance name, which is a value to uniquely identify a task in the ZooKeeper cluster.
@@ -75,23 +81,34 @@ Jubatus server provides the machine learning feature.
 
    ``<name>`` should not contain characters that cannot be used as ZooKeeper node name (such as ``/``).
 
-.. option:: -j, --join
+.. option:: -x <mixer>, --mixer <mixer>
 
-   Join to the existing cluster.
+   MIX strategy used when choosing MIX node. [linear_mixer]
 
-   New processes should join to the existing cluster with this option otherwise the machine learning won't work.
-
-   This option is currently not implemented.
+   One of ``linear_mixer``, ``random_mixer``, ``broadcast_mixer``, or ``skip_mixer`` can be specified.
+   MIX strategies available may differ depending on the engine.
 
 .. option:: -s <seconds>, --interval_sec <seconds>
 
    Invoke "mix" in every ``<seconds>`` second. [16]
+
+   Specifying ``0`` disables time-based mix invocation.
 
 .. option:: -i <count>, --interval_count <count>
 
    Invoke "mix" in every ``<count>`` updates. [512]
 
    The update is counted when API that updates the training model (such as ``train`` in the classifier) is called.
+
+   Specifying ``0`` disables update-based mix invocation.
+
+.. option:: -Z <seconds>, --zookeeper_timeout <seconds>
+
+   Session timeout between ZooKeeper and Jubatus Server in seconds. [10]
+
+.. option:: -I <seconds>, --interconnect_timeout <seconds>
+
+   Timeout of RPC between Jubatus Servers in seconds. [10]
 
 .. option:: -v, --version
 
@@ -104,12 +121,12 @@ Jubatus server provides the machine learning feature.
 Distributed Environment
 -----------------------
 
-Jubatus Keepers
+Jubatus Proxies
 ~~~~~~~~~~~~~~~
 
-In distributed environment, Jubatus Keeper distributes requests from clients to servers.
+In distributed environment, Jubatus Proxy distributes requests from clients to servers.
 
-.. program:: keeper
+.. program:: proxy
 
 .. option:: -p <port>, --rpc-port <port>
 
@@ -131,11 +148,21 @@ In distributed environment, Jubatus Keeper distributes requests from clients to 
 
 .. option:: -c <num>, --thread <num>
 
-   Number of threads to accept RPC connection. [16]
+   Number of threads to accept RPC connection. [4]
 
 .. option:: -t <seconds>, --timeout <seconds>
 
    Session timeout of RPC in seconds. [10]
+
+   ``0`` means disable timeout.
+
+.. option:: -Z <seconds>, --zookeeper_timeout <seconds>
+
+   Session timeout between ZooKeeper and Jubatus Proxy in seconds. [10]
+
+.. option:: -I <seconds>, --interconnect_timeout <seconds>
+
+   Timeout of RPC between Jubatus Proxy and Jubatus Servers in seconds. [10]
 
 .. option:: -z <zookeeper_list>, --zookeeper <zookeeper_list>
 
@@ -143,19 +170,31 @@ In distributed environment, Jubatus Keeper distributes requests from clients to 
 
 .. option:: -l <dirpath>, --logdir <dirpath>
 
-   Path of directory to output log files.
+   Path of directory to output ZooKeeper log files.
 
    If not specified, logs are dumped to the standard error.
 
-.. option:: -e <level>, --loglevel <level>
+.. option:: -g <log_config>, --log_config <log_config>
 
-   Minimal level of log to output. [0]
+   Path of the logging configuration file in log4cxx (XML) format.
 
-   INFO, WARNING, ERROR, FATAL corresponds to 0, 1, 2, 3, respectively.
+   If not specified, logs are dumped to the standard output.
+
+.. option:: -E <seconds>, --pool_expire <seconds>
+
+   Session pool timeout in seconds. [60]
+
+   ``0`` means that the session is expired if not used for more than one second.
+
+.. option:: -S <num>, --pool_size <num>
+
+   Maximum size of session pool for each thread. [0]
+
+   ``0`` means unlimited.
 
 .. option:: -v, --version
 
-   Print the version of Jubatus keeper.
+   Print the version of Jubatus Proxy.
 
 .. option:: -?, --help
 
@@ -178,9 +217,15 @@ jubavisor
 
 .. option:: -l <dirpath>, --logdir <dirpath>
 
-   Path of directory to output log files.
+   Path of directory to output ZooKeeper log files.
 
    If not specified, logs are dumped to the standard error.
+
+.. option:: -g <log_config>, --log_config <log_config>
+
+   Path of the logging configuration file in log4cxx (XML) format.
+
+   If not specified, logs are dumped to the standard output.
 
 .. option:: -z <zookeeper_list>, --zookeeper <zookeeper_list>
 
@@ -211,9 +256,9 @@ jubactl
    ========= =====================================================================================
    start     Start Jubatus servers
    stop      Stop Jubatus servers
-   save      Save the model to directory specified by :option:`server -t`
-   load      Load the model from directory specified by :option:`server -t`
-   status    Print the status of servers, keepers and jubavisors
+   save      Save the model to directory specified by :option:`server -d`
+   load      Load the model from directory specified by :option:`server -d`
+   status    Print the status of servers, proxies and jubavisors
    ========= =====================================================================================
 
 .. option:: -s <program>, --server <program>
@@ -241,6 +286,14 @@ jubactl
    List of ZooKeeper server(s).
 
    If not specified, environment variable ``ZK`` will be used.
+
+.. option:: -i <id>, --id <id>
+
+   ID of file name to save or load.
+
+   Effective only when used with ``--cmd save`` and ``--cmd load``.
+
+   If not specified, the value that specified by ``--name`` will be used.
 
 .. option:: -B <interface>, --listen_if <interface>
 
@@ -272,15 +325,15 @@ jubactl
 
    Effective only when used with ``--cmd start``.
 
-.. option:: -E <level>, --loglevel <level>
+.. option:: -G <log_config>, --log_config <log_config>
 
-   Option given when starting new server process (:option:`server -e`).
+   Option given when starting new server process (:option:`server -g`).
 
    Effective only when used with ``--cmd start``.
 
-.. option:: -J, --join
+.. option:: -X, --mixer
 
-   Option given when starting new server process (:option:`server -j`).
+   Option given when starting new server process (:option:`server -x`).
 
    Effective only when used with ``--cmd start``.
 
@@ -296,9 +349,21 @@ jubactl
 
    Effective only when used with ``--cmd start``.
 
+.. option:: -Z <seconds>, --zookeeper_timeout <seconds>
+
+   Option given when starting new server process (:option:`server -Z`).
+
+   Effective only when used with ``--cmd start``.
+
+.. option:: -R <seconds>, --interconnect_timeout <seconds>
+
+   Option given when starting new server process (:option:`server -I`).
+
+   Effective only when used with ``--cmd start``.
+
 .. option:: -d, --debug
 
-   Run in debug mode.
+   This option is deprecated and is no longer be used.
 
 .. option:: -?, --help
 
@@ -351,7 +416,7 @@ In distributed environment, ``jubaconfig`` manages the configuration files of Ju
 
 .. option:: -d, --debug
 
-   Run in debug mode.
+   This option is deprecated and is no longer be used.
 
 .. option:: -?, --help
 
@@ -369,6 +434,31 @@ jubaconv
 
 ``jubaconv`` simulates the internal behavior of fv_converter and displays the result of conversion on the command-line.
 
+Example of usage is as shown below:
+
+.. code-block:: none
+
+   $ cat data.json
+   { "message": "hello world", "age": 31 }
+
+   $ jubaconv -i json -o fv -c /opt/jubatus/share/jubatus/example/config/classifier/pa.json < data.json
+   /message$hello world@str#bin/bin: 1
+   /age@num: 31
+
+   $ cat datum.json
+   {
+     "string_values": {
+       "hello": "world"
+     },
+     "num_values": {
+       "age": 31
+     }
+   }
+
+   $ jubaconv -i datum -o fv -c /opt/jubatus/share/jubatus/example/config/classifier/pa.json < datum.json
+   hello$world@str#bin/bin: 1
+   age@num: 31
+
 .. program:: jubaconv
 
 .. option:: -i <format>, --input-format <format>
@@ -385,7 +475,7 @@ jubaconv
 
 .. option:: -c <config>, --conf <config>
 
-   fv_converter configuration file in JSON (see :doc:`fv_convert`).
+   Jubatus server configuration file in JSON (see :doc:`fv_convert`).
 
    This option must be given only if ``fv`` is specified for :option:`-o`.
 
@@ -394,25 +484,34 @@ jubaconv
 jenerator
 ~~~~~~~~~
 
-``jenerator`` generates C++ source of keeper and server template from extended MessagePack-IDL file.
+``jenerator`` generates implementation of proxy, server template and C++ client from extended MessagePack-IDL file. See :doc:`server` for details.
 
-``jenerator`` is not installed by default (see ``src/tools/generator`` in the source tree).
+``jenerator`` is not installed by default (see ``tools/jenerator`` in the source tree).
 
 .. code-block:: none
 
-  $ jenerator <idl-file> [options...]
+  $ jenerator -l <lang> [options ...] idl ...
 
 .. program:: jenerator
+
+.. option:: -l <lang>
+
+   Language of the client code to generate. Currently ``cpp``, ``java``, ``python``, and ``ruby`` are supported.
+   Specify ``server`` if you need to generate servers and proxies.
 
 .. option:: -o <dirpath>
 
    Directory to output the generated source files.
 
+   If not specified, the current directory will be used.
+
 .. option:: -i
 
    Use relative path for ``#include`` directives.
 
-   This option is intended for use by Jubatus developers; you don't need this option in most cases.
+   Effective only when generating C++ code (servers, proxies and C++ clients).
+   This option is intended for use by Jubatus developers.
+   You don't need this option except you're going to build generated code inside Jubatus source tree.
 
 .. option:: -n <namespace>
 
@@ -422,39 +521,14 @@ jenerator
 
    Generate server template.
 
-.. option:: -d
+   Effective only when generating servers and proxies.
 
-   Run in debug mode.
+.. option:: -g <guard>
+
+   Prefix used for include guards in header files.
+
+   Effective only when generating C++ code (servers, proxies and C++ clients).
 
 .. option:: -help, --help
 
    Print the brief usage of the command.
-
-mpidlconv
-~~~~~~~~~
-
-``mpidlconv`` converts output of ``mpidl`` command so that it can be used with Jubatus framework.
-
-``mpidlconv`` is not installed by default (see ``src/tools`` in the source tree). Requires Python 2.7 or later.
-
-.. program:: mpidlconv
-
-.. option:: -i <dirpath>, --input <dirpath>
-
-   Directory that contains files generated by ``mpidl``.
-
-.. option:: -o <dirpath>, --output <dirpath>
-
-   Directory to output the converted source files.
-
-   If not specified, overwrite files in the directory specified by ``--input``.
-
-.. option:: -s <service>, --service <service>
-
-   Name of the service to convert.
-
-.. option:: -I, --internal
-
-   Use relative path for ``#include`` directives.
-
-   This option is intended for use by Jubatus developers; you don't need this option in most cases.

@@ -1,13 +1,13 @@
-Tutorial
-========
+チュートリアル
+===============
 
 チュートリアルを始める前に、Jubatus および Jubatus Python クライアントをインストールする必要があります。この手順については :doc:`quickstart` を参照してください。
 
 
-Scenario
---------
+シナリオ
+----------
 
-このチュートリアルでは、自然言語の分類に対する評価用データとして有名な `News20 <http://people.csail.mit.edu/jrennie/20Newsgroups/>`_ (``20news-bydate.tar.gz``) を利用します。
+このチュートリアルでは、自然言語の分類に対する評価用データとして有名な `News20 <http://qwone.com/~jason/20Newsgroups/>`_ (``20news-bydate.tar.gz``) を利用します。
 News20では、話題が20個のニュースグループに分かれており、人々は自分が適していると思ったニュースグループに投稿します。
 News20は便宜上、80%の学習用データ(20news-bydate-train)と、20%の実験用データ(20news-bydata-test)の二種類に分けられています。
 
@@ -24,30 +24,31 @@ News20は便宜上、80%の学習用データ(20news-bydate-train)と、20%の�
 * 分類に関する基本的なコンセプト
 
 
-Run Tutorial
-------------
+動作させてみる
+----------------
 
 分類器の機能を提供する ``jubaclassifier`` プログラムを設定ファイルを指定して起動します。設定ファイルのサンプルは ``$PREFIX/share/jubatus/example/config`` ディレクトリに格納されています。
 
 ::
 
   $ jubaclassifier -f /path/to/share/jubatus/example/config/classifier/pa.json
-  I0110 13:43:07.789201  1855 server_util.cpp:196] starting jubaclassifier 0.4.0 RPC server at 192.168.0.1:9199
-      pid            : 1855
-      user           : oda
-      mode           : standalone mode
-      timeout        : 10
-      thread         : 2
-      datadir        : /tmp
-      logdir         : 
-      loglevel       : INFO(0)
-      zookeeper      : 
-      name           : 
-      join           : false
-      interval sec   : 16
-      interval count : 512
-  I0110 13:43:07.789721  1855 server_util.cpp:69] load config from local file :/path/to/share/jubatus/example/config/classifier/pa.json
-  I0110 13:43:07.790897  1855 classifier_serv.cpp:110] config loaded: {
+  I0110 13:43:07.789201  1855 server_util.cpp:250] starting jubaclassifier 0.5.0 RPC server at 192.168.0.1:9199
+      pid                  : 1855
+      user                 : oda
+      mode                 : standalone mode
+      timeout              : 10
+      thread               : 2
+      datadir              : /tmp
+      logdir               : 
+      loglevel             : INFO(0)
+      zookeeper            : 
+      name                 : 
+      interval sec         : 16
+      interval count       : 512
+      zookeeper timeout    : 10
+      interconnect timeout : 10
+  I0110 13:43:07.789721  1855 server_util.cpp:77] load config from local file :/path/to/share/jubatus/example/config/classifier/pa.json
+  I0110 13:43:07.790897  1855 classifier_serv.cpp:117] config loaded: {
     "converter" : {
       "string_filter_types" : {},
       "string_filter_rules" : [],
@@ -67,7 +68,7 @@ Run Tutorial
 
 Jubatus の分類器サーバが起動しました。
 Jubatus サーバは、デフォルトでは TCP 9199 番ポートを利用して待ち受けます。
-その他のポートを使用したい場合は、 ``--rcp-port`` オプションで指定することができます。
+その他のポートを使用したい場合は、 ``--rpc-port`` オプションで指定することができます。
 例えば、19199 番ポートを使用するには、次のようにします。
 
 ::
@@ -76,9 +77,24 @@ Jubatus サーバは、デフォルトでは TCP 9199 番ポートを利用し�
 
 Jubatus と Jubatus クライアントは、TCP/IP ネットワーク経由で `MessagePack-RPC <http://msgpack.org>`_ プロトコルを使用して通信します。
 
-.. figure:: ../_static/single_single.png
-   :width: 70 %
-   :alt: single client, single server
+.. blockdiag::
+
+    blockdiag single_single {
+      group classifier{
+      color = "#77FF77"
+      jubaclassifier;
+      }
+
+      group client{
+      color = "#FF7777"
+      client;
+      }
+
+      client -> jubaclassifier;
+    }
+
+
+
 
 それでは、 `チュートリアルプログラム <https://github.com/jubatus/jubatus-tutorial-python>`_ とデータセットをダウンロードしましょう。
 
@@ -86,8 +102,16 @@ Jubatus と Jubatus クライアントは、TCP/IP ネットワーク経由で `
 
   $ git clone https://github.com/jubatus/jubatus-tutorial-python.git
   $ cd jubatus-tutorial-python
-  $ wget http://people.csail.mit.edu/jrennie/20Newsgroups/20news-bydate.tar.gz
+  $ wget http://qwone.com/~jason/20Newsgroups//20news-bydate.tar.gz
   $ tar xvzf 20news-bydate.tar.gz
+
+`jubaclassifier` を再起動します。
+この時、チュートリアル用に用意された設定ファイルである ``config.json`` を利用して下さい。
+先ほど使用したサンプルの設定ファイル（ ``pa.json`` ）では正しく動作しません。
+
+::
+
+  $ jubaclassifier --configpath config.json
 
 チュートリアルプログラムを実行します。
 
@@ -101,8 +125,8 @@ Jubatus と Jubatus クライアントは、TCP/IP ネットワーク経由で `
 より詳しい説明は以下を参照してください。
 
 
-Tutorial in Detail
-------------------
+チュートリアルの詳細
+----------------------
 
 Dataset
 ~~~~~~~
@@ -168,7 +192,7 @@ Dataset
 
 このチュートリアルでは、これらのテキストを学習データとして利用します。
 
-Server Configuration
+サーバの設定
 ~~~~~~~~~~~~~~~~~~~~
 
 分類器サービスを使用するためには JSONの設定ファイルを用いて ``jubaclassifier`` の動作を規定する必要があります。
@@ -237,16 +261,16 @@ Jubatus はこのような特徴ベクトルの抽出機能 (ここでは、自�
     "num_rules": []
   }
 
-Use of Classifier API: Train & Classify
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Classifier API: 学習(train) と 分類(classify)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 分類器に学習させる場合は、 ``train`` という API (RPC メソッド) を利用します。
 以下の例で、 ``d1`` はメッセージから作成された datum であり、 ``"comp.sys.mac.hardware"`` はそのメッセージのラベル (ニュースグループの名前) です。
 
 .. code-block:: python
 
-  d1 = types.datum([["message" , "I want to buy mac book air..."]], [])
-  client.train("", [("comp.sys.mac.hardware", d1)])
+  d1 = Datum({"message" : "I want to buy mac book air..."})
+  client.train([("comp.sys.mac.hardware", d1)])
 
 この要領で、ラベルとメッセージの組み合わせを多数学習させます。
 
@@ -255,8 +279,8 @@ Use of Classifier API: Train & Classify
 
 .. code-block:: python
 
-  d2 = types.datum([["message" , "Just bought a new mac book air..."]], [])
-  result = client.classify("", [d2])
+  d2 = Datum({"message" : "Just bought a new mac book air..."})
+  result = client.classify([d2])
 
 その結果、以下のような値が得られます。
 
@@ -272,3 +296,24 @@ Use of Classifier API: Train & Classify
    ]]
 
 メッセージ ``d2`` は ``"comp.sys.mac.hardware"`` に投稿された可能性が高いことが分かりました。
+
+その他のチュートリアル
+-------------------------
+
+本項では、Jubatus Clientの使い方を、サンプルプログラムを利用して解説します。
+
+.. toctree::
+   :maxdepth: 1
+
+   tutorial/classifier
+   tutorial/recommender
+   tutorial/regression
+   tutorial/graph
+   tutorial/stat
+
+.. toctree::
+   :hidden:
+
+   tutorial/anomaly
+
+Anomaly、Nearnest_Neighbor、Clustering のチュートリアルは、現在準備中です。

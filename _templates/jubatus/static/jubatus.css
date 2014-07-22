@@ -66,6 +66,7 @@ div.related {
 div.related ul {
     background:#b8ad94;
     height: 2.5em;
+    padding-right: 60px;
 	padding-top:0.5em;
 	margin-top:10px;
 	border-radius: 10px; 
@@ -305,8 +306,21 @@ pre a {
     text-decoration: underline;
 }
 
+table.highlighttable {
+    width: 100%;
+    table-layout: fixed;
+}
+
+td.linenos {
+    width: 23px;
+}
+
 td.linenos pre {
     padding: 0.5em 0;
+}
+
+td.code pre {
+    overflow-x: auto;
 }
 
 div.quotebar {
@@ -464,4 +478,55 @@ dl.method dd table tr.field li {
 
 dl.method table tr.field {
   border: none;
+}
+
+/* Jubatus Members */
+div.member-box {
+    margin: 20px;
+    border-bottom: solid 1px #cccccc;
+}
+div.member-photo {
+    float: left;
+    margin: 0px 10px 10px 10px;
+    padding: 0px 10px 10px 10px;
+}
+div.member-photo img {
+    width: 90px;
+}
+div.member-relation {
+    font-size: 90%;
+}
+span.member-name {
+    font-size: 120%;
+    font-weight: bold;
+    margin-right: 10px;
+}
+ul.member-social {
+    list-style: none;
+}
+ul.member-social li {
+    float: left;
+    margin-left: 20px;
+    background-repeat: no-repeat;
+    background-position: left 2px;
+}
+ul.member-social li.github {
+    /* GitHub logo is used under the license: https://github.com/github/media */
+    background-image: url(../_static/icon/github.png);
+}
+ul.member-social li.twitter {
+    /* Twitter logo is used under the license: https://twitter.com/logo */
+    background-image: url(../_static/icon/twitter.png);
+}
+ul.member-social li.web {
+    /* Icon from Jonas Rask Design; used under the license: http://www.iconarchive.com/show/danish-royalty-free-icons-by-jonas-rask.html */
+    background-image: url(../_static/icon/web.png);
+}
+ul.member-social li.blog {
+    /* Icon from Jonas Rask Design; used under the license: http://www.iconarchive.com/show/danish-royalty-free-icons-by-jonas-rask.html */
+    background-image: url(../_static/icon/blog.png);
+}
+ul.member-social li.mail {
+    /* Icon from Jonas Rask Design; used under the license: http://www.iconarchive.com/show/danish-royalty-free-icons-by-jonas-rask.html */
+    background-image: url(../_static/icon/mail.png);
 }

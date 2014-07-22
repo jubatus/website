@@ -2,40 +2,45 @@ Building Jubatus from Source
 ============================
 
 We recommend using binary packages (see :doc:`quickstart`) whenever possible, but you can of course build Jubatus from source.
-`jubatus-installer <https://github.com/odasatoshi/jubatus-installer>`_ may help your installation from source.
+`jubatus-installer <https://github.com/jubatus/jubatus-installer>`_ may help your installation from source.
 
 .. _requirements:
 
 Requirements
 ------------
 
-You need ``gcc`` (version 4.4 or later), ``pkg-config`` (version 0.26 or later) and ``python`` (version 2.6 or later, used in ``waf``) to build Jubatus from source.
+You need ``gcc`` (version 4.4 or later), ``pkg-config`` (version 0.26 or later) and ``python`` (version 2.4 or later, used in ``waf``) to build Jubatus from source.
 In addition, following libraries are required.
+For supported version of libraries, refer to the `Jubatus Wiki <https://github.com/jubatus/jubatus/wiki/Supported-Library-Versions>`_.
 
 =================== ========== ========= ======================================================
 Software            Version    Mandatory Note
 =================== ========== ========= ======================================================
-msgpack             >= 0.5.7   ✔
-jubatus-mpio        master     ✔
-jubatus-msgpack-rpc master     ✔         C++ client library must be installed.
-pficommon           master     ✔         msgpack-rpc (mprpc) must be enabled.
-google-glog         >= 0.3.2   ✔
+jubatus_core        >= 0.0.1   ✔
+oniguruma           >= 5.9     [1]_      Required by jubatus_core.
+re2                 master     [1]_      Required by jubatus_core when configuring with ``--regexp-library=re2``.
+msgpack             >= 0.5.7   ✔         Required by jubatus_core and jubatus.
+jubatus-mpio        0.4.1      ✔
+jubatus-msgpack-rpc 0.4.1      ✔         C++ client library must be installed.
+log4cxx             >= 0.10.0  ✔
 mecab               >= 0.99              Required when configured with ``--enable-mecab``.
-re2                 master               Required when configured *without* ``--disable-re2``
 ux-trie             master               Required when configured with ``--enable-ux``.
 zookeeper           >= 3.3               Required when configured with ``--enable-zookeeper``.
                                          C client library must be installed.
 =================== ========== ========= ======================================================
 
+.. [1] By default, oniguruma is used by jubatus_core as a regexp library (``--regexp-library=oniguruma``).
+       You can completely disable regexp feature by configuring jubatus_core with ``--regexp-library=none``.
+
 Depending on your distribution, some libraries may be available as a binary package.
 When binary packages are not available, you also need to build these libraries from source; download them from each website (
+`oniguruma <http://www.geocities.jp/kosako3/oniguruma/index.html>`_,
+`re2 <http://code.google.com/p/re2/>`_,
 `msgpack <http://msgpack.org/>`_,
 `jubatus-mpio <https://github.com/jubatus/jubatus-mpio>`_,
 `jubatus-msgpack-rpc <https://github.com/jubatus/jubatus-msgpack-rpc>`_,
-`pficommon <https://github.com/pfi/pficommon>`_,
-`google-glog <http://code.google.com/p/google-glog/>`_,
+`log4cxx <http://logging.apache.org/log4cxx/>`_,
 `mecab <http://code.google.com/p/mecab/>`_,
-`re2 <http://code.google.com/p/re2/>`_,
 `ux-trie <http://code.google.com/p/ux-trie/>`_,
 `zookeeper <http://zookeeper.apache.org/>`_
 ).
@@ -47,33 +52,23 @@ Here's an example on Ubuntu 12.04 systems.
 
 ::
 
-  $ sudo aptitude install build-essential git-core
+  $ sudo apt-get install build-essential git-core pkg-config
 
-  $ sudo aptitude install libmsgpack-dev
+  $ sudo apt-get install libmsgpack-dev libonig-dev liblog4cxx10-dev
 
-  $ git clone https://github.com/jubatus/jubatus-mpio.git
-  $ cd jubatus-mpio
-  $ ./bootstrap && ./configure && make
+  $ wget http://download.jubat.us/files/source/jubatus_mpio/jubatus_mpio-0.4.1.tar.gz
+  $ tar xzf jubatus_mpio-0.4.1.tar.gz
+  $ cd jubatus_mpio-0.4.1
+  $ ./configure
+  $ make
   $ sudo make install
   $ cd ..
 
-  $ git clone https://github.com/jubatus/jubatus-msgpack-rpc.git
-  $ cd jubatus-msgpack-rpc/cpp
-  $ ./bootstrap && ./configure && make
-  $ sudo make install
-  $ cd ..
-
-  $ git clone https://github.com/pfi/pficommon.git
-  $ cd pficommon
-  $ ./waf configure
-    -> ensure that pficommon is configured with msgpack-rpc support enbabled ("MessagePack RPC module: yes")
-  $ ./waf build
-  $ sudo ./waf install
-  $ cd ..
-
-  $ wget http://google-glog.googlecode.com/files/glog-0.3.2.tar.gz
-  $ cd glog-0.3.2
-  $ ./configure && make
+  $ wget http://download.jubat.us/files/source/jubatus_msgpack-rpc/jubatus_msgpack-rpc-0.4.1.tar.gz
+  $ tar xzf jubatus_msgpack-rpc-0.4.1.tar.gz
+  $ cd jubatus_msgpack-rpc-0.4.1
+  $ ./configure
+  $ make
   $ sudo make install
   $ cd ..
 
@@ -81,19 +76,34 @@ Now build Jubatus.
 
 ::
 
-  $ git clone https://github.com/jubatus/jubatus.git
-  $ cd jubatus
-  $ ./waf configure --disable-re2
+  $ wget -O jubatus_core.tar.gz https://github.com/jubatus/jubatus_core/archive/master.tar.gz
+  $ tar xzf jubatus_core.tar.gz
+  $ cd jubatus_core-master
+  $ ./waf configure
   $ ./waf build
   $ sudo ./waf install
+  $ sudo ldconfig
 
-As this is a minimal configuration (see ``./waf configure --help`` for other configuration options available), some features like clustering and feature extraction plugins are not available.
+  $ wget -O jubatus-master.tar.gz https://github.com/jubatus/jubatus/archive/master.tar.gz
+  $ tar xzf jubatus-master.tar.gz
+  $ cd jubatus-master
+  $ ./waf configure
+  $ ./waf build
+  $ sudo ./waf install
+  $ sudo ldconfig
+
+As this is a minimal configuration (see ``./waf configure --help`` for other configuration options available), some features like distributed mode and feature extraction plugins are not available.
+
+Mac OS X
+~~~~~~~~
+
+We experimentally support building and running standalone mode on Mac OS X.
+
+You can use `Homebrew tap repository <https://github.com/jubatus/homebrew-jubatus>`_ for quick installation.
 
 Other Environments
 ~~~~~~~~~~~~~~~~~~
 
-- Mac OS X runs standalone mode by using llvm-gcc (c.f., `Homebrew formula <https://github.com/jubatus/jubatus/tree/master/tools/packaging/homebrew>`_).
-- Debian/GNU Linux runs all mode.
+- Debian GNU/Linux runs all mode.
 - Arch Linux runs standalone mode.
-- FreeBSD does not run, needs some fixed on pficommon.
 - We are waiting for report in other \*BSD systems and in Solaris.

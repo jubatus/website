@@ -1,14 +1,14 @@
 Anomaly
 -------
 
-* See `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/anomaly.idl>`_ for detailed specification.
+* See `IDL definition <https://github.com/jubatus/jubatus/blob/master/jubatus/server/server/anomaly.idl>`_ for detailed specification.
 
 
 Configuration
 ~~~~~~~~~~~~~
 
 Configuration is given as a JSON file.
-We show each filed below:
+We show each field below:
 
 .. describe:: method
 
@@ -20,7 +20,8 @@ We show each filed below:
       ==================== ===================================
       Value                Method
       ==================== ===================================
-      ``"lof"``            Use Local Outlier Factor. [Breunig2000]_
+      ``"lof"``            Use Local Outlier Factor based on recommender. [Breunig2000]_
+      ``"light_lof"``      Use a variant of LOF based on nearest neighbor.
       ==================== ===================================
 
 .. describe:: parameter
@@ -28,23 +29,65 @@ We show each filed below:
    Specify parameters for the algorithm.
    Its format differs for each ``method``.
 
-
    lof
      :nearest_neighbor_num:
         Number of neighbors
         The bigger it is, the less false-positives are found, but the more false-negatives are found.
         (Integer)
+
+        * Range: 2 <= ``nearest_neighbor_num``
+
      :reverse_nearest_neighbor_num:
         Number of reverse neighbors to update, when annomaly measure values are update.
         The bigger it is,  the more accurately measures are updated, but the longer update-time is required.
         (Integer)
+
+        * Range: ``nearest_neighbor_num`` <= ``reverse_nearest_neighbor_num``
+
      :method:
         Algorithm name of recommender for nearest neighbor search.
         Refer ``method`` in :doc:`api_recommender`.
+
      :parameter:
         Parameters of the recommender for nearest neighbor search.
         Refer ``parameter`` in :doc:`api_recommender`.
 
+   light_lof
+     :nearest_neighbor_num:
+        Number of neighbors
+        The bigger it is, the less false-positives are found, but the more false-negatives are found.
+        (Integer)
+
+        * Range: 2 <= ``nearest_neighbor_num``
+
+     :reverse_nearest_neighbor_num:
+        Number of reverse neighbors to update, when annomaly measure values are update.
+        The bigger it is,  the more accurately measures are updated, but the longer update-time is required.
+        (Integer)
+
+        * Range: ``nearest_neighbor_num`` <= ``reverse_nearest_neighbor_num``
+
+     :method:
+        Algorithm name of nearest neighbor for nearest neighbor search.
+        Refer ``method`` in :doc:`api_nearest_neighbor`.
+
+     :parameter:
+        Parameters of the nearest neighbor for nearest neighbor search.
+        Refer ``parameter`` in :doc:`api_nearest_neighbor`.
+
+     :unlearner:
+        Specify unlearner strategy.
+        If you don't use unlearner, you should omit this parameter.
+        You can specify ``unlearner`` strategy described in :doc:`api_unlearner`.
+        Data will be deleted based on strategy specified here.
+
+     :unlearner_parameter:
+        Specify unlearner parameter.
+        You can specify ``unlearner_parameter`` :doc:`api_unlearner`.
+        You cannot omit this parameter when you specify ``unlearner``.
+        Data in excess of this number will be deleted automatically.
+
+     note: ``unlearner`` and ``unlearner_parameter`` **can be omitted** .
 
 .. describe:: converter
 
@@ -58,16 +101,16 @@ Example:
      {
        "method" : "lof",
        "parameter" : {
-         "nearest_neighbor_num" : 100,
+         "nearest_neighbor_num" : 10,
          "reverse_nearest_neighbor_num" : 30,
          "method" : "euclid_lsh",
          "parameter" : {
-           "lsh_num" : 8,
-           "table_num" : 8,
-           "probe_num" : 8,
-           "bin_width" : 8.2,
-           "seed" : 1234,
-           "retain_projection" : true
+           "hash_num" : 64,
+           "table_num" : 4,
+           "seed" : 1091,
+           "probe_num" : 64,
+           "bin_width" : 100,
+           "retain_projection" : false
          }
        },
        "converter" : {
@@ -87,96 +130,72 @@ Example:
      }
 
 
-
 Data Structures
 ~~~~~~~~~~~~~~~
 
-None.
+.. mpidl:message:: id_with_score
+
+   Represents ID with its score.
+
+   .. mpidl:member:: 0: string id
+
+      Data ID.
+
+   .. mpidl:member:: 1: float score
+
+      Score.
+
+   .. code-block:: c++
+
+      message id_with_score {
+        0: string id
+        1: float score
+      }
 
 Methods
 ~~~~~~~
 
-For all methods, the first parameter of each method (``name``) is a string value to uniquely identify a task in the ZooKeeper cluster.
-When using standalone mode, this must be left blank (``""``).
+.. mpidl:service:: anomaly
 
-.. describe:: bool clear_row(0: string name, 1: string id)
+   .. mpidl:method:: bool clear_row(0: string id)
 
-   - Parameters:
+      :param id:   point ID to be removed
+      :return:     True when the point was cleared successfully
 
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-     - ``id`` : point ID to be removed
+      Clears a point data with ID ``id``.
 
-   - Returns:
+   .. mpidl:method:: id_with_score add(0: datum row)
 
-     - True when the point was cleared successfully
+     :param row:  :mpidl:type:`datum` for the point
+     :return:     Tuple of the point ID and the anomaly measure value
 
-   Clears a point data with ID ``id``.
+     Adds a point data ``row``.
 
+   .. mpidl:method:: float update(0: string id, 1: datum row)
 
-.. describe:: tuple<string, float> add(0: string name, 1: datum row)
+      :param id:   point ID to update
+      :param row:  new :mpidl:type:`datum` for the point
+      :return:     Anomaly measure value
 
-   - Parameters:
+      Updates the point ``id`` with the data ``row``.
 
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-     - ``row`` : datum
+   .. mpidl:method:: float overwrite(0: string id, 1: datum row)
 
-   - Returns:
+      :param id:  point ID to overwrite
+      :param row: new :mpidl:type:`datum` for the point
+      :return:    Anomaly measure value
 
-     - Tuple of the point ID and the anomaly measure value
+      Overwrites the point ``id`` with the data ``row``.
 
-   Adds a point data ``row``.
+   .. mpidl:method:: float calc_score(0: datum row)
 
+      :param row:  :mpidl:type:`datum`
+      :return:     Anomaly measure value for given ``row``
 
-.. describe:: float update(0: string name, 1: string id, 2: datum row)
+      Calculates an anomaly measure value for the point data ``row`` without adding a point.
 
-   - Parameters:
+   .. mpidl:method:: list<string> get_all_rows()
 
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-     - ``id`` : point ID to update
-     - ``row`` : new value for the point
+      :return:     List of all point IDs
 
-   - Returns:
-
-     - Anomaly measure value
-
-   Updates the point ``id`` with the given datum ``d``.
-
-
-.. describe:: bool clear(0: string name)
-
-   - Parameters:
-
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-
-   - Returns:
-
-     - True when the model was cleared successfully
-
-   Completely clears the model.
-
-
-.. describe:: float calc_score(0: string name, 1: datum row)
-
-   - Parameters:
-
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-     - ``row`` : datum
-
-   - Returns:
-
-     - Anomaly measure value
-
-   Calculates an anomaly measure value for datum ``row`` without adding a point.
-
-
-.. describe:: list<string>  get_all_rows(0: string name)
-
-   - Parameters:
-
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-
-   - Returns:
-
-     - list of all point IDs
-
-   Returns the list of all point IDs.
+      Returns the list of all point IDs.

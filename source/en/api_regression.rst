@@ -1,7 +1,7 @@
 Regression
 ----------
 
-* See `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/regression.idl>`_ for detailed specification.
+* See `IDL definition <https://github.com/jubatus/jubatus/blob/master/jubatus/server/server/regression.idl>`_ for detailed specification.
 * See :doc:`method` for detailed description of algorithms used in this server.
 
 
@@ -9,7 +9,7 @@ Configuration
 ~~~~~~~~~~~~~
 
 Configuration is given as a JSON file.
-We show each filed below:
+We show each field below:
 
 .. describe:: method
 
@@ -21,7 +21,7 @@ We show each filed below:
       ================ ===================================
       Value            Method
       ================ ===================================
-      ``"PA"``         Use Passive Agressive. [Crammer06]_
+      ``"PA"``         Use Passive Aggressive. [Crammer06]_
       ================ ===================================
 
 
@@ -35,11 +35,16 @@ We show each filed below:
         Upper bound of acceptable margin.
         The bigger it is, more robust to noise, but the more error remain.
         (Float)
+
+        * Range: 0.0 <= ``sensitivity``
+
      :regularization_weight:
         Sensitivity to learning rate.
         The bigger it is, the ealier you can train, but more sensitive to noise.
         It corresponds to :math:`C` in the original paper [Crammer06]_.
         (Float)
+
+        * Range: 0.0 < ``regularization_weight``
 
 
 .. describe:: converter
@@ -55,7 +60,7 @@ Example:
        "method": "PA",
        "parameter" : {
          "sensitivity" : 0.1,
-         "regularization_weight" : 1.0
+         "regularization_weight" : 3.402823e+38
        },
        "converter" : {
          "string_filter_types" : {},
@@ -77,41 +82,43 @@ Example:
 Data Structures
 ~~~~~~~~~~~~~~~
 
-None.
+.. mpidl:message:: scored_datum
+
+   Represents a datum with its label.
+
+   .. mpidl:member:: 0: float score
+
+      Represents a label of this datum.
+
+   .. mpidl:member:: 1: datum data
+
+      Represents a datum.
+
+   .. code-block:: c++
+
+      message scored_datum {
+        0: float score
+        1: datum data
+      }
 
 
 Methods
 ~~~~~~~
 
-For all methods, the first parameter of each method (``name``) is a string value to uniquely identify a task in the ZooKeeper cluster.
-When using standalone mode, this must be left blank (``""``).
+.. mpidl:service:: regression
 
-.. describe:: int train(0: string name, 1: list<tuple<float, datum> > train_data)
+   .. mpidl:method:: int train(0: list<scored_datum> train_data)
 
-   - Parameters:
+      :param train_data: list of tuple of label and :mpidl:type:`datum`
+      :return:           Number of trained datum (i.e., the length of the ``train_data``)
 
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-     - ``train_data`` : list of tuple of label and datum
+      Trains and updates the model.
+      This function is designed to allow bulk update with list of ``scored_datum``.
 
-   - Returns:
+   .. mpidl:method:: list<float>  estimate(0: list<datum>  estimate_data)
 
-     - Number of trained datum (i.e., the length of the ``train_data``)
+      :param estimate_data: list of :mpidl:type:`datum` to estimate
+      :reutrn:              List of estimated values, in order of given :mpidl:type:`datum`
 
-   Trains and updates the model.
-   ``tuple<float, datum>`` is a tuple of datum and its value.
-   This function is designed to allow bulk update with list of ``tuple<float, datum>``.
-
-
-.. describe:: list<float>  estimate(0: string name, 1: list<datum>  estimate_data)
-
-   - Parameters:
-
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-     - ``estimate_data`` : list of datum to estimate
-
-   - Returns:
-
-     - List of estimated values, in order of given datum
-
-   Estimates the value from given ``estimate_data``.
-   This API is designed to allow bulk estimation with list of ``datum``.
+      Estimates the value from given ``estimate_data``.
+      This API is designed to allow bulk estimation with list of :mpidl:type:`datum`.

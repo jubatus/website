@@ -1,14 +1,14 @@
 Classifier
 ----------
 
-* See `IDL definition <https://github.com/jubatus/jubatus/blob/master/src/server/classifier.idl>`_ for detailed specification.
+* See `IDL definition <https://github.com/jubatus/jubatus/blob/master/jubatus/server/server/classifier.idl>`_ for detailed specification.
 * See :doc:`method` for detailed description of algorithms used in this server.
 
 Configuration
 ~~~~~~~~~~~~~
 
 Configuration is given as a JSON file.
-We show each filed below:
+We show each field below:
 
 .. describe:: method
 
@@ -21,7 +21,7 @@ We show each filed below:
       Value            Method
       ================ ===================================
       ``"perceptron"`` Use perceptron.
-      ``"PA"``         Use Passive Agressive (PA). [Crammer06]_
+      ``"PA"``         Use Passive Aggressive (PA). [Crammer06]_
       ``"PA1"``        Use PA-I. [Crammer06]_
       ``"PA2"``        Use PA-II. [Crammer06]_
       ``"CW"``         Use Confidence Weighted Learning. [Dredze08]_
@@ -34,6 +34,24 @@ We show each filed below:
    Specify parameters for the algorithm.
    Its format differs for each ``method``.
    Note that adequate value for ``refularization_weight`` differ for each algorithm.
+
+   Specify parameters for the algorithm.
+   Its format differs for each ``method``.
+
+   common
+     :unlearner:
+        Specify unlearner strategy.
+        If you don't use unlearner function, you can omit this parameter.
+        You can specify ``unlearner`` strategy described in :doc:`api_unlearner`.
+        Labels will be deleted based on strategy specified here.
+
+     :unlearner_parameter:
+        Specify unlearner parameter.
+        You can specify ``unlearner_parameter`` :doc:`api_unlearner`.
+        You cannot omit this parameter if you specify ``unlearner``.
+        Labels in excess of this number will be deleted automatically.
+
+     note: ``unlearner`` and ``unlearner_parameter`` **can be omitted** .
 
    perceptron
      None
@@ -48,6 +66,8 @@ We show each filed below:
         It corresponds to :math:`C` in the original paper [Crammer06]_.
         (Float)
 
+        * Range: 0.0 < ``regularization_weight``
+
    PA2
      :regularization_weight:
         Sensitivity to learning rate.
@@ -55,26 +75,34 @@ We show each filed below:
         It corresponds to :math:`C` in the original paper [Crammer06]_.
         (Float)
 
+        * Range: 0.0 < ``regularization_weight``
+
    CW
      :regularization_weight:
         Sensitivity to learning rate.
         The bigger it is, the ealier you can train, but more sensitive to noise.
-        It corresponds to :math:`C` in the original paper [Crammer06]_.
+        It corresponds to :math:`\phi` in the original paper [Dredze08]_.
         (Float)
+
+        * Range: 0.0 < ``regularization_weight``
 
    AROW
      :regularization_weight:
         Sensitivity to learning rate.
         The bigger it is, the ealier you can train, but more sensitive to noise.
-        It corresponds to :math:`C` in the original paper [Crammer06]_.
+        It corresponds to :math:`1/r` in the original paper [Crammer09b]_.
         (Float)
+
+        * Range: 0.0 < ``regularization_weight``
 
    NHERD
      :regularization_weight:
         Sensitivity to learning rate.
         The bigger it is, the ealier you can train, but more sensitive to noise.
-        It corresponds to :math:`C` in the original paper [Crammer06]_.
+        It corresponds to :math:`C` in the original paper [Crammer10]_.
         (Float)
+
+        * Range: 0.0 < ``regularization_weight``
 
 
 .. describe:: converter
@@ -87,7 +115,7 @@ Example:
   .. code-block:: javascript
 
      {
-       "method" : "perceptron",
+       "method" : "AROW",
        "parameter" : {
          "regularization_weight" : 1.0
        },
@@ -108,15 +136,21 @@ Example:
      }
 
 
-
 Data Structures
 ~~~~~~~~~~~~~~~
 
-.. describe:: estimate_result
+.. mpidl:message:: estimate_result
 
    Represents a result of classification.
-   ``label`` is an estimated label and ``score`` is a probability value for the ``label``.
-   Higher ``score`` value means that the estimated label is more confident.
+
+   .. mpidl:member:: 0: string label
+
+      Represents an estimated label.
+
+   .. mpidl:member:: 1: double score
+
+      Represents a probability value for the ``label``.
+      Higher ``score`` value means that the estimated label is more confident.
 
    .. code-block:: c++
 
@@ -125,39 +159,68 @@ Data Structures
         1: double score
       }
 
+.. mpidl:message:: labeled_datum
+
+   Represents a datum with its label.
+
+   .. mpidl:member:: 0: string label
+
+      Represents a label of this datum.
+
+   .. mpidl:member:: 1: datum data
+
+      Represents a datum.
+
+   .. code-block:: c++
+
+      message labeled_datum {
+        0: string label
+        1: datum data
+      }
+
 
 Methods
 ~~~~~~~
 
-For all methods, the first parameter of each method (``name``) is a string value to uniquely identify a task in the ZooKeeper cluster.
-When using standalone mode, this must be left blank (``""``).
+.. mpidl:service:: classifier
 
-.. describe:: int train(0: string name, 1: list<tuple<string, datum> > data)
+   .. mpidl:method:: int train(0: list<labeled_datum> data)
 
-   - Parameters:
+      :param data:  list of tuple of label and :mpidl:type:`datum`
+      :return:      Number of trained datum (i.e., the length of the ``data``)
 
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-     - ``data`` : list of tuple of label and datum
+      Trains and updates the model.
+      ``labeled_datum`` is a tuple of :mpidl:type:`datum` and its label.
+      This API is designed to accept bulk update with list of ``labeled_datum``.
 
-   - Returns:
+   .. mpidl:method:: list<list<estimate_result> > classify(0: list<datum> data)
 
-     - Number of trained datum (i.e., the length of the ``data``)
+      :param data:  list of datum to classify
+      :return:      List of list of :mpidl:type:`estimate_result`, in order of given :mpidl:type:`datum`
 
-   Trains and updates the model.
-   ``tuple<string, datum>`` is a tuple of datum and its label.
-   This API is designed to accept bulk update with list of ``tuple<string, datum>``.
+      Estimates labels from given ``data``.
+      This API is designed to accept bulk classification with list of :mpidl:type:`datum`.
 
+   .. mpidl:method:: list<string> get_labels()
 
-.. describe:: list<list<estimate_result> > classify(0: string name, 1: list<datum> data)
+      :return:     list of all labels in the jubatus
 
-   - Parameters:
+      Returns all label list.
 
-     - ``name`` : string value to uniquely identifies a task in the ZooKeeper cluster
-     - ``data`` : list of datum to classify
+   .. mpidl:method:: bool set_label(0: string new_label)
 
-   - Returns:
+      :param new_label: name of new label
+      :return:          True if the new label was not exist. False if the label already exists.
 
-     - List of list of ``estimate_result``, in order of given datum
+      Append new label.
+      If the label is already exist, it fails.
+      New label is add when label found in ``train`` method argument, too.
 
-   Estimates labels from given ``data``.
-   This API is designed to accept bulk classification with list of ``datum``.
+   .. mpidl:method:: bool delete_label(0: string target_label)
+
+      :param target_label: deleting label name
+      :return:          True if jubatus success to delete label. False if the label is not exists.
+
+      Deleting label.
+      True if jubatus success to delete. False if the label is not exists.
+
