@@ -176,7 +176,7 @@ Anomaly detection
 
  - 1: use ``unlearner``
 
-  From version 0.6.2, users can use ``unlearner`` to set upper limit on stored data.
+  From version 0.6.0, users can use ``unlearner`` to set upper limit on stored data.
   If more data than limit is regestered, Jubatus will delete old data.
   It will improve the speed of Jubatus at the cost of accuracy.
   You can select unlearning strategy from ``lru`` or ``random``.
