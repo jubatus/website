@@ -30,7 +30,7 @@ We show each field below:
      Specify the upper-limit of data quantity.
      The smaller it is, the less memory usage, the more fast, the less accurately.
 
-      * range of value: 0 < ``max_size`` < 2147483647
+     * range of value: 0 < ``max_size`` < 2147483647
 
    :sticky_pattern:
      Specify pattern of IDs to exclude from unlearning.
@@ -41,11 +41,13 @@ We show each field below:
      (String)
 
    :seed:
-      Specify random seed when you use ``random`` for unlearning strategy.
-      If you set the same seed and do the same learn, you will get the same result.
-      It may be useful when you examine the result repeatedly.
+     Specify random seed when you use ``random`` for unlearning strategy.
+     If you set the same seed and do the same learn, you will get the same result.
+     It may be useful when you examine the result repeatedly.
+     If not specified, system clock is used as seed parameter.
+     So you will get different result each experiment.
 
-      * range of value: 0 < ``seed`` < 9223372036854775808
+     * range of value: 0 < ``seed`` < 9223372036854775808
 
 .. describe:: example
 
