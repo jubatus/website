@@ -331,7 +331,7 @@ jubactl
 
    ``--cmd start`` を指定した場合のみ有効である。
 
-.. option:: -X, --mixer
+.. option:: -X <mixer>, --mixer <mixer>
 
    サーバプロセスの開始時のオプションを指定する (:option:`server -x`).
 

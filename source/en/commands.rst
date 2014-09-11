@@ -331,7 +331,7 @@ jubactl
 
    Effective only when used with ``--cmd start``.
 
-.. option:: -X, --mixer
+.. option:: -X <mixer>, --mixer <mixer>
 
    Option given when starting new server process (:option:`server -x`).
 
