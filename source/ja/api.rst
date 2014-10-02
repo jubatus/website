@@ -26,6 +26,7 @@ Jubatus と Jubatus クライアントのバージョンは異なることがあ
    api_stat
    api_clustering
    api_graph
+   api_burst
 
 .. toctree::
    :hidden:
