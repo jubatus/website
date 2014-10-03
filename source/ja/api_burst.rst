@@ -53,7 +53,7 @@ JSON の各フィールドは以下のとおりである。
         負の値を指定すると、コストカットを行わない (DBL_MAX) となる。
         (Double)
 
-        * 値域: 0 <= ``costcut_threshold``
+        * 値域: 0 < ``costcut_threshold``
 
      :result_window_rotate_size:
 
@@ -77,7 +77,7 @@ Data Structures
 
       このキーワードに適用されるスケーリングパラメタを表す。
 
-      * 値域: 0 < ``scaling_param``
+      * 値域: 1 < ``scaling_param``
 
    .. mpidl:member:: 2: double gamma
 
