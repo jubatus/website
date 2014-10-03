@@ -35,7 +35,7 @@ JSON の各フィールドは以下のとおりである。
         * 値域: 0 < ``window_batch_size``
 
      :batch_interval:
-        1つのバッチの(位置の)間隔。
+        1つのバッチの(位置の)幅。
         (Double)
 
         * 値域: 0 < ``batch_interval``
@@ -56,11 +56,10 @@ JSON の各フィールドは以下のとおりである。
         * 値域: 0 < ``costcut_threshold``
 
      :result_window_rotate_size:
-
-        現在のウィンドウを含めた、メモリ上に保持するバッチの総数。
+        現在のウィンドウを含めた、メモリ上に保持するウィンドウの総数。
         (Integer)
 
-        * 値域: 0 < ``window_batch_size`` <= ``result_window_rotate_size``
+        * 値域: 0 < ``result_window_rotate_size``
 
 Data Structures
 ~~~~~~~~~~~~~~~
