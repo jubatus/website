@@ -23,10 +23,10 @@ Jubatus と Jubatus クライアントのバージョンは異なることがあ
    api_recommender
    api_nearest_neighbor
    api_anomaly
-   api_stat
    api_clustering
-   api_graph
    api_burst
+   api_stat
+   api_graph
 
 .. toctree::
    :hidden:
