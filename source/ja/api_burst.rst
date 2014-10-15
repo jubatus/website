@@ -176,7 +176,7 @@ Methods
       バースト検知の対象とする文書を登録する。
       この API は ``document`` をリスト形式でまとめて同時に受け付けることができる (バルク更新)。
 
-      学習を行う前に、予めキーワードを ``add_keyword`` メソッドで登録しておく必要がある。
+      ドキュメントの追加を行う前に、予めキーワードを ``add_keyword`` メソッドで登録しておく必要がある。
 
       現在のウィンドウから外れた位置(``pos``)を持つ文書は登録することができない。
 
@@ -210,7 +210,7 @@ Methods
 
    .. mpidl:method:: list<keyword_with_params> get_all_keywords()
 
-      :return:         キーワードとバースト検知結果の組
+      :return:         キーワードとそのパラメタのリスト
 
       バースト検知対象として登録されているすべてのキーワードを取得する。
 
@@ -223,7 +223,7 @@ Methods
 
    .. mpidl:method:: bool remove_keyword(0: string keyword)
 
-      :param keyword:  削削するキーワード
+      :param keyword:  削除するキーワード
       :return:         キーワードの削除に成功した場合 True
 
       キーワード ``keyword`` をバースト検知対象から削除する。
