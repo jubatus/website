@@ -64,7 +64,7 @@ JSON の各フィールドは以下のとおりである。
 Data Structures
 ~~~~~~~~~~~~~~~
 
-.. mpidl:message:: st_keyword
+.. mpidl:message:: keyword_with_params
 
    バースト検知の対象となるキーワードとそのパラメタを表す。
 
@@ -87,27 +87,27 @@ Data Structures
 
    .. code-block:: c++
 
-      message st_keyword {
+      message keyword_with_params {
         0: string keyword
         1: double scaling_param
         2: double gamma
       }
 
-.. mpidl:message:: st_batch
+.. mpidl:message:: batch
 
    一つのバッチ区間内におけるバースト検知結果を表す。
 
-   .. mpidl:member:: 0: int d
+   .. mpidl:member:: 0: int all_data_count
 
       バッチに登録された全文書の数を表す。
 
-      * 値域: 0 < ``d``
+      * 値域: 0 < ``all_data_count``
 
-   .. mpidl:member:: 1: int r
+   .. mpidl:member:: 1: int relevant_data_count
 
       バッチに登録された文書のうち、キーワードを含む文書の数を表す。
 
-      * 値域: 0 < ``d`` <= ``r``
+      * 値域: 0 < ``all_data_count`` <= ``relevant_data_count``
 
    .. mpidl:member:: 2: double burst_weight
 
@@ -118,13 +118,13 @@ Data Structures
 
    .. code-block:: c++
 
-      message st_batch {
-        0: int d
-        1: int r
+      message batch {
+        0: int all_data_count
+        1: int all_data_count
         2: double burst_weight
       }
 
-.. mpidl:message:: st_window
+.. mpidl:message:: window
 
    バースト検知の結果を表す。
 
@@ -132,18 +132,18 @@ Data Structures
 
       このウィンドウの開始位置を表す。
 
-   .. mpidl:member:: 1: list<st_batch> batches
+   .. mpidl:member:: 1: list<batch> batches
 
       このウィンドウを構成するバッチの集合を表す。
 
    .. code-block:: c++
 
-      message st_window {
+      message window {
         0: double start_pos
-        1: list<st_batch> batches
+        1: list<batch> batches
       }
 
-.. mpidl:message:: st_document
+.. mpidl:message:: document
 
    バースト検知の対象とする文書データを表す。
 
@@ -158,7 +158,7 @@ Data Structures
 
    .. code-block:: c++
 
-      message st_document {
+      message document {
         0: double pos
         1: string text
       }
@@ -168,26 +168,26 @@ Methods
 
 .. mpidl:service:: burst
 
-   .. mpidl:method:: int add_documents(0: list<st_document> data)
+   .. mpidl:method:: int add_documents(0: list<document> data)
 
       :param data:   登録する文書のリスト
       :return:       登録に成功した件数 (すべて成功すれば ``data`` の長さに等しい)
 
       バースト検知の対象とする文書を登録する。
-      この API は ``st_document`` をリスト形式でまとめて同時に受け付けることができる (バルク更新)。
+      この API は ``document`` をリスト形式でまとめて同時に受け付けることができる (バルク更新)。
 
       学習を行う前に、予めキーワードを ``add_keyword`` メソッドで登録しておく必要がある。
 
       現在のウィンドウから外れた位置(``pos``)を持つ文書は登録することができない。
 
-   .. mpidl:method:: st_window get_result(0: string keyword)
+   .. mpidl:method:: window get_result(0: string keyword)
 
       :param keyword:  結果を取得するキーワード
       :return:         バースト検知結果
 
       登録済みのキーワード ``keyword`` に対する、現在のウィンドウにおけるバースト検知結果を取得する。
 
-   .. mpidl:method:: st_window get_result_at(0: string keyword, 1: double pos)
+   .. mpidl:method:: window get_result_at(0: string keyword, 1: double pos)
 
       :param keyword:  結果を取得するキーワード
       :param pos:      位置
@@ -195,26 +195,26 @@ Methods
 
       登録済みのキーワード ``keyword`` に対する、指定された位置 ``pos`` におけるバースト検知結果を取得する。
 
-   .. mpidl:method:: map<string, st_window > get_all_bursted_results()
+   .. mpidl:method:: map<string, window > get_all_bursted_results()
 
       :return:         キーワードとバースト検知結果の組
 
       すべてのキーワードに対する、現在のウィンドウにおけるバースト検知結果を取得する。
 
-   .. mpidl:method:: map<string, st_window > get_all_bursted_results_at(0: double pos)
+   .. mpidl:method:: map<string, window > get_all_bursted_results_at(0: double pos)
 
       :param pos:      位置
       :return:         キーワードとバースト検知結果の組
 
       すべてのキーワードに対する、指定された位置 ``pos`` におけるバースト検知結果を取得する。
 
-   .. mpidl:method:: list<st_keyword> get_all_keywords()
+   .. mpidl:method:: list<keyword_with_params> get_all_keywords()
 
       :return:         キーワードとバースト検知結果の組
 
       バースト検知対象として登録されているすべてのキーワードを取得する。
 
-   .. mpidl:method:: bool add_keyword(0: st_keyword keyword)
+   .. mpidl:method:: bool add_keyword(0: keyword_with_params keyword)
 
       :param keyword:  追加するキーワードとパラメタ
       :return:         キーワードの追加に成功した場合 True
