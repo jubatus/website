@@ -195,13 +195,13 @@ Methods
 
       Returns the burst detection result at the specified position ``pos`` for pre-registered keyword ``keyword``.
 
-   .. mpidl:method:: map<string, window > get_all_bursted_results()
+   .. mpidl:method:: map<string, window> get_all_bursted_results()
 
       :return:         pairs of keyword and its burst detection result
 
       Returns the burst detection result of the current window for all pre-registered keywords.
 
-   .. mpidl:method:: map<string, window > get_all_bursted_results_at(0: double pos)
+   .. mpidl:method:: map<string, window> get_all_bursted_results_at(0: double pos)
 
       :param pos:      position
       :return:         pairs of keyword and its burst detection result

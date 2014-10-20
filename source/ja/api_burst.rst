@@ -195,13 +195,13 @@ Methods
 
       登録済みのキーワード ``keyword`` に対する、指定された位置 ``pos`` におけるバースト検知結果を取得する。
 
-   .. mpidl:method:: map<string, window > get_all_bursted_results()
+   .. mpidl:method:: map<string, window> get_all_bursted_results()
 
       :return:         キーワードとバースト検知結果の組
 
       すべてのキーワードに対する、現在のウィンドウにおけるバースト検知結果を取得する。
 
-   .. mpidl:method:: map<string, window > get_all_bursted_results_at(0: double pos)
+   .. mpidl:method:: map<string, window> get_all_bursted_results_at(0: double pos)
 
       :param pos:      位置
       :return:         キーワードとバースト検知結果の組
