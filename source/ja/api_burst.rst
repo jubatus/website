@@ -120,7 +120,7 @@ Data Structures
 
       message batch {
         0: int all_data_count
-        1: int all_data_count
+        1: int relevant_data_count
         2: double burst_weight
       }
 
