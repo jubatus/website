@@ -6,7 +6,7 @@
     The MPIDL language domain. This extension is based on C++ domain.
 
     :copyright: Copyright 2007-2011 by the Sphinx team, see AUTHORS.
-    :copyright: Copyright 2013 Preferred Infrastructure and Nippon Telegraph and Telephone Corporation.
+    :copyright: Copyright 2013 Preferred Networks and Nippon Telegraph and Telephone Corporation.
     :license: BSD, see LICENSE for details.
 """
 
