@@ -40,7 +40,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Jubatus'
-copyright = u'2011-2014 PFI & NTT'
+copyright = u'2011-2014 PFN & NTT'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -179,7 +179,7 @@ htmlhelp_basename = 'Jubatusdoc'
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'Jubatus.tex', u'Jubatus Documentation',
-   u'PFI\\&NTT', 'manual'),
+   u'PFN\\&NTT', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of

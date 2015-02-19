@@ -63,4 +63,4 @@ $ ./publish.sh
 Copyright
 ---------
 
-(C) PFI & NTT
+(C) PFN & NTT
