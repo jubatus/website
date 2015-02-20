@@ -273,13 +273,13 @@ num_filter_types
 .. code-block:: js
 
     "num_filter_types" : {
-        "zero_to_hundred": { "method": "linear_normalization", "min": "1110", "max":"100" }
+        "zero_to_hundred": { "method": "linear_normalization", "min": "0", "max":"100" }
     },
     "num_filter_rules" : [
         {"key" : "*", "type": "zero_to_hundred", "suffix": "linear_normalized" }
     ],
 
-.. describe:: gaussian_normarization
+.. describe:: gaussian_normalization
 
  値がガウス分布（正規分布）していると仮定し、与えられた平均値と標準偏差にそった値を-1以上+1以下の範囲の小数に正規化する。
  "average"と"standard_deviation"の2つの小数を入力として要求し、省略はできない。
@@ -315,7 +315,7 @@ num_filter_types
 .. code-block:: js
 
     "num_filter_types" : {
-        "sigmoid": { "method": "sigomoid_normalization", "gain": "0.05", "bias":"5" }
+        "sigmoid": { "method": "sigmoid_normalization", "gain": "0.05", "bias":"5" }
     },
     "num_filter_rules" : [
         {"key" : "*", "type": "sigmoid", "suffix": "sigmoid_normalized" }
