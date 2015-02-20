@@ -243,13 +243,79 @@ The followings are available values of "method" and keys that must be specified.
 
   :value:  Specifies value to add. For example, if we add 3 to the original value, we use "3". Note that it is not numeric but a string. It is treated as a floating-point number internally.
 
+.. describe:: linear_normalization
+
+ It normalizes linearly value between 0 to 1.
+ It requires two arguments "min" and "max", and these values cannot be omited.
+ It transform given value x to be between 0 to 1 with formula (x-min) / (max - min).
+ If the x is smaller than "min", it truncate value to be 0.
+ If the x is bigger than "max", it truncate value to be 1.
+ These truncation behavior is switched by "truncate" option.
+ If you give argument which "min" is bigger than "max", the invalid_parameter exception will be raised and fail to create converter.
+
+  :min: Input minimum value to be input. If the minimum value is 0, you have to input as "0". Notice that it is not numeric but string type. It is treated as a floating-point number internally. You cannot omit this argument.
+  :max: Input maximum value to be input. If the maximum value is 100, you have to input as "100". Notice that it is not numeric type but string type. It is used as a double precision double type inside. You cannot omit this argument.
+  :truncate:  Behavior of truncating value which is less than "min" or more than "max". In case it is "True", values less than "min" will become 0 and more than "max" will become 1. You can omit this parameter. In case you omit, this parameter is to be "True" automatically.
+
+ An example of using this function is below.
+
+.. code-block:: js
+
+    "num_filter_types" : {
+        "zero_to_hundred": { "method": "linear_normalization", "min": "0", "max":"100" }
+    },
+    "num_filter_rules" : [
+        {"key" : "*", "type": "zero_to_hundred", "suffix": "linear_normalized" }
+    ],
+
+.. describe:: gaussian_normalization
+
+ It normalize values between -1 to +1, supporsing values are ditributed on normal distribution.
+ It requires two arguments "average" and "standard_deviation", and these values cannot be omited.
+ It transform given value x to be -1 to +1 with formula (x - average) / standard_deviation.
+ For this reason, anomaly value can be less than -1 or more than +1.
+ You cannot specify negative value for "standard_deviation". It causes invalid_parameter exception.
+
+  :average:  Give average of input data. If average value is 80, you should specify like "80". Notice that it is not numeric but string type. Value is treated as doubled precision froating point value inside.
+  :standard_deviation:  Give standard deviation of input data. If standard deviation value is 2.3, you should specify like "2.3". Notice that it is not numeric but string type. Value is treated as doubled precision froating point value inside.
+
+ An example of using this function is below.
+
+.. code-block:: js
+
+    "num_filter_types" : {
+        "gaussian_80_2.3": { "method": "gaussian_normalization", "average": "80", "standard_deviation":"2.3" }
+    },
+    "num_filter_rules" : [
+        {"key" : "*", "type": "gaussian_80_2.3", "suffix": "gaussian_normalized" }
+    ],
+
+.. describe:: sigmoid_normalization
+
+ It normalize values between 0 to 1, by using sigmoid funtion.
+ It requires two parameters "gain" and "bias". In case you omited these values, these values will be "1.0" and "0.0" respectively.
+ It transform given value x to be 0 to 1 with formula 1 / 1 + e ^ (-gain * (x - bias)).
+
+  :gain:  Specify the ``gain`` of sigmoid function. The more big value specified, sigmoid function will be more steep. If ``gain`` value is 0.5, you should specify like "0.5". Notice that it is not numeric but string type. Value is treated as doubled precision froating point value inside. In case you omit this parameter, "1.0" is used.
+  :bias:  Specify the ``bias`` of sigmoid function. if  If ``bias`` value is 3, you should specify like "3". Notice that it is not numeric but string type. Value is treated as doubled precision froating point value inside. In case you omit this parameter, "0.0" is used.
+
+ An example of using this function is below.
+
+.. code-block:: js
+
+    "num_filter_types" : {
+        "sigmoid": { "method": "sigmoid_normalization", "gain": "0.05", "bias":"5" }
+    },
+    "num_filter_rules" : [
+        {"key" : "*", "type": "sigmoid", "suffix": "sigmoid_normalized" }
+    ],
+
 .. describe:: dynamic
 
  Use a plugin. See below for further detail.
 
   :path:      Specifies a full path of a plugin.
   :function:  Specifies a function to be called in the plugin.
-
 
 num_filter_rules
 ~~~~~~~~~~~~~~~~
