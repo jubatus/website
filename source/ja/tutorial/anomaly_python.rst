@@ -135,7 +135,7 @@ Anomaly チュートリアル (Python)
 * method
 
  分類に使用するアルコリズムを指定します。
- Regressionで指定できるのは、現在"LOF"のみなので"LOF"（Local Outlier Factor）を指定します。
+ Anomalyで指定できるのは、現在"LOF"のみなので"LOF"（Local Outlier Factor）を指定します。
 
 
 * converter
