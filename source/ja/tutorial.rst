@@ -312,8 +312,4 @@ Classifier API: 学習(train) と 分類(classify)
    tutorial/graph
    tutorial/stat
 
-.. toctree::
-   :hidden:
-
-
 Nearnest_Neighbor、Clustering のチュートリアルは、現在準備中です。
