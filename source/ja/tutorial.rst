@@ -307,6 +307,7 @@ Classifier API: 学習(train) と 分類(classify)
 
    tutorial/classifier
    tutorial/recommender
+   tutorial/anomaly
    tutorial/regression
    tutorial/graph
    tutorial/stat
@@ -314,6 +315,5 @@ Classifier API: 学習(train) と 分類(classify)
 .. toctree::
    :hidden:
 
-   tutorial/anomaly
 
-Anomaly、Nearnest_Neighbor、Clustering のチュートリアルは、現在準備中です。
+Nearnest_Neighbor、Clustering のチュートリアルは、現在準備中です。
