@@ -312,4 +312,4 @@ Classifier API: 学習(train) と 分類(classify)
    tutorial/graph
    tutorial/stat
 
-Nearnest_Neighbor、Clustering のチュートリアルは、現在準備中です。
+Nearnest_Neighbor、Clustering、Burst のチュートリアルは、現在準備中です。
