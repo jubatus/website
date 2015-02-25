@@ -20,7 +20,7 @@ Easy setup for Ubuntu 12.04 systems:
 
 ```
 # apt-get install python-sphinx latex-cjk-japanese texlive-latex-extra dvipng
-# pip install sphinxcontrib-blockdiag
+# pip install sphinxcontrib-blockdiag sphinxcontrib-rubydomain
 ```
 
 How to Edit
