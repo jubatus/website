@@ -117,7 +117,7 @@ RPC インターフェースは `MessagePack-IDL <https://github.com/msgpack/msg
 ``jenerator`` のビルドには OCaml 4.02.1 以上(findlib あり) 、extlib および OMake および OUnit および ppx_deriving が必要である。
 OCaml環境の構築には、 `OPAM <http://opam.ocaml.org/>`_ を利用するのが楽である。
 なお ``jenerator`` が依存するモジュールのインストールには `OPAM <http://opam.ocaml.org/>`_ のバージョン1.2以降を利用する必要がある。
-OPAMをソースから入れる場合は、 `ocamlbrew <http://opam.ocaml.org/doc/Quick_Install.html#h4-Usingocamlbrew>`_ を利用するとよい。
+OPAMをソースから入れる場合は、 `ocamlbrew <https://github.com/ocaml/opam/wiki/Quick_Install#using-ocamlbrew>`_ を利用するとよい。
 
 ::
 

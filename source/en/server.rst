@@ -117,7 +117,7 @@ Building ``jenerator``
 You need OCaml >=4.02.1 (with findlib), extlib and OMake and OUnit and ppx_deriving to build ``jenerator``.
 We recommend to use `OPAM <http://opam.ocaml.org/>`_ to make OCaml environment.
 You have to use `OPAM <http://opam.ocaml.org/>`_ version 1.2 or more for installing modules which ``jenerator`` depends.
-When you want to install OPAM from its source, `ocamlbrew <http://opam.ocaml.org/doc/Quick_Install.html#h4-Usingocamlbrew>`_ is usefull.
+When you want to install OPAM from its source, `ocamlbrew <https://github.com/ocaml/opam/wiki/Quick_Install#using-ocamlbrew>`_ is usefull.
 
 ::
 
