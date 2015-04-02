@@ -114,9 +114,9 @@ The following RPC methods for server are automatically appended to each service 
 Building ``jenerator``
 ~~~~~~~~~~~~~~~~~~~~~~
 
-You need OCaml >=4.02.1 (with findlib), extlib and OMake and oUnit and ppx_deriving to build ``jenerator``.
+You need OCaml >=4.02.1 (with findlib), extlib and OMake and OUnit and ppx_deriving to build ``jenerator``.
 We recommend to use `OPAM <http://opam.ocaml.org/>`_ to make OCaml environment.
-You have to use ``OPAM`` version 1.2 or more for installing modules which ``jenerator`` depends.
+You have to use `OPAM <http://opam.ocaml.org/>`_ version 1.2 or more for installing modules which ``jenerator`` depends.
 When you want to install OPAM from its source, `ocamlbrew <http://opam.ocaml.org/doc/Quick_Install.html#h4-Usingocamlbrew>`_ is usefull.
 
 ::
@@ -136,8 +136,6 @@ If you want to install ``jenerator`` to other directory, use ``PREFIX`` environm
    $ PREFIX=/path/to/install omake install
 
 You can also use built ``jenerator`` binary directly without installation.
-
-Hint: If you're using Ubuntu systems, OCaml (``ocaml-native-compilers``), findlib (``ocaml-findlib``), extlib (``libextlib-ocaml``) and OMake (``omake``) are available as a binary package.
 
 Generating Server/Proxy from IDL
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
