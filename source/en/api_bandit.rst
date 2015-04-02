@@ -13,7 +13,7 @@ We show each field below:
 .. describe:: method
 
    Specify bandit algorithm.
-   You can use algorithms below.
+   You can use the algorithms below.
 
    .. table::
 
@@ -127,7 +127,7 @@ Methods
       :param player_id: ID of the player whose arm gets rewards
       :param arm_id:    ID of the arm which rewards are registered with
       :param reward: 	amount of rewards
-      :return:          True if succeeded in registring reward. False if failed to register rewards.
+      :return:          True if succeeded in registering reward. False if failed to register rewards.
 
       Register rewards with specified player's specified arm.
 
@@ -140,6 +140,6 @@ Methods
 
    .. mpidl:method:: bool reset(0: string player_id)
       :param target_label: ID of the user whose arms are to be reset.
-      :return:          　 True if succeeded in reseting the arm. False if failed to reset.
+      :return:          　 True if succeeded in resetting the arm. False if failed to reset.
       
       Reset all arms information of specified player.
