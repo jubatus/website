@@ -33,14 +33,14 @@ JSON の各フィールドは以下のとおりである。
 
    epsilon_greedy
      :epsilon:
-	腕の選択をランダムに行う確率を指定する。
-	確率 ``epsilon`` で一様分布からランダムに腕を選択し、確率 1 - ``epsilon`` で現在最も期待値の高い腕を選択する。
-	 (Float)
+        腕の選択をランダムに行う確率を指定する。
+        確率 ``epsilon`` で一様分布からランダムに腕を選択し、確率 1 - ``epsilon`` で現在最も期待値の高い腕を選択する。
+        (Float)
 
-	 * 値域: 0.0 <= ``epsilon`` <= 1.0
+        * 値域: 0.0 <= ``epsilon`` <= 1.0
 
    ucb1
-     なし
+      なし
 
    softmax
      :tau:
@@ -112,8 +112,8 @@ Methods
       ``arm_id`` で指定された腕を削除する。
 
    .. mpidl:method:: string select_arm(0: string player_id)
-      :param player_id: 腕を選択されるプレイヤーのID
 
+      :param player_id: 腕を選択されるプレイヤーのID
       :return:     選択された腕のID
 
       ``player_id`` で指定されたプレイヤーの腕を選択する。

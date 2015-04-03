@@ -33,22 +33,22 @@ We show each field below:
 
    epsilon_greedy
      :epsilon:
-         The probability of choosing arms randomly.
-	 With probability ``epsilon``, choose an arm according to uniform distribution.
-	 With probability 1 - ``epsilon``, choose the arm whose expectation value is the highest.
-	 (Float)
+        The probability of choosing arms randomly.
+	With probability ``epsilon``, choose an arm according to uniform distribution.
+	With probability 1 - ``epsilon``, choose the arm whose expectation value is the highest.
+	(Float)
 
-	 * Range: 0.0 <= ``epsilon`` <= 1.0
+	* Range: 0.0 <= ``epsilon`` <= 1.0
 
    ucb1
      None
 
    softmax
      :tau:
-	Temperature parameter.
+        Temperature parameter.
 	For high temperature, all arms are selected equally.
 	For low temperature, arms with higher expected value are frequently selected.
-	(Float)
+        (Float)
 
         * Range: 0.0 < ``tau``
 
@@ -62,7 +62,7 @@ We show each field below:
         * Range: 0.0 <= ``gamma`` <= 1.0
 
 
-例:
+Example:
   .. code-block:: javascript
 
      {
