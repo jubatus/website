@@ -193,8 +193,7 @@ Methods
 Auxiliary Methods
 ~~~~~~~~~~~~~~~~~
 
-Each language has some language-specific auxiliary methods.
-We'll describe them here.
+Python / Ruby clients have language-specific auxiliary methods.
 
 Python
 ++++++
@@ -224,7 +223,7 @@ Ruby
    .. rb:classmethod:: connect(host, port, name, timeout_sec, &block)
 
       Using `connect` method of client classes of each algorithms ensures safely closing client connections.
-      `connect` method takes host name, port number, cluster name, time-out period and block as arguments. It automatically creates client object and connect to the server specified.
+      `connect` method takes host name, port number, cluster name, time-out period and block as arguments. It automatically creates a client object and connect to the server specified.
       The block can then use the client object.
       When leaving the block, this client object disconnects from the server.
 
