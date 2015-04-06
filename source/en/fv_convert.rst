@@ -207,7 +207,7 @@ Each rule is represented as a dictionary whose keys are "key", "except" (optiona
 
  :key:       Specifies to which keys in a datum we apply the rule. We describe it in datail later.
  :except:    Specifies which keys to exclude from the match. This is an optional parameter. We describe it in datail later.
- :type:      Specifiers the name of the filter used. This filter must be defined in "string_filter_types". No filters are available by default.
+ :type:      Specifies the name of the filter used. This filter must be defined in "string_filter_types". No filters are available by default.
  :suffix:    Specifies a suffix of a key where the result of filtering is stored. For example, if "suffix" is "-detagged" and a filter is applied to "name" key in a datum, the result is stored in "name-detagged" key.
 
 "key" and "except" can be specified in one of the following formats.
@@ -245,7 +245,7 @@ The followings are available values of "method" and keys that must be specified.
 
 .. describe:: linear_normalization
 
- It normalizes linearly value between 0 to 1.
+ It normalizes the input value linearly between 0 to 1.
  It requires two arguments "min" and "max", and these values cannot be omitted.
  It transforms given value x to be between 0 to 1 with formula (x-min) / (max - min).
  If the x is smaller than "min", it is truncated to 0.
