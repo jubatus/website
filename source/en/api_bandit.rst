@@ -2,7 +2,6 @@ Bandit
 ------
 
 * See `IDL definition <https://github.com/jubatus/jubatus/blob/master/jubatus/server/server/bandit.idl>`_ for detailed specification.
-.. * see :doc:`method` for detailed description of algorithms used in this server.
 
 Configuration
 ~~~~~~~~~~~~~
@@ -116,8 +115,8 @@ Methods
       Delete an arm with the name of ``arm_id``.
 
    .. mpidl:method:: string select_arm(0: string player_id)
-      :param player_id: ID of the player whose arm is to be selected
 
+      :param player_id: ID of the player whose arm is to be selected
       :return:     ``arm_id`` selected by bandit algorithm.
 
       Select player's arm according to current state.
@@ -139,6 +138,7 @@ Methods
       Get all arms information of specified player.
 
    .. mpidl:method:: bool reset(0: string player_id)
+
       :param target_label: ID of the user whose arms are to be reset.
       :return:          　 True if succeeded in resetting the arm. False if failed to reset.
       

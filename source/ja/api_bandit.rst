@@ -2,7 +2,6 @@ Bandit
 ------
 
 * 詳細な仕様は `IDL 定義 <https://github.com/jubatus/jubatus/blob/master/jubatus/server/server/bandit.idl>`_ を参照してください。
-.. * 使用されているアルゴリズムの詳細については :doc:`method` を参照してください。
 
 Configuration
 ~~~~~~~~~~~~~
