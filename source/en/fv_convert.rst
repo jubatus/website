@@ -270,7 +270,7 @@ The followings are available values of "method" and keys that must be specified.
 
 .. describe:: gaussian_normalization
 
- It normalize values between -1 to +1, supposing values are distributed on normal distribution.
+ It normalizes values between -1 to +1, supposing values are distributed on normal distribution.
  It requires two arguments "average" and "standard_deviation", and these values cannot be omitted.
  It transforms given value x to be -1 to +1 with formula (x - average) / standard_deviation.
  For this reason, anomaly value can be less than -1 or more than +1.
@@ -325,7 +325,7 @@ Each rule is a dictionary whose keys are "key", "except" (optional), "type" and 
 
  :key:       Specifies to which keys in a datum we apply the rule. For further explanation, please read counterpart in "string_filter_rules" section.
  :except:    Specifies which keys to exclude from the match. This is an optional parameter. For further explanation, please read counterpart in "string_filter_rules" section.
- :type:      Specifies a name of a filter used. This filter must de defined in "string_filter_types". No filter is available if no filter is defined in "string_filter_types".
+ :type:      Specifies a name of a filter used. This filter must be defined in "string_filter_types". No filter is available if no filter is defined in "string_filter_types".
  :suffix:    Specifies a suffix of a key where the result of a filtering is stored. For example, if "suffix" is "-detagged" and a filter is applied to "name" key in a datum, the result is stored in "name-detagged" key.
 
 Format of "key" and "except" is written in "string_filter_rules" section.
