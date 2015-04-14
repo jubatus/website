@@ -45,15 +45,15 @@ JSON の各フィールドは以下のとおりである。
      :tau:
         温度パラメータを指定する。
         大きくするほどランダムに腕の選択を行い、小さくするほど期待値の高い腕が選ばれやすくなる。
-	(Float)
+        (Float)
 
         * 値域: 0.0 < ``tau``
 
    exp3
      :gamma:
-	腕の重みの混合比率を指定する。
-	gammaを大きくするほど全腕共通の重みの比率が高くなり、小さくするほど各腕固有の重みの比率が高くなる。
-	(Float)
+        腕の重みの混合比率を指定する。
+        gammaを大きくするほど全腕共通の重みの比率が高くなり、小さくするほど各腕固有の重みの比率が高くなる。
+        (Float)
 
         * 値域: 0.0 <= ``gamma`` <= 1.0
 
@@ -99,21 +99,21 @@ Methods
    .. mpidl:method:: bool register_arm(0: string arm_id)
 
       :param arm_id:  新たに登録する腕のID
-      :return:      腕の登録に成功した場合True, 失敗した場合にFalse
+      :return:        腕の登録に成功した場合True, 失敗した場合にFalse
 
       ``arm_id`` で指定された腕を新たに登録する。
 
    .. mpidl:method:: bool delete_arm(0: string arm_id)
 
-      :param arm_id: 削除する腕のID 
-      :return: 腕の削除に成功した場合True, 失敗した場合にFalse
+      :param arm_id: 削除する腕のID
+      :return:       腕の削除に成功した場合True, 失敗した場合にFalse
 
       ``arm_id`` で指定された腕を削除する。
 
    .. mpidl:method:: string select_arm(0: string player_id)
 
       :param player_id: 腕を選択されるプレイヤーのID
-      :return:     選択された腕のID
+      :return:          選択された腕のID
 
       ``player_id`` で指定されたプレイヤーの腕を選択する。
 
@@ -121,7 +121,7 @@ Methods
 
       :param player_id: 報酬を登録するプレイヤー
       :param arm_id:    報酬を登録する腕
-      :param reward: 	報酬の値
+      :param reward:    報酬の値
       :return:          報酬の登録に成功した場合 True 失敗した場合 False
 
       ``player_id`` で指定されたプレイヤーの ``arm_id`` で指定された腕に報酬を登録する。
@@ -129,13 +129,13 @@ Methods
    .. mpidl:method:: map<string, arm_info> get_arm_info(0: string player_id)
 
       :param target_label: 腕の情報を取得するプレイヤー
-      :return:          指定されたプレイヤーの腕の情報
+      :return:             指定されたプレイヤーの腕の情報
 
       ``player_id`` で指定されたプレイヤーの腕の情報を返却する。
 
    .. mpidl:method:: bool reset(0: string player_id)
 
       :param target_label: 腕の情報をリセットするプレイヤー
-      :return:          　 情報のリセットに成功した場合 True 失敗した場合 False
-      
+      :return:             情報のリセットに成功した場合 True 失敗した場合 False
+
       ``player_id`` で指定されたプレイヤーの腕の情報を全てリセットする。

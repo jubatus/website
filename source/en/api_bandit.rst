@@ -33,11 +33,11 @@ We show each field below:
    epsilon_greedy
      :epsilon:
         The probability of choosing arms randomly.
-	With probability ``epsilon``, choose an arm according to uniform distribution.
-	With probability 1 - ``epsilon``, choose the arm whose expectation value is the highest.
-	(Float)
+        With probability ``epsilon``, choose an arm according to uniform distribution.
+        With probability 1 - ``epsilon``, choose the arm whose expectation value is the highest.
+        (Float)
 
-	* Range: 0.0 <= ``epsilon`` <= 1.0
+        * Range: 0.0 <= ``epsilon`` <= 1.0
 
    ucb1
      None
@@ -45,18 +45,18 @@ We show each field below:
    softmax
      :tau:
         Temperature parameter.
-	For high temperature, all arms are selected equally.
-	For low temperature, arms with higher expected value are frequently selected.
+        For high temperature, all arms are selected equally.
+        For low temperature, arms with higher expected value are frequently selected.
         (Float)
 
         * Range: 0.0 < ``tau``
 
    exp3
      :gamma:
-	Mixture rate of constant weight and each arm's weight.
-	The higher ``gamma`` is, the higher the rate of constant weight is.
-	The lower ``gamma`` is, the higher the rate of each arm's weight is.
-	(Float)
+        Mixture rate of constant weight and each arm's weight.
+        The higher ``gamma`` is, the higher the rate of constant weight is.
+        The lower ``gamma`` is, the higher the rate of each arm's weight is.
+        (Float)
 
         * Range: 0.0 <= ``gamma`` <= 1.0
 
@@ -102,22 +102,22 @@ Methods
 
    .. mpidl:method:: bool register_arm(0: string arm_id)
 
-      :param arm_id:  ID of the new arm to be registered
-      :return:     True if succeeded in registering the arm. False if failed to register the arm.
+      :param arm_id: ID of the new arm to be registered
+      :return:       True if succeeded in registering the arm. False if failed to register the arm.
 
       Register a new arm with the name of ``arm_id``.
 
    .. mpidl:method:: bool delete_arm(0: string arm_id)
 
       :param arm_id: ID of the arm to be deleted
-      :return:     True if succeeded in deleting the arm. False if failed to delete the arm.
+      :return:       True if succeeded in deleting the arm. False if failed to delete the arm.
 
       Delete an arm with the name of ``arm_id``.
 
    .. mpidl:method:: string select_arm(0: string player_id)
 
       :param player_id: ID of the player whose arm is to be selected
-      :return:     ``arm_id`` selected by bandit algorithm.
+      :return:          ``arm_id`` selected by bandit algorithm.
 
       Select player's arm according to current state.
 
@@ -125,7 +125,7 @@ Methods
 
       :param player_id: ID of the player whose arm gets rewards
       :param arm_id:    ID of the arm which rewards are registered with
-      :param reward: 	amount of rewards
+      :param reward:    amount of rewards
       :return:          True if succeeded in registering reward. False if failed to register rewards.
 
       Register rewards with specified player's specified arm.
@@ -133,13 +133,13 @@ Methods
    .. mpidl:method:: map<string, arm_info> get_arm_info(0: string player_id)
 
       :param target_label: ID of the player
-      :return:          arm information of specified player
+      :return:             arm information of specified player
 
       Get all arms information of specified player.
 
    .. mpidl:method:: bool reset(0: string player_id)
 
       :param target_label: ID of the user whose arms are to be reset.
-      :return:          　 True if succeeded in resetting the arm. False if failed to reset.
-      
+      :return:             True if succeeded in resetting the arm. False if failed to reset.
+
       Reset all arms information of specified player.
