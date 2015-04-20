@@ -74,6 +74,7 @@ Example:
      {
        "method" : "epsilon_greedy",
        "parameter" : {
+         "assume_unrewarded" : false,
          "epsilon" : 0.1
        }
      }

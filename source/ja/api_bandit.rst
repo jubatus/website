@@ -71,6 +71,7 @@ JSON の各フィールドは以下のとおりである。
      {
        "method" : "epsilon_greedy",
        "parameter" : {
+         "assume_unrewarded" : false,
          "epsilon" : 0.1
        }
      }
