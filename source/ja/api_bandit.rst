@@ -128,14 +128,14 @@ Methods
 
    .. mpidl:method:: map<string, arm_info> get_arm_info(0: string player_id)
 
-      :param target_label: 腕の情報を取得するプレイヤー
-      :return:             指定されたプレイヤーの腕の情報
+      :param player_id: 腕の情報を取得するプレイヤー
+      :return:          指定されたプレイヤーの腕の情報
 
       ``player_id`` で指定されたプレイヤーの腕の情報を返却する。
 
    .. mpidl:method:: bool reset(0: string player_id)
 
-      :param target_label: 腕の情報をリセットするプレイヤー
-      :return:             情報のリセットに成功した場合 True 失敗した場合 False
+      :param player_id: 腕の情報をリセットするプレイヤー
+      :return:          情報のリセットに成功した場合 True 失敗した場合 False
 
       ``player_id`` で指定されたプレイヤーの腕の情報を全てリセットする。
