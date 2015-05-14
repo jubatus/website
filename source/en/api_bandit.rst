@@ -132,14 +132,14 @@ Methods
 
    .. mpidl:method:: map<string, arm_info> get_arm_info(0: string player_id)
 
-      :param target_label: ID of the player
-      :return:             arm information of specified player
+      :param player_id: ID of the player
+      :return:          arm information of specified player
 
       Get all arms information of specified player.
 
    .. mpidl:method:: bool reset(0: string player_id)
 
-      :param target_label: ID of the user whose arms are to be reset.
-      :return:             True if succeeded in resetting the arm. False if failed to reset.
+      :param player_id: ID of the user whose arms are to be reset.
+      :return:          True if succeeded in resetting the arm. False if failed to reset.
 
       Reset all arms information of specified player.
