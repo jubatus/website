@@ -262,3 +262,15 @@ pdf_language = "ja"
 #pdf_extensions = ['vectorpdf']
 # Page template name for "regular" pages
 #pdf_page_template = 'cutePage'
+
+# -- Options for manpage output --------------------------------------------------
+man_pages = [
+  ('commands/jubatus_server', 'jubatus_server', 'Jubatus Server', 'PFN & NTT', 8),
+  ('commands/jubatus_proxy',  'jubatus_proxy',  'Jubatus Proxy',  'PFN & NTT', 8),
+  ('commands/jubaconfig',     'jubaconfig',     'jubaconfig',     'PFN & NTT', 8),
+  ('commands/jubavisor',      'jubavisor',      'jubavisor',      'PFN & NTT', 8),
+  ('commands/jubactl',        'jubactl',        'jubactl',        'PFN & NTT', 8),
+  ('commands/jubaconv',       'jubaconv',       'jubaconv',       'PFN & NTT', 1),
+  ('commands/jubadump',       'jubadump',       'jubadump',       'PFN & NTT', 1),
+  ('commands/jenerator',      'jenerator',      'jenerator',      'PFN & NTT', 1),
+]
