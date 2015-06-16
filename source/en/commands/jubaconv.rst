@@ -18,7 +18,7 @@ Description
 Options
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* ``[]`` はデフォルト値を意味する。
+* ``[]`` indicates the default value.
 
 .. program:: jubaconv
 
