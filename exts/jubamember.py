@@ -115,6 +115,12 @@ def html_visit_jubamember_node(self, node):
 def html_depart_jubamember_node(self, node):
     pass
 
+def man_visit_jubamember_node(self, node):
+    pass
+
+def man_depart_jubamember_node(self, node):
+    pass
+
 class JubatusMemberDirective(Directive):
     has_content = False
     required_arguments = 0
@@ -144,5 +150,7 @@ class JubatusMemberDirective(Directive):
         return [node]
 
 def setup(app):
-    app.add_node(jubamember, html=(html_visit_jubamember_node, html_depart_jubamember_node))
+    app.add_node(jubamember,
+                 html=(html_visit_jubamember_node, html_depart_jubamember_node),
+                 man=(man_visit_jubamember_node, man_depart_jubamember_node))
     app.add_directive('jubamember', JubatusMemberDirective)
