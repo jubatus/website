@@ -33,7 +33,7 @@ We show each field below:
    common
      :assume_unrewarded:
         Specify whether it can be omitted to call ``register_reward`` when the reward is zero.
-        When it is True, calling ``register_reward` can be omitted, but calling ``register_reward`` must be associated with the result of ``select_arm``.
+        When it is True, calling ``register_reward`` can be omitted, but calling ``register_reward`` must be associated with the result of ``select_arm``.
         When it is False, although ``register_reward`` must be called when the reward is zero, it can be called independently of calling ``select_arm``.
         (Boolean)
 
