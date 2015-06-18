@@ -33,7 +33,7 @@ JSON の各フィールドは以下のとおりである。
    共通
      :assume_unrewarded:
         報酬がゼロの場合に ``register_reward`` の呼び出しを省略できるか否かを指定する。
-        True の場合、 ``select_arm`` によって選択された腕から得られた報酬がゼロの場合には ``register_reward`` の呼び出しを省略できるが、 ``register_reward`` の呼び出しは ``select_arm`` の結果に対応していなければならない。
+        True の場合、 ``select_arm`` によって選択された腕から得られた報酬がゼロの場合には ``register_reward`` の呼び出しを省略できる。ただし、 ``register_reward`` の呼び出しは ``select_arm`` の結果に対応していなければならない。
         False の場合、報酬がゼロであっても必ず ``register_reward`` を呼び出す必要があるが、 ``register_reward`` の呼び出しを ``select_arm`` の呼び出しとは無関係に行う事ができる。
         (Boolean)
 
