@@ -13,7 +13,7 @@ Description
 
 ``jubadump`` は ``save`` RPC によって保存された Jubatus のモデルファイルの内容を JSON 形式に変換するツールである。
 
-現在、以下のモデルがサポートされています:
+現在、以下のモデルがサポートされている:
 
 * ``classifier``
 * ``regression``
