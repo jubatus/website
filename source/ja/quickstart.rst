@@ -5,7 +5,7 @@
 Jubatus のインストール
 ----------------------
 
-Red Hat Enterprise Linux 6.2 以降 (64-bit) と Ubuntu Server 12.04 LTS (64-bit) を公式にサポートしています。
+Red Hat Enterprise Linux (RHEL) 6.2 以降 (64-bit) と Ubuntu Server 12.04 LTS (64-bit) を公式にサポートしています。
 これらのシステムでは、Jubatus のすべてのコンポーネントをバイナリパッケージでインストールすることができます。
 
 また、その他の Linux 環境 (32-bit を含む) と Mac OS X が試験的にサポートされています。
@@ -17,19 +17,26 @@ Red Hat Enterprise Linux 6.2 以降 (64-bit)
 
 ::
 
+  // RHEL 6 の場合
   $ sudo rpm -Uvh http://download.jubat.us/yum/rhel/6/stable/x86_64/jubatus-release-6-1.el6.x86_64.rpm
+
+  // RHEL 7 の場合
+  $ sudo rpm -Uvh http://download.jubat.us/yum/rhel/7/stable/x86_64/jubatus-release-7-1.el6.x86_64.rpm
 
 ``jubatus`` と ``jubatus-client`` のパッケージをインストールします。
 
 ::
 
-  // RHEL の場合
-  $ sudo yum --enablerepo=rhel-6-server-optional-rpms install jubatus jubatus-client
-
-  // RHEL クローン (CentOS, Scientific Linux など) の場合
   $ sudo yum install jubatus jubatus-client
 
-RHEL では、依存パッケージ (``oniguruma``) のインストールに ``rhel-6-server-optional-rpms`` リポジトリを使用している点に注意してください。
+RHEL 6 では、依存パッケージ (``oniguruma``) のインストールに ``rhel-6-server-optional-rpms`` または ``jubatus-optional`` リポジトリを使用します。
+``oniguruma`` パッケージが存在しないエラーが表示されてインストールが行えない場合は、以下のコマンドのいずれかを実行してください。
+
+::
+
+  // RHEL 6 で、oniguruma パッケージが存在しない場合
+  $ sudo yum --enablerepo=rhel-6-server-optional-rpms install jubatus jubatus-client
+  $ sudo yum --enablerepo=jubatus-optional install jubatus jubatus-client
 
 Ubuntu Server 12.04 LTS (64-bit)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
