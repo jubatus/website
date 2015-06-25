@@ -135,7 +135,7 @@ Recommenderのクライアントプログラムは、us.jubat.recommender.Recomm
 0. Jubatus Clientライブラリの準備
     Grapeを利用してJubatusのMavenリポジトリからJubatus Clientライブラリを取得します(1-3行目)。
     Jubatusの依存するmsgpack-apiのMavenリポジトリも指定しておきましょう(2行目)。
-    JavaDocが必要なら、Mavenリポジトリ http://download.jubat.us/maven/us/jubat/jubatus/ から *-javadoc.jar が取得できます。
+    JavaDocが必要なら、Mavenリポジトリ http://download.jubat.us/maven/us/jubat/jubatus/ から \*-javadoc.jar が取得できます。
 
 1. Jubatus Serverへの接続設定
     Jubatus Serverへの接続を行います(14行目)。
