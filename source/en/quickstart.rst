@@ -18,10 +18,10 @@ Run the following command to register Jubatus Yum repository to the system.
 ::
 
   // For RHEL 6
-  $ sudo rpm -Uvh http://download.jubat.us/yum/rhel/6/stable/x86_64/jubatus-release-6-1.el6.x86_64.rpm
+  $ sudo rpm -Uvh http://download.jubat.us/yum/rhel/6/stable/x86_64/jubatus-release-6-2.el6.x86_64.rpm
 
   // For RHEL 7
-  $ sudo rpm -Uvh http://download.jubat.us/yum/rhel/7/stable/x86_64/jubatus-release-7-1.el6.x86_64.rpm
+  $ sudo rpm -Uvh http://download.jubat.us/yum/rhel/7/stable/x86_64/jubatus-release-7-2.el7.x86_64.rpm
 
 Now install ``jubatus`` and ``jubatus-client`` package.
 
@@ -36,6 +36,8 @@ If the installation command above fails with the missing ``oniguruma`` package e
 
   // For RHEL 6 systems that cannot find oniguruma package
   $ sudo yum --enablerepo=rhel-6-server-optional-rpms install jubatus jubatus-client
+
+  // For RHEL 6 systems that cannot find oniguruma package (and rhel-6-server-optional-rpms is unavailable)
   $ sudo yum --enablerepo=jubatus-optional install jubatus jubatus-client
 
 Ubuntu Server 12.04 LTS (64-bit)
