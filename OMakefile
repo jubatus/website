@@ -18,14 +18,14 @@ builddir      = build
 srcdir        = source
 supplementdir = supplement
 langs         = en ja
-sources       = $(find $(srcdir) -type=f)
+sources       = $(find $(srcdir) -name *.rst)
 
 # Internal variables.
 paperopt_a4     = -D latex_paper_size=a4
 paperopt_letter = -D latex_paper_size=letter
 ALLSPHINXOPTS   = $(sphinxopts) # $(paperopt_$(paper)) $(sphinxopts) .
 
-.PHONY: help clean html dirhtml pickle json htmlhelp qthelp latex changes linkcheck doctest singlehtml
+.PHONY: help clean html dirhtml pickle json htmlhelp qthelp latex man changes linkcheck doctest singlehtml
 
 $(BUILDOUT):
 	python $(BOOTSTRAP) -d init
@@ -44,6 +44,7 @@ Please use `make <target>' where <target> is one of
   htmlhelp  to make HTML files and a HTML help project
   qthelp    to make HTML files and a qthelp project
   latex     to make LaTeX files, you can set PAPER=a4 or PAPER=letter
+  man       to make manual page files
   changes   to make an overview of all changed/added/deprecated items
   linkcheck to check all external links for integrity
   doctest   to run all doctests embedded in the documentation (if enabled) 
@@ -110,6 +111,10 @@ DepBuild( latex, $''''
 	Run 'make all-pdf' or 'make all-ps' in that directory to
 	run these through (pdf)latex.
 	'''')
+
+DepBuild( man, $''''
+		Build finished. The manual pages are in $(builddir)/man.
+	 	''''  )
 
 DepBuild( changes, $''''
 	The overview file is in $(builddir)/changes.
