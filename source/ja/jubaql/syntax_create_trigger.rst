@@ -19,5 +19,5 @@ Example::
 
 * ``input_stream`` は入力に用いるストリームを指定します。入力ストリームのデータソースは、 ``CREATE TRIGGER`` 文の発行時に処理が実行されていない状態でなければなりません。
 *  ``filter`` はSparkSQLの ``SELECT`` 文中で用いられる ``WHERE`` 句のようなフィルタリングをする式を記述します。特定の条件に合致したアイテムについてのみ関数を呼び出すように設定することができます。
-* ``func_name`` は ``CREATE TRIGGER FUNCTION`` を用いて予め定義された関数の名前を指定します。 ``param`` はその関数のパラメータに用いられる式のリストを記述します。
+* ``func_name`` は ``CREATE TRIGGER FUNCTION`` (:doc:`syntax_create_function` 参照)を用いて予め定義された関数の名前を指定します。 ``param`` はその関数のパラメータに用いられる式のリストを記述します。
 
