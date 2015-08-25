@@ -36,13 +36,9 @@ We show each field below:
 
         * Range: 1 <= ``k``
 
-     :compressor_method:
-        Specify alghorithm for compressing points.
-        You can choose from ``simple``, ``compressive_kmeans`` and ``compressive_gmm``.
-
      :bucket_size:
-        Number of bulk compression size.
-        It can be smaller than dataset size.
+        Number of data points to trigger mini batch and compression.
+        Clustering will run for each time ``bucket_size`` data is pushed.
         (Integer)
 
         * Range: 2 <= ``bucket_size``
@@ -81,14 +77,16 @@ We show each field below:
    kmeans
      :compressor_method:
         Specify alghorithm for compressing points.
-        You can choose from ``simple``, ``compressive_kmeans`` .
+        You can choose from ``simple`` (no compression), ``compressive_kmeans`` .
         (String)
 
    gmm
      :compressor_method:
         Specify alghorithm for compressing points.
-        You can choose from ``simple``, ``compressive_gmm`` .
+        You can choose from ``simple`` (no compression), ``compressive_gmm`` .
         (String)
+
+   When ``compressor_method`` is specified as ``simple``, the following parameters will be ignored: ``bucket_length``, ``compressed_bucket_size``, ``bicriteria_base_size``, ``forgetting_factor``, ``forgetting_threshold``.
 
 .. describe:: converter
 
