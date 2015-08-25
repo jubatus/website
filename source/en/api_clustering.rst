@@ -39,6 +39,7 @@ We show each field below:
      :bucket_size:
         Number of data points to trigger mini batch and compression.
         Clustering will run for each time ``bucket_size`` data is pushed.
+        Note that the initial clustering will not run until ``k`` data is pushed.
         (Integer)
 
         * Range: 2 <= ``bucket_size``
