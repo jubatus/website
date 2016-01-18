@@ -21,7 +21,8 @@ We show each field below:
       ===================================== ===================================
       Value                                 Method
       ===================================== ===================================
-      ``"inverted_index"``                  Use Inverted Index.
+      ``"inverted_index"``                  Use Inverted Index (similarity measured by cosine similarity.)
+      ``"inverted_index_euclid"``           Use Inverted Index (similarity measured by euclidean distance.)
       ``"minhash"``                         Use MinHash. [Ping2010]_
       ``"lsh"``                             Use Locality Sensitive Hashing.
       ``"euclid_lsh"``                      Use Euclid-distance LSH. [Andoni2005]_
