@@ -154,7 +154,7 @@ Data Structures
    .. mpidl:member:: 1: float score
 
       Score for the data.
-      Negative (regular) data are scored around `1.0`.
+      Negative (normal) data are scored around `1.0`.
       Higher score means higher abnormality.
 
    .. code-block:: c++
