@@ -17,18 +17,22 @@ JSON の各フィールドは以下のとおりである。
 
    .. table::
 
-      ================ ===================================
-      設定値           手法
-      ================ ===================================
-      ``"perceptron"`` パーセプトロン法を利用する。
-      ``"PA"``         Passive Aggressive (PA) を利用する。 [Crammer06]_
-      ``"PA1"``        PA-I を利用する。 [Crammer06]_
-      ``"PA2"``        PA-II を利用する。 [Crammer06]_
-      ``"CW"``         Confidence Weighted Learning を利用する。 [Dredze08]_
-      ``"AROW"``       Adaptive Regularization of Weight vectors を利用する。 [Crammer09b]_
-      ``"NHERD"``      Normal Herd を利用する。 [Crammer10]_
-      ``"NN"``         ``nearest_neighbor`` を利用する。
-      ================ ===================================
+      ================ ==================================================================== ============
+      設定値           手法                                                                 分類方法
+      ================ ==================================================================== ============
+      ``"perceptron"`` パーセプトロン法を利用する。                                         線形分類
+      ``"PA"``         Passive Aggressive (PA) を利用する。 [Crammer06]_                    線形分類
+      ``"PA1"``        PA-I を利用する。 [Crammer06]_                                       線形分類
+      ``"PA2"``        PA-II を利用する。 [Crammer06]_                                      線形分類
+      ``"CW"``         Confidence Weighted Learning を利用する。 [Dredze08]_                線形分類
+      ``"AROW"``       Adaptive Regularization of Weight vectors を利用する。 [Crammer09b]_ 線形分類
+      ``"NHERD"``      Normal Herd を利用する。 [Crammer10]_                                線形分類
+      ``"NN"``         ``nearest_neighbor`` を利用する。                                    k-近傍法
+      ``"cosine"``     コサイン類似度による近傍探索結果を利用する。[1]_                     k-近傍法
+      ``"euclidean"``  ユークリッド距離による近傍探索結果を利用する。[1]_                   k-近傍法
+      ================ ==================================================================== ============
+
+   .. [1] これらの手法では ``delete_label`` APIおよび ``unlearner`` を使用することができない。
 
 .. describe:: parameter
 
@@ -126,6 +130,35 @@ JSON の各フィールドは以下のとおりである。
 
         * 値域: 0.0 <= ``local_sensitivity``
 
+   cosine
+     :nearest_neighbor_num:
+        スコア算出時に使われるデータの数を指定する。
+        (Integer)
+
+        * 値域: 1 <= ``nearest_neighbor_num``
+
+     :local_sensitivity:
+        スコア算出時に使われる感度パラメータを指定する。
+        0 の場合は近傍探索で得られた全てのデータを同じ重みで評価し、
+        大きくすると距離の近いデータをより重視するようになる。
+        (Float)
+
+        * 値域: 0.0 <= ``local_sensitivity``
+
+   euclidean
+     :nearest_neighbor_num:
+        スコア算出時に使われるデータの数を指定する。
+        (Integer)
+
+        * 値域: 1 <= ``nearest_neighbor_num``
+
+     :local_sensitivity:
+        スコア算出時に使われる感度パラメータを指定する。
+        0 の場合は近傍探索で得られた全てのデータを同じ重みで評価し、
+        大きくすると距離の近いデータをより重視するようになる。
+        (Float)
+
+        * 値域: 0.0 <= ``local_sensitivity``
 
 .. describe:: converter
 
