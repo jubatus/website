@@ -228,6 +228,7 @@ Methods
       :return:     現在登録されているラベルと学習した件数の組
 
       登録されているラベルとそれぞれのラベルを学習した件数を返却する。
+      method が ``NN`` の場合、忘却機能によって削除された学習データの件数は含まれない。
 
    .. mpidl:method:: bool set_label(0: string new_label)
 

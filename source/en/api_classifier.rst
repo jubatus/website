@@ -231,6 +231,7 @@ Methods
       :return:     Pairs of label and the number of trained data
 
       Returns the number of trained data for each label.
+      If method is ``NN`` , the number of trained data that are deleted by ``unlearner`` is not include in this count.
 
    .. mpidl:method:: bool set_label(0: string new_label)
 
