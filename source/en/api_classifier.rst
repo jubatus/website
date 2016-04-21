@@ -259,11 +259,12 @@ Methods
       Estimates labels from given ``data``.
       This API is designed to accept bulk classification with list of :mpidl:type:`datum`.
 
-   .. mpidl:method:: list<string> get_labels()
+   .. mpidl:method:: map<string, int> get_labels()
 
-      :return:     list of all labels in the jubatus
+      :return:     Pairs of label and the number of trained data
 
-      Returns all label list.
+      Returns the number of trained data for each label.
+      If method is ``NN`` , the number of trained data that are deleted by ``unlearner`` is not include in this count.
 
    .. mpidl:method:: bool set_label(0: string new_label)
 
