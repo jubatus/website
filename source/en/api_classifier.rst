@@ -259,7 +259,7 @@ Methods
       Estimates labels from given ``data``.
       This API is designed to accept bulk classification with list of :mpidl:type:`datum`.
 
-   .. mpidl:method:: map<string, int> get_labels()
+   .. mpidl:method:: map<string, ulong> get_labels()
 
       :return:     Pairs of label and the number of trained data
 
