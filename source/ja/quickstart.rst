@@ -170,7 +170,7 @@ Java
      <dependency>
        <groupId>us.jubat</groupId>
        <artifactId>jubatus</artifactId>
-       <version>[0.8,)</version>
+       <version>[0.9,)</version>
      </dependency>
    </dependencies>
 
