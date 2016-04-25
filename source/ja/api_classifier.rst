@@ -256,7 +256,7 @@ Methods
       与えられた ``data`` から、ラベルを推定する。
       この API は、 :mpidl:type:`datum` をリスト形式でまとめて同時に受け付けることができる (バルク分類)。
 
-   .. mpidl:method:: map<string, int> get_labels()
+   .. mpidl:method:: map<string, ulong> get_labels()
 
       :return:     現在登録されているラベルと学習した件数の組
 
