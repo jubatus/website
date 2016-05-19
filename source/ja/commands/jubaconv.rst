@@ -26,19 +26,46 @@ Options
 
    入力のフォーマット。 [json]
 
-   ``<format>`` には ``json`` または ``datum`` のいずれかを指定する。
+   ``<format>`` には ``datum`` または ``json`` のいずれかを指定する。
 
 .. option:: -o <format>, --output-format <format>
 
    出力のフォーマット。 [fv]
 
-   ``<format>`` には ``json``, ``datum`` または ``fv`` のいずれかを指定する。
+   ``<format>`` には ``fv``, ``datum`` または ``json`` のいずれかを指定する。
 
 .. option:: -c <config>, --conf <config>
 
    JSON で記述された Jubatus サーバの設定ファイル。
 
    :option:`-o` に ``fv`` が指定されている場合のみ、このオプションを指定する必要がある。
+
+File Formats
+--------------------------------------------------
+
+Input
+~~~~~
+
+``datum`` または ``json`` がサポートされています。
+詳細は Examples セクションを参照してください。
+
+* ``datum`` は Datum 形式の JSON データ構造です。
+  ルートには 3 つのキー (``string_values``, ``num_values`` および ``binary_values``) を指定する必要があります。また、それぞれの値はフラットなオブジェクトで、そのキーは String 型、値は String 型 (``string_values`` と ``binary_values`` の場合) または整数/浮動小数点型 (``num_values`` の場合) である必要があります。
+
+* ``json`` は任意の JSON データ構造です。
+  JSON データ構造はキーを ``/`` で結合することによってフラットな key-value データ構造に変換されます。
+
+Output
+~~~~~~
+
+``fv``, ``datum`` または ``json`` がサポートされています。
+
+* ``fv`` は fv_converter によって入力データから抽出された特徴ベクトルを出力します。
+
+* ``datum`` は入力データを Datum 形式の JSON データ構造に変換したものを出力します。
+
+* ``json`` は入力データをそのまま、フォーマットした形で出力します。
+  このオプションは入力データのフォーマットが ``json`` の場合のみ利用できます。
 
 Examples
 --------------------------------------------------
