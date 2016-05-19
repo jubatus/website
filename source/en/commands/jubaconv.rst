@@ -15,6 +15,9 @@ Description
 
 ``jubaconv`` simulates the internal behavior of fv_converter and displays the result of conversion on the command-line.
 
+As ``jubaconv`` only processes 1 record, ``global_weight`` of string feature extraction rules (``string_rules``) will not be calculated.
+Use :doc:`../api_weight` if you need a simulation including ``global_weight``.
+
 Options
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
