@@ -86,6 +86,8 @@ Examples
      },
      "num_values": {
        "age": 31
+     },
+     "binary_values": {
      }
    }
 
