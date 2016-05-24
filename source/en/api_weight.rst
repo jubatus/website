@@ -21,10 +21,6 @@ Example:
   .. code-block:: javascript
 
      {
-       "method" : "AROW",
-       "parameter" : {
-         "regularization_weight" : 1.0
-       },
        "converter" : {
          "string_filter_types" : {},
          "string_filter_rules" : [],
@@ -53,7 +49,7 @@ Data Structures
 
       Represents a name for the dimension of the feature vector.
 
-   .. mpidl:member:: 1: double value
+   .. mpidl:member:: 1: float value
 
       Represents a weight for the dimension of the feature vector.
 

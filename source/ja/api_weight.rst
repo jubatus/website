@@ -21,10 +21,6 @@ JSON の各フィールドは以下のとおりである。
   .. code-block:: javascript
 
      {
-       "method" : "AROW",
-       "parameter" : {
-         "regularization_weight" : 1.0
-       },
        "converter" : {
          "string_filter_types" : {},
          "string_filter_rules" : [],
@@ -53,7 +49,7 @@ Data Structures
 
       特徴ベクトルの次元名を表す。
 
-   .. mpidl:member:: 1: double value
+   .. mpidl:member:: 1: float value
 
       特徴ベクトルの次元の重みを表す。
 
