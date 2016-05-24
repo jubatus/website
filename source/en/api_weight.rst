@@ -49,7 +49,7 @@ Data Structures
 
       Represents a name for the dimension of the feature vector.
 
-   .. mpidl:member:: 1: double value
+   .. mpidl:member:: 1: float value
 
       Represents a weight for the dimension of the feature vector.
 
