@@ -21,10 +21,6 @@ Example:
   .. code-block:: javascript
 
      {
-       "method" : "AROW",
-       "parameter" : {
-         "regularization_weight" : 1.0
-       },
        "converter" : {
          "string_filter_types" : {},
          "string_filter_rules" : [],
