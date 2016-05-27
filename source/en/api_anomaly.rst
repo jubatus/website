@@ -120,8 +120,7 @@ Example:
            "table_num" : 4,
            "seed" : 1091,
            "probe_num" : 64,
-           "bin_width" : 100,
-           "retain_projection" : false
+           "bin_width" : 100
          }
        },
        "converter" : {
