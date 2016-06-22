@@ -458,6 +458,7 @@ In concrete, the weight is the product of these two weights.
     ============= =====================
     ``"bin"``     global_weight is 1 for all features.
     ``"idf"``     global_weight is the inverse of logarithm of normalized document frequency. It is called Inverse Document Frequency. For example, if a feature is included in 50 documents of all 1000 documents, its global_weight is log(1000/50). Roughly speaking, the less a feature frequently appears, the greater its idf is.
+    ``"bm25"``    global_weight is calculated by Okapi BM25 method. In addition to the feature frequency, BM25 takes the length of the document that the feature appears into consideration. Roughly speaking, the less feature frequently appears and the short the length of the document the feature is in, the greater its weight is. Generally used in combination with ``"sample_weight": "tf"``. Note that calculation cost is higher than IDF.
     ============= =====================
 
 In most of machine learning tasks, it works well even if we use "bin" in both sample_weight and global_weight.
