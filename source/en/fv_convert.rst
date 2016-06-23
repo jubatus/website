@@ -423,9 +423,9 @@ The followings are available values of "method" and keys that must be specified.
 
  Separate given string by specified characters and use a set of substrings as features.
 
-  :separators:  Specifies characters separate the string. If multiple characters are set , each of them are used as separator.
+  :separators:  Specifies characters to separate the string. If multiple characters are set, each of them are used as a separator.
 
- The following is examples of configuration when we split strings with comma , and 3 characters a,b,c .
+ The followings are examples of configuration to split strings with comma "," and 3 characters {"a", "b", "c"}.
 
  .. code-block:: js
 
