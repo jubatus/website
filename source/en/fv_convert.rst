@@ -412,13 +412,6 @@ The followings are available values of "method" and keys that must be specified.
         }
       }
 
-.. describe:: dynamic
-
- Use a plugin. See below for further detail.
-
-  :path:      Specifies a path to a plugin.
-  :function:  Specifies a function to be called in a plugin.
-
 .. describe:: split
 
  Separate given string by specified characters and use a set of substrings as features.
@@ -433,6 +426,13 @@ The followings are available values of "method" and keys that must be specified.
         "comma_split":  { "method": "split", "separators": "," },
         "abc_split": { "method": "split", "separators": "abc" }
       }
+
+.. describe:: dynamic
+
+ Use a plugin. See below for further detail.
+
+  :path:      Specifies a path to a plugin.
+  :function:  Specifies a function to be called in a plugin.
 
 
 string_rules

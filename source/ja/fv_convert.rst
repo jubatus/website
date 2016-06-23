@@ -482,13 +482,6 @@ string_filter_typesなどと同様、<抽出器名>:<引数> からなる辞書�
         }
       }
 
-.. describe:: dynamic
-
- プラグインを利用する。詳細は後述する。
-
-  :path:      プラグインのパスを指定する。
-  :function:  プラグインの呼び出し関数を指定する。
-
 .. describe:: split
 
  指定した文字を区切り文字として文字列を分割し、それぞれを特徴量として利用する。
@@ -503,6 +496,13 @@ string_filter_typesなどと同様、<抽出器名>:<引数> からなる辞書�
         "comma_split":  { "method": "split", "separators": "," },
         "abc_split": { "method": "split", "separators": "abc" }
       }
+
+.. describe:: dynamic
+
+ プラグインを利用する。詳細は後述する。
+
+  :path:      プラグインのパスを指定する。
+  :function:  プラグインの呼び出し関数を指定する。
 
 
 string_rules
