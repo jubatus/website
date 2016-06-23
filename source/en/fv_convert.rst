@@ -419,7 +419,21 @@ The followings are available values of "method" and keys that must be specified.
   :path:      Specifies a path to a plugin.
   :function:  Specifies a function to be called in a plugin.
 
-.. describe:: split Separate given string by specified characters and use a set of substrings as features.  :separators:  Specifies characters separate the string. If multiple characters are set , each of them are used as separator. The following is examples of configuration when we split strings with comma , and 3 characters a,b,c . .. code-block:: js      "string_types": {        "comma_split":  { "method": "split", "separators": "," },        "abc_split": { "method": "split", "separators": "abc" }      }      
+.. describe:: split
+
+ Separate given string by specified characters and use a set of substrings as features.
+
+  :separators:  Specifies characters separate the string. If multiple characters are set , each of them are used as separator.
+
+ The following is examples of configuration when we split strings with comma , and 3 characters a,b,c .
+
+ .. code-block:: js
+
+      "string_types": {
+        "comma_split":  { "method": "split", "separators": "," },
+        "abc_split": { "method": "split", "separators": "abc" }
+      }
+
 
 string_rules
 ~~~~~~~~~~~~
