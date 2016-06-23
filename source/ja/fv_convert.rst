@@ -489,6 +489,22 @@ string_filter_typesなどと同様、<抽出器名>:<引数> からなる辞書�
   :path:      プラグインのパスを指定する。
   :function:  プラグインの呼び出し関数を指定する。
 
+.. describe:: split
+
+ 指定した文字を区切り文字として文字列を分割し、それぞれを特徴量として利用する。
+
+  :separators:  区切り文字として利用する文字を指定する。複数の文字を指定した場合はそれぞれを区切り文字とする。
+
+ 例として、カンマを区切り文字として利用する場合、およびa,b,cの3文字を区切り文字として利用する場合に定義する方法を記す。
+
+ .. code-block:: js
+
+      "string_types": {
+        "comma_split":  { "method": "split", "separators": "," },
+        "abc_split": { "method": "split", "separators": "abc" }
+      }
+
+
 string_rules
 ~~~~~~~~~~~~
 
