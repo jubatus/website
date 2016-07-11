@@ -285,7 +285,7 @@ The configuration information is given by the JSON unit. Here is the meaning of 
   By using the whole items definition list: TEXT file(TEXT_COLUMN); as well as the "String" and "Double" items definition list (STRING_COLUMN、DOUBLE_COLUMN), we store the items in different list due to their types (Row 137 - 134).
   Put the two lists into one Datum unit and add arguments for each items in the lists, as done by the private method [makeDatum](Row 145).
 
-  In the [makeDatum], we will store the data items into the string-list and double-list.　(Row 172-200). We add String value to Datum unit using addString(...) method. In a similar manner, we add Double value to Datum unit using addNumber(...) method. Note that, because the data in doubleList is in String format, data convertion is required when put it into Datum unit (Row 175).
+  In the [makeDatum], we will store the data items into the string-list and double-list.　(Row 165-183). We add String value to Datum unit using addString(...) method. In a similar manner, we add Double value to Datum unit using addNumber(...) method. Note that, because the data in doubleList is in String format, data convertion is required when put it into Datum unit (Row 175).
   
   Now, our learning data is ready in the Datum format.
 
@@ -324,7 +324,7 @@ Run the sample program
 **［At Jubatus Client］**
  Get the required package and Java client ready.
  Run!
- Please see the detail here -> ` `Jubatus Example <https://github.com/jubatus/jubatus-example/tree/master/network_intrusion_detection>`_ 
+ Please see the detail here -> `Jubatus Example <https://github.com/jubatus/jubatus-example/tree/master/network_intrusion_detection>`_ 
 
  
 **［Result］**

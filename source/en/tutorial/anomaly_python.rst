@@ -45,7 +45,6 @@ In this sample program, we will explain 1) how to configure the learning-algorit
 **anomaly.py**
 
 .. code-block:: python
-
  :linenos:
 
  #!/usr/bin/env python
@@ -174,14 +173,14 @@ The configuration information is given by the JSON unit. Here is the meaning of 
  
  1. Connect to Jubatus Server
 
-  Connect to Jubatus Server (Row 22)。
+  Connect to Jubatus Server (Row 22).
   Setting the IP addr., RPC port of Jubatus Server.
 
  2. Prepare the learning data
 
   AnomalyClient will send the Datum to Jubatus server for data learning or anomaly detection, by using its "add" method.
   In this example, the result-data in KDD Cup(Knowledge Discovery and Data Mining Cup) is used as the trainning data. At first, the program read the training data from the TEXT file, one line at a time (Row 25). The data in TEXT file are seperated by commas, so we split the items by ’,’ (Row 27).
-  Then, we make the data items stored in datum unit for model training later.(Row 29-77).
+  Then, we make the data items stored in datum unit for model training later (Row 29-77).
   
  3. Model training (update learning model)
 

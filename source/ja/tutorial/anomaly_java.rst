@@ -294,7 +294,7 @@ Anomaly チュートリアル (Java)
   定義したTEXTファイルの項目リスト（TEXT_COLUMN）とStringとDoubleの項目を定義したリスト（STRING_COLUMN、DOUBLE_COLUMN）を用い、型ごとにリストを作成します（137-143行目）。
   作成した２つのリストを引数としてDatumを作成するprivateメソッド「makeDatum」を呼び出します（145行目）。
    
-  「makeDatum」では、定義しているString項目リスト（STRING_COLUMN）と引数のstrListの順番は対応しているので、addString(...)メソッドを使い、添字を揃えてdatumにStringを追加します。
+  「makeDatum」では、String項目リストとDouble項目リストにデータを登録してdatumを作成します( 165-183行目)。定義しているString項目リスト（STRING_COLUMN）と引数のstrListの順番は対応しているので、addString(...)メソッドを使い、添字を揃えてdatumにStringを追加します。
   Double項目リストもString項目と同様にaddNumber(...)メソッドを使い、添字を揃えてdatumにNumberを追加します。ここで明示的にDoubleに変換する必要があることに注意してください（175行目）。
   これで、Datumの作成が完了しました。
 
