@@ -292,12 +292,12 @@ pdf_language = "ja"
 
 # -- Options for manpage output --------------------------------------------------
 man_pages = [
-  ('cli/jubatus_server', 'jubatus_server', 'Jubatus Server', 'PFN & NTT', 8),
-  ('cli/jubatus_proxy',  'jubatus_proxy',  'Jubatus Proxy',  'PFN & NTT', 8),
-  ('cli/jubaconfig',     'jubaconfig',     'jubaconfig',     'PFN & NTT', 8),
-  ('cli/jubavisor',      'jubavisor',      'jubavisor',      'PFN & NTT', 8),
-  ('cli/jubactl',        'jubactl',        'jubactl',        'PFN & NTT', 8),
-  ('cli/jubaconv',       'jubaconv',       'jubaconv',       'PFN & NTT', 1),
-  ('cli/jubadump',       'jubadump',       'jubadump',       'PFN & NTT', 1),
-  ('cli/jenerator',      'jenerator',      'jenerator',      'PFN & NTT', 1),
+  ('commands/jubatus_server', 'jubatus_server', 'Jubatus Server', 'PFN & NTT', 8),
+  ('commands/jubatus_proxy',  'jubatus_proxy',  'Jubatus Proxy',  'PFN & NTT', 8),
+  ('commands/jubaconfig',     'jubaconfig',     'jubaconfig',     'PFN & NTT', 8),
+  ('commands/jubavisor',      'jubavisor',      'jubavisor',      'PFN & NTT', 8),
+  ('commands/jubactl',        'jubactl',        'jubactl',        'PFN & NTT', 8),
+  ('commands/jubaconv',       'jubaconv',       'jubaconv',       'PFN & NTT', 1),
+  ('commands/jubadump',       'jubadump',       'jubadump',       'PFN & NTT', 1),
+  ('commands/jenerator',      'jenerator',      'jenerator',      'PFN & NTT', 1),
 ]
