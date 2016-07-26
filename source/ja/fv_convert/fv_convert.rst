@@ -104,7 +104,7 @@ datumは文字列データ、数値データ、バイナリデータの3つが�
 
 フィルターと特徴抽出器には引数を必要とするものもあるため、それらはtypesで事前に準備することによって各規則で利用することができるようになる。
 
-.. figure:: ../_static/convert_flow.png
+.. figure:: ../../_static/convert_flow.png
    :width: 90 %
    :alt: feature vector converter
 

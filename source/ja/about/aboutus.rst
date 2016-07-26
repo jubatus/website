@@ -6,7 +6,7 @@ Jubatus チームメンバ
 
 .. jubamember::
   :name: 海野 裕也
-  :photo: _static/members/unno.jpg
+  :photo: ../_static/members/unno.jpg
   :role: Project Lead
   :expertise: Natural Language Processing, Text Mining
   :contrib: Project Management, Algorithm Development, Feature Converter, Client Generator
@@ -19,7 +19,7 @@ Jubatus チームメンバ
 
 .. jubamember::
   :name: 比戸 将平
-  :photo: _static/members/hido.jpg
+  :photo: ../_static/members/hido.jpg
   :role: Algorithm Development Lead
   :expertise: Data Mining, Machine Learning
   :contrib: Algorithm Design and Development (Anomaly Detection), Business Development
@@ -32,7 +32,7 @@ Jubatus チームメンバ
 
 .. jubamember::
   :name: 岡野原 大輔
-  :photo: _static/members/okanohara.jpg
+  :photo: ../_static/members/okanohara.jpg
   :role: Advisor
   :contrib: PR, Vision, Algorithm Design, Business Development
   :github: hillbig
@@ -43,7 +43,7 @@ Jubatus チームメンバ
 
 .. jubamember::
   :name: 大野 健太
-  :photo: _static/members/oono.jpg
+  :photo: ../_static/members/oono.jpg
   :role: Developer
   :expertise: Mathematics (Conformal Geometry)
   :contrib: Algorithm Design (Anomaly Detection, Graph Mining), Documentation, IDL
@@ -64,7 +64,7 @@ Jubatus チームメンバ
 
 .. jubamember::
   :name: 得居 誠也
-  :photo: _static/members/tokui.jpg
+  :photo: ../_static/members/tokui.jpg
   :role: Developer
   :expertise: Machine Learning
   :contrib: Algorithm Design and Development (Recommender, Anomaly Detection, Graph Mining), Architecture Design and Development
@@ -97,7 +97,7 @@ Jubatus チームメンバ
 
 .. jubamember::
   :name: 柏原 秀蔵
-  :photo: _static/members/kashihara.jpg
+  :photo: ../_static/members/kashihara.jpg
   :role: Developer
   :expertise: Distributed System
   :contrib: Release Management, Refactoring

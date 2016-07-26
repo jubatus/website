@@ -1,7 +1,7 @@
-チュートリアル
-===============
+Basic チュートリアル
+================
 
-チュートリアルを始める前に、Jubatus および Jubatus Python クライアントをインストールする必要があります。この手順については :doc:`quickstart` を参照してください。
+チュートリアルを始める前に、Jubatus および Jubatus Python クライアントをインストールする必要があります。この手順については :doc:`../install/quickstart` を参照してください。
 
 
 シナリオ
@@ -17,7 +17,7 @@ News20は便宜上、80%の学習用データ(20news-bydate-train)と、20%の�
 
 * Jubatus サーバをスタンドアローン構成で起動する
 
-  * 分散環境での動作に興味がある方は、このチュートリアルの *後で* :doc:`tutorial_distributed` をご覧ください。
+  * 分散環境での動作に興味がある方は、このチュートリアルの *後で* :doc:`../distributed_mode/tutorial_distributed` をご覧ください。
 
 * Jubatus サーバを JSON スタイル で設定する
 * Jubatus の分類器を ``train`` と ``classify`` API で使用する
@@ -232,7 +232,7 @@ Dataset
 
 このチュートリアルでは、 ``PA`` を選択します。
 
-``converter`` は、入力データをどのように加工して、特徴ベクトルに変換するのかを指定します (詳細は :doc:`fv_convert` を参照してください)。
+``converter`` は、入力データをどのように加工して、特徴ベクトルに変換するのかを指定します (詳細は :doc:`../fv_convert/fv_convert` を参照してください)。
 
 このチュートリアルで使用する学習データは、自然言語のテキストです。
 英語など多くの言語は、空白と改行で区切るだけで単語を抽出できます。
@@ -296,20 +296,3 @@ Classifier API: 学習(train) と 分類(classify)
    ]]
 
 メッセージ ``d2`` は ``"comp.sys.mac.hardware"`` に投稿された可能性が高いことが分かりました。
-
-その他のチュートリアル
--------------------------
-
-本項では、Jubatus Clientの使い方を、サンプルプログラムを利用して解説します。
-
-.. toctree::
-   :maxdepth: 1
-
-   tutorial/classifier
-   tutorial/recommender
-   tutorial/anomaly
-   tutorial/regression
-   tutorial/graph
-   tutorial/stat
-
-Nearnest_Neighbor、Clustering、Burst のチュートリアルは、現在準備中です。

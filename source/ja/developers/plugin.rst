@@ -37,7 +37,7 @@ fv_converter プラグインの開発は以下の手順で行う。
   public:
     void split(const string& string,
                vector<pair<size_t, size_t> >& ret_boundaries) const {
-     // do somehting
+     // do something
    }
  };
  

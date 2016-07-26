@@ -16,7 +16,7 @@ Description
 ``jubaconv`` は fv_converter 内部の動作をシミュレーションし、変換結果をコマンドラインで表示することができる。
 
 ``jubaconv`` は 1 件のデータだけを対象に処理を行うため、文字列特徴抽出ルール (``string_rules``) の ``global_weight`` は計算されない。
-``global_weight`` も含めたシミュレーションが必要な場合は :doc:`../api_weight` を使用すること。
+``global_weight`` も含めたシミュレーションが必要な場合は :doc:`../api/api_weight` を使用すること。
 
 Options
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
