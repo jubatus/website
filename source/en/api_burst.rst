@@ -84,7 +84,7 @@ Data Structures
 
         ``scaling_param < total_documents / relevant_documents``
       
-      at each batch, ``burst weight`` will return ``INF``. 
+      at each batch, ``burst_weight`` will return ``INF``. 
       ( For more detail, see the original paper `[Kleinburg02] <http://www.cs.cornell.edu/home/kleinber/bhs.pdf>`_)
 
    .. mpidl:member:: 2: double gamma
