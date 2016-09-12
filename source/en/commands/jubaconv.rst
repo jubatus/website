@@ -43,9 +43,9 @@ Options
 
    This option must be given only if ``fv`` is specified for :option:`-o`.
 
-* Note: If the input format is ``json``, we have to add a backslash symbol ``\`` at the start of ``key`` in jubatus server config files.
+* Note: If the input format is ``json``, we have to add a slash symbol ``/`` at the start of ``key`` in jubatus server config files.
     * If the input format is ``datum``: ``"num_rules" : [{"key": "number", "type": "num"}]``
-    * If the input format is ``json``:  ``"num_rules" : [{"key": "\number", "type": "num"}]``
+    * If the input format is ``json``:  ``"num_rules" : [{"key": "/number", "type": "num"}]``
 
 File Formats
 --------------------------------------------------
