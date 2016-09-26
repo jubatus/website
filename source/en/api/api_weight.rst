@@ -14,7 +14,7 @@ The server will work even if ``method``, ``parameter`` is specified in the confi
 .. describe:: converter
 
    Specify configuration for data conversion.
-   Its format is described in :doc:`fv_convert`.
+   Its format is described in :doc:`../fv_convert/fv_convert`.
 
 
 Example:

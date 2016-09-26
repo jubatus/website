@@ -30,13 +30,13 @@ Table of Contents
    tutorial/index
    distributed_mode/tutorial_distributed
    fv_convert/fv_convert
+   method/method
    commands/commands
    api/api
    tips_faqs/index
    developers/index
    jubaql/jubaql
    about/index
-
 
 
 Other Resources

@@ -13,7 +13,7 @@ Additionally, to ensure high performance, you should carefully plan the process 
 
 This is the process configuration that we recommend.
 
-.. figure:: ../_static/process_configuration.png
+.. figure:: ../../_static/process_configuration.png
    :width: 90 %
    :alt: process configuration
 
