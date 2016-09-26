@@ -607,11 +607,6 @@ If you want to combinate all string features, you needs to write keys like "\*\@
         { "key_left": "*@str#bin/bin", "key_right": "*@str#bin/bin", "type": "mul"}
       ]
 
-      If you want to combinate all string features, you can  
-
-
-
-
 
 combination_types
 ~~~~~~~~~~~~~~~~~~
