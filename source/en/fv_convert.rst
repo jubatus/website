@@ -576,11 +576,18 @@ It depends on "type" how to specify weight and name features.
 
 
 Feature Extraction from Combination Data
--------------------------------
+----------------------------------------
 
-We can make new combination features by combining number features oｒ string features. 
+We can make new combination features by combining number features or string features. 
 As with strings and numbers, feature extraction rules are also described for combination types.
 We can make user-defined extractors for combination types, too.
+
+We show a sample configuration.
+We can make new features by summing up ('add') or multiplying ('mul') two numeric features or string features.
+
+In this configuration, we can combinate string features that are converted by "bin/bin" method,
+i.e. sample_weight and global weight are "bin".
+If you want to combinate all string features, you needs to write keys like "\*\@str\*".
 
 .. code-block:: js     
 
@@ -599,6 +606,11 @@ We can make user-defined extractors for combination types, too.
         { "key_left": "*@str#bin/bin", "key_right": "*@str#bin/bin", "type": "add"}
         { "key_left": "*@str#bin/bin", "key_right": "*@str#bin/bin", "type": "mul"}
       ]
+
+      If you want to combinate all string features, you can  
+
+
+
 
 
 combination_types
