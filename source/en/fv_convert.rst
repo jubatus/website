@@ -575,6 +575,78 @@ It depends on "type" how to specify weight and name features.
  :type:   Specifies the name of extractor in use. The extractor is either one defined in "binary_types". Note that no pre-defined extractors are prepared.
 
 
+Feature Extraction from Combination Data
+----------------------------------------
+
+We can make new combination features by combining number features or string features. 
+As with strings and numbers, feature extraction rules are also described for combination types.
+We can make user-defined extractors for combination types, too.
+
+We show a sample configuration.
+We can make new features by summing up ('add') or multiplying ('mul') two numeric features or string features.
+
+In this configuration, we can combinate string features that are converted by "bin/bin" method,
+i.e. sample_weight and global weight are "bin".
+If you want to combinate all string features, you needs to write keys like "\*\@str\*".
+
+.. code-block:: js     
+
+      "num_types": {},
+      "num_rules": [
+        {"key": "*", "type": "num"}
+      ],
+      "string_types": {},
+      "string_rules": [
+        {"key": "*": "type": "str", "sample_weight": "bin", "global_weight": "bin"},
+      ],
+      "combination_types": {},
+      "combination_rules": [
+        { "key_left": "*@num", "key_right": "*@num", "type": "add"},
+        { "key_left": "*@num", "key_right": "*@num", "type": "mul"},
+        { "key_left": "*@str#bin/bin", "key_right": "*@str#bin/bin", "type": "add"}
+        { "key_left": "*@str#bin/bin", "key_right": "*@str#bin/bin", "type": "mul"}
+      ]
+
+
+combination_types
+~~~~~~~~~~~~~~~~~~
+
+Feature extractors for combination data are defined in "combination_types".
+As with "string_types", it specifies a dictionary which consists of <extractor name>:<argument>.
+<argument> is a dictionary whose keys and values are both strings and must contain a key named "method".
+The rest of keys in <argument> are dependent on the value of "method".
+The followings are available values of "method" and keys that must be specified.
+
+.. describe:: dynamic
+
+ Use a plugin. See below for further detail.
+
+  :path:      Specifies a path to a plugin.
+  :function:  Specifies a function to be called in a plugin.
+
+
+combination_rules
+~~~~~~~~~~~~~~~~~~
+
+Specifies how to extract combination features.
+As "string_rules", it consists of multiple rules.
+Each rule is a dictionary whose keys are "key_left", "key_right", "except_left" (optional), "except_right" (optional) and "type".
+It depends on "type" how to specify weight and name features.
+
+ :key_left:   The first argument. It specifies to which keys in a datum we apply the rule. For further explanation, please read counterpart in "string_filter_rules" section.
+ :key_right:  The second argument.　Same as above.
+ :except_left: The exception key for "key_left". It specifies which keys to exclude from the match. This is an optional parameter. For further explanation, please read counterpart in "string_filter_rules" section.
+ :except_right:   The exception key for "key_right". Same as above.
+ :type: It specifies the name of extractor in use. The extractor is either one defined in "combination_types" or one of pre-defined extractors. The followings are the pre-defined extractors.
+
+    ============= =====================
+    Value         Meaning
+    ============= =====================
+    ``"add"``     Use sum of given values as weight.
+    ``"mul"``     Use product of given values as weight.
+    ============= =====================
+
+
 Hashing Key of Feature Vector
 -----------------------------
 
