@@ -42,7 +42,7 @@ def html_visit_jubamember_node(self, node):
 
     # Default Values
     if 'photo' not in node:
-        node['photo'] = '_static/members/none.png'
+        node['photo'] = '../_static/members/none.png'
 
     if 'role' not in node:
         node['role'] = 'Contributor'

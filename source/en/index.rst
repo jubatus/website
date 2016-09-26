@@ -17,25 +17,27 @@ Get Jubatus
 The latest version of Jubatus is |release| (`ChangeLog <https://github.com/jubatus/jubatus/blob/master/ChangeLog.rst>`_). Jubatus is distributed under LGPL v2.1.
 
 * Download Source: `TAR <https://github.com/jubatus/jubatus/tarball/master>`_ / `ZIP <https://github.com/jubatus/jubatus/zipball/master>`_ / `Git <https://github.com/jubatus/jubatus.git>`_
-* Binary Packages: see :doc:`quickstart`
+* Binary Packages: see :doc:`install/quickstart`
 
 Table of Contents
 -----------------
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
 
-   quickstart
-   overview
-   tutorial
-   tutorial_distributed
-   documentation
-   references
+   overview/overview
+   install/quickstart
+   tutorial/index
+   distributed_mode/tutorial_distributed
+   fv_convert/fv_convert
+   commands/commands
+   api/api
+   tips_faqs/index
+   developers/index
    jubaql/jubaql
-   howtocontribute
-   cla
-   misc
-   aboutus
+   about/index
+
+
 
 Other Resources
 ===============
