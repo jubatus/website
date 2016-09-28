@@ -534,7 +534,7 @@ It depends on "type" how to specify weight and name features.
     Value         Meaning
     ============= =====================
     ``"num"``     Use given number itself as weight.
-    ``"log"``     Use logarithm of given number as weight. If the number is not positive, weight is 0.
+    ``"log"``     Use natural logarithm of given number as weight. If the number is not positive, weight is 0.
     ``"str"``     Use given number as a string. This extractor is used when the value of the number is not important, such as user ID. Weight is set to be 1.
     ============= =====================
 
