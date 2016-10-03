@@ -14,13 +14,13 @@ Feel free to make pull-requests to this repository.
 Requirements
 ------------
 
-* Sphinx 1.1.3 + pngmath + blockdiag
+* Sphinx 1.1.3 + pngmath + blockdiag + sphinx_rtd_theme
 
 Easy setup for Ubuntu 12.04 systems:
 
 ```
 # apt-get install python-sphinx latex-cjk-japanese texlive-latex-extra dvipng
-# pip install sphinxcontrib-blockdiag sphinxcontrib-rubydomain
+# pip install sphinxcontrib-blockdiag sphinxcontrib-rubydomain sphinx_rtd_theme
 ```
 
 How to Edit
