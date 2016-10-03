@@ -73,9 +73,7 @@ def html_visit_jubamember_node(self, node):
               <div class="member-contrib">Contributions: %s</div>
         """ % node['contrib']
     if 'goal' in node:
-        member_box += u"""
-              <div class="member-contrib">Goal for 2013: %s</div>
-        """ % node['goal']
+        pass
 
     # Social Links
     member_box += u"""
