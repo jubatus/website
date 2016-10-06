@@ -545,7 +545,7 @@ class MpidlObject(ObjectDescription):
 
         indextext = self.get_index_text(name)
         if indextext:
-            self.indexnode['entries'].append(('single', indextext, theid, ''))
+            self.indexnode['entries'].append(('single', indextext, theid, '', None))
 
     def before_content(self):
         lastname = self.names and self.names[-1]
