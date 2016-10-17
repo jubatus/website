@@ -2,7 +2,7 @@
 ==============
 
 チュートリアルを始める前に、Jubatus および Jubatus Python クライアントをインストールする必要があります。
-この手順については :doc:`../install/quickstart` を参照してください。
+この手順については :doc:`../quickstart` を参照してください。
 
 .. toctree::
    :maxdepth: 1
@@ -26,4 +26,4 @@
 - `Ruby クライアント開発用スケルトン <https://github.com/jubatus/jubatus-ruby-skeleton>`_
 - `Java クライアント開発用スケルトン <https://github.com/jubatus/jubatus-java-skeleton>`_ (Eclipse プロジェクトのテンプレート)
 
-Jubatus がどのような機能を持っているか知るには、 :doc:`../api/api` をチェックしてください。
+Jubatus がどのような機能を持っているか知るには、 :doc:`../api/index` をチェックしてください。

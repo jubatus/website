@@ -5,7 +5,7 @@ How to Get Clients
 
 There are two ways in getting a client code of each service in each language.
 
-- Use package management system (see :doc:`../install/quickstart`)
+- Use package management system (see :doc:`../quickstart`)
 
 - Generate client code with jenerator and .idl file
 

@@ -2,7 +2,7 @@ Tutorial
 ========
 
 Before trying the tutorial, you need to install Jubatus and Jubatus Python client.
-See :doc:`../install/quickstart` for instructions.
+See :doc:`../quickstart` for instructions.
 
 .. toctree::
    :maxdepth: 1

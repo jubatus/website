@@ -13,7 +13,7 @@ Jubatus は以下の特徴を持ったオンライン機械学習向け分散処
 - 特徴ベクトル変換器 (fv_converter): データの前処理と特徴抽出
 - フォルトトレラントな分散機械学習のためのフレームワーク
 
-Jubatus は Spark (:doc:`jubaql/jubaql`) や Python / scikit-learn (`Jubakit <./jubakit/>`_) と連携して動作させることも可能です。
+Jubatus は Spark (:doc:`jubaql/index`) や Python / scikit-learn (`Jubakit <./jubakit/>`_) と連携して動作させることも可能です。
 
 `English documentation <../en/>`_ is also available.
 
@@ -23,7 +23,7 @@ Get Jubatus
 Jubatus の最新バージョンは |release| (`ChangeLog <https://github.com/jubatus/jubatus/blob/master/ChangeLog.rst>`_) です。Jubatus は LGPL v2.1 の下で配布されています。
 
 * ソースコードのダウンロード: `TAR <https://github.com/jubatus/jubatus/tarball/master>`_ / `ZIP <https://github.com/jubatus/jubatus/zipball/master>`_ / `Git <https://github.com/jubatus/jubatus.git>`_
-* バイナリパッケージ: :doc:`install/quickstart` をご覧ください。
+* バイナリパッケージ: :doc:`quickstart` をご覧ください。
 
 Table of Contents
 -----------------
@@ -31,17 +31,17 @@ Table of Contents
 .. toctree::
    :maxdepth: 1
 
-   overview/summary
-   install/quickstart
+   overview/index
+   quickstart
    tutorial/index
-   distributed_mode/tutorial_distributed
-   method/method
-   fv_convert/fv_convert
-   commands/commands
-   api/api
+   tutorial_distributed
+   method
+   fv_convert
+   commands/index
+   api/index
    tips_faqs/index
    developers/index
-   jubaql/jubaql
+   jubaql/index
    about/index
 
 Other Resources

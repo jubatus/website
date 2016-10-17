@@ -9,7 +9,7 @@ Data Structures
 .. mpidl:message:: datum
 
    Represents a set of data used for machine learning in Jubatus.
-   See :doc:`../fv_convert/fv_convert` for details.
+   See :doc:`../fv_convert` for details.
 
    You can change internal values of a datum with these methods.
 

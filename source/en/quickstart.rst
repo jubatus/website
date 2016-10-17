@@ -186,7 +186,7 @@ Write Your Application
 
 Congratulations!
 Now you can write your own application using Jubatus.
-See the :doc:`../api/api` for what Jubatus can do.
+See the :doc:`../api/index` for what Jubatus can do.
 
 Skeleton projects are also available:
 

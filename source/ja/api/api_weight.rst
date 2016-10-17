@@ -14,7 +14,7 @@ JSON の各フィールドは以下のとおりである。
 .. describe:: converter
 
    特徴変換の設定を指定する。
-   フォーマットは :doc:`../fv_convert/fv_convert` で説明する。
+   フォーマットは :doc:`../fv_convert` で説明する。
 
 
 例:

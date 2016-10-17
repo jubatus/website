@@ -1,7 +1,7 @@
 Basic Tutorial
 ==============
 
-Before trying the tutorial, you need to install Jubatus and Jubatus Python client. See :doc:`../install/quickstart` for instructions.
+Before trying the tutorial, you need to install Jubatus and Jubatus Python client. See :doc:`../quickstart` for instructions.
 
 
 Scenario
@@ -17,7 +17,7 @@ This tutorial covers the following topics:
 
 * Running Jubatus server in standalone mode
 
-  * If you are interested in distributed mode, see :doc:`../distributed_mode/tutorial_distributed` *after* this tutorial.
+  * If you are interested in distributed mode, see :doc:`../tutorial_distributed` *after* this tutorial.
 
 * Configuring Jubatus server via JSON style config
 * Using Jubatus classification service via ``train`` and ``classify`` API
@@ -228,7 +228,7 @@ You can choose one of the following algorithms as ``method``:
 
 We use ``PA`` in this tutorial.
 
-``converter`` decides how to extract feature vector from input data (see :doc:`../fv_convert/fv_convert` for details).
+``converter`` decides how to extract feature vector from input data (see :doc:`../fv_convert` for details).
 
 In this tutorial, input data is text of natural language.
 In many languages such as English, words can be extracted by just splitting with spaces and line breaks.

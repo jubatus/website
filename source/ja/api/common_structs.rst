@@ -9,7 +9,7 @@
 .. mpidl:message:: datum
 
    Jubatus で機械学習の対象となるデータを表す。
-   詳細は :doc:`../fv_convert/fv_convert` を参照すること。
+   詳細は :doc:`../fv_convert` を参照すること。
 
    datumは以下の様なインターフェースを通して、内部情報の更新を行う。
 

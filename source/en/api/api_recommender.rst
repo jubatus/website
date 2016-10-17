@@ -2,7 +2,7 @@ Recommender
 -----------
 
 * See `IDL definition <https://github.com/jubatus/jubatus/blob/master/jubatus/server/server/recommender.idl>`_ for detailed specification.
-* See :doc:`../method/method` for detailed description of algorithms used in this server.
+* See :doc:`../method` for detailed description of algorithms used in this server.
 
 
 Configuration
@@ -188,7 +188,7 @@ We show each field below:
 .. describe:: converter
 
    Specify configuration for data conversion.
-   Its format is described in :doc:`../fv_convert/fv_convert`.
+   Its format is described in :doc:`../fv_convert`.
 
 
 Example:

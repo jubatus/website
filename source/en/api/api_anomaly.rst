@@ -103,7 +103,7 @@ We show each field below:
 .. describe:: converter
 
    Specify configuration for data conversion.
-   Its format is described in :doc:`../fv_convert/fv_convert`.
+   Its format is described in :doc:`../fv_convert`.
 
 
 Example:

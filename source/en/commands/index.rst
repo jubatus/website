@@ -1,4 +1,4 @@
-Jubatus CLI
+Commands
 ===========
 
 .. toctree::

@@ -5,7 +5,7 @@
 
 各言語版のJubatusクライアントを取得する方法は、二種類あります。
 
-- パッケージ管理システムを使用する (:doc:`../install/quickstart` 参照)。
+- パッケージ管理システムを使用する (:doc:`../quickstart` 参照)。
 
 - jenerator と .idl ファイルから生成する。
 

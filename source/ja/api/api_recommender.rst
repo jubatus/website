@@ -2,7 +2,7 @@ Recommender
 -----------
 
 * 詳細な仕様は `IDL 定義 <https://github.com/jubatus/jubatus/blob/master/jubatus/server/server/recommender.idl>`_ を参照してください。
-* 使用されているアルゴリズムの詳細については :doc:`../method/method` を参照してください。
+* 使用されているアルゴリズムの詳細については :doc:`../method` を参照してください。
 
 
 Configuration
@@ -192,7 +192,7 @@ JSON の各フィールドは以下のとおりである。
 .. describe:: converter
 
    特徴変換の設定を指定する。
-   フォーマットは :doc:`../fv_convert/fv_convert` で説明する。
+   フォーマットは :doc:`../fv_convert` で説明する。
 
 
 例:

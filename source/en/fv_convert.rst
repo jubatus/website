@@ -92,7 +92,7 @@ For binary data, features are extracted from binary data with "binary_rules".
 
 As some filters and feature extractors requires arguments, these are available in "string_rules" and "num_rules" if we prepare them in "string_types" and "num_types", respectively.
 
-.. figure:: ../../_static/convert_flow.png
+.. figure:: ../_static/convert_flow.png
    :width: 90 %
    :alt: feature vector converter
 
