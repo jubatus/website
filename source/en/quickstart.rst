@@ -84,14 +84,14 @@ If you're using csh or tcsh, use this instead:
 Other Linux Distributions (including 32-bit)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use `jubatus-installer <https://github.com/jubatus/jubatus-installer>`_ or see :doc:`build` to build from source.
+Use `jubatus-installer <https://github.com/jubatus/jubatus-installer>`_ or see :doc:`../developers/build` to build from source.
 
 Mac OS X
 ~~~~~~~~
 
 If you're using Homebrew, you can use `tap repository <https://github.com/jubatus/homebrew-jubatus>`_ for installation.
 
-In other case, use `jubatus-installer <https://github.com/jubatus/jubatus-installer>`_ or see :doc:`build` to build from source.
+In other case, use `jubatus-installer <https://github.com/jubatus/jubatus-installer>`_ or see :doc:`../developers/build` to build from source.
 
 Install Jubatus Client Libraries
 --------------------------------
@@ -100,7 +100,7 @@ Jubatus client applications can be written in C++, Python, Ruby or Java.
 You need to setup the client library for each language to use Jubatus from client applications.
 Client libraries are distributed under MIT License.
 
-If you're going to try :doc:`tutorial`, just install Python client and go ahead.
+If you're going to try :doc:`../tutorial/tutorial`, just install Python client and go ahead.
 
 Version of Jubatus and Jubatus clients may be different, as clients are not updated when there are no API changes to Jubatus.
 
@@ -178,7 +178,7 @@ Please add these lines to ``pom.xml`` of your project.
 Try Tutorial
 ------------
 
-Try the :doc:`tutorial` (requires Python client).
+Try the :doc:`../tutorial/tutorial` (requires Python client).
 
 
 Write Your Application
@@ -186,7 +186,7 @@ Write Your Application
 
 Congratulations!
 Now you can write your own application using Jubatus.
-See the :doc:`api` for what Jubatus can do.
+See the :doc:`../api/index` for what Jubatus can do.
 
 Skeleton projects are also available:
 
