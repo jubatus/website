@@ -696,8 +696,13 @@ When the path doesn't contain '/' character, Jubatus try to load it from two loa
 
 Argument of the function is specified by other parameters.
 
-In Jubatus we can make use of two pre-defined plugins which aim to extraction of features from strings.
+In Jubatus, we can extract features from strings using two pre-defined plugins.
+We can also extract features from images using a pre-defined plugin.
 Note that some plugins are not available depending on your compile options.
+
+Feature Extraction from Strings
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+We can use MeCab pluigin and ux plugin in jubatus.
 
 .. describe:: libmecab_splitter.so
 
@@ -761,5 +766,39 @@ Note that some plugins are not available depending on your compile options.
           "path": "libux_splitter.so",
           "function": "create",
           "dict_path": "/path/to/keyword/dic.txt"
+        }
+      }
+
+Feature Extraction from Images
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+We can use OpenCV in jubatus.
+
+.. describe:: libux_splitter.so
+
+ We can specify this plugin in "binary_types".
+ It extracts features from given images by `OpenCV <https://github.com/opencv>`_ .
+ This plugin is available only when compiled with ``--enable-opencv``.
+
+  :function:  Specifies "create".
+  :algorithm: Specifies the feature extraction algorithm. In jubatus, we can use RGB or ORB to extact featrures from images.  It should be noted that in both algorithm, we detect keypoints by Dense Sampling (which extracts features from all pixels of the image.)
+
+  - RGB : Extracts RGB values in each pixel.
+  - ORB : Makes binary strings by using intensity of pixels. We can refer `OpenCV documentation <http://docs.opencv.org/3.1.0/d1/d89/tutorial_py_orb.html>`_ in detail.
+ 
+  :resize: Specifies whether to resize the image. Specify `"true"` to resize image, or `"false"` not to resize it. When ``resize`` is not specified, `"false"` is assumed.
+  :x_size: Specifies the length of resized images. We can specify it when ``resize`` is `"true"`.
+  :y_size: Specifies the height of resized images. We can specify it when ``resize`` is `"true"`.
+
+ .. code-block:: js
+
+      "binary_types": {
+        "image": {
+          "method": "dynamic",
+          "path": "libimage_feature.so",
+          "algorithm":"ORB",
+          "resize":"true"
+          "x_size":"120.0"
+          "y_size":"120.0"
+          "function": "create",
         }
       }
