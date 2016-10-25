@@ -190,13 +190,44 @@ Methods
   ``mprpc_client`` is a type of MessagePack-RPC client that is different between languages (`C++ <http://ci.jubat.us/job/msgpack-rpc/doxygen/classmsgpack_1_1rpc_1_1client.html>`_ / `Python <https://github.com/msgpack/msgpack-rpc-python/blob/master/msgpackrpc/client.py>`_ / `Ruby <http://msgpack.org/rpc/rdoc/current/MessagePack/RPC/Client.html>`_ / `Java <http://msgpack.org/rpc/javadoc/current/org/msgpack/rpc/Client.html>`_).
 
 
-Auxiliary Methods
-~~~~~~~~~~~~~~~~~
+Language-Specific Features
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Python / Ruby clients have language-specific auxiliary methods.
+Python / Ruby clients have language-specific features.
 
 Python
 ++++++
+
+By using ``embedded_jubatus`` module (`embedded-jubatus-python <https://github.com/jubatus/embedded-jubatus-python>`_) you can call machine learning algorithms provided in Jubatus Core library directly from Python code.
+To install the module run ``pip install embedded_jubatus``.
+Jubatus and Jubatus Core must be installed to install the module.
+
+As illustrated in the example below, ``embedded_jubatus`` provides the same interface as RPC clients.
+
+.. code-block:: python
+
+   from jubatus.anomaly.types import *
+
+   # Use RPC:
+   from jubatus.anomaly.client import Anomaly
+   client = Anomaly('127.0.0.1', 9199, '', 0)
+
+   # Use Embedded
+   from jubatus.embedded import Anomaly
+   client = Anomaly({
+       'method': 'lof',
+       'parameter': { ... },
+       'converter': { ... },
+   })
+
+   # Use Embedded (using JSON config file instead of dict)
+   from jubatus.embedded import Anomaly
+   client = Anomaly('/path/to/config.json')
+
+   # Both Embedded/RPC client supports the same API:
+   client.add( ... )
+
+In addition, the following auxiliary method is available.
 
 .. py:function:: jubatus.commmon.connect(cls, host, port, name, timeout=10)
 
@@ -213,6 +244,8 @@ Python
 
 Ruby
 ++++
+
+The following auxiliary method is available.
 
 .. rb:module:: Jubatus::Common
 
