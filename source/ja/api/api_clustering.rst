@@ -22,6 +22,7 @@ JSON の各フィールドは以下のとおりである。
       ==================== ===================================
       ``"kmeans"``         k-meansを利用する
       ``"gmm"``            混合ガウスモデルを利用する
+      ``"dbscan"``         dbscanを利用する
       ==================== ===================================
 
 .. describe:: parameter
@@ -36,10 +37,60 @@ JSON の各フィールドは以下のとおりである。
 
         * 値域: 1 <= ``k``
 
+     :seed:
+        乱数の生成に使用するシードを指定する。
+        (Integer)
+
+        * 値域: 0 <= ``seed`` <= :math:`2^{32} - 1`
+          
+   dbscan
+     :eps:
+       近傍点とみなす距離を指定する。
+       大きな値を指定するほど、離れている点でも近傍点とみなすようになる。
+       (Float)
+
+       * 値域: 0.0 < ``eps``
+
+     :min_core_point:
+        クラスタの形成に必要な密集度(近傍点の数)の下限を設定する。
+        大きな値を指定するほど、密集度の高い領域のみがクラスタを形成するようになる。
+        (Integer)
+
+        * 値域: 1 <= ``min_core_point``
+
+.. describe:: compressor_method
+
+   データ点を圧縮するアルゴリズムを指定する。
+   ``method`` によって使用できるメソッドが異なる。
+
+   .. table::
+
+      ==================== ===========================================
+      設定値               手法
+      ==================== ===========================================
+      ``"simple"``         圧縮を行わない
+      ``"compressive"``    コアセットによる圧縮を行う(kmeans, gmmのみ)
+      ==================== ===========================================
+
+.. describe:: compressor_parameter
+
+   compressorに渡すパラメータを指定する。
+   ``compressor_method`` に応じて渡すパラメータが異なる。
+
+   simple
+     :bucket_size:
+        ミニバッチを実行するデータの件数。
+        ``bucket_size`` 件のデータが登録される度にクラスタリングが実行される。
+        ただし ``method`` が ``kmeans`` または ``gmm`` の場合、初回のクラスタリングは ``k`` 件のデータが登録されるまで実行されない。
+        (Integer)
+
+        * 値域: 2 <= ``bucket_size``
+
+   compressive
      :bucket_size:
         ミニバッチおよび圧縮を実行するデータの件数。
         ``bucket_size`` 件のデータが登録される度にクラスタリングが実行される。
-        ただし初回のクラスタリングは ``k`` 件のデータが登録されるまで実行されない。
+        ただし ``method`` が ``kmeans`` または ``gmm`` の場合、初回のクラスタリングは ``k`` 件のデータが登録されるまで実行されない。
         (Integer)
 
         * 値域: 2 <= ``bucket_size``
@@ -55,13 +106,13 @@ JSON の各フィールドは以下のとおりである。
         圧縮率 = (``compressed_bucket_size`` / ``bucket_size`` )である。
         (Integer)
 
-        * 値域: ``bicriteria_base_size`` < ``compressed_bucket_size`` < ``bucket_size``
+        * 値域: ``bicriteria_base_size`` <= ``compressed_bucket_size`` < ``bucket_size``
 
      :bicriteria_base_size:
         圧縮の粗さに関係するパラメータ。
         (Integer)
 
-        * 値域: 1 <= ``bicriteria_base_size`` < ``compressed_bucket_size``
+        * 値域: 1 <= ``bicriteria_base_size`` <= ``compressed_bucket_size``
 
      :forgetting_factor:
         忘却定数 ``c_f`` 。
@@ -81,19 +132,7 @@ JSON の各フィールドは以下のとおりである。
 
         * 値域: 0 <= ``seed`` <= :math:`2^{32} - 1`
 
-   kmeans
-     :compressor_method:
-        点を圧縮するアルゴリズムを指定する。
-        ``simple`` (圧縮しない), ``compressive_kmeans`` から選ぶことができる。
-        (String)
 
-   gmm
-     :compressor_method:
-        点を圧縮するアルゴリズムを指定する。
-        ``simple`` (圧縮しない), ``compressive_gmm`` から選ぶことができる。
-        (String)
-
-   ``compressor_method`` が ``simple`` の場合、 ``bucket_length``, ``compressed_bucket_size``, ``bicriteria_base_size``, ``forgetting_factor``, ``forgetting_threshold`` の各パラメタは無視される。
 
 .. describe:: converter
 
@@ -108,7 +147,10 @@ JSON の各フィールドは以下のとおりである。
        "method" : "kmeans",
        "parameter" : {
          "k" : 3,
-         "compressor_method" : "compressive_kmeans",
+         "seed" : 0
+       },
+       "compressor_method" : "compressive",
+       "compressor_parameter" : {
          "bucket_size" : 1000,
          "compressed_bucket_size" : 100,
          "bicriteria_base_size" : 10,
@@ -143,13 +185,24 @@ Data Structures
 
    .. mpidl:member:: 1: datum point
 
+.. mpidl:message:: indexed_point
+
+   .. mpidl:member:: 0: string id
+
+   .. mpidl:member:: 1: datum point
+
+.. mpidl:message:: weighted_index
+
+   .. mpidl:member:: 0: double weight
+
+   .. mpidl:member:: 1: string id
 
 Methods
 ~~~~~~~
 
 .. mpidl:service:: clustering
 
-   .. mpidl:method:: bool push(0: list<datum> points)
+   .. mpidl:method:: bool push(0: list<indexed_point> points)
 
       :param points: 追加する点のリスト
       :return:       点の追加に成功した場合 True
@@ -160,26 +213,32 @@ Methods
 
       :return:     クラスタ状態のバージョン
 
-      クラスタ状態のバージョンを返す．
+      クラスタ状態のバージョンを返す。
 
    .. mpidl:method:: list<list<weighted_datum > > get_core_members()
 
       :return:     クラスタの概略
 
-      クラスタのコアセットを返す。
+      クラスタのコアセットをdatum形式で返す。
+
+   .. mpidl:method:: list<list<weighted_index > > get_core_members_light()
+
+      :return:     クラスタの概略
+
+      クラスタのコアセットのindexを返す。
 
    .. mpidl:method:: list<datum> get_k_center()
 
       :return:     クラスタ中心
 
-      ``k`` 個のクラスタ中心を返す．
+      ``k`` 個のクラスタ中心を返す。
 
    .. mpidl:method:: datum get_nearest_center(0: datum point)
 
       :param point:  :mpidl:type:`datum`
       :return:     与えられた点に最も近いクラスタ中心
 
-      点を追加せずに、与えられた点データ ``point`` に最も近いクラスタ中心を返す．
+      点を追加せずに、与えられた点データ ``point`` に最も近いクラスタ中心を返す。
 
    .. mpidl:method:: list<weighted_datum > get_nearest_members(0: datum point)
 

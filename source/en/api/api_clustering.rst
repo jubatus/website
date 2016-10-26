@@ -22,6 +22,7 @@ We show each field below:
       ==================== ===================================
       ``"kmeans"``         Use k-means
       ``"gmm"``            Use Gaussian Mixture Model
+      ``"dbscan"``         Use dbscan
       ==================== ===================================
 
 .. describe:: parameter
@@ -29,17 +30,67 @@ We show each field below:
    Specify parameters for the algorithm.
    Its format differs for each ``method``.
 
-   Common parameters kmeans and gmm
-     :k:
-        Number of clusters.
+   kmeans, gmm
+      :k:
+         Number of clusters.
+         (Integer)
+
+         * Range: 1 <= ``k``
+
+     :seed:
+        Specify seed used to generate random number.
         (Integer)
 
-        * Range: 1 <= ``k``
+        * Range: 0 <= ``seed`` <= :math:`2^{32} - 1`
 
+   dbscan
+      :eps:
+         Specify the distance to define neighbor points.
+         The bigger it is, the more points can be regarded as neighbor points.
+         (Float)
+
+         * Range: 0 < ``eps``
+
+      :min_core_point:
+         Specify the minimum density (number of neighbor points) required to  make a cluster.
+         The bigger it is, the less areas can be regarded as clusters.
+         (Integer)
+
+         * Range: 1 <= ``min_core_point``
+
+.. describe:: compressor_method
+
+   Specify algorithm for compressing points.
+   You can use these algorithms.
+
+   .. table::
+
+      ==================== ==========================================
+      Vaule                Method
+      ==================== ==========================================
+      ``"simple"``         no compression
+      ``"compressive"``    use coresets compression(only kmeans, gmm)
+      ==================== ==========================================
+
+.. describe:: compressor_parameter
+
+   Specify parameters for the compressor.
+   Its format differs for each ``compressor_method``.
+
+   simple
+     :bucket_size:
+        Number of data points to trigger mini batch.
+        Clustering will run for each time ``bucket_size`` data is pushed.
+        Note that the initial clustering will not run until ``k`` data is pushed when ``method`` is ``kmeans`` or ``gmm``.
+        (Integer)
+
+        * Range: 2 <= ``bucket_size``
+
+   compresive
      :bucket_size:
         Number of data points to trigger mini batch and compression.
         Clustering will run for each time ``bucket_size`` data is pushed.
-        Note that the initial clustering will not run until ``k`` data is pushed.
+        Note that the initial clustering will not run until ``k`` data is pushed when ``method`` is ``kmeans`` or ``gmm``.
         (Integer)
 
         * Range: 2 <= ``bucket_size``
@@ -55,7 +106,7 @@ We show each field below:
         Compression ratio = ( ``compressed_bucket_size`` / ``bucket_size`` )
         (Integer)
 
-        * Range: ``bicriteria_base_size`` < ``compressed_bucket_size`` < ``bucket_size``
+        * Range: ``bicriteria_base_size`` <= ``compressed_bucket_size`` <= ``bucket_size``
 
      :bicriteria_base_size:
         Specify roughness of compression.
@@ -81,20 +132,6 @@ We show each field below:
 
         * Range: 0 <= ``seed`` <= :math:`2^{32} - 1`
 
-   kmeans
-     :compressor_method:
-        Specify alghorithm for compressing points.
-        You can choose from ``simple`` (no compression), ``compressive_kmeans`` .
-        (String)
-
-   gmm
-     :compressor_method:
-        Specify alghorithm for compressing points.
-        You can choose from ``simple`` (no compression), ``compressive_gmm`` .
-        (String)
-
-   When ``compressor_method`` is specified as ``simple``, the following parameters will be ignored: ``bucket_length``, ``compressed_bucket_size``, ``bicriteria_base_size``, ``forgetting_factor``, ``forgetting_threshold``.
-
 .. describe:: converter
 
    Specify configuration for data conversion.
@@ -108,7 +145,10 @@ Example:
        "method" : "kmeans",
        "parameter" : {
          "k" : 3,
-         "compressor_method" : "compressive_kmeans",
+         "seed" : 0
+       },
+       "compressor_method" : "compressive_kmeans",
+       "compressor_parameter" : {
          "bucket_size" : 1000,
          "compressed_bucket_size" : 100,
          "bicriteria_base_size" : 10,
@@ -143,12 +183,24 @@ Data Structures
 
    .. mpidl:member:: 1: datum point
 
+.. mpidl:message:: indexed_point
+
+   .. mpidl:member:: 0: string id
+
+   .. mpidl:member:: 1: datum point
+
+.. mpidl:message:: weighted_index
+
+   .. mpidl:member:: 0: double weight
+
+   .. mpidl:member:: 1: string id
+
 Methods
 ~~~~~~~
 
 .. mpidl:service:: clustering
 
-   .. mpidl:method:: bool push(0: list<datum> points)
+   .. mpidl:method:: bool push(0: list<indexed_point> points)
 
       :points:     list of :mpidl:type:`datum` for the point 
       :return:     True when the point was added successfully
@@ -165,7 +217,13 @@ Methods
 
       :return:     coreset of cluster
 
-      Returns coreset of cluster
+      Returns coreset of cluster in datum
+
+   .. mpidl:method:: list<list<weighted_index > > get_core_members_light()
+
+      :return:     coreset of cluster
+
+      Returns coreset of cluster in index
 
    .. mpidl:method:: list<datum> get_k_center()
 
