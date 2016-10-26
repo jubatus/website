@@ -824,8 +824,12 @@ CLASS_types (CLASS は ``string`` または ``num``) で、フィルターや抽
 
 また、その他のパラメータに関しては、各プラグイン固有のパラメータを渡す。
 
-Jubatusでは、デフォルトで以下の2つの文字列特徴量のプラグインが提供されている。
+Jubatusでは、デフォルトで以下の2つの文字列特徴量のプラグインと1つの画像特徴量プラグインが提供されている。
 ただし、コンパイルオプションによっては一部のプラグインがビルドされないため、注意すること。
+
+文字列特徴量プラグイン
+~~~~~~~~~~~~~~~~~~~~~~	
+文字列特徴量プラグインではMeCabプラグインとuxプラグインを提供している。
 
 .. describe:: libmecab_splitter.so
 
@@ -889,5 +893,43 @@ Jubatusでは、デフォルトで以下の2つの文字列特徴量のプラグ
           "path": "libux_splitter.so",
           "function": "create",
           "dict_path": "/path/to/keyword/dic.txt"
+        }
+      }
+
+
+画像特徴量プラグイン
+~~~~~~~~~~~~~~~~~~~~	
+画像特徴量プラグインではOpenCVプラグインを提供している。
+
+.. describe:: libimage_feature.so
+
+binary_typesで指定できる。`OpenCV <https://github.com/opencv>`_ を利用して、与えられた画像から特徴量を抜き出して利用する。
+``--enable-opencv`` オプション付きでコンパイルした場合のみ利用可能である。
+
+  :function:  "create"を指定する。
+  :algorithm: 利用する特徴量記述アルゴリズムを指定する。画像特徴量抽出プラグインでは、下記の２つのアルゴリズムを提供している。なお、いずれもキーポイントの抽出はDense sampling (すべての画素について特徴量を抽出する手法) で行っている。
+  
+   ============ =====================
+   値           意味
+   ============ =====================
+   ``"RGB"``    画素のRGB値を抽出する
+   ``"ORB"``    パッチ内で選ばれた2点の輝度差によってバイナリ列を作る。詳細は `OpenCVドキュメント <http://docs.opencv.org/3.1.0/d1/d89/tutorial_py_orb.html>`_ を参照。
+   ============ =====================
+ 
+  :resize: 画像をリサイズするかどうかを決定する。リサイズする場合は `"true"` を指定し、しない場合は `"false"` を指定する。デフォルトでは `"false"` が指定される
+  :x_size: 画像の幅を指定しリサイズする。 ``resize`` が `"true"` のときのみ有効
+  :y_size: 画像の高さを指定しリサイズする。 ``resize`` が `"true"` のときのみ有効
+
+ .. code-block:: js
+
+      "binary_types": {
+        "image": {
+          "method": "dynamic",
+          "path": "libimage_feature.so",
+          "algorithm":"ORB",
+          "resize":"true"
+          "x_size":"120.0"
+          "y_size":"120.0"
+          "function": "create",
         }
       }
