@@ -9,8 +9,22 @@
     background-color: #ccc4b2 !important;
 }
 
+.wy-side-nav-search img.logo {
+    width: 256px !important;
+}
+
 .wy-side-nav-search input[type=text] {
     border-color: #a47224 !important;
+}
+
+.wy-table-responsive table td, .wy-table-responsive table th {
+    white-space: normal;
+}
+
+.wy-table-responsive {
+    margin-bottom: 24px;
+    max-width: 100%;
+    overflow: visible;
 }
 
 body {
@@ -55,11 +69,11 @@ div.body a {
 
 h1 {
     font-size: 1.35em;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	 margin: 15px -10px  10px -10px;
-     padding: 0.3em 0 0.3em 0.5em;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    margin: 15px -10px  10px -10px;
+    padding: 0.3em 0 0.3em 0.5em;
     color: white;
     background-color: #418237;
 }
@@ -68,8 +82,8 @@ h2 {
     margin: 0;
     font-size: 1.2em;
     padding: 1em 0 0.2em 0;
-	color: #108b3f;
-	border-bottom:2px solid #aaa;
+    color: #108b3f;
+    border-bottom:2px solid #aaa;
 }
 
 h3 {
@@ -79,13 +93,13 @@ h3 {
 }
 
 h4{
-	color: #108b3f;
+    color: #108b3f;
     margin: 1em 0 -1em 0;
     font-size: 1em;
 }
 
 h5{
-	color: #333333;
+    color: #333333;
     margin: 2em 0 -1em 0;
     font-size: 1em;
 }
