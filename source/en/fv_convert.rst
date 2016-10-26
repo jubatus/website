@@ -773,7 +773,7 @@ Feature Extraction from Images
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 We can use OpenCV in jubatus.
 
-.. describe:: libux_splitter.so
+.. describe:: libimage_feature.so
 
  We can specify this plugin in "binary_types".
  It extracts features from given images by `OpenCV <https://github.com/opencv>`_ .
@@ -782,9 +782,14 @@ We can use OpenCV in jubatus.
   :function:  Specifies "create".
   :algorithm: Specifies the feature extraction algorithm. In jubatus, we can use RGB or ORB to extact featrures from images.  It should be noted that in both algorithm, we detect keypoints by Dense Sampling (which extracts features from all pixels of the image.)
 
-  - RGB : Extracts RGB values in each pixel.
-  - ORB : Makes binary strings by using intensity of pixels. We can refer `OpenCV documentation <http://docs.opencv.org/3.1.0/d1/d89/tutorial_py_orb.html>`_ in detail.
- 
+   ============= ====================
+   Value         Meaning
+   ============= ====================
+   ``"RGB"``     Extracts RGB values in each pixel.
+   ``"ORB"``     Makes binary strings by using intensity of pixels. We can refer `OpenCV documentation <http://docs.opencv.org/3.1.0/d1/d89/tutorial_py_orb.html>`_ in detail.
+   ============= ====================
+
+
   :resize: Specifies whether to resize the image. Specify `"true"` to resize image, or `"false"` not to resize it. When ``resize`` is not specified, `"false"` is assumed.
   :x_size: Specifies the length of resized images. We can specify it when ``resize`` is `"true"`.
   :y_size: Specifies the height of resized images. We can specify it when ``resize`` is `"true"`.
