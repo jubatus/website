@@ -202,7 +202,8 @@ Methods
 
    .. mpidl:method:: bool push(0: list<indexed_point> points)
 
-      :points:     list of :mpidl:type:`datum` for the point 
+      :param points: list of :mpidl:type:`indexed_point` for the points.
+                     ``indexed_point`` is a tuple of string id and datum
       :return:     True when the point was added successfully
 
       Adds points. 
@@ -211,25 +212,27 @@ Methods
 
       :return:     revision of cluster
 
-      Return revesion of cluster
+      Return revesion of cluster.
 
    .. mpidl:method:: list<list<weighted_datum > > get_core_members()
 
       :return:     coreset of cluster
 
-      Returns coreset of cluster in datum
+      Returns coreset of cluster in datum.
+      This method is not supported in ``dbscan``.
 
    .. mpidl:method:: list<list<weighted_index > > get_core_members_light()
 
       :return:     coreset of cluster
 
-      Returns coreset of cluster in index
+      Returns coreset of cluster in index.
+      This method is not supported in ``dbscan``.
 
    .. mpidl:method:: list<datum> get_k_center()
 
       :return:     cluster centers
 
-      Returns ``k`` cluster centers
+      Returns ``k`` cluster centers.
 
    .. mpidl:method:: datum get_nearest_center(0: datum point)
 
@@ -237,10 +240,22 @@ Methods
       :return:     nearest cluster center
 
       Returns nearest cluster center without adding ``point`` to cluster.
+      This method is not supported in ``dbscan``.
 
    .. mpidl:method:: list<weighted_datum > get_nearest_members(0: datum point)
 
       :param point: :mpidl:type:`datum`
       :return:     coreset
 
-      Returns nearest summary of cluster(coreset) from ``point``
+      Returns nearest summary of cluster(coreset) from ``point``.
+      Its format is a list of tuples of weight and datum.
+      This method is not supported in ``dbscan``.
+
+   .. mpidl:method:: list<weighted_index > get_nearest_members_light(0: datum point)
+
+      :param point: :mpidl:type:`datum`
+      :return:     coreset
+
+      Returns nearest summary of cluster(coreset) from ``point``.
+      Its format is a list of tuples of weight and id.
+      This method is not supported in ``dbscan``.

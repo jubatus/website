@@ -232,6 +232,7 @@ Methods
       :return:     クラスタ中心
 
       ``k`` 個のクラスタ中心を返す。
+      アルゴリズムに ``dbscan`` を選択した場合、このメソッドは使用できない。
 
    .. mpidl:method:: datum get_nearest_center(0: datum point)
 
@@ -239,10 +240,20 @@ Methods
       :return:     与えられた点に最も近いクラスタ中心
 
       点を追加せずに、与えられた点データ ``point`` に最も近いクラスタ中心を返す。
+      アルゴリズムに ``dbscan`` を選択した場合、このメソッドは使用できない。
 
    .. mpidl:method:: list<weighted_datum > get_nearest_members(0: datum point)
 
       :param point: 指定する点
       :return:     点のリスト
 
-      ``point`` で指定した点から最も近いクラスタの概略を返す。
+      ``point`` で指定した点から最も近いクラスタの概略をdatum形式で返す。
+      アルゴリズムに ``dbscan`` を選択した場合、このメソッドは使用できない。
+
+   .. mpidl:method:: list<weighted_index > get_nearest_members_light(0: datum point)
+
+      :param point: 指定する点
+      :return:     点のリスト
+
+      ``point`` で指定した点から最も近いクラスタの概略をindexで返す。
+      アルゴリズムに ``dbscan`` を選択した場合、このメソッドは使用できない。
