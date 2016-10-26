@@ -9,6 +9,10 @@
     background-color: #ccc4b2 !important;
 }
 
+.wy-side-nav-search img.logo {
+    width: 256px !important;
+}
+
 .wy-side-nav-search input[type=text] {
     border-color: #a47224 !important;
 }
