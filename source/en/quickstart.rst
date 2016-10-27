@@ -40,6 +40,20 @@ If the installation command above fails with the missing ``oniguruma`` package e
   // For RHEL 6 systems that cannot find oniguruma package (and rhel-6-server-optional-rpms is unavailable)
   $ sudo yum --enablerepo=jubatus-optional install jubatus jubatus-client
 
+Optionally you can install plug-ins.  [1]_ [2]_
+By installing plug-ins, Jubatus can perform feature extractions from Japanese natural language text and images.
+
+::
+
+  // For RHEL 6
+  $ sudo yum install jubatus-plugin-mecab jubatus-plugin-ux
+
+  // For RHEL 7
+  $ sudo yum install jubatus-plugin-mecab jubatus-plugin-ux jubatus-plugin-image
+
+.. [1] Prior to Jubatus 1.0, all plugins were bundled with ``jubatus`` package.  In Jubatus 1.0 or later, you can selectively install plug-ins you need.
+.. [2] ``jubatus-plugin-image`` package is not available in RHEL 6.
+
 Ubuntu Server (64-bit)
 ~~~~~~~~~~~~~~~~~~~~~~
 
