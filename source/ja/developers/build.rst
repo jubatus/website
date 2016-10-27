@@ -25,6 +25,7 @@ jubatus-msgpack-rpc 0.4.4          ✔         C++ クライアントライブ�
 log4cxx             >= 0.10.0      ✔
 mecab               >= 0.99                  ``--enable-mecab`` ありでビルドする場合のみ。
 ux-trie             master                   ``--enable-ux`` ありでビルドする場合のみ。
+opencv              >= 2.3.0                 ``--enable-opencv`` ありでビルドする場合のみ。
 zookeeper           >= 3.3                   ``--enable-zookeeper`` ありでビルドする場合のみ。
                                              C クライアントライブラリが必要である。
 =================== ============== ========= ======================================================
@@ -43,6 +44,7 @@ zookeeper           >= 3.3                   ``--enable-zookeeper`` ありでビ
 `log4cxx <http://logging.apache.org/log4cxx/>`_,
 `mecab <https://github.com/taku910/mecab>`_,
 `ux-trie <https://github.com/hillbig/ux-trie>`_,
+`opencv <http://opencv.org/>`_,
 `zookeeper <http://zookeeper.apache.org/>`_
 )。
 
