@@ -29,8 +29,8 @@ We show each field below:
       ``"AROW"``       Use Adaptive Regularization of Weight vectors. [Crammer09b]_           linear regression
       ``"NHERD"``      Use Normal Herd. [Crammer10]_                                          linear regression
       ``"NN"``         Use an inplementation of ``nearest_neighbor``                          k-Nearest Neighbor
-      ``"cosine"``     Use the result of nearest neighbor search by cosine similarity [1]_    k-Nearest Neighbor
-      ``"euclidean"``  Use the result of nearest neighbor search by euclidean distance [1]_   k-Nearest Neighbor
+      ``"cosine"``     Use the result of nearest neighbor search by cosine similarity         k-Nearest Neighbor
+      ``"euclidean"``  Use the result of nearest neighbor search by euclidean distance        k-Nearest Neighbor
       ================ ====================================================================== =====================
 
 .. describe:: parameter
