@@ -25,7 +25,7 @@ jubatus-msgpack-rpc 0.4.4          ✔         C++ client library must be instal
 log4cxx             >= 0.10.0      ✔
 mecab               >= 0.99                  Required when configured with ``--enable-mecab``.
 ux-trie             master                   Required when configured with ``--enable-ux``.
-opencv              >= 2.3.0                 ``--enable-opencv`` ありでビルドする場合のみ。
+opencv              >= 2.3.0                 Required when configured with  ``--enable-opencv``.
 zookeeper           >= 3.3                   Required when configured with ``--enable-zookeeper``.
                                              C client library must be installed.
 =================== ============== ========= ======================================================
