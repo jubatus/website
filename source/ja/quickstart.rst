@@ -184,7 +184,7 @@ Java
      <dependency>
        <groupId>us.jubat</groupId>
        <artifactId>jubatus</artifactId>
-       <version>[0.9,)</version>
+       <version>[1.0,)</version>
      </dependency>
    </dependencies>
 
