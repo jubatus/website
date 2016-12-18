@@ -95,6 +95,16 @@ If you're using csh or tcsh, use this instead:
 
   $ source /opt/jubatus/profile.csh
 
+Docker
+~~~~~~
+
+You can use Docker image distributed at Dockerhub.
+
+::
+
+  $ docker pull jubatus/jubatus
+  $ docker run --expose 9199 jubatus/jubatus jubaclassifier -f /opt/jubatus/share/jubatus/example/config/classifier/pa.json
+
 Other Linux Distributions (including 32-bit)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
