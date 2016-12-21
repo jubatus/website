@@ -93,6 +93,16 @@ csh または tcsh をお使いの場合は、こちらを使用してくださ�
 
   $ source /opt/jubatus/profile.csh
 
+Docker
+~~~~~~
+
+Docker が利用可能な環境では、Dockerhub で配布されている Docker イメージを利用することができます。
+
+::
+
+  $ docker pull jubatus/jubatus
+  $ docker run --expose 9199 jubatus/jubatus jubaclassifier -f /opt/jubatus/share/jubatus/example/config/classifier/pa.json
+
 その他の Linux 環境 (32-bit を含む)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
