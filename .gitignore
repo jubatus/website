@@ -5,9 +5,9 @@ bin
 eggs
 parts
 develop-eggs
-build
-jubatus.github.com
-jubakit
+/build/
+/jubatus.github.com/
+/jubakit/
 *~
 *.swp
 *.pyc
