@@ -48,7 +48,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Jubatus'
-copyright = u'2011-2016 PFN & NTT'
+copyright = u'2011-2017 PFN & NTT'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
