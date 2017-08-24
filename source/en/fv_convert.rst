@@ -851,7 +851,7 @@ The Python Bridge is provided as a plugin.
           "function": "num_feature",
           "module": "number_multiplier",
           "class": "NumberMultiplier",
-          "n": 3
+          "n": "3"
         }
       }
 
@@ -988,7 +988,7 @@ See the source of `number_multiplier module <https://github.com/jubatus/jubatus/
           "function": "num_feature",
           "module": "number_multiplier",
           "class": "NumberMultiplier",
-          "n": 3
+          "n": "3"
         }
       },
       "num_rules": [

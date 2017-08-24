@@ -977,7 +977,7 @@ Python Bridge はプラグイン形式で提供されている。
           "function": "num_feature",
           "module": "number_multiplier",
           "class": "NumberMultiplier",
-          "n": 3
+          "n": "3"
         }
       }
 
@@ -1114,7 +1114,7 @@ Python 2.x を使用している場合は、 ``str`` と ``bytes`` は ``unicode
           "function": "num_feature",
           "module": "number_multiplier",
           "class": "NumberMultiplier",
-          "n": 3
+          "n": "3"
         }
       },
       "num_rules": [
