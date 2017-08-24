@@ -969,13 +969,14 @@ Python Bridge はプラグイン形式で提供されている。
 
  .. code-block:: js
 
-      "binary_types": {
-        "extract_length": {
+      "num_types": {
+        "multiply_by_3": {
           "method": "dynamic",
           "path": "libpython_bridge.so",
-          "function": "binary_feature",
-          "module": "binary_length",
-          "class": "BinaryLengthExtractor"
+          "function": "num_feature",
+          "module": "number_multiplier",
+          "class": "NumberMultiplier",
+          "n": 3
         }
       }
 
@@ -1001,7 +1002,7 @@ Python で特徴抽出ロジックを実装する場合、Pythonクラスをモ�
 Pythonクラスに対する要件を以下に示す。
 
 * クラスは ``create`` クラスメソッドを実装する必要がある。
-  引数 ``params`` は、設定ファイルで指定されたパラメタ (``dict`` 型) である。
+  引数 ``param`` は、設定ファイルで指定されたパラメタ (``dict`` 型) である。
 * 各クラスは、各インタフェースで要求されているシグネチャのインスタンスメソッドを実装する必要がある。
   以下の各セクションを参照のこと。
 * モジュールは、 ``sys.path`` 内のいずれかのパス、 ``PYTHONPATH`` 環境変数内のいずれかのパス、またはデフォルトの Python モジュールディレクトリ (``$PREFIX/lib/jubatus/python``) のいずれかに配置されている必要がある。
@@ -1026,11 +1027,16 @@ Python 2.x を使用している場合は、 ``str`` と ``bytes`` は ``unicode
     * 抽出した文字列データ (``str`` 型)。
     * 抽出した文字列データに対するスコア (``float`` 型); 通常は ``1.0`` を使用すれば良い。
 
+.. code-block:: python
+
+  def extract(self, text):
+      return [(0, 0, text, 1.0)]
+
 サンプルとして、英語の文章に対するステミング (Porter Stemmer) を行う実装がデフォルトで提供されている。
 詳細は `sentence_stemmer モジュール <https://github.com/jubatus/jubatus/blob/master/plugin/src/fv_converter/python_bridge/python/sentence_stemmer.py>`_ のソースを参照すること。
 このサンプルを動作させるには `Natural Language Toolkit <http://www.nltk.org/>`_ のインストールが必要である (``pip install nltk``)。
 
- .. code-block:: js
+.. code-block:: js
 
       "string_types": {
         "stem_sentence": {
@@ -1056,10 +1062,15 @@ Python 2.x を使用している場合は、 ``str`` と ``bytes`` は ``unicode
     * 抽出したデータの開始位置 (``int`` 型)。
     * 抽出したデータの長さ (``int`` 型)。
 
+.. code-block:: python
+
+  def split(self, text):
+      return [(0, 1)]
+
 サンプルとして、空白文字で文章を区切る実装がデフォルトで提供されている。
 詳細は `space_splitter モジュール <https://github.com/jubatus/jubatus/blob/master/plugin/src/fv_converter/python_bridge/python/space_splitter.py>`_ のソースを参照すること。
 
- .. code-block:: js
+.. code-block:: js
 
       "string_types": {
         "split_by_space": {
@@ -1085,10 +1096,15 @@ Python 2.x を使用している場合は、 ``str`` と ``bytes`` は ``unicode
     * 特徴次元のキー名 (``str`` 型)。
     * そのキー名に対応する値 (``float`` 型)。
 
+.. code-block:: python
+
+  def extract(self, key, value):
+      return [(key, value)]
+
 サンプルとして、入力された数値を N 倍に変換する実装がデフォルトで提供されている。
 詳細は `number_multiplier モジュール <https://github.com/jubatus/jubatus/blob/master/plugin/src/fv_converter/python_bridge/python/number_multiplier.py>`_ のソースを参照すること。
 
- .. code-block:: js
+.. code-block:: js
 
       "num_types": {
         "multiply_by_3": {
@@ -1115,10 +1131,15 @@ Python 2.x を使用している場合は、 ``str`` と ``bytes`` は ``unicode
     * 特徴次元のキー名 (``str`` 型)。
     * そのキー名に対応する値 (``float`` 型)。
 
+.. code-block:: python
+
+  def extract(self, key, value):
+      return [(key, len(value))]
+
 サンプルとして、入力されたバイナリデータを特徴として抽出する実装がデフォルトで提供されている。
 詳細は `binary_length モジュール <https://github.com/jubatus/jubatus/blob/master/plugin/src/fv_converter/python_bridge/python/binary_length.py>`_ のソースを参照すること。
 
- .. code-block:: js
+.. code-block:: js
 
       "binary_types": {
         "extract_length": {

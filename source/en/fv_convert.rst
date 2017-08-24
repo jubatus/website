@@ -843,13 +843,14 @@ The Python Bridge is provided as a plugin.
 
  .. code-block:: js
 
-      "binary_types": {
-        "extract_length": {
+      "num_types": {
+        "multiply_by_3": {
           "method": "dynamic",
           "path": "libpython_bridge.so",
-          "function": "binary_feature",
-          "module": "binary_length",
-          "class": "BinaryLengthExtractor"
+          "function": "num_feature",
+          "module": "number_multiplier",
+          "class": "NumberMultiplier",
+          "n": 3
         }
       }
 
@@ -875,7 +876,7 @@ Here is an example.
 Requirements for the Python class is as follows:
 
 * The class must implement ``create`` class method.
-  The argument ``params`` is a dict object of configuration parameters.
+  The argument ``param`` is a dict object of configuration parameters.
 * The class must implement an instance method with signature required for each interface.
   See sections below for details.
 * The module containing the class must be in any of ``sys.path``, any of paths defined in ``PYTHONPATH`` environment variable, or the default Python plugin module directory (``$PREFIX/lib/jubatus/python``).
@@ -900,11 +901,16 @@ Instance method named ``extract`` that takes 1 argument is required for the clas
     * extracted string for the part (``str`` type)
     * score for the part (``float`` type); generally use ``1.0``.
 
+.. code-block:: python
+
+  def extract(self, text):
+      return [(0, 0, text, 1.0)]
+
 The example implementation to apply stemming (Porter Stemmer) for English sentence is available by default.
 See the source of `sentence_stemmer module <https://github.com/jubatus/jubatus/blob/master/plugin/src/fv_converter/python_bridge/python/sentence_stemmer.py>`_ for details.
 You need to install `Natural Language Toolkit <http://www.nltk.org/>`_ for this example to work (``pip install nltk``).
 
- .. code-block:: js
+.. code-block:: js
 
       "string_types": {
         "stem_sentence": {
@@ -930,10 +936,15 @@ Instance method named ``split`` that takes 1 argument is required for the class.
     * beginning position of the extracted part (``int`` type).
     * length of the part (``int`` type).
 
+.. code-block:: python
+
+  def split(self, text):
+      return [(0, 1)]
+
 The example implementation to split the text with space is available by default.
 See the source of `space_splitter module <https://github.com/jubatus/jubatus/blob/master/plugin/src/fv_converter/python_bridge/python/space_splitter.py>`_ for details.
 
- .. code-block:: js
+.. code-block:: js
 
       "string_types": {
         "split_by_space": {
@@ -959,10 +970,15 @@ Instance method named ``extract`` that takes 2 arguments is required for the cla
     * name of the feature key (``str`` type).
     * value for the key (``float`` type).
 
+.. code-block:: python
+
+  def extract(self, key, value):
+      return [(key, value)]
+
 The example implementation to apply multiplication for numbers is available by default.
 See the source of `number_multiplier module <https://github.com/jubatus/jubatus/blob/master/plugin/src/fv_converter/python_bridge/python/number_multiplier.py>`_ for details.
 
- .. code-block:: js
+.. code-block:: js
 
       "num_types": {
         "multiply_by_3": {
@@ -989,10 +1005,15 @@ Instance method named ``extract`` that takes 2 arguments is required for the cla
     * name of the feature key (``str`` type).
     * value for the key (``float`` type).
 
+.. code-block:: python
+
+  def extract(self, key, value):
+      return [(key, value)]
+
 The example implementation to extract length of the binary data is available by default.
 See the source of `binary_length module <https://github.com/jubatus/jubatus/blob/master/plugin/src/fv_converter/python_bridge/python/binary_length.py>`_ for details.
 
- .. code-block:: js
+.. code-block:: js
 
       "binary_types": {
         "extract_length": {
