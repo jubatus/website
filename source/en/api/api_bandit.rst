@@ -16,15 +16,17 @@ We show each field below:
 
    .. table::
 
-      ==================== ===================================
-      Value                Method
-      ==================== ===================================
-      ``"epsilon_greedy"`` Use epsilon-greedy.
-      ``"ucb1"``           Use UCB1.
-      ``"softmax"``        Use softmax.
-      ``"exp3"``           Use exp3.
-      ``"ts"``             Use Thompson sampling [#]_ .      
-      ==================== ===================================
+      ========================= ===================================
+      Value                     Method
+      ========================= ===================================
+      ``"epsilon_greedy"``      Use epsilon-greedy.
+      ``"epsilon_decdeasing"``` Use Greedy Mix [#]_ .
+      ``"ucb1"``                Use UCB1
+      ``"softmax"``             Use softmax
+      ``"exp3"``                Use exp3
+      ``"ts"``                  Use Thompson sampling [#]_  
+      ========================= ===================================
+   .. [#] `Greedy Mix <https://pdfs.semanticscholar.org/2c50/eccfb2878cc7e4286791f582f96c52a26da9.pdf>`_ 
    .. [#] Note that ``reward`` in register_reward API must be 0 or 1 when you use Thompson sampling method.
 
 .. describe:: parameter
@@ -49,6 +51,19 @@ We show each field below:
         * Range: 0.0 <= ``epsilon`` <= 1.0
 
      :seed(optional):
+        Specify random seed when you use ``random`` for unlearning strategy.
+        If not specified, system clock is used as seed parameter.
+        So you will get different result each experiment.
+
+        * range of value: 0 <= ``seed`` <= :math:`2^{32} - 1`
+
+   epsilon_decreasing
+    :decreasing_rate:
+        Decreasing parameter of epsilon. The bigger this parameter becomes, the more slowly epsilon dcreases. (Float)
+
+        * Range: 0 < ``decreasing_rate`` < 1
+    
+    :seed(optional):
         Specify random seed when you use ``random`` for unlearning strategy.
         If not specified, system clock is used as seed parameter.
         So you will get different result each experiment.

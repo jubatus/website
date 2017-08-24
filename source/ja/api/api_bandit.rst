@@ -16,15 +16,17 @@ JSON の各フィールドは以下のとおりである。
 
    .. table::
 
-      ==================== ===================================
-      設定値               手法
-      ==================== ===================================
-      ``"epsilon_greedy"`` epsilon-greedy法を利用する。
-      ``"ucb1"``           UCB1法を利用する。
-      ``"softmax"``        softmax法を利用する。
-      ``"exp3"``           exp3法を利用する。
-      ``"ts"``             Thompson samplingを利用する [#]_ 
-      ==================== ===================================
+      ========================= ===================================
+      設定値                     手法
+      ========================= ===================================
+      ``"epsilon_greedy"``      epsilon-greedy法を利用する。
+      ``"epsilon_decdeasing"``` Greedy Mix法 [#]_ を利用する 
+      ``"ucb1"``                UCB1法を利用する。
+      ``"softmax"``             softmax法を利用する。
+      ``"exp3"``                exp3法を利用する。
+      ``"ts"``                  Thompson samplingを利用する [#]_ 
+      ========================= ===================================
+   .. [#] `Greedy Mix <https://pdfs.semanticscholar.org/2c50/eccfb2878cc7e4286791f582f96c52a26da9.pdf>`_ 
    .. [#] Thompson Samplingを利用する場合、register_reward APIで登録する報酬が0または1に限られる点に注意。
 
 .. describe:: parameter
@@ -53,7 +55,22 @@ JSON の各フィールドは以下のとおりである。
         (Integer)
 
         * 値域: 0 <= ``seed`` <= :math:`2^{32} - 1`
+  
+   epsilon_decreasing
+    :decreasing_rate:
+        epsilon_greedyで用いられているepsilonの値を試行回数が増えるごとに減らしていく、その割合。
+        大きいほど、減衰の進み方は小さくなる。
+        (Float)
 
+        * 値域: 0 < ``decreasing_rate`` < 1
+
+    :seed(optional):
+        乱数の生成に使用するシードを指定する。
+        省略した場合はシステムクロックがシードとして与えられる。そのため実験の再現性は保証されない。
+        (Integer)
+
+        * 値域: 0 <= ``seed`` <= :math:`2^{32} - 1`
+   
    ucb1
       なし
 
