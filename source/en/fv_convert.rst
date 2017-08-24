@@ -578,7 +578,7 @@ It depends on "type" how to specify weight and name features.
 Feature Extraction from Combination Data
 ----------------------------------------
 
-We can make new combination features by combining number features or string features. 
+We can make new combination features by combining number features or string features.
 As with strings and numbers, feature extraction rules are also described for combination types.
 We can make user-defined extractors for combination types, too.
 
@@ -589,7 +589,7 @@ In this configuration, we can combinate string features that are converted by "b
 i.e. sample_weight and global weight are "bin".
 If you want to combinate all string features, you needs to write keys like "\*\@str\*".
 
-.. code-block:: js     
+.. code-block:: js
 
       "num_types": {},
       "num_rules": [
@@ -773,6 +773,7 @@ We can use MeCab pluigin and ux plugin in jubatus.
 
 Feature Extraction from Images
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 We can use OpenCV in jubatus.
 
 .. describe:: libimage_feature.so
