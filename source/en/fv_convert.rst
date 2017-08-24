@@ -1009,7 +1009,7 @@ Instance method named ``extract`` that takes 2 arguments is required for the cla
 .. code-block:: python
 
   def extract(self, key, value):
-      return [(key, value)]
+      return [(key, len(value))]
 
 The example implementation to extract length of the binary data is available by default.
 See the source of `binary_length module <https://github.com/jubatus/jubatus/blob/master/plugin/src/fv_converter/python_bridge/python/binary_length.py>`_ for details.
