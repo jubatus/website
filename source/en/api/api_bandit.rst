@@ -20,7 +20,7 @@ We show each field below:
       Value                     Method
       ========================= ===================================
       ``"epsilon_greedy"``      Use epsilon-greedy.
-      ``"epsilon_decdeasing"``` Use Greedy Mix [#]_ .
+      ``"epsilon_decreasing"``` Use Greedy Mix [#]_ .
       ``"ucb1"``                Use UCB1
       ``"softmax"``             Use softmax
       ``"exp3"``                Use exp3
@@ -51,7 +51,7 @@ We show each field below:
         * Range: 0.0 <= ``epsilon`` <= 1.0
 
      :seed(optional):
-        Specify random seed when you use ``random`` for unlearning strategy.
+        Specify seed used to generate random number.
         If not specified, system clock is used as seed parameter.
         So you will get different result each experiment.
 
@@ -59,12 +59,12 @@ We show each field below:
 
    epsilon_decreasing
     :decreasing_rate:
-        Decreasing parameter of epsilon. The bigger this parameter becomes, the more slowly epsilon dcreases. (Float)
+        Decreasing rate for the probability of selecting arms randomly. The bigger this parameter is, the more slowly the probability decreases. (Float)
 
         * Range: 0 < ``decreasing_rate`` < 1
     
     :seed(optional):
-        Specify random seed when you use ``random`` for unlearning strategy.
+        Specify seed used to generate random number.
         If not specified, system clock is used as seed parameter.
         So you will get different result each experiment.
 
@@ -83,7 +83,7 @@ We show each field below:
         * Range: 0.0 < ``tau``
 
      :seed(optional):
-        Specify random seed when you use ``random`` for unlearning strategy.
+        Specify seed used to generate random number.
         If not specified, system clock is used as seed parameter.
         So you will get different result each experiment.
 
@@ -99,7 +99,7 @@ We show each field below:
         * Range: 0.0 < ``gamma`` <= 1.0
 
      :seed(optional):
-        Specify random seed when you use ``random`` for unlearning strategy.
+        Specify seed used to generate random number.
         If not specified, system clock is used as seed parameter.
         So you will get different result each experiment.
 
@@ -107,7 +107,7 @@ We show each field below:
 
    ts
      :seed(optional):
-        Specify random seed when you use ``random`` for unlearning strategy.
+        Specify seed used to generate random number.
         If not specified, system clock is used as seed parameter.
         So you will get different result each experiment.
 

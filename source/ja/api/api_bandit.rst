@@ -57,8 +57,7 @@ JSON の各フィールドは以下のとおりである。
         * 値域: 0 <= ``seed`` <= :math:`2^{32} - 1`
   
    epsilon_decreasing
-    :decreasing_rate:
-        epsilon_greedyで用いられているepsilonの値を試行回数が増えるごとに減らしていく、その割合。
+        腕をランダムに選択する確率を減衰させる割合を指定する。
         大きいほど、減衰の進み方は小さくなる。
         (Float)
 
