@@ -20,13 +20,12 @@ We show each field below:
       Value                     Method
       ========================= ===================================
       ``"epsilon_greedy"``      Use epsilon-greedy.
-      ``"epsilon_decreasing"``` Use Greedy Mix [#]_ .
+      ``"epsilon_decreasing"``` Use Greedy Mix.
       ``"ucb1"``                Use UCB1
       ``"softmax"``             Use softmax
       ``"exp3"``                Use exp3
       ``"ts"``                  Use Thompson sampling [#]_  
       ========================= ===================================
-   .. [#] `Greedy Mix <https://pdfs.semanticscholar.org/2c50/eccfb2878cc7e4286791f582f96c52a26da9.pdf>`_ 
    .. [#] Note that ``reward`` in register_reward API must be 0 or 1 when you use Thompson sampling method.
 
 .. describe:: parameter

@@ -20,13 +20,12 @@ JSON の各フィールドは以下のとおりである。
       設定値                     手法
       ========================= ===================================
       ``"epsilon_greedy"``      epsilon-greedy法を利用する。
-      ``"epsilon_decdeasing"``` Greedy Mix法 [#]_ を利用する 
+      ``"epsilon_decdeasing"``` Greedy Mix法を利用する 
       ``"ucb1"``                UCB1法を利用する。
       ``"softmax"``             softmax法を利用する。
       ``"exp3"``                exp3法を利用する。
       ``"ts"``                  Thompson samplingを利用する [#]_ 
-      ========================= ===================================
-   .. [#] `Greedy Mix <https://pdfs.semanticscholar.org/2c50/eccfb2878cc7e4286791f582f96c52a26da9.pdf>`_ 
+      ========================= =================================== 
    .. [#] Thompson Samplingを利用する場合、register_reward APIで登録する報酬が0または1に限られる点に注意。
 
 .. describe:: parameter
