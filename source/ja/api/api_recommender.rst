@@ -306,7 +306,7 @@ Methods
    .. mpidl:method:: list<id_with_score> similar_row_from_id_and_rate(0: string id, 1: float rate)
 
       :param id:   推薦テーブル内の行を表すID
-      :param rate: 返す近傍の割合
+      :param rate: 返す近傍の割合 (値域 ``0 < rate <= 1``)
       :return:     ``id`` で指定した近傍のidとその近傍性の値のリスト
 
       指定した行 ``id`` に近い行とその近傍性のリストを ``rate`` の割合の個数返す。例えば ``0.4`` を指定した場合には、近傍性の値が上位40%以内に含まれるものを返す。
@@ -330,7 +330,7 @@ Methods
    .. mpidl:method:: list<id_with_score> similar_row_from_datum_and_rate(0: datum row, 1: float rate)
 
       :param row:  近傍を探索したい :mpidl:type:`datum`
-      :param rate: 返す近傍の割合
+      :param rate: 返す近傍の割合 (値域 ``0 < rate <= 1``)
       :return:     ``row`` で指定した近傍のidとその近傍性の値のリスト
 
       指定した ``row`` に近い :mpidl:type:`datum` を持つ行とその近傍性のリストを ``rate`` の割合の個数返す。例えば ``0.4`` を指定した場合には、近傍性の値が上位40%以内に含まれるものを返す。
