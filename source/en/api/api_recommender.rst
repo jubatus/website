@@ -291,7 +291,7 @@ Methods
       :param score: threshold of similarity score
       :return:     row IDs that are most similar to the row ``id``
 
-      Returns rows, which are most similar to the row ``id``, have the similarity score greater then ``score``.
+      Returns rows which are most similar to the row ``id`` and have a greater similarity score than ``score``.
 
    .. mpidl:method:: list<id_with_score> similar_row_from_id_and_rate(0: string id, 1: float rate)
 
@@ -315,7 +315,7 @@ Methods
       :param score: threshold of similarity score
       :return:     rows that most have a similar datum to ``row``
 
-      Returns rows, which are most have similar to ``row``, have the similarity score greater then ``score``.
+      Returns rows which are most similar to ``row`` and have a greater similarity score than ``score``.
 
    .. mpidl:method:: list<id_with_score> similar_row_from_datum_and_rate(0: datum row, 1: float rate)
 
