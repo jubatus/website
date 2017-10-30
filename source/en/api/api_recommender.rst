@@ -296,7 +296,7 @@ Methods
    .. mpidl:method:: list<id_with_score> similar_row_from_id_and_rate(0: string id, 1: float rate)
 
       :param id:   row ID
-      :param rate: rate of all the rows to be returned (Range ``0 <= rate <= 1``)
+      :param rate: rate of all the rows to be returned (Range ``0 < rate <= 1``)
       :return:     row IDs that are most similar to the row ``id``
 
       Returns the top ``rate`` of all the rows which are most similar to the row ``id``. For example, return the top 40% of all the rows when ``0.4`` is specified as ``rate``.
@@ -320,7 +320,7 @@ Methods
    .. mpidl:method:: list<id_with_score> similar_row_from_datum_and_rate(0: datum row, 1: float rate)
 
       :param row:  :mpidl:type:`datum` to find similar rows
-      :param rate: rate of all the rows to be returned (Range ``0 <= rate <= 1``)
+      :param rate: rate of all the rows to be returned (Range ``0 < rate <= 1``)
       :return:     rows that most have a similar datum to ``row``
 
       Returns the top ``rate`` of all the rows which are most similar to ``row``. For example, return the top 40% of all the rows when ``0.4`` is specified as ``rate``.
