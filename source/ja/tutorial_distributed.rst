@@ -32,9 +32,10 @@ ZooKeeperを高い信頼性で動作させるために、以下のことを注�
  
  ::
  
-  $ sudo wget http://ftp.meisei-u.ac.jp/mirror/apache/dist/zookeeper/stable/zookeeper-3.4.8.tar.gz
-  $ tar xvf zookeeper-3.4.8.tar.gz
+  $ sudo wget http://ftp.meisei-u.ac.jp/mirror/apache/dist/zookeeper/stable/zookeeper-3.x.xx.tar.gz
+  $ tar xvf zookeeper-3.x.xx.tar.gz
 
+ ※ ファイル名はその時点でのZooKeeperのバージョンに合わせてください。
 
  ※ プロキシを経由している場合は以下の1行を /etc/wgetrc に追記してください。
  
@@ -49,7 +50,7 @@ ZooKeeperを高い信頼性で動作させるために、以下のことを注�
 
 2. ZooKeeperの設定ファイル（zoo.cfg）の作成
 
- zookeeper-3.4.8/conf 配下にサンプルの設定ファイルがありますので、そちらをコピーして作成してください。
+ zookeeper-3.x.xx/conf 配下にサンプルの設定ファイルがありますので、そちらをコピーして作成してください。
  
  ::
  
