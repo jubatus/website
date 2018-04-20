@@ -164,7 +164,7 @@ Example:
          "k" : 3,
          "seed" : 0
        },
-       "compressor_method" : "compressive_kmeans",
+       "compressor_method" : "compressive",
        "compressor_parameter" : {
          "bucket_size" : 1000,
          "compressed_bucket_size" : 100,
