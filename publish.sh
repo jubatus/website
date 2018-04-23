@@ -44,8 +44,8 @@ find . -mindepth 1 -and \
 cp -a ../build/html/* .
 
 # Copy Jubakit documents
-cp -a ../${JUBAKIT}/doc/_build/html/* en/jubakit
-cp -a ../${JUBAKIT}/doc/_build/html/* ja/jubakit
+cp -a ../${JUBAKIT}/doc/_build/en/html/* en/jubakit
+cp -a ../${JUBAKIT}/doc/_build/ja/html/* ja/jubakit
 
 # To test this script without actually publishing the docs, exit here.
 # exit
