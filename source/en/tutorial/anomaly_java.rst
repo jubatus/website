@@ -198,7 +198,7 @@ In this sample program, we will explain 1) how to configure the learning-algorit
                    result = client.add(datum);
 
                    // 4. Output results
-                   if (!(Float.isInfinite(result.score)) && result.score != 1.0) {
+                   if (!(Double.isInfinite(result.score)) && result.score != 1.0) {
                        System.out.print("('" + result.id + "', " + result.score + ") " + strAry[strAry.length - 1] + "\n");
                    }
                }
@@ -293,7 +293,7 @@ The configuration information is given by the JSON unit. Here is the meaning of 
  3. Model training (update learning model)
 
   Input the training data generated in step.2 into the add() method of AnomalyClient (Row 147).
-  The returned result <string, float> is consisted of the data ID and its estimated anomaly value.
+  The returned result <string, double> is consisted of the data ID and its estimated anomaly value.
   
  4. Display result
 

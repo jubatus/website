@@ -251,7 +251,7 @@ Data Structures
 
    Represents a datum with its label.
 
-   .. mpidl:member:: 0: float score
+   .. mpidl:member:: 0: double score
 
       Represents a label of this datum.
 
@@ -262,7 +262,7 @@ Data Structures
    .. code-block:: c++
 
       message scored_datum {
-        0: float score
+        0: double score
         1: datum data
       }
 
@@ -280,7 +280,7 @@ Methods
       Trains and updates the model.
       This function is designed to allow bulk update with list of ``scored_datum``.
 
-   .. mpidl:method:: list<float>  estimate(0: list<datum>  estimate_data)
+   .. mpidl:method:: list<double>  estimate(0: list<datum>  estimate_data)
 
       :param estimate_data: list of :mpidl:type:`datum` to estimate
       :reutrn:              List of estimated values, in order of given :mpidl:type:`datum`

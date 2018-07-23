@@ -226,7 +226,7 @@ Data Structures
 
       Data ID.
 
-   .. mpidl:member:: 1: float score
+   .. mpidl:member:: 1: double score
 
       Score.
       Range of scores is ``0 <= score <= 1`` (less than or equal to ``-0`` when using ``euclid_lsh``).
@@ -235,7 +235,7 @@ Data Structures
 
       message id_with_score {
         0: string id
-        1: float score
+        1: double score
       }
 
 
@@ -285,7 +285,7 @@ Methods
 
       Returns ``size`` rows (at maximum) which are most similar to the row ``id``.
 
-   .. mpidl:method:: list<id_with_score> similar_row_from_id_and_score(0: string id, 1: float score)
+   .. mpidl:method:: list<id_with_score> similar_row_from_id_and_score(0: string id, 1: double score)
 
       :param id:   row ID
       :param score: threshold of similarity score
@@ -309,7 +309,7 @@ Methods
 
       Returns ``size`` rows (at maximum) that most have similar :mpidl:type:`datum` to ``row``.
 
-   .. mpidl:method:: list<id_with_score> similar_row_from_datum_and_score(0: datum row, 1: float score)
+   .. mpidl:method:: list<id_with_score> similar_row_from_datum_and_score(0: datum row, 1: double score)
 
       :param row:  :mpidl:type:`datum` to find similar rows
       :param score: threshold of similarity score
@@ -339,7 +339,7 @@ Methods
 
       Returns the list of all row IDs.
 
-   .. mpidl:method:: float calc_similarity(0: datum lhs, 1:datum rhs)
+   .. mpidl:method:: double calc_similarity(0: datum lhs, 1:datum rhs)
 
       :param lhs:  :mpidl:type:`datum`
       :param rhs:  another :mpidl:type:`datum`
@@ -347,7 +347,7 @@ Methods
 
       Returns the similarity score (see ``score`` member of ``id_with_score``) between two :mpidl:type:`datum`.
 
-   .. mpidl:method:: float calc_l2norm(0: datum row)
+   .. mpidl:method:: double calc_l2norm(0: datum row)
 
       :param row:  :mpidl:type:`datum`
       :return:     L2 norm for the given ``row``

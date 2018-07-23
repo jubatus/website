@@ -241,7 +241,7 @@ The followings are available values of "method" and keys that must be specified.
 
  Add specified value to the original value.
 
-  :value:  Specifies value to add. For example, if we add 3 to the original value, we use "3". Note that it is not numeric but a string. It is treated as a floating-point number internally.
+  :value:  Specifies value to add. For example, if we add 3 to the original value, we use "3". Note that it is not numeric but a string. It is treated as a doubled precision floating-point number internally.
 
 .. describe:: linear_normalization
 
@@ -900,7 +900,7 @@ Instance method named ``extract`` that takes 1 argument is required for the clas
     * beginning position of the extracted part (``int`` type); can be ``0``.
     * length of the part (``int`` type); can be ``0``.
     * extracted string for the part (``str`` type)
-    * score for the part (``float`` type); generally use ``1.0``.
+    * score for the part (``double`` type); generally use ``1.0``.
 
 .. code-block:: python
 
@@ -965,11 +965,11 @@ See the source of `space_splitter module <https://github.com/jubatus/jubatus/blo
 
 Instance method named ``extract`` that takes 2 arguments is required for the class.
 
-* The arguments are datum key name (``str`` type) and its value (``float`` type).
+* The arguments are datum key name (``str`` type) and its value (``double`` type).
 * The return value must be a list of 2 element tuples. Each element represents:
 
     * name of the feature key (``str`` type).
-    * value for the key (``float`` type).
+    * value for the key (``double`` type).
 
 .. code-block:: python
 
@@ -1004,7 +1004,7 @@ Instance method named ``extract`` that takes 2 arguments is required for the cla
 * The return value must be a list of 2 element tuples. Each element represents:
 
     * name of the feature key (``str`` type).
-    * value for the key (``float`` type).
+    * value for the key (``double`` type).
 
 .. code-block:: python
 

@@ -151,7 +151,7 @@ Data Structures
 
       データのIDを表す。
 
-   .. mpidl:member:: 1: float score
+   .. mpidl:member:: 1: double score
 
       IDに対して紐付くスコアを表す。
       陰性の (正常な) データのスコアは `1.0` 近辺になる。
@@ -161,7 +161,7 @@ Data Structures
 
       message id_with_score {
         0: string id
-        1: float score
+        1: double score
       }
 
 Methods
@@ -191,7 +191,7 @@ Methods
       複数の点データをまとめて追加する。
       ``add`` と異なり、点データ追加時に異常値の計算は行わない。
 
-   .. mpidl:method:: float update(0: string id, 1: datum row)
+   .. mpidl:method:: double update(0: string id, 1: datum row)
 
       :param id:   更新する点 ID
       :param row:  点の新しい :mpidl:type:`datum`
@@ -199,7 +199,7 @@ Methods
 
       点 ``id`` をデータ ``row`` で更新する。
 
-   .. mpidl:method:: float overwrite(0: string id, 1: datum row)
+   .. mpidl:method:: double overwrite(0: string id, 1: datum row)
 
       :param id:  更新する点 ID
       :param row: 点の新しい :mpidl:type:`datum`
@@ -207,7 +207,7 @@ Methods
 
       点 ``id`` をデータ ``row`` で上書き更新する。
 
-   .. mpidl:method:: float calc_score(0: datum row)
+   .. mpidl:method:: double calc_score(0: datum row)
 
       :param row:  :mpidl:type:`datum`
       :return:     与えられた ``row`` に対する異常度
