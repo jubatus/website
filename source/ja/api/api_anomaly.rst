@@ -183,7 +183,7 @@ Methods
 
       点データ ``row`` を追加する。
 
-   .. mpidl:method:: list<float> add_bulk(0: list<datum> data)
+   .. mpidl:method:: list<string> add_bulk(0: list<datum> data)
 
       :param row: 追加する :mpidl:type:`datum` のリスト
       :return:    追加に成功したIDのリスト
