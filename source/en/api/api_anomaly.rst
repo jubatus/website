@@ -183,7 +183,7 @@ Methods
 
      Adds a point data ``row``.
 
-   .. mpidl:method:: list<datum> add_bulk(0: list<datum> data)
+   .. mpidl:method:: list<string> add_bulk(0: list<datum> data)
 
       :param data: List of :mpidl:type:`datum` for the points
       :return:     The list of successfully added IDs.
