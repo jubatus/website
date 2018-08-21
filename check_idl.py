@@ -132,7 +132,7 @@ def run(langs, jubatus_root, document_root):
         pattern = os.path.join(jubatus_root, 'jubatus', 'server', 'server', '*.idl')
         for idl_path in glob.glob(pattern):
             api = os.path.splitext(os.path.basename(idl_path))[0]
-            rst_path = os.path.join(document_root, 'source', lang, 'api_%s.rst' % api)
+            rst_path = os.path.join(document_root, 'source', lang, 'api', 'api_%s.rst' % api)
             if not os.path.exists(rst_path):
                 print ('RST is not found: %s' % rst_path)
             else:
