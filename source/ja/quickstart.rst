@@ -5,7 +5,7 @@
 Jubatus のインストール
 ----------------------
 
-Red Hat Enterprise Linux (RHEL) 6.2 以降 (64-bit) と Ubuntu Server 14.04 LTS / 16.04 LTS (64-bit) を公式にサポートしています。
+Red Hat Enterprise Linux (RHEL) 6.2 以降 (64-bit) と Ubuntu Server 14.04 LTS / 16.04 LTS / 18.04 LTS (64-bit) を公式にサポートしています。
 これらのシステムでは、Jubatus のすべてのコンポーネントをバイナリパッケージでインストールすることができます。
 
 また、その他の Linux 環境 (32-bit を含む) と Mac OS X が試験的にサポートされています。
@@ -67,6 +67,9 @@ Ubuntu Server (64-bit)
 
   // Ubuntu 16.04 (Xenial) の場合
   deb http://download.jubat.us/apt/ubuntu/xenial binary/
+
+  // Ubuntu 18.04 (Bionic) の場合
+  deb [trusted=yes] http://download.jubat.us/apt/ubuntu/bionic/binary /
 
 ``jubatus`` のパッケージをインストールします。
 
