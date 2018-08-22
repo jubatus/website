@@ -49,7 +49,7 @@ Data Structures
 
       特徴ベクトルの次元名を表す。
 
-   .. mpidl:member:: 1: float value
+   .. mpidl:member:: 1: double value
 
       特徴ベクトルの次元の重みを表す。
 
@@ -57,7 +57,7 @@ Data Structures
 
       message feature {
         0: string key
-        1: float value
+        1: double value
       }
 
 

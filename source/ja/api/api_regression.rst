@@ -247,7 +247,7 @@ Data Structures
 
    スコア付きのデータを表す。
 
-   .. mpidl:member:: 0: float score
+   .. mpidl:member:: 0: double score
 
       このデータに紐付けられたスコアを表す。このスコアを当てるのが、回帰問題の目的となる。
 
@@ -258,7 +258,7 @@ Data Structures
    .. code-block:: c++
 
       message scored_datum {
-        0: float score
+        0: double score
         1: datum data
       }
 
@@ -270,13 +270,13 @@ Methods
 
    .. mpidl:method:: int train(0: list<scored_datum> train_data)
 
-      :param train_data: float と :mpidl:type:`datum` で構成される組のリスト
+      :param train_data: double と :mpidl:type:`datum` で構成される組のリスト
       :return:           学習した件数 (``train_data`` の長さに等しい)
 
       学習し、モデルを更新する。
       この関数は ``scored_datum`` をリスト形式でまとめて同時に受け付けることができる (バルク更新)。
 
-   .. mpidl:method:: list<float>  estimate(0: list<datum>  estimate_data)
+   .. mpidl:method:: list<double>  estimate(0: list<datum>  estimate_data)
 
       :param estimate_data: 推定する :mpidl:type:`datum` のリスト
       :return:              推定値のリスト (入れられた :mpidl:type:`datum` の順に並ぶ)

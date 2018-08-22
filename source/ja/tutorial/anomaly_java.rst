@@ -198,7 +198,7 @@ Anomaly チュートリアル (Java)
                    result = client.add(datum);
 
                    // 4. Output results
-                   if (!(Float.isInfinite(result.score)) && result.score != 1.0) {
+                   if (!(Double.isInfinite(result.score)) && result.score != 1.0) {
                        System.out.print("('" + result.id + "', " + result.score + ") " + strAry[strAry.length - 1] + "\n");
                    }
                }
@@ -302,7 +302,7 @@ Anomaly チュートリアル (Java)
  3. データの学習（学習モデルの更新）
 
   AnomalyClientのaddメソッドに2. で作成したデータを渡します（147行目）
-  戻り値として、tuple<string, float>型で点IDと異常値を返却します。
+  戻り値として、tuple<string, double>型で点IDと異常値を返却します。
   
  4. 結果の出力
 
