@@ -14,9 +14,9 @@ Feel free to make pull-requests to this repository.
 Requirements
 ------------
 
-* Sphinx 1.1.3 + pngmath + blockdiag + sphinx_rtd_theme
+* Python 2.7 + Sphinx 1.4.3 + blockdiag + sphinx_rtd_theme
 
-Easy setup for Ubuntu 12.04 systems:
+Easy setup for Ubuntu 16.04 systems:
 
 ```
 # apt-get install python-sphinx latex-cjk-japanese texlive-latex-extra dvipng
@@ -59,6 +59,13 @@ For Jubatus members: you can deploy it to http://jubat.us/ website.
 $ ./publish.sh
 ```
 
+How to Build using Docker
+-------------------------
+
+```
+$ docker build -t website-builder .
+$ docker run --rm -v $PWD:/data website-builder
+```
 
 Copyright
 ---------

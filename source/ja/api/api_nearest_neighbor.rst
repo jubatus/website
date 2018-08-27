@@ -127,7 +127,7 @@ Data Structures
 
       データのIDを表す。
 
-   .. mpidl:member:: 1: float score
+   .. mpidl:member:: 1: double score
 
       IDに対して紐付かれた近傍性のスコアを表す。
       近傍性の値が大きいほど、よりお互いの近傍性が高いことを意味する。
@@ -136,7 +136,7 @@ Data Structures
 
       message id_with_score {
         0: string id
-        1: float score
+        1: double score
       }
 
 

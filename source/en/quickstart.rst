@@ -5,7 +5,7 @@ Quick Start
 Install Jubatus
 ---------------
 
-We officially support Red Hat Enterprise Linux (RHEL) 6.2 or later (64-bit) and Ubuntu Server 14.04 LTS / 16.04 LTS (64-bit).
+We officially support Red Hat Enterprise Linux (RHEL) 6.2 or later (64-bit) and Ubuntu Server 14.04 LTS / 16.04 LTS / 18.04 LTS (64-bit).
 On supported systems, you can install all components of Jubatus using binary packages.
 
 Other Linux distributions (including 32-bit) and Mac OS X are experimentally supported.
@@ -65,6 +65,9 @@ Write the following line to ``/etc/apt/sources.list.d/jubatus.list`` to register
 
   // For Ubuntu 16.04 (Xenial)
   deb http://download.jubat.us/apt/ubuntu/xenial binary/
+
+  // For Ubuntu 18.04 (Bionic)
+  deb [trusted=yes] http://download.jubat.us/apt/ubuntu/bionic/binary /
 
 Now install ``jubatus`` package.
 
@@ -195,7 +198,7 @@ Please add these lines to ``pom.xml`` of your project.
      <dependency>
        <groupId>us.jubat</groupId>
        <artifactId>jubatus</artifactId>
-       <version>[1.0,)</version>
+       <version>[1.1,)</version>
      </dependency>
    </dependencies>
 

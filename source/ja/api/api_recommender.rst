@@ -231,7 +231,7 @@ Data Structures
 
       データのIDを表す。
 
-   .. mpidl:member:: 1: float score
+   .. mpidl:member:: 1: double score
 
       IDに対して紐付かれた近傍性のスコアを表す。
       近傍性の値が大きいほど、よりお互いの近傍性が高いことを意味する。
@@ -241,7 +241,7 @@ Data Structures
 
       message id_with_score {
         0: string id
-        1: float score
+        1: double score
       }
 
 
@@ -295,7 +295,7 @@ Methods
 
       指定した行 ``id`` に近い行とその近傍性のリストを (最大で) ``size`` 個返す。
 
-   .. mpidl:method:: list<id_with_score> similar_row_from_id_and_score(0: string id, 1: float score)
+   .. mpidl:method:: list<id_with_score> similar_row_from_id_and_score(0: string id, 1: double score)
 
       :param id:   推薦テーブル内の行を表すID
       :param score: 近傍性スコアの下限値
@@ -319,7 +319,7 @@ Methods
 
       指定した ``row`` に近い :mpidl:type:`datum` を持つ行とその近傍性のリストを (最大で) ``size`` 個返す。
 
-   .. mpidl:method:: list<id_with_score> similar_row_from_datum_and_score(0: datum row, 1: float score)
+   .. mpidl:method:: list<id_with_score> similar_row_from_datum_and_score(0: datum row, 1: double score)
 
       :param row:  近傍を探索したい :mpidl:type:`datum`
       :param score: 近傍性スコアの下限値
@@ -349,7 +349,7 @@ Methods
 
       すべての行の ID リストを返す。
 
-   .. mpidl:method:: float calc_similarity(0: datum lhs, 1:datum rhs)
+   .. mpidl:method:: double calc_similarity(0: datum lhs, 1:datum rhs)
 
       :param lhs:  :mpidl:type:`datum`
       :param rhs:  別の :mpidl:type:`datum`
@@ -357,7 +357,7 @@ Methods
 
       指定した 2 つの :mpidl:type:`datum` の類似度スコア (``id_with_score`` の ``score`` メンバを参照) を返す。
 
-   .. mpidl:method:: float calc_l2norm(0: datum row)
+   .. mpidl:method:: double calc_l2norm(0: datum row)
 
       :param row:  :mpidl:type:`datum`
       :return:     ``row`` の L2 ノルム

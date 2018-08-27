@@ -151,7 +151,7 @@ Data Structures
 
       Data ID.
 
-   .. mpidl:member:: 1: float score
+   .. mpidl:member:: 1: double score
 
       Score for the data.
       Negative (normal) data are scored around `1.0`.
@@ -161,7 +161,7 @@ Data Structures
 
       message id_with_score {
         0: string id
-        1: float score
+        1: double score
       }
 
 Methods
@@ -183,7 +183,7 @@ Methods
 
      Adds a point data ``row``.
 
-   .. mpidl:method:: list<datum> add_bulk(0: list<datum> data)
+   .. mpidl:method:: list<string> add_bulk(0: list<datum> data)
 
       :param data: List of :mpidl:type:`datum` for the points
       :return:     The list of successfully added IDs.
@@ -191,7 +191,7 @@ Methods
       Adds a bulk of points.
       In contrast to ``add``, this API doesn't return anomaly measure values.
 
-   .. mpidl:method:: float update(0: string id, 1: datum row)
+   .. mpidl:method:: double update(0: string id, 1: datum row)
 
       :param id:   point ID to update
       :param row:  new :mpidl:type:`datum` for the point
@@ -199,7 +199,7 @@ Methods
 
       Updates the point ``id`` with the data ``row``.
 
-   .. mpidl:method:: float overwrite(0: string id, 1: datum row)
+   .. mpidl:method:: double overwrite(0: string id, 1: datum row)
 
       :param id:  point ID to overwrite
       :param row: new :mpidl:type:`datum` for the point
@@ -207,7 +207,7 @@ Methods
 
       Overwrites the point ``id`` with the data ``row``.
 
-   .. mpidl:method:: float calc_score(0: datum row)
+   .. mpidl:method:: double calc_score(0: datum row)
 
       :param row:  :mpidl:type:`datum`
       :return:     Anomaly measure value for given ``row``

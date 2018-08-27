@@ -125,7 +125,7 @@ Data Structures
 
       Data ID.
 
-   .. mpidl:member:: 1: float score
+   .. mpidl:member:: 1: double score
 
       Score.
 
@@ -133,7 +133,7 @@ Data Structures
 
       message id_with_score {
         0: string id
-        1: float score
+        1: double score
       }
 
 
