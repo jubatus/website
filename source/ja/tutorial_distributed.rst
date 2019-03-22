@@ -32,7 +32,7 @@ ZooKeeperを高い信頼性で動作させるために、以下のことを注�
  
  ::
  
-  $ sudo wget http://ftp.meisei-u.ac.jp/mirror/apache/dist/zookeeper/zookeeper-3.4.13/zookeeper-3.4.13.tar.gz
+  $ sudo wget http://ftp.riken.jp/net/apache/zookeeper/zookeeper-3.4.13/zookeeper-3.4.13.tar.gz
   $ tar xvf zookeeper-3.4.13.tar.gz
 
  ※ プロキシを経由している場合は以下の1行を /etc/wgetrc に追記してください。
